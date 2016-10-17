@@ -5,12 +5,11 @@
                     <h4>Information</h4>
                     <div class="nav-bottom">
                         <ul>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="news.html">News</a></li>
-                            <li><a href="events.html">Events</a></li>
+                            <li><a href="about.html"><?php echo $lang['MENU_ABOUT']; ?></a></li>
+                            <li><a href="news.html"><?php echo $lang['MENU_NEWS']; ?></a></li>
+                            <li><a href="events.html"><?php echo $lang['MENU_EVENTS']; ?></a></li>
                             <li><a href="404.html">Blog</a></li>
-                            <li><a href="contact.html">Contacts</a></li>
-                            <div class="clearfix"></div>
+                            <li><a href="contact.html"><?php echo $lang['MENU_CONTACT']; ?></a></li>
                         </ul>
                     </div>
                 </div>
@@ -26,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 email">
-                    <h4>Email updates</h4>
+                    <h4><?php echo $lang['FOOTER_EMAIL_UPDATES']; ?></h4>
                     <p>Curabitur justo augue, euismod nec tortor tincidunt.</p>
                     <div class="email-top">
                         <form>
@@ -35,13 +34,13 @@
                     </div>
                 </div>
                 <div class="col-md-3 conta">
-                    <h4>Contact us</h4>
+                    <h4><?php echo $lang['FOOTER_CONTACT_US']; ?></h4>
                     <p>Tel 1:+1 234 567 8767</p>
                     <p>Tel 2:+1 234 567 8767</p>
                 </div>
                 <div class="clearfix"> </div>
                 <div class="bottom">
-                    <p>Copyrights © 2015 Hiking All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+                    <p>Copyrights © 2015 Hiking All rights reserved</p>
                 </div>
             </div>
         </div>

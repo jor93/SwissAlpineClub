@@ -1,4 +1,9 @@
-<!DOCTYPE html 
+<?php
+// include lang files
+include_once ROOT_DIR.'views/common.php';
+?>
+
+<!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
      
@@ -7,6 +12,7 @@
 		<title>SAC</title>
 		<link href="/<?php echo SITE_NAME; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/<?php echo SITE_NAME; ?>/css/slider.css" rel="stylesheet" type="text/css" media="all" />
 		<meta name="/viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -39,9 +45,9 @@
 				<div class="header-top">
 					<div class="header-right">
 						<div id="languages">
-							<a href="#/?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="24px" height="24px" /></a>
+							<a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="24px" height="24px" /></a>
 							<br />
-							<a href="#/?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="24px" height="24px" /></a>
+							<a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="24px" height="24px" /></a>
 						</div>
 					</div>
 					<div class="header-left">
@@ -62,12 +68,11 @@
 				<div class="head-nav">
 					<span class="menu"> </span>
 					<ul>
-						<li id="menu_home"><a href="home.php">Home</a></li>
-						<li><a href="news.html">News</a></li>
-						<li><a href="events.html">Events</a></li>
+						<li><a href="news.html"><?php echo $lang['MENU_NEWS']; ?></a></li>
+						<li><a href="events.html"><?php echo $lang['MENU_EVENTS']; ?></a></li>
 						<li><a href="404.html">Blog</a></li>
-						<li id="menu_about"><a href="about.php">About</a></li>
-						<li id="menu_contact"><a href="contact.php">Contact</a></li>
+						<li id="menu_about"><a href="<?php echo URL_DIR.'general/about';?>"><?php echo $lang['MENU_ABOUT']; ?></a></li>
+						<li id="menu_contact"><a href="<?php echo URL_DIR.'general/contact';?>"><?php echo $lang['MENU_CONTACT']; ?></a></li>
 						<div class="clearfix"> </div>
 					</ul>
 				</div>

@@ -1649,25 +1649,16 @@ legend {
   border-bottom: 1px solid #e5e5e5;
 }
 label  {
+
   display: inline-block;
   margin-bottom: 5px;
   color: black;
 }
 label.error{
-  display: inline-block;
+  display: none;
   color: red;
 }
 
-span.error{
-  display: inline-block;
-  color: red;
-  height: 0px;
-}
-
-span.error.show{
-  display: inline-block;
-  color: red;
-}
 input[type="search"] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

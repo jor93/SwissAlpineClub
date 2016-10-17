@@ -54,10 +54,19 @@ include_once ROOT_DIR.'views/header.inc';
     <div class="main-1">
         <div class="container">
             <div class="register">
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <form method="post">
                     <div class="register-top-grid">
-
-                        <span id="label_fail_exec" class="error" >This username already exists </span>
+                        <!-- Error message label general -->
+                        <label id="label_fail_exec" class="error" style="display: inline-block">
+                            <?php
+                            if(isset($_SESSION['error']))
+                            switch ($_SESSION['error']){
+                                case 1:
+                                    break;
+                                default:
+                                    'hallo';
+                            }
+                            ?> </label>
 
                         <h3>PERSONAL INFORMATION</h3>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -136,7 +145,6 @@ include_once ROOT_DIR.'views/header.inc';
                             <input type="password" id="pw1" name="pwd1" required>
                             <span id="label_fail_pw1_notSame" class="error" >Password does not match</span>
                             <span id="label_fail_pw1_weak" class="error" >Password are to weak</span>
-                        </div>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span>Confirm Password<label>*</label></span>

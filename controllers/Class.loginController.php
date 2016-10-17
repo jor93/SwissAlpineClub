@@ -10,50 +10,56 @@ class loginController extends Controller {
     /**
      * Method called by the form of the page login.php
      */
-    function connection(){
+    function connection()
+    {
         //Get data posted by the form
-        $uname = $_POST['username'];
-        $pwd = $_POST['password'];
-
-        //Check if data valid
-        if(empty($uname) or empty($pwd)){
-            $_SESSION['msg'] = '<span class="error">A required field is empty!</span>';
-            $this->redirect('login', 'login');
+        if (isset($_POST['email']) && isset($_POST['password'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
         }
-        else{
-            //Load user from DB if exists
-            $result = User::connect($uname, $pwd);
+        //Load account from DB if exists
+        $result = Account::connect($email, $password);
+        //Put account in session if exists or return error msg
+        if (!$result) {
+            $this->redirect('login', 'login');
+        } else {
+            //Check if Account can update Lastlogin
+            if(strcmp((string)date("Y-m-d"), (string)$result->getLastlogin()) != 0){
+                Account::updateLastLogin($result->getIdAccount());
+                $currentDate = date("Y-m-d");
+                $result->setLastlogin($currentDate);
+            }
+            //Set cookie for remember me if its active
+            if (isset($_POST['rememberMe'])) {
+                $rmbe = sha1('1');
+                setcookie("Rme", $rmbe, 0, "/");
+            }
+            $_SESSION['account'] = $result;
 
-            //Put user in session if exists or return error msg
-            if(!$result){
-                $_SESSION['msg'] = '<span class="error">Username or password incorrect!</span>';
-                $this->redirect('login', 'login');
-            }
-            else{
-                $_SESSION['msg'] = '<span class="success">Welcome '. $result->getFirstname(). ' '.$result->getLastname().'!</span>';
-                $_SESSION['user'] = $result;
-                $this->redirect('login', 'welcome');
-            }
+            $this->redirect('showuser', 'showuser');
         }
     }
 
     /**
      * Method that controls the page 'login.php'
      */
-    function login(){
+    function login()
+    {
         //if a user is active he cannot re-login
-        if($this->getActiveUser()){
-            $this->redirect('login', 'welcome');
+        if ($this->getActiveUser()) {
+            $this->redirect('showuser', 'showuser');
             exit;
         }
-
-        $this->vars['msg'] = isset($_SESSION['msg']) ? $_SESSION['msg'] : '';
     }
 
     /**
      * Method called by the logout hyperlink
      */
-    function logout(){
+    function logout()
+    {
+        if(isset($_COOKIE["Rme"])){
+            setcookie("Rme", "", time() - 3600, "/");
+        }
         session_destroy();
         $this->redirect('login', 'login');
     }
@@ -74,8 +80,6 @@ class loginController extends Controller {
     }
 
     function register(){
-
-        $_SESSION['country'] = null;
         // load country to session
         if(!isset($_SESSION['country'])){
             $query = "select idCountry,NameCountry,CodeCountry from country;";
@@ -90,11 +94,11 @@ class loginController extends Controller {
             echo 'session not existed yet!';
         }*/
 
+
+
         // validating form
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // initializing variable
-            $aborting = false;
-
             $firstName = "";
             $lastName = "";
             $email = "";
@@ -111,8 +115,8 @@ class loginController extends Controller {
                 && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['pwd1'])
             ) {
                 // get data from post and secured it
-                $firstName = $this->badassSafer($_POST['firstname']);
-                $lastName = $this->badassSafer($_POST['lastname']);
+                $firstName = $this->cleanNames($this->badassSafer($_POST['firstname']));
+                $lastName = $this->cleanNames($this->badassSafer($_POST['lastname']));
                 $email = $this->badassSafer($_POST['email']);
                 $address = $this->badassSafer($_POST['address']);
                 $location = $this->badassSafer($_POST['location']);
@@ -120,20 +124,10 @@ class loginController extends Controller {
                 $language = $this->badassSafer($_POST['lang']);
                 $password1 = $this->badassSafer($_POST['pwd1']);
                 $password2 = $this->badassSafer($_POST['pwd2']);
-                // todo unshow error
             } else {
-                // todo show error
-                //return;
-            }
-
-            // check firstname
-            if (!preg_match("/^[a-zA-Z ]*$/", $firstName)) {
-
-                return;
-            }
-
-            // check lastname
-            if (!preg_match("/^[a-zA-Z ]*$/", $firstName)) {
+                $_SESSION['error'] = 1;
+                // Bitte füllen Sie alle Felder aus!
+                //
                 return;
             }
 
@@ -154,54 +148,57 @@ class loginController extends Controller {
 
             // check if email is valid
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['error'] = 2;
+                // Ungültige E-Mail Adresse!
+                //
+                return;
                 return;
             }
 
             // check if username isn't already in use
             $answer = self::checkEmailIfExists($email);
-            if ($answer === 1) {
+            if ($answer[0] === 1) {
+                $_SESSION['error'] = 3;
+                // Diese E-Mail Adresse exisitert bereits!
+                //
                 return;
             }
 
             // check if zip code ist in db
             $answer = self::checkIfZipCodeExists($location);
-            if ($answer === 0) {
+            if ($answer[0] === 0) {
                 // insert new zip code here
             }
 
             // check if pwd are the same
-            if (strcmp($password1, $password2) != 0) return;
+            if (strcmp($password1, $password2) != 0){
+                $_SESSION['error'] = 4;
+                // Passswörter sind nicht identisch!
+                return;
+            }
 
             // check if pwd meet our security
-            $answer = self::checkPassword($password2);
-            if ($answer === false) return;
+            $answer = self::checkPasswordStrength($password2);
+            if ($answer === false){
+                $_SESSION['error'] = 5;
+                // Passswort ist zu schwach
+                return;
+            }
 
             echo '</br>';
-            var_dump($answer);
 
             // everything is fine, create new account
             //$user = new Account();
+
+            // registration successfull
+            $_SESSION['country'] = null;
+            $_SESSION['error'] = null;
         }
 
     }
 
 
-    /**
-     * Method that controls the page 'welcome.php'
-     */
-    function welcome(){
-        //The page cannot be displayed if no user connected
-        if(!$this->getActiveUser()){
-            $this->redirect('login', 'login');
-            exit;
-        }
-
-        //Get message from connection process
-        $this->vars['msg'] = isset($_SESSION['msg']) ? $_SESSION['msg'] : '';
-
-    }
-
-    // password strength checker
+    // returns false if password is to weak, if good true
     public static function checkPasswordStrength($password){
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
@@ -212,8 +209,6 @@ class loginController extends Controller {
             return false;
         else
             return true;
-
-
     }
 
     public static function getPreferredLanguage(){
@@ -223,13 +218,13 @@ class loginController extends Controller {
     // returns 1 if already exist, returns 0 if NOT exist
     public static function checkEmailIfExists($emailToCheck){
         $query = "SELECT CASE WHEN EXISTS (SELECT email FROM account WHERE email = '$emailToCheck') THEN 1 ELSE 0 END;";
-        return SQL::getInstance()->select($query);
+        return SQL::getInstance()->select($query)->fetch();
     }
 
     // returns 1 if already exist, returns 0 if NOT exist
     public static function checkIfZipCodeExists($zipToCheck){
         $query = "SELECT CASE WHEN EXISTS (SELECT postcode FROM location WHERE postcode = '$zipToCheck') THEN 1 ELSE 0 END;";
-        return SQL::getInstance()->select($query);
+        return SQL::getInstance()->select($query)->fetch();
     }
 
     // returns the country code if found

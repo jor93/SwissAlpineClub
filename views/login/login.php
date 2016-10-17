@@ -1,186 +1,77 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jor
- * Date: 23.09.2016
- * Time: 09:21
+ * User: Dennis
+ * Date: 28.09.2016
+ * Time: 14:01
  */
-
-//Collect data from controller
-$msg = $this->vars['msg'];
-
+include_once ROOT_DIR.'views/header.inc';
 ?>
-<!--
-Au<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Hiking A Sports Category Flat Bootstarp Resposive Website Template | About :: w3layouts</title>
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-<link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Hiking Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700,800' rel='stylesheet' type='text/css'>
-<script src="../../js/jquery.min.js"></script>
-<link href="../../css/swipebox.css" rel="stylesheet">
- <!------ Light Box ------>
-    <script src="js/jquery.swipebox.min.js"></script> 
-    <script type="text/javascript">
-		jQuery(function($) {
-			$(".swipebox").swipebox();
+	<script>
+		$(document).ready(function () {
+			$('#menu_login').addClass('active');
 		});
-	</script>
-    <!------ Eng Light Box ------>
-</head>
-<body>
-<!-- header -->
-	<div class="header">
-  	    <div class="container">
-			<div class="header-top">
-				<div class="header-right">
-					<div class="search2">
-					  <form>
-						 <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-						 <input type="submit" value="">
-					  </form>
-					</div>
-				</div>
-				<div class="header-left">
-					<ul>
-						<li><a href="registration.html">Registration</a></li>
-						<li class="active"><a href="login.html">Login</a></li>
-					</ul>
-				</div>
-					<div class="clearfix"> </div>
-			</div>
-		</div> 				
-	</div> 		
-			<div class="header-bottom">
-				<div class="container">
-					<div class="logo">
-						<a href="index.html"><img src="images/logo.png" class="img-responsive" alt="" /></a>
-					</div>
-					<div class="head-nav">
-						<span class="menu"> </span>
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="news.html">News</a></li>
-								<li><a href="events.html">Events</a></li>
-								<li><a href="404.html">Blog</a></li>
-								<li><a href="contact.html">Contacts</a></li>
-								<div class="clearfix"> </div>
-						</ul>
-					</div>
-						<div class="clearfix"> </div>
-						<!-- script-for-nav -->
-					<script>
-						$( "span.menu" ).click(function() {
-						  $( ".head-nav ul" ).slideToggle(300, function() {
-							// Animation complete.
-						  });
-						});
-					</script>
-				<!-- script-for-nav -->
-				</div> 
-			</div> 	
-	<div class="banner1">
-		<div class="container">
-		
-	</div>
-	</div>
-<!-- header -->
 
-<!-- login -->
+		function checkLogin() {
+			var mail = document.getElementById("mail");
+			var pw = document.getElementById("pw");
+
+
+			if(document.getElementById("checkb").checked) {
+
+				return true;
+			}
+			else {
+
+				document.getElementById("checkb").focus();
+				return false;
+			}
+
+
+		}
+	</script>
+	<br />
+
 	<div class="login-page">
 		<div class="container">
 			<div class="account_grid">
 				<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
 					<h3>NEW CUSTOMERS</h3>
-					<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-					<a class="acount-btn" href="registration.html">Create an Account</a>
-			   </div>
-			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+					<p>By creating an account on this site, you will be able to book our guided tours</p>
+					<a class="acount-btn" href="registration.php">Create an Account</a>
+				</div>
+				<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 					<h3>REGISTERED CUSTOMERS</h3>
 					<p>If you have an account with us, please log in.</p>
-					<form>
+					<form onsubmit="return false">
 						<div>
 							<span>Email Address<label>*</label></span>
-							<input type="text"> 
+							<input type="email" id="mail" required>
 						</div>
 						<div>
 							<span>Password<label>*</label></span>
-							<input type="text"> 
+							<input type="password" id="pw" required>
 						</div>
-						<a class="forgot" href="#">Forgot Your Password?</a>
-						<input type="submit" value="Login">
-					</form>
-			   </div>	
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-<!-- login -->
-<!-- footer -->
-	<div class="footer">
-		<div class="container">
-		<div class="col-md-3 information">
-				<h4>Information</h4>
-				<div class="nav-bottom">
-						<ul>
-							<li><a href="about.html">About</a></li>
-							<li><a href="news.html">News</a></li>
-							<li><a href="events.html">Events</a></li>
-							<li><a href="404.html">Blog</a></li>
-							<li><a href="contact.html">Contacts</a></li>
-								<div class="clearfix"></div>	
-						</ul>
-					</div>
-			</div>
-			<div class="col-md-3 keep">
-				<h4>follow us</h4>
-				<div class="social">
-						<ul>
-							<li><a href="#"><i class="facebok"> </i></a></li>
-							<li><a href="#"><i class="twiter"> </i></a></li>
-							<li><a href="#"><i class="rss"> </i></a></li>
-								<div class="clearfix"></div>	
-						</ul>
-					</div>
-			</div>
-			<div class="col-md-3 email">
-				<h4>Email updates</h4>
-				<p>Curabitur justo augue, euismod nec tortor tincidunt.</p>
-				<div class="email-top">
-						<form>
-							<input type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-						</form>	
-				</div>
-			</div>
-			<div class="col-md-3 conta">
-				<h4>Contact us</h4>
-				<p>Tel 1:+1 234 567 8767</p>
-				<p>Tel 2:+1 234 567 8767</p>
-			</div>
-				<div class="clearfix"> </div>
-			<div class="bottom">
-				<p>Copyrights © 2015 Hiking All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-			</div>
-		</div>
-	</div>
-<!-- footer -->
 
-</body>
-</html>
+						<a class="forgot" href="forgotpw.php">Forgot Your Password?</a>
+						<a class="clearfix" ></a>
+
+						<a class="news-letter" href="#">
+							<label class="checkbox">
+								<input type="checkbox" id="checkb" name="checkbox" checked=""><i> </i>Stay logged in
+							</label>
+						</a>
+						<a href="showuser.php">
+							<input type="submit" value="Login" onclick="checkLogin()">
+						</a>
+					</form>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
 
 <?php
-unset($_SESSION['msg']);
+include_once ROOT_DIR.'views/footer.inc';
+?>
 ?>

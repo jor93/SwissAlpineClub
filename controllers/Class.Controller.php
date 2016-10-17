@@ -14,6 +14,7 @@
  	protected $vars = array();
  	protected $controller;
  	protected $method;
+    protected $illegalChars = array('"',"§","°","1","+","¦","2","@","3","*","#","4","5","%","6","&","¬","7","/","|","8","(","¢","9",")","0","=","?","´","^","`","~","[","¨","!","]","{","}","£",",",".",";",":","_","<",">");
  	 
  	/**
  	 * Constructor
@@ -47,17 +48,37 @@
  		$url = "Location: " . URL_DIR. $controller . '/' .$method;
  		header($url);
  	}
- 
- 	/**
- 	 * Get active (logged-in) user
- 	 * @return User
- 	 */
- 	function getActiveUser(){
- 		if(isset($_SESSION['user']))
- 			return $_SESSION['user'];
- 			else
- 				return false;
- 	}
+
+     /**
+      * Get active (logged-in) user
+      * @return User
+      */
+     function getActiveUser(){
+         if(isset($_SESSION['account']) && isset($_COOKIE['Rme']))
+             return $_SESSION['account'];
+         else
+             return false;
+     }
+
+     function getAdminUser(){
+         if(isset($_SESSION['account']) && isset($_COOKIE['Rme']) && $_SESSION['account']->getRunlevel() == 10)
+             return $_SESSION['account'];
+         else {
+             if(isset($_COOKIE["Rme"])){
+                 setcookie("Rme", "", time() - 3600, "/");
+             }
+             return false;
+         }
+     }
+
+     function getActiveUserWithoutCookie(){
+         if(isset($_SESSION['account']))
+             return $_SESSION['account'];
+         else
+             return false;
+     }
+
+
 
  	function badassSafer($secureMe){
  	    $secured = trim($secureMe);
@@ -66,6 +87,11 @@
  	    echo '</br>' . 'secured string: ' . $secured;
         return $secured;
     }
+
+    function cleanNames($cleanMyName){
+        return str_replace($this->illegalChars, "", $cleanMyName);
+    }
+
 
      /**
       * Detect Browser Language

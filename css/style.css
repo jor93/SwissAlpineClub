@@ -138,6 +138,490 @@ span {
 	line-height: 1.8em;
 	text-align:right;
 }
+
+/* Filter controls */
+.simplefilter ul {
+	margin: 0 inherit;
+}
+
+.simplefilter li, .multifilter li, .sortandshuffle li {
+	margin: 0;
+	color: white;
+	width: 100%;
+	cursor: pointer;
+	display: inline-block;
+	text-transform: uppercase;
+	padding: 1rem 2rem;
+}
+
+.simplefilter li {
+	background-color: #585858;
+}
+.simplefilter li.active {
+	background-color: #212121;
+}
+.multifilter li {
+	background-color: #4b9eff;
+}
+.multifilter li.active {
+	background-color: #2265b4;
+}
+
+/* Shuffle and sort controls */
+select {
+	padding: 1rem 1rem;
+	text-transform: uppercase;
+}
+.sortandshuffle .shuffle-btn {
+	background-color: #dec800;
+}
+.sortandshuffle .sort-btn {
+	background-color: #de0000;
+}
+.sortandshuffle .sort-btn.active {
+	background-color: #9d0000;
+}
+
+/* Search control */
+.search-row {
+
+}
+.filtr-search {
+	padding: 0.5rem;
+	text-transform: uppercase;
+}
+
+/* Date picker */
+.datepicker {
+	padding: 4px;
+	margin-top: 1px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	direction: ltr;
+	/*.dow {
+          border-top: 1px solid #ddd !important;
+      }*/
+
+}
+.datepicker-inline {
+	width: 220px;
+}
+.datepicker.datepicker-rtl {
+	direction: rtl;
+}
+.datepicker.datepicker-rtl table tr td span {
+	float: right;
+}
+.datepicker-dropdown {
+	top: 0;
+	left: 0;
+}
+.datepicker-dropdown:before {
+	content: '';
+	display: inline-block;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #ccc;
+	border-bottom-color: rgba(0, 0, 0, 0.2);
+	position: absolute;
+	top: -7px;
+	left: 6px;
+}
+.datepicker-dropdown:after {
+	content: '';
+	display: inline-block;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #ffffff;
+	position: absolute;
+	top: -6px;
+	left: 7px;
+}
+.datepicker > div {
+	display: none;
+}
+.datepicker.days div.datepicker-days {
+	display: block;
+}
+.datepicker.months div.datepicker-months {
+	display: block;
+}
+.datepicker.years div.datepicker-years {
+	display: block;
+}
+.datepicker table {
+	margin: 0;
+}
+.datepicker td,
+.datepicker th {
+	text-align: center;
+	width: 20px;
+	height: 20px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: none;
+}
+.table-striped .datepicker table tr td,
+.table-striped .datepicker table tr th {
+	background-color: transparent;
+}
+.datepicker table tr td.day:hover {
+	background: #eeeeee;
+	cursor: pointer;
+}
+.datepicker table tr td.old,
+.datepicker table tr td.new {
+	color: #999999;
+}
+.datepicker table tr td.disabled,
+.datepicker table tr td.disabled:hover {
+	background: none;
+	color: #999999;
+	cursor: default;
+}
+.datepicker table tr td.today,
+.datepicker table tr td.today:hover,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today.disabled:hover {
+	background-color: #fde19a;
+	background-image: -moz-linear-gradient(top, #fdd49a, #fdf59a);
+	background-image: -ms-linear-gradient(top, #fdd49a, #fdf59a);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
+	background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
+	background-image: -o-linear-gradient(top, #fdd49a, #fdf59a);
+	background-image: linear-gradient(top, #fdd49a, #fdf59a);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
+	border-color: #fdf59a #fdf59a #fbed50;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.datepicker table tr td.today:hover,
+.datepicker table tr td.today:hover:hover,
+.datepicker table tr td.today.disabled:hover,
+.datepicker table tr td.today.disabled:hover:hover,
+.datepicker table tr td.today:active,
+.datepicker table tr td.today:hover:active,
+.datepicker table tr td.today.disabled:active,
+.datepicker table tr td.today.disabled:hover:active,
+.datepicker table tr td.today.active,
+.datepicker table tr td.today:hover.active,
+.datepicker table tr td.today.disabled.active,
+.datepicker table tr td.today.disabled:hover.active,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today:hover.disabled,
+.datepicker table tr td.today.disabled.disabled,
+.datepicker table tr td.today.disabled:hover.disabled,
+.datepicker table tr td.today[disabled],
+.datepicker table tr td.today:hover[disabled],
+.datepicker table tr td.today.disabled[disabled],
+.datepicker table tr td.today.disabled:hover[disabled] {
+	background-color: #fdf59a;
+}
+.datepicker table tr td.today:active,
+.datepicker table tr td.today:hover:active,
+.datepicker table tr td.today.disabled:active,
+.datepicker table tr td.today.disabled:hover:active,
+.datepicker table tr td.today.active,
+.datepicker table tr td.today:hover.active,
+.datepicker table tr td.today.disabled.active,
+.datepicker table tr td.today.disabled:hover.active {
+	background-color: #fbf069 \9;
+}
+.datepicker table tr td.active,
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active.disabled:hover {
+	background-color: #006dcc;
+	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+	background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+	background-image: linear-gradient(top, #0088cc, #0044cc);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+	border-color: #0044cc #0044cc #002a80;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active:hover:hover,
+.datepicker table tr td.active.disabled:hover,
+.datepicker table tr td.active.disabled:hover:hover,
+.datepicker table tr td.active:active,
+.datepicker table tr td.active:hover:active,
+.datepicker table tr td.active.disabled:active,
+.datepicker table tr td.active.disabled:hover:active,
+.datepicker table tr td.active.active,
+.datepicker table tr td.active:hover.active,
+.datepicker table tr td.active.disabled.active,
+.datepicker table tr td.active.disabled:hover.active,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active:hover.disabled,
+.datepicker table tr td.active.disabled.disabled,
+.datepicker table tr td.active.disabled:hover.disabled,
+.datepicker table tr td.active[disabled],
+.datepicker table tr td.active:hover[disabled],
+.datepicker table tr td.active.disabled[disabled],
+.datepicker table tr td.active.disabled:hover[disabled] {
+	background-color: #0044cc;
+}
+.datepicker table tr td.active:active,
+.datepicker table tr td.active:hover:active,
+.datepicker table tr td.active.disabled:active,
+.datepicker table tr td.active.disabled:hover:active,
+.datepicker table tr td.active.active,
+.datepicker table tr td.active:hover.active,
+.datepicker table tr td.active.disabled.active,
+.datepicker table tr td.active.disabled:hover.active {
+	background-color: #003399 \9;
+}
+.datepicker table tr td span {
+	display: block;
+	width: 23%;
+	height: 54px;
+	line-height: 54px;
+	float: left;
+	margin: 1%;
+	cursor: pointer;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.datepicker table tr td span:hover {
+	background: #eeeeee;
+}
+.datepicker table tr td span.disabled,
+.datepicker table tr td span.disabled:hover {
+	background: none;
+	color: #999999;
+	cursor: default;
+}
+.datepicker table tr td span.active,
+.datepicker table tr td span.active:hover,
+.datepicker table tr td span.active.disabled,
+.datepicker table tr td span.active.disabled:hover {
+	background-color: #006dcc;
+	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+	background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+	background-image: linear-gradient(top, #0088cc, #0044cc);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+	border-color: #0044cc #0044cc #002a80;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.datepicker table tr td span.active:hover,
+.datepicker table tr td span.active:hover:hover,
+.datepicker table tr td span.active.disabled:hover,
+.datepicker table tr td span.active.disabled:hover:hover,
+.datepicker table tr td span.active:active,
+.datepicker table tr td span.active:hover:active,
+.datepicker table tr td span.active.disabled:active,
+.datepicker table tr td span.active.disabled:hover:active,
+.datepicker table tr td span.active.active,
+.datepicker table tr td span.active:hover.active,
+.datepicker table tr td span.active.disabled.active,
+.datepicker table tr td span.active.disabled:hover.active,
+.datepicker table tr td span.active.disabled,
+.datepicker table tr td span.active:hover.disabled,
+.datepicker table tr td span.active.disabled.disabled,
+.datepicker table tr td span.active.disabled:hover.disabled,
+.datepicker table tr td span.active[disabled],
+.datepicker table tr td span.active:hover[disabled],
+.datepicker table tr td span.active.disabled[disabled],
+.datepicker table tr td span.active.disabled:hover[disabled] {
+	background-color: #0044cc;
+}
+.datepicker table tr td span.active:active,
+.datepicker table tr td span.active:hover:active,
+.datepicker table tr td span.active.disabled:active,
+.datepicker table tr td span.active.disabled:hover:active,
+.datepicker table tr td span.active.active,
+.datepicker table tr td span.active:hover.active,
+.datepicker table tr td span.active.disabled.active,
+.datepicker table tr td span.active.disabled:hover.active {
+	background-color: #003399 \9;
+}
+.datepicker table tr td span.old {
+	color: #999999;
+}
+.datepicker th.switch {
+	width: 145px;
+}
+.datepicker thead tr:first-child th,
+.datepicker tfoot tr:first-child th {
+	cursor: pointer;
+}
+.datepicker thead tr:first-child th:hover,
+.datepicker tfoot tr:first-child th:hover {
+	background: #eeeeee;
+}
+.input-append.date .add-on i,
+.input-prepend.date .add-on i {
+	display: block;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+}
+
+
+
+/* Range filter */
+/* Variables */
+/* Colors */
+/* Sizes */
+/* line 1, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider {
+	display: block;
+	box-sizing: border-box; }
+/* line 5, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider * {
+	box-sizing: border-box; }
+/* line 7, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider:not(.addui-slider-isrange) {
+	cursor: pointer; }
+/* line 11, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track {
+	display: block;
+	position: relative;
+	background: rgba(0, 0, 0, 0.38);
+	border-radius: 4px; }
+/* line 17, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-range {
+	display: block;
+	background: #3f51b5;
+	border-radius: 4px;
+	position: absolute; }
+/* line 24, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle {
+	display: block;
+	width: 50px;
+	height: 50px;
+	background: rgba(63, 81, 181, 0);
+	box-shadow: 0 0 5px rgba(63, 81, 181, 0);
+	position: absolute;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: background 1s, box-shadow 1s;
+	z-index: 0; }
+/* line 36, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle .addui-slider-value {
+	display: block;
+	float: right;
+	background: rgba(63, 81, 181, 0);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-top: 0px;
+	color: white;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 1s, background 1s, transform 1s, margin 1s, border-radius 1s;
+	transform: scale(1, 0) rotate(-135deg);
+	transform-style: preserve-3d;
+	position: absolute;
+	z-index: 1; }
+/* line 53, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle .addui-slider-value span {
+	display: block;
+	transform: rotate(135deg);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 50px;
+	position: absolute;
+	z-index: 1; }
+/* line 65, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle:hover {
+	box-shadow: 0 0 5px rgba(63, 81, 181, 0.5); }
+/* line 68, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle:hover .addui-slider-value {
+	background: rgba(63, 81, 181, 0.5);
+	opacity: 1;
+	transform: scale(1, 1) rotate(-135deg);
+	margin-top: -60px;
+	border-radius: 0 50% 50% 50%; }
+/* line 77, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle.addui-slider-handle-active {
+	background: rgba(63, 81, 181, 0.5);
+	box-shadow: 0 0 5px rgba(63, 81, 181, 0.5); }
+/* line 81, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle.addui-slider-handle-active .addui-slider-value {
+	background: rgba(63, 81, 181, 0.75);
+	opacity: 1;
+	transform: scale(1, 1) rotate(-135deg);
+	margin-top: -60px;
+	border-radius: 0 50% 50% 50%; }
+/* line 90, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider .addui-slider-track .addui-slider-handle:after {
+	display: block;
+	content: " ";
+	width: 25px;
+	height: 25px;
+	background: #3f51b5;
+	border-radius: 25px;
+	position: relative;
+	top: 13px;
+	left: 13px; }
+/* line 105, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-vertical {
+	height: calc(100% - 50px);
+	width: 50px;
+	margin: 25px 16px; }
+/* line 110, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-vertical .addui-slider-track {
+	height: 100%;
+	width: 4px;
+	top: 0;
+	left: 23px; }
+/* line 116, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-vertical .addui-slider-track .addui-slider-range {
+	width: 4px;
+	height: auto; }
+/* line 121, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-vertical .addui-slider-track .addui-slider-handle {
+	left: -24px;
+	top: auto;
+	transform: translateY(50%); }
+/* line 126, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-vertical .addui-slider-track .addui-slider-handle.addui-slider-handle-l {
+	z-index: 2; }
+/* line 133, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-horizontal {
+	height: 50px;
+	width: calc(100% - 50px);
+	margin: 16px 25px; }
+/* line 138, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-horizontal .addui-slider-track {
+	height: 4px;
+	width: 100%;
+	top: 23px;
+	left: 0; }
+/* line 144, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-horizontal .addui-slider-track .addui-slider-range {
+	width: auto;
+	height: 4px; }
+/* line 149, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */
+.addui-slider.addui-slider-horizontal .addui-slider-track .addui-slider-handle {
+	left: auto;
+	top: -24px;
+	transform: translateX(-50%); }
+
+/*# sourceMappingURL=addSlider.css.map */
+
+
+
 /**** Slider *****/
 .wmuSlider {
 	position: relative;

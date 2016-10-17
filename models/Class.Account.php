@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jor
+ * User: vm
  * Date: 28.09.2016
  * Time: 17:24
  */
@@ -14,7 +14,6 @@ class Account{
     private $password;
     private $email;
     private $address;
-    private $postcode;
     private $location;
     private $country;
     private $phone;
@@ -24,7 +23,7 @@ class Account{
     private $lastlogin;
     private $activated;
 
-    public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $postcode, $location, $country,
+    public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
                                 $phone, $language, $runlevel, $abonnement, $lastlogin, $activated)
     {
         $this->idAccount = $idAccount;
@@ -33,7 +32,6 @@ class Account{
         $this->password = $password;
         $this->email = $email;
         $this->address = $address;
-        $this->postcode = $postcode;
         $this->location = $location;
         $this->country = $country;
         $this->phone = $phone;
@@ -138,22 +136,6 @@ class Account{
     public function setAddress($address)
     {
         $this->address = $address;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPostcode()
-    {
-        return $this->postcode;
-    }
-
-    /**
-     * @param mixed $postcode
-     */
-    public function setPostcode($postcode)
-    {
-        $this->postcode = $postcode;
     }
 
     /**
@@ -285,16 +267,19 @@ class Account{
     }
 
     public static function connect($email, $password){
-        // $pwd = sha1($password);
-        $query = "SELECT Account.*, Location.Postcode, Location.LocationName, Country.NameCountry 
-                  FROM Account, Location, Country WHERE Account.Email='$email' AND Account.Password='$password'
-                  AND Account.Location_idLocation=Location.idLocation AND Account.Country_idCountry=Country.idCountry";
+       // $pwd = sha1($password);
+        $query = "SELECT *
+                  FROM Account WHERE Account.Email='$email' AND Account.Password='$password'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
 
-        return new Account($row['idAccount'], $row['Firstname'], $row['Lastname'], $row['Password'], $row['Email'], $row['Address'], $row['Postcode'], $row['LocationName'], $row['NameCountry'],
-            $row['Phone'], $row['Language'], $row['Runlevel'], $row['Abonnement_idAbonnement'], $row['Lastlogin_Date'], $row['Activated']);
+        $abonnement = Abonnement::selectAbonnement($row['Abonnement_idAbonnement']);
+        $location = Location::selectLocation($row['Location_idLocation']);
+        $country = Country::selectCountry($row['Country_idCountry']);
+
+        return new Account($row['idAccount'], $row['Firstname'], $row['Lastname'], $row['Password'], $row['Email'], $row['Address'], $location, $country,
+            $row['Phone'], $row['Language'], $row['Runlevel'], $abonnement, $row['Lastlogin_Date'], $row['Activated']);
     }
 
     public static function updateLastLogin($accountId){
@@ -313,10 +298,10 @@ class Account{
     }
 
     //unused function
-    public function insertAccount(){
+    public function saveNewUserToDatabase(){
         $pwd = sha1($this->password);
-        $query = "INSERT into user($firstname, $lastname, $address, $locationid, $phone, $language, $countryId)
-        VALUES('$this->firstname', '$this->lastname', '$this->username', '$pwd');";
+        $query = "INSERT into user(firstname, lastname, username, password)
+		VALUES('$this->firstname', '$this->lastname', '$this->username', '$pwd');";
 
         return  MySqlConn::getInstance()->executeQuery($query);
     }
