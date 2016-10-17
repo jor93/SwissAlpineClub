@@ -45,7 +45,7 @@ $lang['FORGOTPW_EXISTS'] = 'Nous allons envoyer un courriel à l\'adresse indiqu
 $lang['FORGOTPW_NOT_EXISTS'] = 'Cet e-mail n\'existe pas.';
 
 /* mail */
-$lang['FORGOTPW_MAIL'] = '';
+$lang['FORGOTPW_MAIL'] = 'bonjürli';
 
 /* #################### header ####################  */
 /* Menu */

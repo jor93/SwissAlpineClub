@@ -54,13 +54,14 @@ class forgotpwController extends Controller
         $email_input = $_POST['mail'];
         //$email_input = $this->badassSafer($_POST['mail']);
 
+        echo 'sfhsdfsdfasdfsdf';
         $result = $this->checkMail($email_input);
 
         // 1 email exists 2 doesnt exists
         if ($result == 1){
             // for the modification of the view --> if send or not
             $_SESSION['msg'] = 1;
-            $this->getUserInfos($email_input);
+            //$this->getUserInfos($email_input);
         }else{
             $_SESSION['msg'] = 2;
         }
@@ -106,9 +107,14 @@ class forgotpwController extends Controller
 
             // set the email content
             if ($language == 'de'){
+                include_once(Url_dir.'views/common.php');
                 // here comes the mail content
+                $msgSubject = $lang['FORGOTPW_MAIL'];
+                echo $msgSubject;
+                //$msgMail = ;
             }else{
-
+                //$msgSubject = ;
+                //$msgMail = ;
             }
 
             $msgSubject = 'Change Your Passwword';
