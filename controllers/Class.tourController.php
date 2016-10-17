@@ -10,6 +10,7 @@ class tourController extends Controller
 {
 
     function tour(){
+
         if($this->getAdminUser()){
             $this->redirect('login', 'login');
             exit;
@@ -22,8 +23,17 @@ class tourController extends Controller
         && isset($_POST['price']) && isset($_POST['descDE']) && isset($_POST['descFR'])
         && isset($_POST['sdate']) && isset($_POST['edate']) && isset($_POST['deptime'])
         && isset($_POST['artime']) && isset($_FILES['img'])){
+
+            /*
             $handle = $_FILES['img']['tmp_name'];
-            Tour::insertTourImage($handle);
+            //Tour::insertTourImage(1, $handle);
+
+            $image = Tour::selectTourImage(1);
+            header("Content-Type:" . 'image/jpg');
+
+            echo $image;
+            //http://www.mysqltutorial.org/php-mysql-blob/
+            */
         }
 
     }

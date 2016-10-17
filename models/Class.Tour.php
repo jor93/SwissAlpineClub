@@ -377,6 +377,7 @@ class Tour
                  and Tour.Language_idLanguage = LanguageDesc.idLanguage";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
+
         if(!$row) return false;
 
         if($status = Status::selectStatus($row['Status_idStatus']) &&
@@ -391,10 +392,20 @@ class Tour
         return false;
     }
 
-    static function insertTourImage($path){
+    static function insertTourImage($tourid, $path){
         $blob = fopen($path, 'rb');
-        $query = "UPDATE Tour SET Picture = '$blob' WHERE Tour.idTour = 1";
+        $query = "UPDATE Tour SET Picture = '$blob' WHERE Tour.idTour = '$tourid'";
         return  SQL::getInstance()->executeQuery($query);
+    }
+
+    static function selectTourImage($tourid){
+        $query = "SELECT Picture from Tour where idTour = '$tourid'";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetch();
+
+        if(!$row) return false;
+
+        return $row;
     }
 
 }
