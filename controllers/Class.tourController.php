@@ -22,14 +22,9 @@ class tourController extends Controller
         && isset($_POST['price']) && isset($_POST['descDE']) && isset($_POST['descFR'])
         && isset($_POST['sdate']) && isset($_POST['edate']) && isset($_POST['deptime'])
         && isset($_POST['artime']) && isset($_FILES['img'])){
-            print_r($_FILES);
-            $handle = fopen($_FILES['img']['tmp_name'], 'r');
-
-
-
-
+            $handle = $_FILES['img']['tmp_name'];
+            Tour::insertTourImage($handle);
         }
+
     }
-
-
 }

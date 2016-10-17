@@ -391,5 +391,10 @@ class Tour
         return false;
     }
 
+    static function insertTourImage($path){
+        $blob = fopen($path, 'rb');
+        $query = "UPDATE Tour SET Picture = '$blob' WHERE Tour.idTour = 1";
+        return  SQL::getInstance()->executeQuery($query);
+    }
 
 }

@@ -94,4 +94,5 @@ class SQL {
         }
 		return $result;
 	}
+
 }
