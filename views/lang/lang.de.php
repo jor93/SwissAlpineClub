@@ -44,7 +44,7 @@ $lang['FORGOTPW_EXISTS'] = 'Wir haben Ihnen eine Email an die eingegebene Addres
 $lang['FORGOTPW_NOT_EXISTS'] = 'Diese Email existiert nicht.';
 
 /* mail */
-$lang['FORGOTPW_MAIL'] = '';
+$lang['FORGOTPW_MAIL'] = 'hallöchen';
 
 /* #################### header ####################  */
 /* Menu */
