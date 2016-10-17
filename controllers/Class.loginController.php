@@ -46,7 +46,7 @@ class loginController extends Controller {
     {
         //if a user is active he cannot re-login
         if ($this->getActiveUser()) {
-            $this->redirect('showuser', 'showuser');
+            $this->redirect('profile', 'showuser');
             exit;
         }
     }

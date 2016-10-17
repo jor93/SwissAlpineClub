@@ -298,11 +298,8 @@ class Account{
     }
 
     //unused function
-    public function saveNewUserToDatabase(){
-        $pwd = sha1($this->password);
-        $query = "INSERT into user(firstname, lastname, username, password)
-		VALUES('$this->firstname', '$this->lastname', '$this->username', '$pwd');";
-
+    public function saveAccount(){
+        $query = "";
         return  MySqlConn::getInstance()->executeQuery($query);
     }
 }

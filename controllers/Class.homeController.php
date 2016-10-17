@@ -10,9 +10,8 @@
 class homeController extends Controller {
 
     public function home(){
-        //if a user is active he cannot re-login
-        if($this->getActiveUser()){
-            $this->redirect('login', 'welcome');
+        if ($this->getActiveUser()) {
+            $this->redirect('showuser', 'showuser');
             exit;
         }
     }
