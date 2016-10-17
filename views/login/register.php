@@ -115,13 +115,13 @@ include_once ROOT_DIR.'views/header.inc';
                             </select>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Phone<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_PHONE'];?><label>*</label></span>
                             <input type="tel" id="phone" name="phone" placeholder="Please enter Phone" required>
                             <span id="label_fail_phone" class="error" >The phone number is not valid</span>
                         </div>
 
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Language<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_LANG'];?><label>*</label></span>
                             <select name="lang">
                                 <?php
                                 // get language if possible
@@ -139,15 +139,15 @@ include_once ROOT_DIR.'views/header.inc';
                     </div>
 
                     <div class="register-bottom-grid">
-                        <h3>LOGIN INFORMATION</h3>
+                        <h3><?php echo $lang['REGISTER_TITLE_2'];?></h3>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                            <span>Password<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_PWD'];?><label>*</label></span>
                             <input type="password" id="pw1" name="pwd1" required>
                             <span id="label_fail_pw1_notSame" class="error" >Password does not match</span>
                             <span id="label_fail_pw1_weak" class="error" >Password are to weak</span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Confirm Password<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_PWD_2'];?><label>*</label></span>
                             <input type="password" id="pw2" required name="pwd2">
                             <span id="label_fail_pw2" class="error" ></span>
                         </div>

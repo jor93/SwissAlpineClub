@@ -91,5 +91,10 @@ $lang['REGISTER_ADDRESS'] = 'Adresse';
 $lang['REGISTER_LOCATION'] = 'Ort';
 $lang['REGISTER_COUNTRY'] = 'Land';
 $lang['REGISTER_PLZ'] = 'PLZ';
+$lang['REGISTER_PHONE'] = 'Telefon';
+$lang['REGISTER_LANG'] = 'Sprache';
+$lang['REGISTER_TITLE_2'] = 'LOGIN INFORMATIONEN';
+$lang['REGISTER_PWD'] = 'Passwort';
+$lang['REGISTER_PWD_2'] = 'Passwort Bestätigung';
 
 ?>
