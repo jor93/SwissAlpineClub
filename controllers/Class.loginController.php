@@ -61,6 +61,15 @@ class loginController extends Controller {
         }
     }
 
+    function resetpw()
+    {
+        //if a user is active he cannot re-login
+        if ($this->getActiveUser()) {
+            $this->redirect('forgotpw', 'resetpw');
+            exit;
+        }
+    }
+
 
     /**
      * Method called by the logout hyperlink
