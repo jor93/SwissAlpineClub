@@ -35,7 +35,7 @@ class loginController extends Controller {
             }
             $_SESSION['account'] = $result;
 
-            $this->redirect('profile', 'showuser');
+            $this->redirect('showuser', 'showuser');
         }
     }
 
@@ -50,6 +50,17 @@ class loginController extends Controller {
             exit;
         }
     }
+
+
+    function forgotpw()
+    {
+        //if a user is active he cannot re-login
+        if ($this->getActiveUser()) {
+            $this->redirect('forgotpw', 'forgotpw');
+            exit;
+        }
+    }
+
 
     /**
      * Method called by the logout hyperlink
