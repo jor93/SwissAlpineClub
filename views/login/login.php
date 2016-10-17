@@ -53,7 +53,7 @@ include_once ROOT_DIR.'views/header.inc';
 							<input type="password" id="pw" required>
 						</div>
 
-						<a class="forgot" href="forgotpw.php">Forgot Your Password?</a>
+						<a class="forgot" href="<?php echo URL_DIR.'login/forgotpw';?>">Forgot Your Password?</a>
 						<a class="clearfix" ></a>
 
 						<a class="news-letter" href="#">
