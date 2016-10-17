@@ -41,7 +41,7 @@ include_once ROOT_DIR.'views/header.inc';
 				<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 					<h3>REGISTERED CUSTOMERS</h3>
 					<p>If you have an account with us, please log in.</p>
-					<form action="<?php echo URL_DIR.'login/connection';?>" method="post"">
+					<form action="<?php echo URL_DIR.'login/connection';?>" method="post">
 						<div>
 							<span>Email Address<label>*</label></span>
 							<input type="email" id="mail" name="email" required>

@@ -17,6 +17,7 @@ class Tour
     private $depart_time;
     private $arrival_time;
     private $price;
+    private $difficulty;
     private $status;
     private $idLanguageDescription;
     private $languageDescriptionDE;
@@ -37,6 +38,7 @@ class Tour
      * @param $depart_time
      * @param $arrival_time
      * @param $price
+     * @param $difficulty
      * @param $status
      * @param $idLanguageDescription
      * @param $languageDescriptionDE
@@ -46,9 +48,9 @@ class Tour
      * @param $locationArriv
      * @param $transport
      */
-    public function __construct($idTour, $startDate, $endDate, $duration, $title, $subtitle, $depart_time,
-                                $arrival_time, $price, $status, $idLanguageDescription, $languageDescriptionDE, $languageDescriptionFR,
-                                $picture, $locationDep, $locationArriv, $transport)
+    public function __construct($idTour, $startDate, $endDate, $duration, $title, $subtitle, $depart_time, $arrival_time,
+                                $price, $difficulty, $status, $idLanguageDescription, $languageDescriptionDE,
+                                $languageDescriptionFR, $picture, $locationDep, $locationArriv, $transport)
     {
         $this->idTour = $idTour;
         $this->startDate = $startDate;
@@ -59,6 +61,7 @@ class Tour
         $this->depart_time = $depart_time;
         $this->arrival_time = $arrival_time;
         $this->price = $price;
+        $this->difficulty = $difficulty;
         $this->status = $status;
         $this->idLanguageDescription = $idLanguageDescription;
         $this->languageDescriptionDE = $languageDescriptionDE;
@@ -217,6 +220,22 @@ class Tour
     /**
      * @return mixed
      */
+    public function getDifficulty()
+    {
+        return $this->difficulty;
+    }
+
+    /**
+     * @param mixed $difficulty
+     */
+    public function setDifficulty($difficulty)
+    {
+        $this->difficulty = $difficulty;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getStatus()
     {
         return $this->status;
@@ -344,9 +363,9 @@ class Tour
 
     static function insertTour($tour){
         $query = "INSERT INTO Tour('Start_date', 'End_date', 'Duration', 'Title', 'Subtitle', 'Depart_time', 'Arrival_time',
-                                  'Price', 'Status_idStatus', 'Language_idLanguage', 'Picture', 'Location_idLocation', 'Location_idLocation1')
+                                  'Price', 'Difficulty', 'Status_idStatus', 'Language_idLanguage', 'Picture', 'Location_idLocation', 'Location_idLocation1')
                   VALUES ($tour->getStartDate(), $tour->getEndDate(), $tour->getDuration(), $tour->getTitle(), $tour->getSubtitle(),
-                  $tour->getDepartTime(), $tour->getArrivalTime(), $tour->getPrice(), $tour->getStatus(), $tour->getIdLanguageDescription(), 
+                  $tour->getDepartTime(), $tour->getArrivalTime(), $tour->getPrice(), $tour->getDifficulty(), $tour->getStatus(), $tour->getIdLanguageDescription(), 
                   $tour->getPicture(), $tour->getLocationDep(), $tour->getLocationArriv())";
         return  SQL::getInstance()->executeQuery($query);
     }
@@ -365,7 +384,7 @@ class Tour
         $locationArriv = Location::selectLocation($row['Tour.Location_idLocation1'])) {
             return new Tour($tourId, $row['Tour.Start_date'], $row['Tour.End_date'], $row['Tour.Duration'],
                 $row['Tour.Titel'], $row['Tour.Subtitle'],
-                $row['Tour.Depart_time'], $row['Tour.Arrival_time'], $row['Tour.Price'], $status,
+                $row['Tour.Depart_time'], $row['Tour.Arrival_time'], $row['Tour.Price'], $row['Tour.Difficulty'], $status,
                 $row['Tour.Language_idLanguage'], $row['LanguageDesc.de'], $row['LanguageDesc.fr'],
                 $row['Tour.Picture'], $locationDep, $locationArriv, transport); //need to be modified on next monday, 17.10.2016
         }
