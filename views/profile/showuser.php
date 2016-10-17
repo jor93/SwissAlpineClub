@@ -143,5 +143,5 @@ $account = $_SESSION['account'];
 
 
 <?php
-include_once 'footer.inc';
+include_once ROOT_DIR . 'views/footer.inc';
 ?>

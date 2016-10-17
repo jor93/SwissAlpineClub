@@ -32,8 +32,10 @@ class showuserController extends Controller
                 $this->account->setLanguage($_POST['language']);
                 $this->account->getCountry()->setNameCountry($_POST['countryName']);
                 $_SESSION['account'] = $this->account;
-                $this->redirect('showuser', 'showuser');
+                $this->redirect('profile', 'showuser');
             }
         }
+
+        $this->redirect('profile', 'showuser');
     }
 }

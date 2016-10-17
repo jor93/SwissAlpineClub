@@ -5,7 +5,7 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-include_once '/headeradmin.inc';
+include_once ROOT_DIR . '/headeradmin.inc';
 ?>
 <script>
     $(document).ready(function () {
@@ -96,5 +96,5 @@ include_once '/headeradmin.inc';
 
 
 <?php
-include_once 'footer.inc';
+include_once ROOT_DIR . 'footer.inc';
 ?>
