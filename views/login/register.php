@@ -68,40 +68,40 @@ include_once ROOT_DIR.'views/header.inc';
                             }
                             ?> </label>
 
-                        <h3>PERSONAL INFORMATION</h3>
+                        <h3><?php echo $lang['REGISTER_TITLE'];?></h3>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                            <span>First Name<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_FNAME'];?><label>*</label></span>
                             <input type="text" id="fname" name="firstname" placeholder="Please enter Firstname" required>
                             <span id="label_fail_fname" class="error" >The firstname is not valid</span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Last Name<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_LNAME'];?><label>*</label></span>
                             <input type="text" id="lname" name="lastname" placeholder="Please enter Lastname" required>
                             <span id="label_fail_lname" class="error" >The lastname is not valid</span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Email Address<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_EMAIL'];?><label>*</label></span>
                             <input type="email" id="mail" name="email" placeholder="Please enter E-Mail" required>
                             <span id="label_fail_mail" class="error" >The E-Mail address is not valid</span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                            <span>Address<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_ADDRESS'];?><label>*</label></span>
                             <input type="text" id="address" name="address" placeholder="Please enter Adress" required>
                             <span id="label_fail_address" class="error" >The address is not valid</span>
                         </div>
 
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>PLZ/ZIP Code<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_PLZ'];?><label>*</label></span>
                             <input type="text" id="tags2" placeholder="Please enter ZIP code" required>
                             <span id="label_fail_zip" class="error" >The zip code is not valid</span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                            <span>Location<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_LOCATION'];?><label>*</label></span>
                             <input type="text" id="loc" name="location" placeholder="Please enter Location" required>
                             <span id="label_fail_location" class="error" >The location is not valid</span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Country<label>*</label></span>
+                            <span><?php echo $lang['REGISTER_COUNTRY'];?><label>*</label></span>
                             <select name="country">
                                 <?php
                                 // get location if possible

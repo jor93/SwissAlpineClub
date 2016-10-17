@@ -81,4 +81,15 @@ $lang['ABOUT_MEMBER_ADVANTAGE_4'] = '6 mal pro Jahr die Zeitschrift, "Wanderland
 $lang['ABOUT_MEMBER_ADVANTAGE_5'] = 'Preisreduktion auf allen Karten der Schweizerischen Landestopographie sowie auf zahlreichen Wanderkarten unseres Kantons';
 $lang['ABOUT_CONSTITUTION'] = 'Statuten:';
 $lang['ABOUT_CONSTITUTION_DESC'] = 'Statuten können hier heruntergeladen werden';
+
+/* #################### register ####################  */
+$lang['REGISTER_TITLE'] = 'PERSÖHNLICHE INFORMATIONEN';
+$lang['REGISTER_FNAME'] = 'Vorname';
+$lang['REGISTER_LNAME'] = 'Nachname';
+$lang['REGISTER_EMAIL'] = 'E-Mail Adresse';
+$lang['REGISTER_ADDRESS'] = 'Adresse';
+$lang['REGISTER_LOCATION'] = 'Ort';
+$lang['REGISTER_COUNTRY'] = 'Land';
+$lang['REGISTER_PLZ'] = 'PLZ';
+
 ?>

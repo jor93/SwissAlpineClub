@@ -10,8 +10,7 @@ class loginController extends Controller {
     /**
      * Method called by the form of the page login.php
      */
-    function connection()
-    {
+    function connection(){
         //Get data posted by the form
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = $_POST['email'];

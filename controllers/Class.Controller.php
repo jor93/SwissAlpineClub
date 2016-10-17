@@ -60,6 +60,10 @@
              return false;
      }
 
+     /**
+      * Get active (logged-in) admin
+      * @return User
+      */
      function getAdminUser(){
          if(isset($_SESSION['account']) && isset($_COOKIE['Rme']) && $_SESSION['account']->getRunlevel() == 10)
              return $_SESSION['account'];
@@ -71,6 +75,10 @@
          }
      }
 
+     /**
+      * Get active (logged-in) user without cookie
+      * @return User
+      */
      function getActiveUserWithoutCookie(){
          if(isset($_SESSION['account']))
              return $_SESSION['account'];
@@ -79,7 +87,10 @@
      }
 
 
-
+     /**
+      * Make a string safe
+      * @return string
+      */
  	function badassSafer($secureMe){
  	    $secured = trim($secureMe);
         $secured = stripslashes($secured);
@@ -88,13 +99,17 @@
         return $secured;
     }
 
+     /**
+      * Clean Names from illegals chars
+      * @return User
+      */
     function cleanNames($cleanMyName){
         return str_replace($this->illegalChars, "", $cleanMyName);
     }
 
-
      /**
       * Detect Browser Language
+      * @return languages
       */
      static function getPreferredLanguage(){
          $acceptedLanguages = @explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
