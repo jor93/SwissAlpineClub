@@ -35,7 +35,7 @@ class loginController extends Controller {
             }
             $_SESSION['account'] = $result;
 
-            $this->redirect('showuser', 'showuser');
+            $this->redirect('profile', 'showuser');
         }
     }
 
