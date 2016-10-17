@@ -9,7 +9,7 @@ class forgotpwController extends Controller
 {
     const COMPANY = "Valrando";
     const USERNAME = 'gezu4911@gmail.com';
-    const PASSWORD = 'cgdfgf!';
+    const PASSWORD = 'cgdfdsfggf!';
     const HOST = 'smtp.gmail.com';
     const PORT = 587;
     const SMTPSECURE = 'tls';
