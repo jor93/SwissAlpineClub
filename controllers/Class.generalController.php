@@ -26,7 +26,7 @@ class generalController extends Controller
         $temp[2] = $email_msg;
 
         // call method to send mail
-        //forgotpwController::sendMail($temp, false);
+        forgotpwController::sendMail($temp, false);
 
         // make visible that the demand was send to the company
         $_SESSION['msg'] = true;

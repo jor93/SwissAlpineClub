@@ -9,7 +9,7 @@ class forgotpwController extends Controller
 {
     const COMPANY = "Valrando";
     const USERNAME = 'gezu4911@gmail.com';
-    const PASSWORD = '';
+    const PASSWORD = 'GoobdGvGubeHgle11!';
     const HOST = 'smtp.gmail.com';
     const PORT = 587;
     const SMTPSECURE = 'tls';
@@ -64,13 +64,14 @@ class forgotpwController extends Controller
         }else{
             $_SESSION['msg'] = 2;
         }
-        $this->redirect('forgotpw', 'forgotpw');
+        $this->redirect('login', 'forgotpw');
     }
 
     public static function checkMail($email_input){
         $answer = loginController::checkEmailIfExists($email_input);
-        // hand the pdo statement object and put into var
-        $temp = $answer->fetch();
+        var_dump($answer);
+        // handle the pdo statement object and put into var
+        $temp = $answer;
         return $result = $temp[0];
     }
 
