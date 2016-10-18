@@ -90,7 +90,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Status</span>
                         <select name="stat" id="stat">
-                        <?php elementsController::statusSelect()?>
+                        <?php elementsController::statusSelect();?>
                         </select>
                     </div>
 
@@ -98,23 +98,13 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Transport</span>
-                        <input type="checkbox" id="train" value="Train"> Zug</br>
-                        <input type="checkbox" id="train" value="Bus"> Bus</br>
-                        <input type="checkbox" id="lufts" value="Luftseilbahn"> Luftseilbahn</br>
-                        <input type="checkbox" id="other" value="other"> andere
+                        <?php elementsController::transportCheckbox();?>
                     </div>
 
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Tour Type</span>
-                        <input type="checkbox" id="schnees" value="Schneeschuhwanderung"> Schneeschuhwanderung</br>
-                        <input type="checkbox" id="ski" value="Skitour"> Skitour</br>
-                        <input type="checkbox" id="wanderung" value="Wanderung"> Wanderung</br>
-                        <input type="checkbox" id="viaf" value="Via Ferrata"> Via Ferrata</br>
-                        <input type="checkbox" id="velo" value="Velo - MTB"> Velo - MTB</br>
-                        <input type="checkbox" id="winter" value="Winterwanderung im Schnee"> Winterwanderung im Schnee</br>
-                        <input type="checkbox" id="alpine" value="Alpine Wanderung"> Alpine Wanderung</br>
-                        <input type="checkbox" id="mehrt" value="Mehrtägige Wanderungen"> Mehrtägige Wanderungen</br>
+                        <?php elementsController::typeTourCheckbox();?>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
