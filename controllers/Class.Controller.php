@@ -76,6 +76,18 @@
      }
 
      /**
+      * Get active (logged-in) admin
+      * @return User
+      */
+     function getAdminUserWithoutCookie(){
+         if(isset($_SESSION['account']) && $_SESSION['account']->getRunlevel() == 10)
+             return $_SESSION['account'];
+         else {
+             return false;
+         }
+     }
+
+     /**
       * Get active (logged-in) user without cookie
       * @return User
       */
