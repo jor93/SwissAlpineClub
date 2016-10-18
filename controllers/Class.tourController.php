@@ -23,16 +23,15 @@ class tourController extends Controller
             && isset($_POST['sdate']) && isset($_POST['edate']) && isset($_POST['deptime'])
             && isset($_POST['artime']) && isset($_FILES['img'])){
 
-            /*
             $handle = $_FILES['img']['tmp_name'];
-            //Tour::insertTourImage(1, $handle);
+            Tour::insertTourImage(2, $handle);
 
-            $image = Tour::selectTourImage(1);
+            $image = Tour::selectTourImage(2);
             header("Content-Type:" . 'image/jpg');
 
             echo $image;
             //http://www.mysqltutorial.org/php-mysql-blob/
-            */
+
         }
 
     }
