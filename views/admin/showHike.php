@@ -91,18 +91,18 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                         <input type="text" id="artime" name="artime" required>
                     </div>
 
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Transport</span>
-                        <input type="checkbox" id="train" value="Train"> Zug</br>
-                        <input type="checkbox" id="train" value="Bus"> Bus
-                    </div>
+
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
                         <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
                     </div>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Transport</span>
+                        <input type="checkbox" id="train" value="Train"> Zug</br>
+                        <input type="checkbox" id="train" value="Bus"> Bus
                     </div>
+
                 </div>
                 <div class="register-but">
                     <input type="submit" value="submit" onclick="check()">
