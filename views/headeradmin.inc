@@ -5,16 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>SAC</title>
-		<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="../css/slider.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/<?php echo SITE_NAME; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/<?php echo SITE_NAME; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/<?php echo SITE_NAME; ?>/css/slider.css" rel="stylesheet" type="text/css" media="all" />
 		<meta name="/viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700,800' rel='stylesheet' type='text/css'>
-		<script src="../js/jquery.min.js"></script>
-		<link href="../css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-		<script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
+		<script src="/<?php echo SITE_NAME; ?>/js/jquery.min.js"></script>
+		<link href="/<?php echo SITE_NAME; ?>/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+		<script src="/<?php echo SITE_NAME; ?>/js/jquery.magnific-popup.js" type="text/javascript"></script>
 		<script>
 			$(document).ready(function() {
 				$('.popup-with-zoom-anim').magnificPopup({
