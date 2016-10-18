@@ -20,6 +20,8 @@ class SQL {
 	private static $instance;
 	private $_conn;
 
+    private $lastInsertedId;
+
 	/**
 	 * prevent from direct creation of object
 	 */
@@ -38,6 +40,24 @@ class SQL {
 		}
 
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getLastInsertedId()
+    {
+        return $this->lastInsertedId;
+    }
+
+    /**
+     * @param mixed $lastInsertedId
+     */
+    public function setLastInsertedId($lastInsertedId)
+    {
+        $this->lastInsertedId = $lastInsertedId;
+    }
+
+
 
 	/**
 	 * singleton method
@@ -85,6 +105,8 @@ class SQL {
                 die(print_r($this->_conn->errorInfo(), true));
             } else{
                 // commit if no erros
+                var_dump($this->_conn->lastInsertId());
+                $this->setLastInsertedId($this->_conn->lastInsertId());
                 $this->_conn->commit();
             }
             // rollback if any exception thrown

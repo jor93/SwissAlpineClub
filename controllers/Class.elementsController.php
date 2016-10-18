@@ -14,7 +14,7 @@ class elementsController extends Controller {
         $answer = Transport::getTranportByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
-            echo "<input type='checkbox' name='transport' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+            echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
             echo "</br>";
         }
     }
@@ -31,7 +31,7 @@ class elementsController extends Controller {
         $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
-            echo "<input type='checkbox' name='typetour' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+            echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
             echo "</br>";
         }
     }

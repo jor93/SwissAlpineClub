@@ -114,4 +114,12 @@ class Transport
         return SQL::getInstance()->select($query)->fetchAll();
     }
 
+    static function selectTransportLength(){
+        $query = "SELECT count(*) as ResultTransport FROM Transport";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetch();
+        if(!$row) return false;
+        return $row['ResultTransport'];
+    }
+
 }
