@@ -14,7 +14,7 @@ class elementsController extends Controller {
     //typ tour
 
     public static function transportSelect(){
-        $answer = Abonnement::getAboByLanguage($_SESSION['lang']);
+        $answer = Transport::getTranportByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
             echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
