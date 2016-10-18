@@ -35,6 +35,9 @@ class loginController extends Controller {
             }
             $_SESSION['account'] = $result;
 
+            // set lang in the db!
+            $_SESSION['lang'] = $result->getLanguage();
+
             $this->redirect('profile', 'showuser');
         }
     }

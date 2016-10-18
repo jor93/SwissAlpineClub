@@ -392,20 +392,18 @@ class Tour
         return false;
     }
 
-    static function insertTourImage($tourid, $path){
-        $blob = fopen($path, 'rb');
-        $query = "UPDATE Tour SET Picture = '$blob' WHERE Tour.idTour = '$tourid'";
-        return  SQL::getInstance()->executeQuery($query);
+    static function updateTourImage($tourid, $path, $mime){
+        $query = "UPDATE Tour SET Picture = :data, Mime = :mime WHERE Tour.idTour = :id";
+        return  SQL::getInstance()->executeBLOBQuery($query, $tourid, $path, $mime);
     }
 
     static function selectTourImage($tourid){
-        $query = "SELECT Picture from Tour where idTour = '$tourid'";
-        $result = SQL::getInstance()->select($query);
-        $row = $result->fetch();
+        $query = "SELECT Picture, Mime from Tour where idTour = :id";
+        $result = SQL::getInstance()->selectBLOB($query, $tourid);
 
-        if(!$row) return false;
+        if(!$result) return false;
 
-        return $row;
+        return $result;
     }
 
 }
