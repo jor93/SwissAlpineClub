@@ -26,8 +26,6 @@ include_once ROOT_DIR.'views/header.inc';
 				document.getElementById("checkb").focus();
 				return false;
 			}
-
-
 		}
 	</script>
 	<br />
@@ -43,25 +41,25 @@ include_once ROOT_DIR.'views/header.inc';
 				<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 					<h3>REGISTERED CUSTOMERS</h3>
 					<p>If you have an account with us, please log in.</p>
-					<form onsubmit="return false">
+					<form action="<?php echo URL_DIR.'login/connection';?>" method="post">
 						<div>
 							<span>Email Address<label>*</label></span>
-							<input type="email" id="mail" required>
+							<input type="email" id="mail" name="email" required>
 						</div>
 						<div>
 							<span>Password<label>*</label></span>
-							<input type="password" id="pw" required>
+							<input type="password" id="pw" name="password" required>
 						</div>
 
-						<a class="forgot" href="forgotpw.php">Forgot Your Password?</a>
+						<a class="forgot" href="<?php echo URL_DIR.'login/forgotpw';?>">Forgot Your Password?</a>
 						<a class="clearfix" ></a>
 
-						<a class="news-letter" href="#">
+						<a class="news-letter">
 							<label class="checkbox">
-								<input type="checkbox" id="checkb" name="checkbox" checked=""><i> </i>Stay logged in
+								<input type="checkbox" id="checkb" name="rememberMe" checked=""><i> </i>Stay logged in
 							</label>
 						</a>
-						<a href="showuser.php">
+						<a>
 							<input type="submit" value="Login" onclick="checkLogin()">
 						</a>
 					</form>
@@ -73,5 +71,4 @@ include_once ROOT_DIR.'views/header.inc';
 
 <?php
 include_once ROOT_DIR.'views/footer.inc';
-?>
 ?>

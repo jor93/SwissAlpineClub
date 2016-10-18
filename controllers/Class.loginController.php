@@ -35,7 +35,10 @@ class loginController extends Controller {
             }
             $_SESSION['account'] = $result;
 
-            $this->redirect('showuser', 'showuser');
+            // set lang in the db!
+            $_SESSION['lang'] = $result->getLanguage();
+
+            $this->redirect('profile', 'showuser');
         }
     }
 
@@ -50,6 +53,26 @@ class loginController extends Controller {
             exit;
         }
     }
+
+
+    function forgotpw()
+    {
+        //if a user is active he cannot re-login
+        if ($this->getActiveUser()) {
+            $this->redirect('forgotpw', 'forgotpw');
+            exit;
+        }
+    }
+
+    function resetpw()
+    {
+        //if a user is active he cannot re-login
+        if ($this->getActiveUser()) {
+            $this->redirect('forgotpw', 'resetpw');
+            exit;
+        }
+    }
+
 
     /**
      * Method called by the logout hyperlink

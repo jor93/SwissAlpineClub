@@ -25,6 +25,7 @@ $lang['RESETPW_ERROR'] = 'Die Passwörter stimmen nicht überein!';
 $lang['RESETPW_BUTTON_CHANGE'] = 'Passwort ändern';
 $lang['RESETPW_SUCCESS'] = 'Das Passwort wurde erfolgreich geändert.';
 $lang['RESETPW_FAILED'] = 'Die Passwörter stimmen nicht überein!';
+$lang['RESETPW_WEAK'] = 'Das neue Passwort ist zu schwach! (Tipp: Nutzen Sie mind. 8 Zeichen davon Gross- u. Kleinbuchstaben, eine Zahl u. ein Sonderzeichen)';
 
 /* #################### contact ####################  */
 /* contact */
@@ -37,14 +38,46 @@ $lang['CONTACT_SUCCESSFUL'] = 'Die Anfrage wurde erfolgreich verschickt.';
 
 /* #################### forgotpw ####################  */
 /* forgot pw page */
-$lang['FORGOTPW_TAG'] = 'Passowort vergessen?';
+$lang['FORGOTPW_TAG'] = 'Passwort vergessen?';
 $lang['FORGOTPW_ENTER'] = 'Geben Sie Ihre Email Addresse ein';
 $lang['FORGOTPW_SEND'] = 'Senden';
 $lang['FORGOTPW_EXISTS'] = 'Wir haben Ihnen eine Email an die eingegebene Addresse versand.';
 $lang['FORGOTPW_NOT_EXISTS'] = 'Diese Email existiert nicht.';
 
 /* mail */
-$lang['FORGOTPW_MAIL'] = '';
+$lang['FORGOTPW_MAIL_SUBJECT'] = 'Neues Passwort erstellen';
+$lang['FORGOTPW_MAIL_BODY'] = '
+                                <html>
+                                    <body>       
+                                        <p>
+                                            Sehr geehrter Kunde/in
+                                        </p>
+                                        <p>
+                                            Sie haben Ihr Passwort vergessen? Kein Problem!
+                                        </p>
+                                        <p>
+                                            Jetzt ein neues Passwort erstellen
+                                        </p>
+                                        <p>
+                                            Mit einem Klick auf den obenstehenden Link gelangen Sie zu Ihrem Konto, wo Sie ein neues Passwort eintragen können.
+                                        </p>
+                                        <p>
+                                            Sollten andere Probleme beim Prozess auftreten, nehmen Sie bitte Kontakt mit uns auf, wir helfen Ihnen gerne weiter.
+                                        </p>
+                                         <br>
+                                        <p>
+                                            Freundliche Grüsse
+                                        </p>
+                                        <p>
+                                            Valrando<br>
+                                            Vereinigung Walliser Wanderwege<br>
+                                            Pré-Fleuri 6<br>
+                                            Postfach 23<br>
+                                            CH - 1951 Sitten
+                                        </p>
+                                    </body>
+                                </html>
+';
 
 /* #################### header ####################  */
 /* Menu */

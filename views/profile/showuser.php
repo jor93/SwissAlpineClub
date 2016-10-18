@@ -74,6 +74,8 @@ $account = $_SESSION['account'];
                             <div class=" col-md-9 col-lg-9 ">
                                 <table class="table table-user-information">
                                     <tbody>
+                                    <a href="<?php echo URL_DIR.'tour/favorite';?>">testing reset pw</a>
+
 
                                     <tr>
                                         <td>E-Mail</td>
@@ -143,5 +145,5 @@ $account = $_SESSION['account'];
 
 
 <?php
-include_once 'footer.inc';
+include_once ROOT_DIR . 'views/footer.inc';
 ?>

@@ -9,7 +9,7 @@ class forgotpwController extends Controller
 {
     const COMPANY = "Valrando";
     const USERNAME = 'gezu4911@gmail.com';
-    const PASSWORD = '';
+    const PASSWORD = 'gyxv!';
     const HOST = 'smtp.gmail.com';
     const PORT = 587;
     const SMTPSECURE = 'tls';
@@ -25,28 +25,38 @@ class forgotpwController extends Controller
     function resetpw(){
         //if a user is active he cannot re-login
         if($this->getActiveUser()){
-            $this->redirect('forgotpw', 'forgotpw');
+            $this->redirect('forgotpw', 'resetpassword');
             exit;
         }
     }
 
-    function changes(){
+    function resetpassword(){
         $pw_new = $_POST['pw'];
         $cpw = $_POST['cpw'];
 
         // check if the pwd's are equal
         if ($pw_new != $cpw){
+            // the repeated pwd is not equal to the first one
             $_SESSION['msg'] = 2;
         }else{
+            // successfully changed
             $_SESSION['msg'] = 1;
 
-            // get current user - noch nicht erledigt!! ID!!
-            $currentUser = $_SESSION['account'];
-            $this->resetpwDB($pw_new, $currentUser);
-            echo $currentUser;
-        }
+            // check the conditions of the pwd
+            $weak = loginController::checkPasswordStrength($pw_new);
 
-        $this->redirect('forgotpw', 'resetpw');
+            if (!$weak){
+                // it is too weak
+                $_SESSION['msg'] = 3;
+            }
+
+            // get the current user and identify the his id!
+            $currentUser = $this->getActiveUserWithoutCookie();
+            $idAcc = $currentUser->getIdAccount();
+
+            $this->resetpwDB($pw_new, $idAcc);
+        }
+        $this->redirect('login', 'resetpw');
     }
 
     function checkMailControl(){
@@ -64,13 +74,13 @@ class forgotpwController extends Controller
         }else{
             $_SESSION['msg'] = 2;
         }
-        $this->redirect('forgotpw', 'forgotpw');
+        $this->redirect('login', 'forgotpw');
     }
 
     public static function checkMail($email_input){
         $answer = loginController::checkEmailIfExists($email_input);
-        // hand the pdo statement object and put into var
-        $temp = $answer->fetch();
+        // handle the pdo statement object and put into var
+        $temp = $answer;
         return $result = $temp[0];
     }
 
@@ -103,15 +113,18 @@ class forgotpwController extends Controller
             $fullname = $firstname . " " . $lastname;
             $language = $temp[7];
 
+            $_SESSION['lang'] = $language;
+            include_once(ROOT_DIR.'views/common.php');
+
             // set the email content
             if ($language == 'de'){
                 // here comes the mail content
-            }else{
-
+                $msgSubject = $lang['FORGOTPW_MAIL_SUBJECT'];
+                $msgMail = $lang['FORGOTPW_MAIL_BODY'];
+            }else {
+                $msgSubject = $lang['FORGOTPW_MAIL_SUBJECT'];
+                $msgMail = $lang['FORGOTPW_MAIL_BODY'];
             }
-
-            $msgSubject = 'Change Your Passwword';
-            $msgMail = 'This is the HTML message body <b>in bold!</b>';
         }else{
             // contact field - send email to myself with the content of the customer
             $firstname = $temp[0];
@@ -159,8 +172,9 @@ class forgotpwController extends Controller
     }
 
     // reset pwd
-    private function resetpwDB($pw_new, $currentUser){
-        $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$currentUser';";
-        return SQL::getInstance()->select($update);
+    private function resetpwDB($pw_new, $idAcc){
+        $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$idAcc';";
+        SQL::getInstance()->select($update);
+        return;
     }
 }
