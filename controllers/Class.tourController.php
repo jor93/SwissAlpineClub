@@ -9,7 +9,6 @@
 class tourController extends Controller
 {
     function tour(){
-
         if($this->getAdminUser()){
             $this->redirect('login', 'login');
             exit;
@@ -18,9 +17,10 @@ class tourController extends Controller
 
     function favorite(){
         if($this->getAdminUser()){
-            $this->redirect('tour', 'favorite');
+            $this->redirect('favorite', 'favorite');
             exit;
         }
+        favoriteController::updateFavorites();
     }
 
     function insertTour(){

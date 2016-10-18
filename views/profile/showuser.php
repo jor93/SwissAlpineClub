@@ -74,7 +74,7 @@ $account = $_SESSION['account'];
                             <div class=" col-md-9 col-lg-9 ">
                                 <table class="table table-user-information">
                                     <tbody>
-                                    <a href="<?php echo URL_DIR.'tour/favorite';?>">testing reset pw</a>
+                                    <a href="<?php echo URL_DIR.'tour/favorite';?>">testing favorites</a>
 
 
                                     <tr>
