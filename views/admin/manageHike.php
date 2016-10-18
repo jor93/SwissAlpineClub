@@ -172,5 +172,5 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
 
 
 <?php
-include_once ROOT_DIR . 'views/footer.inc';
+include_once ROOT_DIR . '/views/footer.inc';
 ?>

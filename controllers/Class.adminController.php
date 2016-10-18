@@ -13,4 +13,8 @@ class adminController extends Controller
 
     }
 
+    function manageHike(){
+
+    }
+
 }
