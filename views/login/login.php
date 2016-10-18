@@ -37,7 +37,6 @@ include_once ROOT_DIR.'views/header.inc';
 					<h3>NEW CUSTOMERS</h3>
 					<p>By creating an account on this site, you will be able to book our guided tours</p>
 					<a class="acount-btn" href="registration.php">Create an Account</a>
-					<a href="<?php echo URL_DIR.'login/resetpw';?>">testing reset pw</a>
 				</div>
 				<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 					<h3>REGISTERED CUSTOMERS</h3>

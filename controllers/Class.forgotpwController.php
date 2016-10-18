@@ -25,7 +25,7 @@ class forgotpwController extends Controller
     function resetpw(){
         //if a user is active he cannot re-login
         if($this->getActiveUser()){
-            $this->redirect('forgotpw', 'resetpw');
+            $this->redirect('forgotpw', 'resetpassword');
             exit;
         }
     }
@@ -49,9 +49,12 @@ class forgotpwController extends Controller
                 // it is too weak
                 $_SESSION['msg'] = 3;
             }
-            // get current user - noch nicht erledigt!! ID!!
-            $currentUser = 1;
-            $this->resetpwDB($pw_new, $currentUser);
+
+            // get the current user and identify the his id!
+            $currentUser = $this->getActiveUserWithoutCookie();
+            $idAcc = $currentUser->getIdAccount();
+
+            $this->resetpwDB($pw_new, $idAcc);
         }
         $this->redirect('login', 'resetpw');
     }
@@ -169,8 +172,8 @@ class forgotpwController extends Controller
     }
 
     // reset pwd
-    private function resetpwDB($pw_new, $currentUser){
-        $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$currentUser';";
+    private function resetpwDB($pw_new, $idAcc){
+        $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$idAcc';";
         SQL::getInstance()->select($update);
         return;
     }
