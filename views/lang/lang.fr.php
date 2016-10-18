@@ -26,6 +26,7 @@ $lang['RESETPW_ERROR'] = 'Les mots de passe ne correspondent pas!';
 $lang['RESETPW_BUTTON_CHANGE'] = 'Changement mot de passe';
 $lang['RESETPW_SUCCESS'] = 'Le mot de passe a été changé.';
 $lang['RESETPW_FAILED'] = 'Les mots de passe ne correspondent pas!';
+$lang['RESETPW_WEAK'] = 'Le nouveau mot de passe est trop faible! (Astuce: Utilisez 8 mots en les majuscules et les minuscules, un nombre et un caractère spécial)';
 
 /* #################### contact ####################  */
 /* contact */
@@ -45,7 +46,39 @@ $lang['FORGOTPW_EXISTS'] = 'Nous allons envoyer un courriel à l\'adresse indiqu
 $lang['FORGOTPW_NOT_EXISTS'] = 'Cet e-mail n\'existe pas.';
 
 /* mail */
-$lang['FORGOTPW_MAIL'] = 'bonjürli';
+$lang['FORGOTPW_MAIL_SUBJECT'] = 'Créer un nouveau mot de passe';
+$lang['FORGOTPW_MAIL_BODY'] = '
+                                <html>
+                                    <body>
+                                        <p>
+                                            Bonjour cher client
+                                        </p>
+                                        <p>
+                                            Vous avez oublié votre mot de passe? Pas de problème!
+                                        </p>
+                                        <p>
+                                            Créer un nouveau mot de passe maintenant
+                                        </p>
+                                        <p>
+                                            En cliquant sur le lien ci-dessus vous amène à votre compte, où vous pouvez entrer un nouveau mot de passe.
+                                        </p>
+                                        <p>
+                                            Si d\'autres problèmes dans le processus se produisent, s\'il vous plaît contactez-nous, nous sommes là pour vous aider.
+                                        </p>
+                                        <br>
+                                        <p>
+                                            Salutations amicales
+                                        </p>
+                                        <p>
+                                            Valrando<br>
+                                            Association Valaisanne de la Randonnée<br>
+                                            Pré-Fleuri 6<br>
+                                            Case postale 23<br>
+                                            CH - 1951 Sion
+                                        </p>
+                                    </body>
+                                </html>
+';
 
 /* #################### header ####################  */
 /* Menu */
