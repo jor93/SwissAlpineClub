@@ -152,4 +152,9 @@ class TypeTour
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    public static function getTypeTourByLanguage($language){
+        $query = "SELECT idTypeTour, $language FROM grp1.typetour, language WHERE grp1.typetour.Language_idLanguage =  language.idLanguage;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
+
 }

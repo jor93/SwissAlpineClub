@@ -273,11 +273,6 @@ class loginController extends Controller {
             return -1;
     }
 
-    public static function getAboByLanguage($language){
-        $query = "SELECT idAbonnement, $language FROM grp1.abonnement, language WHERE grp1.abonnement.Language_idLanguage =  language.idLanguage;";
-        return SQL::getInstance()->select($query)->fetchAll();
-    }
-
     // returns the country code if found
     public static function getLocation(){
         $ip = $_SERVER['REMOTE_ADDR'];

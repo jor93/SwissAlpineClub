@@ -101,7 +101,11 @@ class Status
         if(!$row) return false;
 
         return new Status($row['Status.idStatus'], $row['Status.Language_idLanguage'], $row['Language.de'], $row['Language.fr']);
+    }
 
+    public static function getStatusByLanguage($language){
+        $query = "SELECT idStatus, $language FROM grp1.status, language WHERE grp1.status.Language_idLanguage =  language.idLanguage;";
+        return SQL::getInstance()->select($query)->fetchAll();
     }
 
 }

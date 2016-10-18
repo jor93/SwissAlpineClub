@@ -9,8 +9,36 @@
 
 class elementsController extends Controller {
 
+    //transport
+    //status
+    //typ tour
+
+    public static function transportSelect(){
+        $answer = Abonnement::getAboByLanguage($_SESSION['lang']);
+        $length = count($answer);
+        for ($i = 0; $i < $length; ++$i) {
+            echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
+        }
+    }
+
+    public static function statusSelect(){
+        $answer = Status::getStatusByLanguage($_SESSION['lang']);
+        $length = count($answer);
+        for ($i = 0; $i < $length; ++$i) {
+            echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
+        }
+    }
+
+    public static function typeTourSelect(){
+        $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
+        $length = count($answer);
+        for ($i = 0; $i < $length; ++$i) {
+            echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
+        }
+    }
+
     public static function aboSelect(){
-        $answer = loginController::getAboByLanguage($_SESSION['lang']);
+        $answer = Abonnement::getAboByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
             echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
