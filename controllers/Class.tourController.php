@@ -24,14 +24,18 @@ class tourController extends Controller
             && isset($_POST['artime']) && isset($_FILES['img'])){
 
             $handle = $_FILES['img']['tmp_name'];
-            Tour::insertTourImage(2, $handle);
+            $mime = $_FILES['img']['type'];
+            var_dump($handle);
+            var_dump($mime);
+            //Tour::updateTourImage(1, $handle, $mime);
+            Tour::updateTourImage(1, 'C:\Users\Acer\Pictures\Michael\Bier\bierLogo.jpg', $mime);
 
-            $image = Tour::selectTourImage(2);
-            header("Content-Type:" . 'image/jpg');
 
-            echo $image;
+            $image = Tour::selectTourImage(1);
+            header("Content-Type:" . $image['mime']);
+
+            //var_dump($image['data']);
             //http://www.mysqltutorial.org/php-mysql-blob/
-
         }
 
     }
