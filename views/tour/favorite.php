@@ -5,7 +5,7 @@
  * Date: 18.10.2016
  * Time: 08:38
  */
-include_once 'header.inc';
+include_once 'views/header.inc';
 ?>
 
 
@@ -21,5 +21,5 @@ include_once 'header.inc';
 
 
 <?php
-include_once 'footer.inc';
+include_once 'views/footer.inc';
 ?>

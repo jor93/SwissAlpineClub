@@ -16,6 +16,13 @@ class tourController extends Controller
         }
     }
 
+    function favorite(){
+        if($this->getAdminUser()){
+            $this->redirect('tour', 'favorite');
+            exit;
+        }
+    }
+
     function insertTour(){
         if(isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
