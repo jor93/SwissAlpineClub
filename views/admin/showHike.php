@@ -5,7 +5,7 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-include_once ROOT_DIR . 'views/headeradmin.inc';
+include_once ROOT_DIR. '/views/headeradmin.inc';
 ?>
 <script>
     $(document).ready(function () {
@@ -91,25 +91,10 @@ include_once ROOT_DIR . 'views/headeradmin.inc';
                         <input type="text" id="artime" name="artime" required>
                     </div>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Image</span>
-                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
-                    </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <div class="multiselect">
-                            <div class="selectBox" onclick="showCheckboxes()">
-                                <select>
-                                    <option>Select an option</option>
-                                </select>
-                                <div class="overSelect"></div>
-                            </div>
-                            <div id="checkboxes">
-                                <label for="one"><input type="checkbox" id="one"/>First checkbox</label>
-                                <label for="two"><input type="checkbox" id="two"/>Second checkbox </label>
-                                <label for="three"><input type="checkbox" id="three"/>Third checkbox</label>
-                            </div>
-                        </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Transport</span>
+                        <input type="checkbox" id="train" value="Train"> Zug</br>
+                        <input type="checkbox" id="train" value="Bus"> Bus
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
