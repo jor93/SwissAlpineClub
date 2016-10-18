@@ -8,17 +8,21 @@
 include_once 'views/header.inc';
 ?>
 
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function () {
+        $('#menu_registration').addClass('active');
+    });
+
+    function letsgo($selectedFavorite){
+        alert($selectedFavorite);
+
+    }
+</script>
+
 
 <div class="main">
     <div class="container">
-
-
-
-        <form action="<?php echo URL_DIR.'favorite/handleFavorites';?>" method="post">
-            <div class="register-but">
-                <input type="submit" name="Submit" value="<?php echo $lang['FORGOTPW_SEND']; ?>" />
-            </div>
-        </form>
+        <?php elementsController::favoritesSelect();?>
     </div>
 </div>
 
