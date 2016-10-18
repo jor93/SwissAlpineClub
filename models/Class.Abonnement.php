@@ -103,4 +103,8 @@ class Abonnement
         return new Abonnement($row['Abonnement.idAbonnement'], $row['Abonnement.Language_idLanguage'], $row['Language.de'], $row['Language.fr']);
     }
 
+    public static function getAboByLanguage($language){
+        $query = "SELECT idAbonnement, $language FROM grp1.abonnement, language WHERE grp1.abonnement.Language_idLanguage =  language.idLanguage;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
 }

@@ -92,7 +92,7 @@ include_once ROOT_DIR.'views/header.inc';
 
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_PLZ'];?><label>*</label></span>
-                            <input type="text" id="tags2" placeholder="Please enter ZIP code" required>
+                            <input type="text" id="tags2" name="zip" placeholder="Please enter ZIP code" required>
                             <span id="label_fail_zip" class="error" >The zip code is not valid</span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -123,21 +123,17 @@ include_once ROOT_DIR.'views/header.inc';
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LANG'];?><label>*</label></span>
                             <select name="lang">
-                                <?php
-                                // get language if possible
-                                $lang = loginController::getPreferredLanguage();
-                                // variables for views
-                                $array = array('en','de','fr');
-                                $tr = array('English','Deutsch','Français');
-                                // add new option for each language and check if it matches the preferred language
-                                for($i = 0; $i <= 2; ++$i) {
-                                    echo "<option value='" . $array[$i] ."'" . (strcmp($lang,$array[$i])==0 ? 'selected' : '') . ">" . $tr[$i] . "</option>";
-                                }
-                                ?>
+                                <?php elementsController::langSelect(); ?>
                             </select>
                         </div>
-                    </div>
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span><?php echo $lang['REGISTER_ABO'];?><label>*</label></span>
+                            <select name="abo">
+                                <?php elementsController::aboSelect(); ?>
+                            </select>
+                        </div>
 
+                    </div>
                     <div class="register-bottom-grid">
                         <h3><?php echo $lang['REGISTER_TITLE_2'];?></h3>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -155,7 +151,7 @@ include_once ROOT_DIR.'views/header.inc';
 
                     <div class="clearfix"> </div>
                     <div class="register-but">
-                        <input type="submit" value="submit" onclick="">
+                        <input type="submit" value="<?php echo $lang['REGISTER_SUBMIT'];?>" onclick="">
                     </div>
 
                 </form>

@@ -8,7 +8,6 @@
  */
 class Location
 {
-
     private $idLocation;
     private $locationName;
     private $postcode;
@@ -21,9 +20,8 @@ class Location
      * @param $postcode
      * @param $Region_idRegion
      */
-    public function __construct($idLocation, $locationName, $postcode, $Region_idRegion)
+    public function __construct( $locationName, $postcode, $Region_idRegion)
     {
-        $this->idLocation = $idLocation;
         $this->locationName = $locationName;
         $this->postcode = $postcode;
         $this->idRegion = $Region_idRegion;
@@ -61,9 +59,6 @@ class Location
         $this->locationName = $locationName;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPostcode()
     {
         return $this->postcode;
@@ -101,6 +96,14 @@ class Location
         if(!$row) return false;
 
         return new Location($row['idLocation'], $row['LocationName'], $row['Postcode'], $row['Region_idRegion']);
+    }
+
+    public static function insertLocation($obj){
+        $query = "INSERT INTO `grp1`.`location` (`LocationName`,`Postcode`,`Region_idRegion`)
+                  VALUES('$obj->locationName','$obj->postcode',4);";
+        $result = SQL::getInstance()->executeQuery($query);
+        var_dump($result);
+
     }
 
 

@@ -109,4 +109,9 @@ class Transport
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    public static function getTranportByLanguage($language){
+        $query = "SELECT idTransport, $language FROM grp1.transport, language WHERE grp1.transport.Language_idLanguage =  language.idLanguage;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
+
 }

@@ -297,9 +297,11 @@ class Account{
         return  SQL::getInstance()->executeQuery($query);
     }
 
+
     //unused function
-    public function saveAccount(){
-        $query = "";
+    public static function saveAccount($obj){
+        $query = "INSERT INTO `grp1`.`account`(`Firstname`,`Lastname`,`Email`,`Address`,`Password`,`Phone`,`Language`,`Runlevel`,`Abonnement_idAbonnement`,`Lastlogin_Date`,`Activated`,`Location_idLocation`,`Country_idCountry`)
+                  VALUES ($obj->firstname,$obj->lastname,$obj->email,$obj->address,$obj->password,$obj->phone,$obj->language,1,1,now(),0,$obj->location,$obj->country);";
         return  MySqlConn::getInstance()->executeQuery($query);
     }
 }

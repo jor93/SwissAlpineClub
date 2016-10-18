@@ -5,7 +5,7 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-include_once ROOT_DIR . 'views/headeradmin.inc';
+include_once ROOT_DIR. '/views/headeradmin.inc';
 ?>
 <script>
     $(document).ready(function () {
@@ -35,92 +35,97 @@ include_once ROOT_DIR . 'views/headeradmin.inc';
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Hike</span>
-                        <input type="text" id="hike" name="hikeName" required>
+                        <input type="text" id="hike" name="hike" required>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>difficulty</span>
-                        <select name="difficulty" id="lang">
+                        <select name="lang" id="lang">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Subtitle</span>
-                        <input type="text" id="subtitle" name="subtitle" required>
+                        <span>Height</span>
+                        <input type="text" id="high" name="high" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" id="dur" name="duration" required>
+                        <input type="text" id="dur" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Departure</span>
-                        <input type="text" id="meeting" name="locationDep" required>
+                        <span>Meeting Point</span>
+                        <input type="text" id="meeting" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Arrival</span>
-                        <input type="text" id="loc" name="locationArriv" required>
+                        <span>Location</span>
+                        <input type="text" id="loc" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" id="price" name="price" required>
+                        <input type="text" id="price" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description DE</span>
-                        <input type="text" id="desc" name="descDE" required>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description FR</span>
-                        <input type="text" id="desc" name="descFR" required>
+                        <span>Description</span>
+                        <input type="text" id="desc" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Start Date</span>
-                        <input type="text" id="sdate" name="sdate" required>
+                        <input type="text" id="sdate" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>End Date</span>
-                        <input type="text" id="edate" name="edate" required>
+                        <input type="text" id="edate"  required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Departure Time</span>
-                        <input type="text" id="deptime" name="deptime" required>
+                        <input type="text" id="deptime" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Arrival Time</span>
-                        <input type="text" id="artime" name="artime" required>
+                        <input type="text" id="artime" required>
+                    </div>
+
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Status</span>
+                        <select name="stat" id="stat">
+                        <?php elementsController::statusSelect();?>
+                        </select>
+                    </div>
+
+
+
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Transport</span>
+                        <?php elementsController::transportCheckbox();?>
+                    </div>
+
+
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Tour Type</span>
+                        <?php elementsController::typeTourCheckbox();?>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
-                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
+                        <input type="file" id="img" accept="image/gif, image/jpeg, image/png">
                     </div>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <div class="multiselect">
-                            <div class="selectBox" onclick="showCheckboxes()">
-                                <select>
-                                    <option>Select an option</option>
-                                </select>
-                                <div class="overSelect"></div>
-                            </div>
-                            <div id="checkboxes">
-                                <label for="one"><input type="checkbox" id="one"/>First checkbox</label>
-                                <label for="two"><input type="checkbox" id="two"/>Second checkbox </label>
-                                <label for="three"><input type="checkbox" id="three"/>Third checkbox</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Image</span>
-                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
+
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+
                     </div>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    </div>
+
+
                 </div>
+
                 <div class="register-but">
+
                     <input type="submit" value="submit" onclick="check()">
+
+
                 </div>
 
             </form>

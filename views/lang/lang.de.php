@@ -125,9 +125,27 @@ $lang['REGISTER_LOCATION'] = 'Ort';
 $lang['REGISTER_COUNTRY'] = 'Land';
 $lang['REGISTER_PLZ'] = 'PLZ';
 $lang['REGISTER_PHONE'] = 'Telefon';
-$lang['REGISTER_LANG'] = 'Sprache';
+$lang['REGISTER_LANG'] = 'Kontaktsprache';
+$lang['REGISTER_ABO'] = 'Abonnement';
 $lang['REGISTER_TITLE_2'] = 'LOGIN INFORMATIONEN';
 $lang['REGISTER_PWD'] = 'Passwort';
 $lang['REGISTER_PWD_2'] = 'Passwort Bestätigung';
+$lang['REGISTER_SUBMIT'] = 'Registrieren';
+
+/* #################### register errors ####################  */
+$lang['REGISTER_TITLE'] = 'PERSÖHNLICHE INFORMATIONEN';
+$lang['REGISTER_FNAME'] = 'Vorname';
+$lang['REGISTER_LNAME'] = 'Nachname';
+$lang['REGISTER_EMAIL'] = 'E-Mail Adresse';
+$lang['REGISTER_ADDRESS'] = 'Adresse';
+$lang['REGISTER_LOCATION'] = 'Ort';
+$lang['REGISTER_COUNTRY'] = 'Land';
+$lang['REGISTER_PLZ'] = 'PLZ';
+$lang['REGISTER_PHONE'] = 'Telefon';
+$lang['REGISTER_LANG'] = 'Kontaktsprache';
+$lang['REGISTER_TITLE_2'] = 'LOGIN INFORMATIONEN';
+$lang['REGISTER_PWD'] = 'Passwort';
+$lang['REGISTER_PWD_2'] = 'Passwort Bestätigung';
+$lang['REGISTER_SUBMIT'] = 'Registrieren';
 
 ?>

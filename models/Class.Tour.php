@@ -363,10 +363,11 @@ class Tour
 
     static function insertTour($tour){
         $query = "INSERT INTO Tour('Start_date', 'End_date', 'Duration', 'Title', 'Subtitle', 'Depart_time', 'Arrival_time',
-                                  'Price', 'Difficulty', 'Status_idStatus', 'Language_idLanguage', 'Picture', 'Location_idLocation', 'Location_idLocation1')
-                  VALUES ($tour->getStartDate(), $tour->getEndDate(), $tour->getDuration(), $tour->getTitle(), $tour->getSubtitle(),
-                  $tour->getDepartTime(), $tour->getArrivalTime(), $tour->getPrice(), $tour->getDifficulty(), $tour->getStatus(), $tour->getIdLanguageDescription(), 
-                  $tour->getPicture(), $tour->getLocationDep(), $tour->getLocationArriv())";
+                                  'Price', 'Difficulty', 'Status_idStatus', 'Language_idLanguage', 'Location_idLocation',
+                                  'Location_idLocation1')
+                  VALUES ($tour->startDate, $tour->endDate, $tour->duration, $tour->title, $tour->subtitle,
+                  $tour->departTime, $tour->arrivalTime, $tour->price, $tour->difficulty, $tour->status,
+                  $tour->idLanguageDescription, $tour->locationDep, $tour->locationArriv)";
         return  SQL::getInstance()->executeQuery($query);
     }
 

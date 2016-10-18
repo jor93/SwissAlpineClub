@@ -129,8 +129,11 @@ class loginController extends Controller {
             $phone = "";
             $language = "";
             $password = "";
+            $country = "";
 
-            //$test = $_POST['country'];
+            echo 'hier kommt es ->  ';
+            $test = $_POST['country'];
+            var_dump($test);
 
             // checking if form is filled out
             if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['location'])
@@ -141,11 +144,13 @@ class loginController extends Controller {
                 $lastName = $this->cleanNames($this->badassSafer($_POST['lastname']));
                 $email = $this->badassSafer($_POST['email']);
                 $address = $this->badassSafer($_POST['address']);
+                $zip = $this->badassSafer($_POST['zip']);
                 $location = $this->badassSafer($_POST['location']);
                 $phone = $this->badassSafer($_POST['phone']);
                 $language = $this->badassSafer($_POST['lang']);
                 $password1 = $this->badassSafer($_POST['pwd1']);
                 $password2 = $this->badassSafer($_POST['pwd2']);
+                $country = $_POST['country'];
             } else {
                 $_SESSION['error'] = 1;
                 // Bitte füllen Sie alle Felder aus!
@@ -186,12 +191,6 @@ class loginController extends Controller {
                 return;
             }
 
-            // check if zip code ist in db
-            $answer = self::checkIfZipCodeExists($location);
-            if ($answer[0] === 0) {
-                // insert new zip code here
-            }
-
             // check if pwd are the same
             if (strcmp($password1, $password2) != 0){
                 $_SESSION['error'] = 4;
@@ -210,9 +209,24 @@ class loginController extends Controller {
             echo '</br>';
 
             // everything is fine, create new account
-            //$user = new Account();
 
-            // registration successfull
+
+            $user = new Account();
+
+
+            // check if zip code is in db
+            $answer = self::checkIfZipCodeExists($location);
+            if ($answer[0] === 0) {
+                // insert new location
+                $obj = new Location($location,$zip,4);
+                Location::insertLocation($obj);
+            }
+
+            $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
+            $user->setLocation($locationId);
+            $user->setCountry($country);
+
+            // registration successfull --> reset everything
             $_SESSION['country'] = null;
             $_SESSION['error'] = null;
         }
@@ -247,6 +261,16 @@ class loginController extends Controller {
     public static function checkIfZipCodeExists($zipToCheck){
         $query = "SELECT CASE WHEN EXISTS (SELECT postcode FROM location WHERE postcode = '$zipToCheck') THEN 1 ELSE 0 END;";
         return SQL::getInstance()->select($query)->fetch();
+    }
+
+    // return the id of the location if found else -1
+    public static function getIdLocationFromZipAndLocationName($locationName, $zip){
+        $query = "SELECT * from location WHERE locationName = '$locationName' AND PostCode = '$zip';";
+        $answer = SQL::getInstance()->select($query)->fetch();
+        if($answer[0] > 0)
+            return $answer[0];
+        else
+            return -1;
     }
 
     // returns the country code if found
