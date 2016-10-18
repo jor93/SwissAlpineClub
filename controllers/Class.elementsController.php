@@ -9,15 +9,13 @@
 
 class elementsController extends Controller {
 
-    //transport
-    //status
-    //typ tour
 
-    public static function transportSelect(){
-        $answer = Abonnement::getAboByLanguage($_SESSION['lang']);
+    public static function transportCheckbox(){
+        $answer = Transport::getTranportByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
-            echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
+            echo "<input type='checkbox' name='transport' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+            echo "</br>";
         }
     }
 
@@ -25,15 +23,16 @@ class elementsController extends Controller {
         $answer = Status::getStatusByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
-            echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
+            echo "<option value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1] . "</option>";
         }
     }
 
-    public static function typeTourSelect(){
+    public static function typeTourCheckbox(){
         $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
-            echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
+            echo "<input type='checkbox' name='typetour' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+            echo "</br>";
         }
     }
 
@@ -41,7 +40,7 @@ class elementsController extends Controller {
         $answer = Abonnement::getAboByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
-            echo "<option value='" . $answer[$i] . "'" . ">" . $answer[$i][1] . "</option>";
+            echo "<option value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1] . "</option>";
         }
     }
 
