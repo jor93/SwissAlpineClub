@@ -5,21 +5,31 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-include_once '/headeradmin.inc';
+include_once ROOT_DIR. '/views/headeradmin.inc';
 ?>
 <script>
     $(document).ready(function () {
         $('#menu_showhike').addClass('active');
     });
 
-
+    var expanded = false;
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
 
 </script>
 
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form onsubmit="return false">
+            <form action="<?php echo URL_DIR.'tour/insertTour';?>" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
                     <h3>HIKE INFORMATION</h3>
 
@@ -80,7 +90,7 @@ include_once '/headeradmin.inc';
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Status</span>
                         <select name="stat" id="stat">
-                            <?php elementsController::statusSelect();?>
+                        <?php elementsController::statusSelect()?>
                         </select>
                     </div>
 
@@ -136,5 +146,5 @@ include_once '/headeradmin.inc';
 
 
 <?php
-include_once 'footer.inc';
+include_once ROOT_DIR . 'views/footer.inc';
 ?>
