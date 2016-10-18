@@ -9,26 +9,30 @@
 class favoriteController extends Controller
 {
     function favorite(){
-        if($this->getAdminUser()){
-            $this->redirect('login', 'login');
+        //if a user is active he cannot re-login
+        if($this->getActiveUser()){
+            $this->redirect('favorite', 'favorite');
             exit;
+        }
+        $this->updateFavorites();
+    }
+
+    // to reach from tour controller as well
+    public static function updateFavorites(){
+        $favorites = self::getAllFavorites();
+
+        foreach ($favorites as $fav){
+            //$temp = new Favorite($fav);
+            echo '</br>id Favorite: ' . $fav[0];
+            echo '</br>id Account: ' . $fav[1];
+            echo '</br>id Tour: ' . $fav[2];
+            echo '</br>---------------------';
         }
     }
 
     function handleFavorites(){
-        $favorites = array();
+        $this->updateFavorites();
 
-        // get all favorites from current user
-        $currentUser = $this->getActiveUserWithoutCookie();
-        $idAcc = $currentUser->getIdAccount();
-        $tempFavorites = $this->getAllFavorites($idAcc);
-
-        // put into array to handle
-        foreach ($tempFavorites as $fav){
-            $favorites = $fav;
-        }
-
-        var_dump($favorites[0]);
     }
 
     function addFavorite(){
@@ -39,9 +43,10 @@ class favoriteController extends Controller
 
     }
 
-    // returns all of the data
-    private function getAllFavorites($idAcc){
-        $query = "SELECT * FROM favorites WHERE idaccount = '$idAcc';";
-        return SQL::getInstance()->select($query);
+    public static function getAllFavorites(){
+        // get all favorites from current user
+        $currentUser = self::getActiveUserWithoutCookie();
+        $idAcc = $currentUser->getIdAccount();
+        return $tempFavorites = Favorite::getAllFavorites($idAcc);
     }
 }
