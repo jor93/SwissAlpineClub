@@ -104,8 +104,6 @@ class Location
         $result = SQL::getInstance()->executeQuery($query);
         var_dump($result);
 
-
-
     }
 
 
