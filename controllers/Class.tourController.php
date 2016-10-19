@@ -14,6 +14,9 @@ class tourController extends Controller
             exit;
         }
     }
+    function inscription(){
+
+    }
 
     function favorite(){
         if($this->getAdminUser()){
