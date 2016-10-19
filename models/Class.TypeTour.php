@@ -142,13 +142,13 @@ class TypeTour
     static function insertTypeTour($idTour, $typeArray){
         $valueQuery = "";
         $lastElement = end($typeArray);
-        foreach($typeArray as $type){
-            $valueQuery += "('$type','$idTour')";
-            if($lastElement == $type)break;
-            $valueQuery += " ,";
+        for ($i = 0; $i < count($typeArray); $i++) {
+            $valueQuery .= "('$typeArray[$i]','$idTour')";
+            if($lastElement === $typeArray[$i])break;
+            $valueQuery .= " ,";
         }
-        $query = "INSERT INTO typetour_tour('TypeTour_idTypeTour', 'Tour_idTour')
-                  VALUES '$valueQuery'";
+        $query = "INSERT INTO typetour_tour(TypeTour_idTypeTour, Tour_idTour)
+                  VALUES " . $valueQuery;
         return  SQL::getInstance()->executeQuery($query);
     }
 

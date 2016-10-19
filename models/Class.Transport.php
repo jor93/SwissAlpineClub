@@ -103,9 +103,22 @@ class Transport
         return new Transport($row['Transport.idTransport'], $row['Transport.Language_idLanguage'], $row['Language.de'], $row['Language.fr']);
     }
 
+    static function insertTransportTour($idTour, $transportArray){
+        $valueQuery = "";
+        $lastElement = end($transportArray);
+        for ($i = 0; $i < count($transportArray); $i++) {
+            var_dump($valueQuery);
+            $valueQuery .= "('$idTour','$transportArray[$i]')";
+            if($lastElement === $transportArray[$i])break;
+            $valueQuery .= " ,";
+        }
+        $query = "INSERT INTO Transport_tour(Tour_idTour, Transport_idTransport)
+                  VALUES " . $valueQuery;
+        return  SQL::getInstance()->executeQuery($query);
+    }
 
     static function insertTourTransport($idTour, $idTransport){
-        $query = "INSERT INTO Transport_tour('Tour_idTour', 'Transport_idTransport') VALUES ('$idTour','$idTransport')";
+        $query = "INSERT INTO Transport_tour(Tour_idTour, Transport_idTransport) VALUES ('$idTour','$idTransport')";
         return  SQL::getInstance()->executeQuery($query);
     }
 
