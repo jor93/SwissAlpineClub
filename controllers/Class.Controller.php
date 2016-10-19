@@ -91,7 +91,7 @@
       * Get active (logged-in) user without cookie
       * @return User
       */
-     function getActiveUserWithoutCookie(){
+     static function getActiveUserWithoutCookie(){
          if(isset($_SESSION['account']))
              return $_SESSION['account'];
          else
@@ -118,6 +118,19 @@
     function cleanNames($cleanMyName){
         return str_replace($this->illegalChars, "", $cleanMyName);
     }
+
+     /**
+      * Check Names for illegals chars
+      * @return User
+      */
+     function checkNames($checkMyName){
+         $length = count($this->illegalChars);
+         for ($i = 0; $i < $length; ++$i) {
+             if( strpos( $checkMyName, $this->illegalChars[$i] ) !== false ) return true;
+         }
+         return true;
+
+     }
 
      /**
       * Detect Browser Language

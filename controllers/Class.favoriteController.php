@@ -21,6 +21,7 @@ class favoriteController extends Controller
     public static function updateFavorites(){
         $favorites = self::getAllFavorites();
 
+        /*
         foreach ($favorites as $fav){
             //$temp = new Favorite($fav);
             echo '</br>id Favorite: ' . $fav[0];
@@ -28,10 +29,12 @@ class favoriteController extends Controller
             echo '</br>id Tour: ' . $fav[2];
             echo '</br>---------------------';
         }
+        */
     }
 
-    function handleFavorites(){
-        $this->updateFavorites();
+    static function handleFavorites($selectedFavorite){
+      // check if already a favorite then add or rm
+        echo 'selected item --> ' . $selectedFavorite;
 
     }
 
@@ -40,6 +43,7 @@ class favoriteController extends Controller
     }
 
     function removeFavorite(){
+        echo 'haifisch';
 
     }
 

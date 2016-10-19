@@ -62,27 +62,30 @@ include_once ROOT_DIR.'views/header.inc';
                             if(isset($_SESSION['error']))
                             switch ($_SESSION['error']){
                                 case 1:
+                                    echo $lang['REGISTER_ERROR_1'];
                                     break;
-                                default:
-                                    'hallo';
+                                case 3:
+                                    echo $lang['REGISTER_ERROR_3'];
+                                    echo "<a href='forgotpw'>Passwort vergessen?</a>";
+                                    break;
                             }
                             ?> </label>
 
                         <h3><?php echo $lang['REGISTER_TITLE'];?></h3>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_FNAME'];?><label>*</label></span>
-                            <input type="text" id="fname" name="firstname" placeholder="Please enter Firstname" required>
-                            <span id="label_fail_fname" class="error" >The firstname is not valid</span>
+                            <input type="text" class="ok" id="fname" name="firstname" placeholder="Please enter Firstname" required>
+                            <span id="label_fail_fname" class="error"><?php if(isset($_SESSION['error']) && $_SESSION['error'] === 6) echo $lang['REGISTER_ERROR_6'];?></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LNAME'];?><label>*</label></span>
                             <input type="text" id="lname" name="lastname" placeholder="Please enter Lastname" required>
-                            <span id="label_fail_lname" class="error" >The lastname is not valid</span>
+                            <span id="label_fail_lname" class="error"><?php if(isset($_SESSION['error']) && $_SESSION['error'] === 7) echo $lang['REGISTER_ERROR_7'];?></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_EMAIL'];?><label>*</label></span>
                             <input type="email" id="mail" name="email" placeholder="Please enter E-Mail" required>
-                            <span id="label_fail_mail" class="error" >The E-Mail address is not valid</span>
+                            <span id="label_fail_mail" class="error"><?php if(isset($_SESSION['error']) && $_SESSION['error'] === 2) echo $lang['REGISTER_ERROR_2'];?></span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_ADDRESS'];?><label>*</label></span>
