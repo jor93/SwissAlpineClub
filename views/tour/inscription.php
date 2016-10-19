@@ -31,13 +31,13 @@ include_once ROOT_DIR.'views/header.inc';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>How many people<label>*</label></span>
+                        <span>How many people</span>
                         <input type="number" id="amount" name="amount" required>
 
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Date<label>*</label></span>
+                        <span>Date</span>
                         <input type="text" id="date" name="date" required>
 
                     </div>
