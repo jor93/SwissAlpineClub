@@ -102,7 +102,7 @@ class TypeTour
         return new TypeTour($row['TypeTour.idTypeTour'], $row['TypeTour.Language_idLanguage'], $row['Language.de'], $row['Language.fr']);
     }
 
-    //Getting concrete tpyes for the tour
+    //Getting concrete types for the tour
     static function selectTypesFromTour($typesOfTour){
         $whereClause = "";
         $lastElement = end($typesOfTour);
@@ -156,5 +156,14 @@ class TypeTour
         $query = "SELECT idTypeTour, $language FROM grp1.typetour, language WHERE grp1.typetour.Language_idLanguage =  language.idLanguage;";
         return SQL::getInstance()->select($query)->fetchAll();
     }
+
+    static function selectTypeTourLength(){
+        $query = "SELECT count(*) as ResultTypeTour FROM TypeTour";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetch();
+        if(!$row) return false;
+        return $row['ResultTypeTour'];
+    }
+
 
 }

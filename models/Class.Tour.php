@@ -371,6 +371,14 @@ class Tour
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    static function insertTourDescription($descDE, $descFR, &$lastInsertId){
+        $query = "INSERT INTO Language(de, fr)
+                  VALUES ('$descDE', '$descFR')";
+        $result = SQL::getInstance()->executeQuery($query);
+        $lastInsertId = SQL::getInstance()->getLastInsertedId();
+        return $result;
+    }
+
     static function selectTour($tourId){
         $query = "SELECT Tour.*, LanguageDesc.*
                   FROM Tour, Language as LanguageDesc
@@ -388,7 +396,7 @@ class Tour
                 $row['Tour.Titel'], $row['Tour.Subtitle'],
                 $row['Tour.Depart_time'], $row['Tour.Arrival_time'], $row['Tour.Price'], $row['Tour.Difficulty'], $status,
                 $row['Tour.Language_idLanguage'], $row['LanguageDesc.de'], $row['LanguageDesc.fr'],
-                $row['Tour.Picture'], $locationDep, $locationArriv, transport); //need to be modified on next monday, 17.10.2016
+                $row['Tour.Picture'], $locationDep, $locationArriv, transport);
         }
         return false;
     }

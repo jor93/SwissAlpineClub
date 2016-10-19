@@ -8,11 +8,21 @@
 include_once 'views/header.inc';
 ?>
 
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function () {
+        $('#menu_registration').addClass('active');
+    });
+
+    function letsgo($selectedFavorite){
+        alert($selectedFavorite);
+
+    }
+</script>
+
 
 <div class="main">
     <div class="container">
-        <a href="<?php echo URL_DIR.'tour/favorites';?>">add Favorite</a>
-
+        <?php elementsController::favoritesSelect();?>
     </div>
 </div>
 

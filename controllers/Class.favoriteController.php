@@ -9,26 +9,33 @@
 class favoriteController extends Controller
 {
     function favorite(){
-        if($this->getAdminUser()){
-            $this->redirect('login', 'login');
+        //if a user is active he cannot re-login
+        if($this->getActiveUser()){
+            $this->redirect('favorite', 'favorite');
             exit;
         }
+        $this->updateFavorites();
     }
 
-    function handleFavorites(){
-        $favorites = array();
+    // to reach from tour controller as well
+    public static function updateFavorites(){
+        $favorites = self::getAllFavorites();
 
-        // get all favorites from current user
-        $currentUser = $this->getActiveUserWithoutCookie();
-        $idAcc = $currentUser->getIdAccount();
-        $tempFavorites = $this->getAllFavorites($idAcc);
-
-        // put into array to handle
-        foreach ($tempFavorites as $fav){
-            $favorites = $fav;
+        /*
+        foreach ($favorites as $fav){
+            //$temp = new Favorite($fav);
+            echo '</br>id Favorite: ' . $fav[0];
+            echo '</br>id Account: ' . $fav[1];
+            echo '</br>id Tour: ' . $fav[2];
+            echo '</br>---------------------';
         }
+        */
+    }
 
-        var_dump($favorites[0]);
+    static function handleFavorites($selectedFavorite){
+      // check if already a favorite then add or rm
+        echo 'selected item --> ' . $selectedFavorite;
+
     }
 
     function addFavorite(){
@@ -36,12 +43,14 @@ class favoriteController extends Controller
     }
 
     function removeFavorite(){
+        echo 'haifisch';
 
     }
 
-    // returns all of the data
-    private function getAllFavorites($idAcc){
-        $query = "SELECT * FROM favorites WHERE idaccount = '$idAcc';";
-        return SQL::getInstance()->select($query);
+    public static function getAllFavorites(){
+        // get all favorites from current user
+        $currentUser = self::getActiveUserWithoutCookie();
+        $idAcc = $currentUser->getIdAccount();
+        return $tempFavorites = Favorite::getAllFavorites($idAcc);
     }
 }

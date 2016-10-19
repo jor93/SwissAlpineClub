@@ -73,6 +73,11 @@ class Favorite
         $this->tour_idTour = $tour_idTour;
     }
 
+    static function getAllFavorites($idAccount){
+        $query = "SELECT * FROM favorites WHERE Account_idAccount = '$idAccount';";
+        return SQL::getInstance()->select($query);
+    }
+
     static function insertFavorite($idAccount, $idTour){
         $query = "INSERT INTO favorites ('Account_idAccount', 'Tour_idTour') VALUES ('$idAccount', '$idTour')";
         return  SQL::getInstance()->executeQuery($query);

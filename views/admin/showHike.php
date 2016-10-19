@@ -56,7 +56,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
-                        <input type="text" id="meeting" name="locationDep" required>
+                        <input type="text" id="locationDep" name="locationDep" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Arrival</span>
@@ -67,11 +67,11 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                         <input type="text" id="price" name="price" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description DE</span>
+                        <span>Description Deutsch</span>
                         <input type="text" id="desc" name="descDE" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description FR</span>
+                        <span>Description Franzoesisch</span>
                         <input type="text" id="desc" name="descFR" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -91,19 +91,32 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                         <input type="text" id="artime" name="artime" required>
                     </div>
 
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Status</span>
+                        <select name="stat" id="stat">
+                        <?php elementsController::statusSelect();?>
+                        </select>
+                    </div>
+
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Transport</span>
+                        <?php elementsController::transportCheckbox();?>
+                    </div>
+
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Tour Type</span>
+                        <?php elementsController::typeTourCheckbox();?>
+                    </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
                         <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
                     </div>
-
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Transport</span>
-                        <input type="checkbox" id="train" value="Train"> Zug</br>
-                        <input type="checkbox" id="train" value="Bus"> Bus
-                    </div>
 
+                    </div>
                 </div>
+
                 <div class="register-but">
                     <input type="submit" value="submit" onclick="check()">
                 </div>

@@ -91,7 +91,7 @@
       * Get active (logged-in) user without cookie
       * @return User
       */
-     function getActiveUserWithoutCookie(){
+     static function getActiveUserWithoutCookie(){
          if(isset($_SESSION['account']))
              return $_SESSION['account'];
          else
