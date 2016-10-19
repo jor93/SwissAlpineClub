@@ -86,6 +86,7 @@ class SQL {
             } else{
                 // commit if no erros
                 $this->_conn->commit();
+                $this->_conn->lastInsertId();
             }
             // rollback if any exception thrown
         } catch (PDOException $e) {

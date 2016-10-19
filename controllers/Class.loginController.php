@@ -125,11 +125,15 @@ class loginController extends Controller {
             $lastName = "";
             $email = "";
             $address = "";
+            $zip = "";
             $location = "";
             $phone = "";
             $language = "";
-            $password = "";
+            $password1 = "";
+            $password2 = "";
             $country = "";
+            $abo = "";
+            $aborting = false;
 
             echo 'hier kommt es ->  ';
             $test = $_POST['country'];
@@ -137,11 +141,11 @@ class loginController extends Controller {
 
             // checking if form is filled out
             if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['location'])
-                && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['pwd1'])
-            ) {
+                && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['pwd1']) && isset($_POST['abo']) && isset($_POST['country'])) {
+
                 // get data from post and secured it
-                $firstName = $this->cleanNames($this->badassSafer($_POST['firstname']));
-                $lastName = $this->cleanNames($this->badassSafer($_POST['lastname']));
+                $firstName = $this->badassSafer($_POST['firstname']);
+                $lastName = $this->badassSafer($_POST['lastname']);
                 $email = $this->badassSafer($_POST['email']);
                 $address = $this->badassSafer($_POST['address']);
                 $zip = $this->badassSafer($_POST['zip']);
@@ -150,12 +154,11 @@ class loginController extends Controller {
                 $language = $this->badassSafer($_POST['lang']);
                 $password1 = $this->badassSafer($_POST['pwd1']);
                 $password2 = $this->badassSafer($_POST['pwd2']);
-                $country = $_POST['country'];
+                $country = $this->badassSafer($_POST['country']);
+                $abo = $this->badassSafer($_POST['abo']);
             } else {
+                $aborting = true;
                 $_SESSION['error'] = 1;
-                // Bitte füllen Sie alle Felder aus!
-                //
-                return;
             }
 
             // check language
@@ -173,62 +176,67 @@ class loginController extends Controller {
                     return;
             }
 
+            // check if names are valid
+            if($this->checkNames($firstName)){
+                $_SESSION['error'] = 6;
+                $aborting = true;
+            }
+            if(!$this->checkNames($lastName)){
+                $_SESSION['error'] = 7;
+                $aborting = true;
+            }
+
+
             // check if email is valid
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['error'] = 2;
-                // Ungültige E-Mail Adresse!
-                //
-                return;
-                return;
+                $aborting = true;
             }
 
             // check if username isn't already in use
             $answer = self::checkEmailIfExists($email);
             if ($answer[0] === 1) {
                 $_SESSION['error'] = 3;
-                // Diese E-Mail Adresse exisitert bereits!
-                //
-                return;
+                $aborting = true;
             }
 
             // check if pwd are the same
-            if (strcmp($password1, $password2) != 0){
+            if (strcmp($password1, $password2) != 0) {
                 $_SESSION['error'] = 4;
-                // Passswörter sind nicht identisch!
-                return;
+                $aborting = true;
+            } else{
+                // check if pwd meet our security
+                $answer = self::checkPasswordStrength($password2);
+                if ($answer === false) {
+                    $_SESSION['error'] = 5;
+                    $aborting = true;
+                }
             }
 
-            // check if pwd meet our security
-            $answer = self::checkPasswordStrength($password2);
-            if ($answer === false){
-                $_SESSION['error'] = 5;
-                // Passswort ist zu schwach
-                return;
+
+
+
+            // everything is fine, no errors, create account
+            if ($aborting === false) {
+                $user = new Account();
+
+                // check if zip code is in db
+                $answer = self::checkIfZipCodeExists($location);
+                if ($answer[0] === 0) {
+                    // insert new location if
+                    $obj = new Location($location, $zip, 4);
+                    Location::insertLocation($obj);
+                }
+
+                // set location and country id
+                $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
+                $user->setLocation($locationId);
+                $user->setCountry($country);
+
+                // registration successfull --> reset everything
+                $_SESSION['country'] = null;
+                $_SESSION['error'] = null;
             }
-
-            echo '</br>';
-
-            // everything is fine, create new account
-
-
-            $user = new Account();
-
-
-            // check if zip code is in db
-            $answer = self::checkIfZipCodeExists($location);
-            if ($answer[0] === 0) {
-                // insert new location
-                $obj = new Location($location,$zip,4);
-                Location::insertLocation($obj);
-            }
-
-            $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
-            $user->setLocation($locationId);
-            $user->setCountry($country);
-
-            // registration successfull --> reset everything
-            $_SESSION['country'] = null;
-            $_SESSION['error'] = null;
         }
 
     }

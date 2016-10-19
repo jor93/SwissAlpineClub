@@ -120,6 +120,19 @@
     }
 
      /**
+      * Check Names for illegals chars
+      * @return User
+      */
+     function checkNames($checkMyName){
+         $length = count($this->illegalChars);
+         for ($i = 0; $i < $length; ++$i) {
+             if( strpos( $checkMyName, $this->illegalChars[$i] ) !== false ) return true;
+         }
+         return true;
+
+     }
+
+     /**
       * Detect Browser Language
       * @return languages
       */
