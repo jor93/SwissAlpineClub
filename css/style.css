@@ -1568,7 +1568,7 @@ span.error{
 	visibility: hidden;
 	color: red;
 }
-.register-top-grid input[type="text"], .register-top-grid input[type="tel"], .register-bottom-grid input[type="text"], .register-bottom-grid input[type="password"], .register-top-grid input[type="password"], .register-top-grid input[type="email"], .register-top-grid select {
+.register-top-grid input[type="text"], .register-top-grid input[type="number"], .register-top-grid input[type="tel"], .register-bottom-grid input[type="text"], .register-bottom-grid input[type="password"], .register-top-grid input[type="password"], .register-top-grid input[type="email"], .register-top-grid select {
 	border: 1px solid #EEE;
 	outline-color:#FF5B36;
 	width: 96%;

@@ -133,11 +133,13 @@ $lang['REGISTER_PWD_2'] = 'Passwort Bestätigung';
 $lang['REGISTER_SUBMIT'] = 'Registrieren';
 
 /* #################### register errors ####################  */
-$lang['REGISTER_TITLE'] = 'PERSÖHNLICHE INFORMATIONEN';
-$lang['REGISTER_FNAME'] = 'Vorname';
-$lang['REGISTER_LNAME'] = 'Nachname';
-$lang['REGISTER_EMAIL'] = 'E-Mail Adresse';
-$lang['REGISTER_ADDRESS'] = 'Adresse';
+$lang['REGISTER_ERROR_1'] = 'Bitte füllen Sie alle Felder aus!';
+$lang['REGISTER_ERROR_2'] = 'Bitte geben Sie eine gültige E-Mail Adresse ein!';
+$lang['REGISTER_ERROR_3'] = 'Diese E-Mail Adresse wird bereits verwendet! Haben Sie ihr ';
+$lang['REGISTER_ERROR_4'] = 'Passwörter sind nicht identisch!';
+$lang['REGISTER_ERROR_5'] = 'Passwörter sind zu schwach';
+$lang['REGISTER_ERROR_6'] = 'Bitte geben Sie einen gültigen Vornamen ein!';
+$lang['REGISTER_ERROR_7'] = 'Bitte geben Sie einen gültigen Nachnamen ein!';
 $lang['REGISTER_LOCATION'] = 'Ort';
 $lang['REGISTER_COUNTRY'] = 'Land';
 $lang['REGISTER_PLZ'] = 'PLZ';
@@ -147,5 +149,8 @@ $lang['REGISTER_TITLE_2'] = 'LOGIN INFORMATIONEN';
 $lang['REGISTER_PWD'] = 'Passwort';
 $lang['REGISTER_PWD_2'] = 'Passwort Bestätigung';
 $lang['REGISTER_SUBMIT'] = 'Registrieren';
+
+/* #################### global errors ####################  */
+$lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie es erneut!';
 
 ?>

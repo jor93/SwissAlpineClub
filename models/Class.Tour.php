@@ -25,6 +25,7 @@ class Tour
     private $picture;
     private $locationDep;
     private $locationArriv;
+    private $type;
     private $transport;
 
     /**
@@ -46,11 +47,13 @@ class Tour
      * @param $picture
      * @param $locationDep
      * @param $locationArriv
+     * @param $type
      * @param $transport
      */
-    public function __construct($idTour, $startDate, $endDate, $duration, $title, $subtitle, $depart_time, $arrival_time,
-                                $price, $difficulty, $status, $idLanguageDescription, $languageDescriptionDE,
-                                $languageDescriptionFR, $picture, $locationDep, $locationArriv, $transport)
+    public function __construct($idTour, $startDate, $endDate, $duration, $title, $subtitle,
+                                $depart_time, $arrival_time, $price, $difficulty, $status,
+                                $idLanguageDescription, $languageDescriptionDE, $languageDescriptionFR,
+                                $picture, $locationDep, $locationArriv, $type, $transport)
     {
         $this->idTour = $idTour;
         $this->startDate = $startDate;
@@ -69,9 +72,9 @@ class Tour
         $this->picture = $picture;
         $this->locationDep = $locationDep;
         $this->locationArriv = $locationArriv;
+        $this->type = $type;
         $this->transport = $transport;
     }
-
 
     /**
      * @return mixed
@@ -348,6 +351,22 @@ class Tour
     /**
      * @return mixed
      */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getTransport()
     {
         return $this->transport;
@@ -361,14 +380,16 @@ class Tour
         $this->transport = $transport;
     }
 
-    static function insertTour($tour){
-        $query = "INSERT INTO Tour('Start_date', 'End_date', 'Duration', 'Title', 'Subtitle', 'Depart_time', 'Arrival_time',
-                                  'Price', 'Difficulty', 'Status_idStatus', 'Language_idLanguage', 'Location_idLocation',
-                                  'Location_idLocation1')
-                  VALUES ($tour->startDate, $tour->endDate, $tour->duration, $tour->title, $tour->subtitle,
-                  $tour->departTime, $tour->arrivalTime, $tour->price, $tour->difficulty, $tour->status,
-                  $tour->idLanguageDescription, $tour->locationDep, $tour->locationArriv)";
-        return  SQL::getInstance()->executeQuery($query);
+    static function insertTour($tour, &$lastInsertId){
+        $query = "INSERT INTO Tour (Start_date, End_date, Duration, Title, Subtitle, Depart_time, Arrival_time,
+                                  Price, Difficulty, Status_idStatus, Language_idLanguage, Location_idLocation,
+                                  Location_idLocation1)
+                  VALUES ('$tour->startDate', '$tour->endDate', '$tour->duration', '$tour->title', '$tour->subtitle',
+                  '$tour->depart_time', '$tour->arrival_time', '$tour->price', '$tour->difficulty', '$tour->status',
+                  '$tour->idLanguageDescription', '$tour->locationDep', '$tour->locationArriv')";
+        $result = SQL::getInstance()->executeQuery($query);
+        $lastInsertId = SQL::getInstance()->getLastInsertedId();
+        return $result;
     }
 
     static function insertTourDescription($descDE, $descFR, &$lastInsertId){

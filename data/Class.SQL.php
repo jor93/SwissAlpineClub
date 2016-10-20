@@ -108,6 +108,7 @@ class SQL {
                 var_dump($this->_conn->lastInsertId());
                 $this->setLastInsertedId($this->_conn->lastInsertId());
                 $this->_conn->commit();
+                $this->_conn->lastInsertId();
             }
             // rollback if any exception thrown
         } catch (PDOException $e) {

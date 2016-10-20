@@ -148,11 +148,6 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                     </div>
 
 
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-
-                    </div>
-
-
 
                 </div>
 
