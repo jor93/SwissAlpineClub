@@ -20,7 +20,6 @@ class tourController extends Controller
             $this->redirect('favorite', 'favorite');
             exit;
         }
-        favoriteController::updateFavorites();
     }
 
     function insertTour(){

@@ -14,37 +14,32 @@ class favoriteController extends Controller
             $this->redirect('favorite', 'favorite');
             exit;
         }
-        $this->updateFavorites();
     }
 
-    // to reach from tour controller as well
-    public static function updateFavorites(){
-        $favorites = self::getAllFavorites();
+    static function handleFavorites(){
+        // check if already a favorite then add or rm
+        $inputFavorite = $_POST['selectedFav'];
 
-        /*
-        foreach ($favorites as $fav){
-            //$temp = new Favorite($fav);
-            echo '</br>id Favorite: ' . $fav[0];
-            echo '</br>id Account: ' . $fav[1];
-            echo '</br>id Tour: ' . $fav[2];
-            echo '</br>---------------------';
+        // get the data
+        $result = Favorite::getFavorite($inputFavorite);
+        // read from pdo statement
+        $temp = $result->fetch();
+        $idFavorite = $temp[0];
+
+        if ($idFavorite == 0){
+            self::addFavorite($idFavorite);
+        }else{
+            self::removeFavorite($idFavorite);
         }
-        */
     }
 
-    static function handleFavorites($selectedFavorite){
-      // check if already a favorite then add or rm
-        echo 'selected item --> ' . $selectedFavorite;
-
+    static function addFavorite($newFavorite){
+        Favorite::insertFavorite($newFavorite);
     }
 
-    function addFavorite(){
-
-    }
-
-    function removeFavorite(){
-        echo 'haifisch';
-
+    static function removeFavorite($rmFavorite){
+        Favorite::removeFavorite($rmFavorite);
+        self::redirect('favorite', 'favorite');
     }
 
     public static function getAllFavorites(){
