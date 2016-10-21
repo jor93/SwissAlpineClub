@@ -17,7 +17,7 @@ class elementsController extends Controller {
             echo "</br><label>'id Favorite =  $item[0]'</label>";
             echo "</br><label>'id Account = $item[1]'</label>";
             echo "</br><label>'id Tour = $item[2]'</label>";
-            echo "<button onclick='letsgo($item[0])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
+            echo "<button id='star' onclick='letsgo($item[0])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
             echo "</br><span>-----------------------------------</span>";
         }
     }

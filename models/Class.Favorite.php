@@ -79,14 +79,17 @@ class Favorite
     }
 
     static function insertFavorite($idAccount, $idTour){
-        $query = "INSERT INTO favorites ('Account_idAccount', 'Tour_idTour') VALUES ('$idAccount', '$idTour')";
+        $query = "INSERT INTO favorites (Account_idAccount, Tour_idTour) VALUES ('$idAccount', '$idTour')";
         return  SQL::getInstance()->executeQuery($query);
     }
 
-    static function removeFavorite($idAccount, $idTour){
-        $query = "DELETE FROM Favorites WHERE Account_idAcount = '$idAccount' and Tour_idTour = '$idTour'";
+    static function removeFavorite($idFavorite){
+        $query = "DELETE FROM Favorites WHERE idFavorites = '$idFavorite'";
         return  SQL::getInstance()->executeQuery($query);
     }
 
-
+    static function getFavorite($idFavorite){
+        $query = "SELECT * FROM favorites WHERE idFavorites = '$idFavorite';";
+        return SQL::getInstance()->select($query);
+    }
 }

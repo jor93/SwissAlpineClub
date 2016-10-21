@@ -14,7 +14,18 @@ include_once 'views/header.inc';
     });
 
     function letsgo($selectedFavorite){
-        alert($selectedFavorite);
+        var imgsrc = '../images/star.png';
+        document.getElementById("star").src == imgsrc;
+
+        // transfer the id from favorite you wanna delete
+        $.ajax({
+            type: 'post',
+            url: '<?php echo URL_DIR.'favorite/handleFavorites';?>',
+            data:{ selectedFav : $selectedFavorite},
+            success: function(response) {
+                alert(response);
+            }
+        });
 
     }
 </script>
