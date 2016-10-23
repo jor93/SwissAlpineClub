@@ -1655,7 +1655,7 @@ label  {
   color: black;
 }
 label.error{
-  display: none;
+  display: inline-block;
   color: red;
 }
 

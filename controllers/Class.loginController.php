@@ -116,10 +116,10 @@ class loginController extends Controller {
             echo 'session not existed yet!';
         }*/
 
-
-
         // validating form
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // reseting errors
+            $_SESSION['errors'] = null;
             // initializing variable
             $firstName = "";
             $lastName = "";
@@ -135,9 +135,7 @@ class loginController extends Controller {
             $abo = "";
             $aborting = false;
 
-            echo 'hier kommt es ->  ';
-            $test = $_POST['country'];
-            var_dump($test);
+            $errorsInForm = array();
 
             // checking if form is filled out
             if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['location'])
@@ -158,83 +156,85 @@ class loginController extends Controller {
                 $abo = $this->badassSafer($_POST['abo']);
             } else {
                 $aborting = true;
-                $_SESSION['error'] = 1;
-            }
-
-            // check language
-            switch ($language) {
-                case 'en':
-                    $language = 'en';
-                    break;
-                case 'fr':
-                    $language = 'fr';
-                    break;
-                case 'de':
-                    $language = 'de';
-                    break;
-                default:
-                    return;
+                array_push($errorsInForm, 1);
             }
 
             // check if names are valid
-            if($this->checkNames($firstName)){
-                $_SESSION['error'] = 6;
-                $aborting = true;
-            }
-            if(!$this->checkNames($lastName)){
-                $_SESSION['error'] = 7;
+            if($this->checkNames($firstName) === false){
+                array_push($errorsInForm, 6);
                 $aborting = true;
             }
 
+            if($this->checkNames($lastName) === false){
+                array_push($errorsInForm, 7);
+                $aborting = true;
+            }
 
             // check if email is valid
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['error'] = 2;
+                array_push($errorsInForm, 2);
                 $aborting = true;
             }
 
             // check if username isn't already in use
             $answer = self::checkEmailIfExists($email);
             if ($answer[0] === 1) {
-                $_SESSION['error'] = 3;
+                array_push($errorsInForm, 3);
                 $aborting = true;
             }
 
             // check if pwd are the same
             if (strcmp($password1, $password2) != 0) {
-                $_SESSION['error'] = 4;
+                array_push($errorsInForm, 4);
                 $aborting = true;
             } else{
                 // check if pwd meet our security
                 $answer = self::checkPasswordStrength($password2);
                 if ($answer === false) {
-                    $_SESSION['error'] = 5;
+                    array_push($errorsInForm, 5);
                     $aborting = true;
                 }
             }
 
 
+            if($aborting){
+                // write all errors to session
+                $_SESSION['errors'] = $errorsInForm;
 
+                echo '</br>' . 'error in form';
+                $length = count($errorsInForm);
+                for ($i = 0; $i < $length; ++$i) {
+                    echo "</br>" . $errorsInForm[$i];
+                }
+                return;
 
+            }
             // everything is fine, no errors, create account
-            if ($aborting === false) {
-                $user = new Account();
 
-                // ucwords($string) every new name Uppercase
-
-
+            $user = new Account();
+            $user->setFirstname(ucwords($firstName));
+            $user->setLastname(ucwords($lastName));
+            $user->setPassword(sha1($password1));
+            $user->setEmail($email);
+            $user->setAddress(ucwords($address));
+            $user->setPhone($phone);
+            $user->setLanguage($language);
+            $user->setAbonnement($abo);
+/*
                 // check if zip code is in db
                 $answer = self::checkIfZipCodeExists($location);
                 if ($answer[0] === 0) {
                     // insert new location if
-                    $obj = new Location($location, $zip, 4);
+                    $obj = new Location(ucwords($location), strtoupper($zip), 4);
                     Location::insertLocation($obj);
                 }
-
+*/
                 // set location and country id
                 $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
                 $user->setLocation($locationId);
                 $user->setCountry($country);
+
+            Account::insertAccount($user);
 
                 // send email
 
@@ -242,7 +242,7 @@ class loginController extends Controller {
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
                 $_SESSION['error'] = null;
-            }
+
         }
 
     }
@@ -259,21 +259,6 @@ class loginController extends Controller {
             return false;
         else
             return true;
-    }
-
-    public static function test(){
-        //$query = "select CONCAT(Postcode, ' ' ,LocationName) from location;";
-        $query = "select distinct Postcode from location;";
-        $data = array();
-        $data = SQL::getInstance()->select($query)->fetchAll();
-        $length = count($data);
-        for ($i = 0; $i < $length; ++$i) {
-            $data2[$i] = $data[$i][0];
-            echo $data[$i][0];
-            echo '</br>';
-        }
-        echo '<script>var myarray = '.json_encode($data2) .'</script>';
-
     }
 
     public static function getPreferredLanguage(){

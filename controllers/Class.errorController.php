@@ -27,4 +27,16 @@ class errorController extends Controller {
         $this->vars['method'] = $method;
         $this->vars['title'] = '404_error';
     }
+
+    public static function showErrorFromSession($errorNumber){
+        if(!isset($_SESSION['error'])){
+            return false;
+        }
+        $array = $_SESSION['error'];
+        $length = count($array);
+        for ($i = 0; $i < $length; ++$i) {
+            if($errorNumber === $array[$i])
+               return true;
+        }
+    }
 }

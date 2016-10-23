@@ -103,7 +103,6 @@ class Location
         $query = "INSERT INTO `grp1`.`location` (`LocationName`,`Postcode`,`Region_idRegion`)
                   VALUES('$obj->locationName','$obj->postcode',4);";
         $result = SQL::getInstance()->executeQuery($query);
-        var_dump($result);
 
     }
 

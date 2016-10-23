@@ -23,7 +23,11 @@ class Account{
     private $lastlogin;
     private $activated;
 
-    public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
+    public function __construct(){}
+
+
+
+    /*public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
                                 $phone, $language, $runlevel, $abonnement, $lastlogin, $activated)
     {
         $this->idAccount = $idAccount;
@@ -40,7 +44,7 @@ class Account{
         $this->abonnement = $abonnement;
         $this->lastlogin = $lastlogin;
         $this->activated = $activated;
-    }
+    }*/
 
     /**
      * @return mixed
@@ -300,10 +304,10 @@ class Account{
     }
 
 
-    //unused function
-    public static function saveAccount($obj){
+    // default value: runlevel 1, lastlogin: now(), activated 0
+    public static function insertAccount($obj){
         $query = "INSERT INTO `grp1`.`account`(`Firstname`,`Lastname`,`Email`,`Address`,`Password`,`Phone`,`Language`,`Runlevel`,`Abonnement_idAbonnement`,`Lastlogin_Date`,`Activated`,`Location_idLocation`,`Country_idCountry`)
-                  VALUES ($obj->firstname,$obj->lastname,$obj->email,$obj->address,$obj->password,$obj->phone,$obj->language,1,1,now(),0,$obj->location,$obj->country);";
-        return  MySqlConn::getInstance()->executeQuery($query);
+                  VALUES ('$obj->firstname','$obj->lastname','$obj->email','$obj->address','$obj->password','$obj->phone','$obj->language',1,'$obj->abonnement',now(),0,$obj->location,$obj->country);";
+        return  SQL::getInstance()->executeQuery($query);
     }
 }
