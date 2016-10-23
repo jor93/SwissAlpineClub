@@ -220,24 +220,26 @@ class loginController extends Controller {
             $user->setPhone($phone);
             $user->setLanguage($language);
             $user->setAbonnement($abo);
-/*
+
                 // check if zip code is in db
                 $answer = self::checkIfZipCodeExists($location);
-                if ($answer[0] === 0) {
+                if ($answer[0] === -1) {
                     // insert new location if
                     $obj = new Location(ucwords($location), strtoupper($zip), 4);
                     Location::insertLocation($obj);
                 }
-*/
+
                 // set location and country id
                 $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
                 $user->setLocation($locationId);
                 $user->setCountry($country);
 
+            // insert new account
             Account::insertAccount($user);
 
                 // send email
 
+            // redirect to other page
 
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
