@@ -17,4 +17,9 @@ class adminController extends Controller
 
     }
 
+    function hikeImageTest(){
+
+
+    }
+
 }
