@@ -29,26 +29,45 @@ include_once ROOT_DIR.'views/header.inc';
 
         }
     </script>
-<!--    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 
-    <script>
-        $(function() {
-            $( "#tags2" ).autocomplete({
-                source: 'autocomplete.php' ,
-                minLength: 2
-            });
-        });
+
+<?php
+//$query = "select CONCAT(Postcode, ' ' ,LocationName) from location;";
+$query = "select distinct Postcode from location;";
+$data = array();
+$data = SQL::getInstance()->select($query)->fetchAll();
+$length = count($data);
+for ($i = 0; $i < $length; ++$i) {
+    $data2[$i] = $data[$i][0];
+    echo $data[$i][0];
+    echo '</br>';
+}
+echo '<script>var myarray = '.json_encode($data2) .';</script>';
+
+?>
+
+  <script type="text/javascript">
+      var MIN_LENGTH = 2;
+      $( document ).ready(function() {
+          $("#keyword").keyup(function() {
+              var keyword = $("#keyword").val();
+              if (keyword.length >= MIN_LENGTH) {
+                  console.log('php function call');
+;                  $(document).ready(function() {
+                      $( "#keyword" ).autocomplete({source:myarray});
+                  });
+              }
+          });
+
+      });
+
+
     </script>
 
- <!--   <script type="text/javascript">
-        $(document).ready(function() {
-            var data= ["Test","java"];
-            $( "#tags2" ).autocomplete({source:data});
-        });
-    </script>
-    -->
 <br />
 
     <div class="main-1">
@@ -95,7 +114,7 @@ include_once ROOT_DIR.'views/header.inc';
 
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_PLZ'];?><label>*</label></span>
-                            <input type="text" id="tags2" name="zip" placeholder="Please enter ZIP code" required>
+                            <input type="text" id="keyword" name="zip" placeholder="Please enter ZIP code" required>
                             <span id="label_fail_zip" class="error" >The zip code is not valid</span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">

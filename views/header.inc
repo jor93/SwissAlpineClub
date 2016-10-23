@@ -20,6 +20,7 @@ include_once ROOT_DIR.'views/common.php';
 		<script src="/<?php echo SITE_NAME; ?>/js/jquery.min.js"></script>
 		<link href="/<?php echo SITE_NAME; ?>/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
 		<script src="/<?php echo SITE_NAME; ?>/js/jquery.magnific-popup.js" type="text/javascript"></script>
+
 		<script>
 			$(document).ready(function() {
 				$('.popup-with-zoom-anim').magnificPopup({

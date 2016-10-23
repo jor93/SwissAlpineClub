@@ -220,6 +220,9 @@ class loginController extends Controller {
             if ($aborting === false) {
                 $user = new Account();
 
+                // ucwords($string) every new name Uppercase
+
+
                 // check if zip code is in db
                 $answer = self::checkIfZipCodeExists($location);
                 if ($answer[0] === 0) {
@@ -232,6 +235,9 @@ class loginController extends Controller {
                 $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
                 $user->setLocation($locationId);
                 $user->setCountry($country);
+
+                // send email
+
 
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
@@ -253,6 +259,21 @@ class loginController extends Controller {
             return false;
         else
             return true;
+    }
+
+    public static function test(){
+        //$query = "select CONCAT(Postcode, ' ' ,LocationName) from location;";
+        $query = "select distinct Postcode from location;";
+        $data = array();
+        $data = SQL::getInstance()->select($query)->fetchAll();
+        $length = count($data);
+        for ($i = 0; $i < $length; ++$i) {
+            $data2[$i] = $data[$i][0];
+            echo $data[$i][0];
+            echo '</br>';
+        }
+        echo '<script>var myarray = '.json_encode($data2) .'</script>';
+
     }
 
     public static function getPreferredLanguage(){
