@@ -9,6 +9,13 @@
 
 class elementsController extends Controller {
 
+    public static function nrParticipantInputs(){
+        $number = $_SESSION['msg'];
+        for ($i = 0; $i < $number; ++$i) {
+            echo "<input type='text' required>";
+        }
+    }
+
     public static function favoritesSelect(){
         $currentUser = self::getActiveUserWithoutCookie();
         $idAcc = $currentUser->getIdAccount();

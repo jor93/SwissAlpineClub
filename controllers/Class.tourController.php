@@ -16,7 +16,10 @@ class tourController extends Controller
         }
     }
     function inscription(){
-
+        if ($this->getAdminUser()) {
+            $this->redirect('inscription', 'inscription');
+            exit;
+        }
     }
 
     function favorite()

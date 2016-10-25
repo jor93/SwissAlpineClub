@@ -8,56 +8,96 @@
 include_once ROOT_DIR.'views/header.inc';
 ?>
 
-<script>
+<script language="jquery" type="text/javascript">
     $(document).ready(function () {
-        $('#menu_inscription').addClass('active');
+        $('#menu_registration').addClass('active');
+    });
+
+    $(document).ready(function() {
+        var max_fields      = 10; //maximum input boxes allowed
+        var wrapper         = $(".participantsInputs"); //Fields wrapper
+        var add_button      = $(".add_field_button"); //Add button ID
+
+        var x = 0; //initlal text box count
+        $(add_button).click(function(e){ //on add input button click
+            e.preventDefault();
+            x++; //text box increment
+            if (x > max_fields)
+                alert('Sie können maximal ' + max_fields + ' zusätzliche Personen buchen!');
+
+            if(x <= max_fields){ //max input box allowed
+                $(wrapper).append('<div><input type="text" name="mytext[]" placeholder="Vorname"/><input type="text" name="mytext[]"placeholder="Nachname"/><input type="text" name="mytext[]"placeholder="Vergünstigungen"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+            }
+        });
+
+        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
     });
 </script>
 
 <div class="main-1">
     <div class="container">
-        <div class="register">
-            <form onsubmit="return false">
-                <div class="register-top-grid">
-                    <h3>HIKE INSCRIPTION</h3>
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Tour</span>
-                        <input type="text" id="tour" name="tour" required>
+        <div class="col-lg-6">
+            <div class="register">
+                <form onsubmit="return false">
+                    <div class="register-top-grid">
+                        <h3>Tourinformationen</h3>
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span>Tour</span>
+                            <label type="text" id="tour" name="tour" disabled>
+                        </div>
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span>Status</span>
+                            <label type="email" id="mail" name="email" disabled>
+                            <span id="label_fail_mail" class="error" >The E-Mail address is not valid</span>
+                        </div>
+
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span>How many people</span>
+                            <label type="number" id="amount" name="amount" required>
+                        </div>
+
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span>Anmeldefrist</span>
+                            <label type="text" id="date" name="date" disabled>
+                        </div>
+
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span>Information</span>
+                            <label type="text" id="info" name="information" style="width: 100%; height: 115px;" disabled></label>
+                        </div>
                     </div>
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Email Address</span>
-                        <input type="email" id="mail" name="email" required>
-                        <span id="label_fail_mail" class="error" >The E-Mail address is not valid</span>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="register">
+                    <div class="register-top-grid">
+                        <h3>Teilnehmerdaten</h3>
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span>Wie viele Teilnehmer möchte ich anmelden (exkl. mir)?</span>
+                        </div>
+                        <div class="wow fadeInRight" data-wow-delay="0.4s">
+                            <span>Nehme ich auch teil?</span>
+                            <input type="checkbox" id="me" name="me" required>
+                        </div>
+
+                        <div class="participants"style="width: 100%;">
+
+                                <span>Meine Freunde:</span>
+
+                                <div class="participantsInputs" style="width: 100%;">
+                                        <button class="add_field_button">Add More Fields</button>
+                                </div>
+                        </div>
                     </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>How many people</span>
-                        <input type="number" id="amount" name="amount" required>
-
+                    <div class="clearfix"></div>
+                    <div class="register-but">
+                        <input type="submit" value="Speichern" onclick="letsgo()">
                     </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Date</span>
-                        <input type="text" id="date" name="date" required>
-
-                    </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Information</span>
-                        <textarea type="text" id="info" name="information" style="width: 197%; height: 115px;"></textarea>
-                    </div>
-
-
-                </div>
-                <div class="clearfix"></div>
-                <div class="register-but">
-
-                    <input type="submit" value="submit" onclick="check()">
-
-
-                </div>
-
-            </form>
+            </div>
         </div>
     </div>
 </div>

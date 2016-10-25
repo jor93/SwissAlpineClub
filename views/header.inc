@@ -63,13 +63,14 @@ include_once ROOT_DIR.'views/common.php';
 		<div class="header-bottom">
 			<div class="container">
 				<div class="logo">
-					<a href="index.html"><img src="/<?php echo SITE_NAME; ?>/images/logo.png" class="img-responsive" alt="" /></a>
+					<a href="<?php echo URL_DIR.'home/home';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo.png" class="img-responsive" alt="" /></a>
+					<a href="<?php echo URL_DIR.'tour/inscription';?>">Inscription</a>
 				</div>
 				<div class="head-nav">
 					<span class="menu"> </span>
 					<ul>
-						<li><a href="news.html"><?php echo $lang['MENU_NEWS']; ?></a></li>
-						<li><a href="events.html"><?php echo $lang['MENU_EVENTS']; ?></a></li>
+						<li><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
+						<li><a href="404.html"><?php echo $lang['MENU_EVENTS']; ?></a></li>
 						<li><a href="404.html">Blog</a></li>
 						<li id="menu_about"><a href="<?php echo URL_DIR.'general/about';?>"><?php echo $lang['MENU_ABOUT']; ?></a></li>
 						<li id="menu_contact"><a href="<?php echo URL_DIR.'general/contact';?>"><?php echo $lang['MENU_CONTACT']; ?></a></li>
