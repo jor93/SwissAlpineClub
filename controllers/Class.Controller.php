@@ -126,7 +126,7 @@
      function checkNames($checkMyName){
          $length = count($this->illegalChars);
          for ($i = 0; $i < $length; ++$i) {
-             if( strpos( $checkMyName, $this->illegalChars[$i] ) !== false ) return true;
+             if( strpos( $checkMyName, $this->illegalChars[$i] ) !== false ) return false;
          }
          return true;
 

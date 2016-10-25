@@ -33,21 +33,22 @@ class tourController extends Controller
     function insertTour()
     {
 
+        Tour::updateTourImage(2, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
+        $image = Tour::selectTourImage(2);
+        $_SESSION['testImage'] = $image;
+        $this->redirect('admin', 'hikeImageTest');
+
+        exit();
+
         $transportLength = Transport::selectTransportLength();
         $typeTourLength = TypeTour::selectTypeTourLength();
 
-        /*
-                Tour::updateTourImage(1, 'images/banner.jpeg', 'image/jpeg');
-                $image = Tour::selectTourImage(1);
-                header("Content-Type: image/jpeg");
-
-                echo '<img src="data:image/jpeg;base64,'.base64_encode( $image['data'] ).'"/>';*/
 
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
             && isset($_POST['price']) && isset($_POST['stat']) && isset($_POST['descDE']) && isset($_POST['descFR'])
             && isset($_POST['sdate']) && isset($_POST['edate']) && isset($_POST['deptime'])
-            && isset($_POST['artime']) && isset($_FILES['img'])
+            && isset($_POST['artime']) && strcmp($_FILES['img']['tmp_name'], "") != 0
         ) {
 
             $transportIds = array();
@@ -76,27 +77,7 @@ class tourController extends Controller
                     TypeTour::insertTypeTour($insertedTourId, $typetourIds);
                     Transport::insertTransportTour($insertedTourId, $transportIds);
                 }
-
             }
-
-
-            //Picture
-            /*
-            $handle = $_FILES['img']['tmp_name'];
-            $mime = $_FILES['img']['type'];
-            var_dump($handle);
-            var_dump($mime);
-            //Tour::updateTourImage(1, $handle, $mime);
-            Tour::updateTourImage(1, 'images\banner.jpg', $mime);
-
-            $image = Tour::selectTourImage(1);
-            //header("Content-Type:" . $image['mime']);
-            header("Content-Type:" . 'image/jpeg');
-            echo $image;
-            //var_dump($image['data']);
-            //http://www.mysqltutorial.org/php-mysql-blob/
-            */
         }
-
     }
 }

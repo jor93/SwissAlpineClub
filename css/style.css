@@ -1565,7 +1565,7 @@ div#portfoliolist {
 	text-transform: uppercase;
 }
 span.error{
-	visibility: hidden;
+	visibility: visible;
 	color: red;
 }
 .register-top-grid input[type="text"], .register-top-grid input[type="number"], .register-top-grid input[type="tel"], .register-bottom-grid input[type="text"], .register-bottom-grid input[type="password"], .register-top-grid input[type="password"], .register-top-grid input[type="email"], .register-top-grid select {
