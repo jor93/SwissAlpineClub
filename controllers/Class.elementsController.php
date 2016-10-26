@@ -29,13 +29,38 @@ class elementsController extends Controller {
         }
     }
 
-    public static function transportCheckbox(){
+    //idTour just necessary if you edit the transport
+    public static function transportCheckbox($edit, $idTour){
         $answer = Transport::getTranportByLanguage($_SESSION['lang']);
         $length = count($answer);
-        for ($i = 0; $i < $length; ++$i) {
-            echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
-            echo "</br>";
+
+        if(!(bool)$edit) {
+            for ($i = 0; $i < $length; ++$i) {
+                echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                echo "</br>";
+            }
         }
+        else{
+            $idsTour = Transport::getTransportIdsFromTour($idTour);
+
+            for ($i = 0; $i < $length; ++$i) {
+                if(self::checkTranportIds(($i+1), $idsTour)){
+                    echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
+                    echo "</br>";
+                }
+                else{
+                    echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                    echo "</br>";
+                }
+            }
+        }
+    }
+
+    private static function checkTranportIds($id, $idsTour){
+        for ($i = 0; $i < count($idsTour); ++$i) {
+            if($id === $idsTour[$i][0]) return true;
+        }
+        return false;
     }
 
     public static function statusSelect(){

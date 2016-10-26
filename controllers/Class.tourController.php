@@ -38,20 +38,35 @@ class tourController extends Controller
         }
     }
 
+    private function setTransportIds($transportLength){
+        $transportIds = array();
+        for ($i = 0; $i < $transportLength; $i++) {
+            if (isset($_POST['transport' . $i])) {
+                $transportIds[] = $i + 1;
+            }
+        }
+        return $transportIds;
+    }
+
+    private function setTypeTourIds($typeTourLength){
+        $typetourIds = array();
+        for ($i = 0; $i < $typeTourLength; $i++) {
+            if (isset($_POST['typetour' . $i])) {
+                $typetourIds[] = $i + 1;
+            }
+        }
+        return $typetourIds;
+    }
 
     function insertTour()
     {
-
-        Tour::updateTourImage(2, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
-        $image = Tour::selectTourImage(2);
+        /*
+        Tour::updateTourImage(1, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
+        $image = Tour::selectTourImage(1);
         $_SESSION['testImage'] = $image;
-        $this->redirect('admin', 'hikeImageTest');
+        $this->redirect('admin', 'hikeImageTest');*/
 
-        exit();
-
-        $transportLength = Transport::selectTransportLength();
-        $typeTourLength = TypeTour::selectTypeTourLength();
-
+       // exit();
 
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
@@ -60,19 +75,11 @@ class tourController extends Controller
             && isset($_POST['artime']) && strcmp($_FILES['img']['tmp_name'], "") != 0
         ) {
 
-            $transportIds = array();
-            for ($i = 0; $i < $transportLength; $i++) {
-                if (isset($_POST['transport' . $i])) {
-                    $transportIds[] = $i + 1;
-                }
-            }
+            $transportLength = Transport::selectTransportLength();
+            $typeTourLength = TypeTour::selectTypeTourLength();
 
-            $typetourIds = array();
-            for ($i = 0; $i < $typeTourLength; $i++) {
-                if (isset($_POST['typetour' . $i])) {
-                    $typetourIds[] = $i + 1;
-                }
-            }
+            $transportIds = $this->setTransportIds($transportLength);
+            $typetourIds = $this->setTypeTourIds($typeTourLength);
 
             $insertedTourDescId = 0;
             if(Tour::insertTourDescription($_POST['descDE'], $_POST['descFR'], $insertedTourDescId)){
@@ -85,8 +92,15 @@ class tourController extends Controller
                 if(Tour::insertTour($tour, $insertedTourId)){
                     TypeTour::insertTypeTour($insertedTourId, $typetourIds);
                     Transport::insertTransportTour($insertedTourId, $transportIds);
+                    Tour::updateTourImage($insertedTourId, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
                 }
             }
         }
     }
+
+    function updateTour(){
+
+
+    }
+
 }

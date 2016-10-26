@@ -23,11 +23,11 @@ class Account{
     private $lastlogin;
     private $activated;
 
-    public function __construct(){}
+    //public function __construct(){}
 
 
 
-    /*public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
+    public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
                                 $phone, $language, $runlevel, $abonnement, $lastlogin, $activated)
     {
         $this->idAccount = $idAccount;
@@ -44,7 +44,7 @@ class Account{
         $this->abonnement = $abonnement;
         $this->lastlogin = $lastlogin;
         $this->activated = $activated;
-    }*/
+    }
 
     /**
      * @return mixed

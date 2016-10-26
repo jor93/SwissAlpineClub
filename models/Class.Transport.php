@@ -123,7 +123,13 @@ class Transport
     }
 
     public static function getTranportByLanguage($language){
-        $query = "SELECT idTransport, $language FROM grp1.transport, language WHERE grp1.transport.Language_idLanguage =  language.idLanguage;";
+        $query = "SELECT idTransport, $language FROM grp1.transport, language WHERE grp1.transport.Language_idLanguage = language.idLanguage;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
+
+    //get Tour ids used for a specific tour
+    public static function getTransportIdsFromTour($tourId){
+        $query = "SELECT Transport_idTransport FROM transport_tour WHERE Tour_idTour = '$tourId';";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 

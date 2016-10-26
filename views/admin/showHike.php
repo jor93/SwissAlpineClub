@@ -100,7 +100,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Transport</span>
-                        <?php elementsController::transportCheckbox();?>
+                        <?php elementsController::transportCheckbox(false, 0);?>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">

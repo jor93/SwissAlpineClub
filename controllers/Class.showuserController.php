@@ -12,7 +12,7 @@ class showuserController extends Controller
     private $account;
 
     function showuser(){
-        if(isset($_SESSION['account']))$this->account = $_SESSION['account'];
+        if(self::getActiveUserWithoutCookie())$this->account = $_SESSION['account'];
         else $this->redirect('login', 'login');
     }
     //Account::updateAccount($this->account->getIdAccount(), 'PeterNames', 'PeterLastname', 'Address Peter', '1', '5555555', 'SE', '2')

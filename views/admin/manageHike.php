@@ -15,7 +15,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
     function edit () {
         document.getElementById("hike").removeAttribute("disabled");
         document.getElementById("lang").removeAttribute("disabled");
-        document.getElementById("high").removeAttribute("disabled");
+        document.getElementById("sub").removeAttribute("disabled");
         document.getElementById("dur").removeAttribute("disabled");
         document.getElementById("loc").removeAttribute("disabled");
         document.getElementById("meeting").removeAttribute("disabled");
@@ -36,7 +36,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
     function save () {
         document.getElementById("hike").disabled = true;
         document.getElementById("lang").disabled = true;
-        document.getElementById("high").disabled = true;
+        document.getElementById("sub").disabled = true;
         document.getElementById("dur").disabled = true;
         document.getElementById("loc").disabled = true;
         document.getElementById("meeting").disabled = true;
@@ -71,80 +71,78 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>difficulty</span>
-                        <select name="lang" id="lang" disabled>
+                        <select name="difficulty" id="lang" disabled>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Height</span>
-                        <input type="text" id="high" name="high" disabled>
+                        <span>Subtitle</span>
+                        <input type="text" id="sub" name="sub" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" id="dur" disabled>
+                        <input type="text" id="dur" name="dur" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Meeting Point</span>
-                        <input type="text" id="meeting" disabled>
+                        <span>Location Departure</span>
+                        <input type="text" id="meeting" name="locDep" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location</span>
-                        <input type="text" id="loc" disabled>
+                        <span>Location Arrival</span>
+                        <input type="text" id="loc" name="locArriv" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" id="price" disabled>
+                        <input type="text" id="price" name="price" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description</span>
-                        <input type="text" id="desc" disabled>
+                        <input type="text" id="desc" name="desc" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Start Date</span>
-                        <input type="text" id="sdate" disabled>
+                        <input type="text" id="sdate" name="sdate" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>End Date</span>
-                        <input type="text" id="edate"  disabled>
+                        <input type="text" id="edate" name="edate" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Departure Time</span>
-                        <input type="text" id="deptime" disabled>
+                        <input type="text" id="deptime" name="deptime" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Arrival Time</span>
-                        <input type="text" id="artime" disabled>
+                        <input type="text" id="artime" name="artime" disabled>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Status</span>
-                        <select name="stat" id="stat" disabled>
+                        <select name="stat" id="stat" name="stat" disabled>
                         <?php elementsController::statusSelect();?>
                         </select>
                     </div>
 
-
-
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Transport</span>
-                        <fieldset id="field" disabled>
-                        <?php elementsController::transportCheckbox();?>
+                        <fieldset id="field" name="fieldtransport" disabled>
+                        <?php elementsController::transportCheckbox(true, 34);?>
                         </fieldset>
                     </div>
 
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Tour Type</span>
-                        <fieldset id="fieldtour" disabled>
+                        <fieldset id="fieldtour" name="fieldtour" disabled>
                             <?php elementsController::typeTourCheckbox();?>
                         </fieldset>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
-                        <input type="file" id="img" accept="image/gif, image/jpeg, image/png" disabled>
+                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" disabled>
                     </div>
 
 

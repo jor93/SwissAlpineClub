@@ -24,6 +24,7 @@ class loginController extends Controller {
         } else {
             //Check if Account can update Lastlogin
             if(strcmp((string)date("Y-m-d"), (string)$result->getLastlogin()) != 0){
+                var_dump($result->getIdAccount());
                 Account::updateLastLogin($result->getIdAccount());
                 $currentDate = date("Y-m-d");
                 $result->setLastlogin($currentDate);
