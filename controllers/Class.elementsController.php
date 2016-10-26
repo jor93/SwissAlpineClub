@@ -42,7 +42,6 @@ class elementsController extends Controller {
         }
         else{
             $idsTour = Transport::getTransportIdsFromTour($idTour);
-
             for ($i = 0; $i < $length; ++$i) {
                 if(self::checkTranportIds(($i+1), $idsTour)){
                     echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
