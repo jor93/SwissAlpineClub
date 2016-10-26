@@ -38,68 +38,68 @@ include_once ROOT_DIR.'views/header.inc';
 
 <div class="main-1">
     <div class="container">
-        <div class="col-lg-6">
-            <div class="register">
-                <form onsubmit="return false">
-                    <div class="register-top-grid">
-                        <h3>Tourinformationen</h3>
-                        <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Tour</span>
-                            <label type="text" id="tour" name="tour" disabled>
-                        </div>
-                        <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Status</span>
-                            <label type="email" id="mail" name="email" disabled>
+        <div class="register">
+            <form onsubmit="return false">
+                <div class="register-top-grid">
+                    <h3>PERSONAL INFORMATION</h3>
+
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Tour</span>
+                        <label type="text" id="tour" name="tour" disabled>
+                    </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Status</span>
+                        <label type="email" id="mail" name="email" disabled>
                             <span id="label_fail_mail" class="error" >The E-Mail address is not valid</span>
-                        </div>
+                    </div>
 
-                        <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>How many people</span>
-                            <label type="number" id="amount" name="amount" required>
-                        </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>How many people</span>
+                        <label type="number" id="amount" name="amount" required>
+                    </div>
 
-                        <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Anmeldefrist</span>
-                            <label type="text" id="date" name="date" disabled>
-                        </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Anmeldefrist</span>
+                        <label type="text" id="date" name="date" disabled>
+                    </div>
 
-                        <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Information</span>
-                            <label type="text" id="info" name="information" style="width: 100%; height: 115px;" disabled></label>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Information</span>
+                        <label type="text" id="info" name="information" style="width: 100%; height: 115px;" disabled>
+                    </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Wie viele Teilnehmer möchte ich anmelden (exkl. mir)?</span>
+                    </div>
+                    <div class="wow fadeInRight" data-wow-delay="0.4s">
+                        <span>Nehme ich auch teil?</span>
+                        <input type="checkbox" id="me" name="me" required>
+                    </div>
+
+                    <div class="participants"style="width: 100%;">
+
+                        <span>Meine Freunde:</span>
+
+                        <div class="participantsInputs" style="width: 100%;">
+                            <button class="add_field_button">Add More Fields</button>
+                            </br>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                </form>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="register">
-                    <div class="register-top-grid">
-                        <h3>Teilnehmerdaten</h3>
-                        <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Wie viele Teilnehmer möchte ich anmelden (exkl. mir)?</span>
-                        </div>
-                        <div class="wow fadeInRight" data-wow-delay="0.4s">
-                            <span>Nehme ich auch teil?</span>
-                            <input type="checkbox" id="me" name="me" required>
-                        </div>
 
-                        <div class="participants"style="width: 100%;">
-
-                                <span>Meine Freunde:</span>
-
-                                <div class="participantsInputs" style="width: 100%;">
-                                        <button class="add_field_button">Add More Fields</button>
-                                </div>
-                        </div>
-                    </div>
                     <div class="clearfix"></div>
                     <div class="register-but">
                         <input type="submit" value="Speichern" onclick="letsgo()">
                     </div>
-            </div>
+
+
+
+                </div>
+
+
+            </form>
         </div>
     </div>
+
+
 </div>
 
 <?php
