@@ -12,6 +12,7 @@ include_once ROOT_DIR.'views/common.php';
 		<title>SAC</title>
 		<link href="/<?php echo SITE_NAME; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/<?php echo SITE_NAME; ?>/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/slider.css" rel="stylesheet" type="text/css" media="all" />
 		<meta name="/viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

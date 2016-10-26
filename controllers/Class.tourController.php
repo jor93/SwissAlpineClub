@@ -30,6 +30,15 @@ class tourController extends Controller
         }
     }
 
+    function hiking()
+    {
+        if ($this->getAdminUser()) {
+            $this->redirect('hiking', 'hiking');
+            exit;
+        }
+    }
+
+
     function insertTour()
     {
 

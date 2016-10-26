@@ -6,7 +6,7 @@
  * Time: 14:25
  */
 
-    include_once '/header.inc';
+    include_once ROOT_DIR.'views/header.inc';
 ?>
 
 <script>
@@ -16,151 +16,132 @@
 </script>
 
 
-<div class="container">
-    <div class="col-lg-3">
-        <!-- Filter Controls - Simple Mode -->
-        <div class="row">
-            <!-- A basic setup of simple mode filter controls, all you have to do is use data-filter="all"
-            for an unfiltered gallery and then the values of your categories to filter between them -->
-            <ul class="simplefilter">
-                Simple filter controls:
-                <li class="active" data-filter="all">All</li>
-                <li data-filter="1">Cityscape</li>
-                <li data-filter="2">Landscape</li>
-                <li data-filter="3">Industrial</li>
-                <li data-filter="4">Daylight</li>
-                <li data-filter="5">Nightscape</li>
+    <main class="cd-main-content">
+        <div class="cd-tab-filter-wrapper">
+            <div class="cd-tab-filter">
+                <ul class="cd-filters">
+                    <li class="placeholder">
+                        <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+                    </li>
+                    <li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
+                    <li class="filter" data-filter=".fav1"><a href="#0" data-type="color-1">Favorites</a></li>
+                </ul> <!-- cd-filters -->
+            </div> <!-- cd-tab-filter -->
+        </div> <!-- cd-tab-filter-wrapper -->
+
+        <section class="cd-gallery">
+            <ul>
+                <li class="mix color-1 fav1 check1 radio2 region3 duration-2"><img src="/<?php echo SITE_NAME; ?>/images/img-1.jpg" alt="Image 1"></li>
+                <li class="mix color-2 check2 radio2 region2 duration-5"><img src="/<?php echo SITE_NAME; ?>/images/img-2.jpg" alt="Image 2"></li>
+                <li class="mix color-1 check3 radio3 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-3.jpg" alt="Image 3"></li>
+                <li class="mix color-1 check3 radio2 region2 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-4.jpg" alt="Image 4"></li>
+                <li class="mix color-1 check1 radio3 region2 duration-3"><img src="/<?php echo SITE_NAME; ?>/images/img-5.jpg" alt="Image 5"></li>
+                <li class="mix color-2 fav1 check2 radio3 region1 duration-4"><img src="/<?php echo SITE_NAME; ?>/images/img-6.jpg" alt="Image 6"></li>
+                <li class="mix color-2 check2 radio2 region3 duration-1"><img src="/<?php echo SITE_NAME; ?>/images/img-7.jpg" alt="Image 7"></li>
+                <li class="mix color-1 check1 radio3 region2 duration-8"><img src="/<?php echo SITE_NAME; ?>/images/img-8.jpg" alt="Image 8"></li>
+                <li class="mix color-2 check1 radio2 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-9.jpg" alt="Image 9"></li>
+                <li class="mix color-1 check3 radio2 region3 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-10.jpg" alt="Image 10"></li>
+                <li class="mix color-1 check3 radio3 region2 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-11.jpg" alt="Image 11"></li>
+                <li class="mix color-2 check1 radio3 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-12.jpg" alt="Image 12"></li>
+                <li class="gap"></li>
+                <li class="gap"></li>
+                <li class="gap"></li>
             </ul>
-        </div>
+            <div class="cd-fail-message">No results found</div>
+        </section> <!-- cd-gallery -->
 
-        <!-- Filter Controls - Multifilter Mode -->
-        <div class="row">
-            <!-- A basic setup of multifilter controls, when the user toggles a category
-            the corresponding items are rendered or hidden -->
-            <ul class="multifilter">
-            Multifilter controls:
-                <li data-multifilter="1">Cityscape</li>
-                <li data-multifilter="2">Landscape</li>
-                <li data-multifilter="3">Industrial</li>
-            </ul>
-        </div>
+        <div class="cd-filter">
+            <form>
+                <div class="cd-filter-block">
+                    <h4>Search</h4>
 
-        <!-- Range filter -->
-        <div class="row">
-            <input
-                range-filter
-                class="rangefilter"
-                data-addui='slider'
-                data-min='0'
-                data-max='24'
-                data-range='true'
-                value='0,24'
-            />
-            <input id="test" value=0 type="text">
-        </div>
-        <div class="row">
-            <div class="input-append date" id="dp3" data-date-format="dd-mm-yyyy">
-                <input id="datepicker" class="span2" size="16" type="text" value="">
-                <span class="add-on"><i class="icon-th"></i></span>
-            </div>
-        </div>
-        <!-- Shuffle & Sort Controls -->
-        <div class="row">
-            <ul class="sortandshuffle">
-            Sort &amp; Shuffle controls:
-                <!-- Basic shuffle control -->
-                <li class="shuffle-btn" data-shuffle>Shuffle</li>
-                <!-- Basic sort controls consisting of asc/desc button and a select -->
-                <li class="sort-btn active" data-sortAsc>Asc</li>
-                <li class="sort-btn" data-sortDesc>Desc</li>
-                <select data-sortOrder>
-                    <option value="domIndex">
-                    Position
-                    </option>
-                    <option value="sortData">
-                    Description
-                    </option>
-                </select>
-            </ul>
-        </div>
-        <!-- Search control -->
-        <div class="row search-row">
-        Search control:
-            <input type="text" class="filtr-search" name="filtr-search" data-search>
-        </div>
-    </div>
-    <div class="col-lg-9">
-        <div class="row">
-            <!-- This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
-            attribute, which starts from the value 1 and goes up from there -->
-            <div class="filtr-container">
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="4" data-category="1, 5" data-sort="Busy streets">
-                    <img class="img-responsive" src="../images/img/city_1.jpg" alt="sample image">
-                    <span class="item-desc">Busy Streets</span>
+                    <div class="cd-filter-content">
+                        <input type="search" placeholder="search...">
+                    </div> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+                <div class="cd-filter-block">
+
+                    <h4>Duration</h4>
+                    <div class="cd-filter-content cd-filters list">
+                        <p>
+                            <input type="text" id="amount" readonly style="border:0">
+                        </p>
+
+                        <div id="slider-range"></div>
+                    </div>
                 </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="4" data-category="2, 5" data-sort="Luminous night">
-                    <img class="img-responsive" src="../images/img/nature_2.jpg" alt="sample image">
-                    <span class="item-desc">Luminous night</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="4" data-category="1, 4" data-sort="City wonders">
-                    <img class="img-responsive" src="../images/img/city_3.jpg" alt="sample image">
-                    <span class="item-desc">city wonders</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="7" data-category="3" data-sort="In production">
-                    <img class="img-responsive" src="../images/img/industrial_1.jpg" alt="sample image">
-                    <span class="item-desc">in production</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="2" data-category="3, 4" data-sort="Industrial site">
-                    <img class="img-responsive" src="../images/img/industrial_2.jpg" alt="sample image">
-                    <span class="item-desc">Montana Hike</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="3" data-category="2, 4" data-sort="Peaceful lake">
-                    <img class="img-responsive" src="../images/img/nature_1.jpg" alt="sample image">
-                    <span class="item-desc">Gemmiwand</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="4" data-category="1, 5" data-sort="City lights">
-                    <img class="img-responsive" src="../images/img/city_2.jpg" alt="sample image">
-                    <span class="item-desc">city lights</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="4" data-category="2, 4" data-sort="Dreamhouse">
-                    <img class="img-responsive" src="../images/img/nature_3.jpg" alt="sample image">
-                    <span class="item-desc">dreamhouse</span>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-3 filtr-item" data-duration="4" data-category="3" data-sort="Sierre - Montana">
-                    <img class="img-responsive" src="../images/img/industrial_3.jpg" alt="sample image">
-                    <span class="item-desc">restless machines</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 
 
-    <!-- Include jQuery & Filterizr -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src='../js/Obj.min.js'></script>
-    <script src='../js/addSlider.js'></script>
-    <script src="../js/jquery.filterizr.js"></script>
-    <script src="../js/controls.js"></script>
-    <script src="../js/bootstrap-datepicker.js"></script>
+                <div class="cd-filter-block">
+                    <h4>Check boxes</h4>
 
+                    <ul class="cd-filter-content cd-filters list">
+                        <li>
+                            <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
+                            <label class="checkbox-label" for="checkbox1">Option 1</label>
+                        </li>
 
-    <!-- Kick off Filterizr -->
-    <script type="text/javascript">
-    $(function() {
-        //Initialize filterizr with default options
-        $('.filtr-container').filterizr();
-    });
-    </script>
+                        <li>
+                            <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
+                            <label class="checkbox-label" for="checkbox2">Option 2</label>
+                        </li>
 
-    <!-- Kick off Datepicker -->
-    <script type="text/javascript">
-        $(function() {
-            $('#datepicker').datepicker();
-        });
-    </script>
+                        <li>
+                            <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
+                            <label class="checkbox-label" for="checkbox3">Option 3</label>
+                        </li>
+                    </ul> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Select</h4>
+
+                    <div class="cd-filter-content">
+                        <div class="cd-select cd-filters">
+                            <select class="filter" name="selectThis" id="selectThis">
+                                <option value="">Choose an option</option>
+                                <option value=".region1">Oberwallis</option>
+                                <option value=".region2">Mittelwallis</option>
+                                <option value=".region3">Unterwallis</option>
+                            </select>
+                        </div> <!-- cd-select -->
+                    </div> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Radio buttons</h4>
+
+                    <ul class="cd-filter-content cd-filters list">
+                        <li>
+                            <input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
+                            <label class="radio-label" for="radio1">All</label>
+                        </li>
+
+                        <li>
+                            <input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">
+                            <label class="radio-label" for="radio2">Choice 2</label>
+                        </li>
+
+                        <li>
+                            <input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
+                            <label class="radio-label" for="radio3">Choice 3</label>
+                        </li>
+                    </ul> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+            </form>
+
+            <a href="#0" class="cd-close">Close</a>
+        </div> <!-- cd-filter -->
+
+        <a href="#0" class="cd-filter-trigger">Filters</a>
+    </main> <!-- cd-main-content -->
+
+    <script src="/<?php echo SITE_NAME; ?>/js/jquery-2.1.1.js"></script>
+    <script src="/<?php echo SITE_NAME; ?>/js/main.js"></script> <!-- Resource jQuery -->
+    <script src="/<?php echo SITE_NAME; ?>/js/jquery.mixitup.min.js"></script>
+    <script src="/<?php echo SITE_NAME; ?>/js/jquery-ui.js"></script>
 
 
 <?php
-include_once 'footer.inc';
+include_once ROOT_DIR.'views/footer.inc';
 ?>
