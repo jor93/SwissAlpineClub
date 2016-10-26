@@ -25,8 +25,8 @@ include_once 'views/header.inc';
                         <input type="text" id="tour" name="tour" required>
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Name</span>
-                        <input type="text" id="name" name="name" required>
+                        <span>Status</span>
+                        <input type="text" id="status" name="status" required>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -50,7 +50,11 @@ include_once 'views/header.inc';
                         <input type="number" id="no" name="no" required>
 
                     </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Informationen</span>
+                        <textarea style="width: 527px; height: 76px" type="TEXT" id="info" name="info" required></textarea>
 
+                    </div>
 
                 </div>
                 <div class="clearfix"></div>

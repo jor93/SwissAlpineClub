@@ -296,4 +296,8 @@ class loginController extends Controller {
         if($details->country != null)
             return $details->country;
     }
+
+    public static function thank(){
+
+    }
 }
