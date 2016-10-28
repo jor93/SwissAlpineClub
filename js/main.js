@@ -78,6 +78,12 @@ jQuery(document).ready(function($){
 
 	);
 
+	$( function() {
+		$( "#datepicker" ).datepicker({
+			dateFormat: "yy-mm-dd"
+		});
+	});
+
 
 
 	function fixGallery() {
@@ -160,7 +166,7 @@ jQuery(document).ready(function($){
 *****************************************************/
 var rangeFilterValues;
 var checkBoxes;
-var search;
+var datePick;
 var buttonFilter = {
   	// Declare any variables we will need as properties of the object
   	$filters: null,
@@ -193,12 +199,21 @@ var buttonFilter = {
   	// The "bindHandlers" method will listen for whenever a button is clicked. 
   	bindHandlers: function(){
     	var self = this;
+		datePick = "";
 
     	self.$filters.on('click', 'a', function(e){
-	      	self.parseFilters();
+			self.parseFilters();
+
     	});
 	    self.$filters.on('change', function(){
-	      self.parseFilters();           
+
+	    	if($( "#datepicker" ).val().length > 0){
+				alert("Hello");
+				datePick = ".datepick" + $( "#datepicker" ).val();
+			}
+
+			alert(datePick);
+	    	self.parseFilters();
 	    });
 
 		self.$filters.on('slidechange', function(event, ui){
@@ -213,6 +228,9 @@ var buttonFilter = {
 			self.parseFilters();
 
 		});
+
+
+
   	},
   
   	parseFilters: function(){
@@ -266,10 +284,17 @@ var buttonFilter = {
 						for(var i = 0, group; group = self.groups[i]; i++){
 							self.outputString += group.active;
 						}
+						if(!datePick.trim()){
+							self.outputString += datePick;
+						}
+
 					}
 				} else {
 					for(var i = 0, group; group = self.groups[i]; i++){
 						self.outputString += group.active;
+					}
+					if(!datePick.trim()){
+						self.outputString += datePick;
 					}
 				}
 			}
@@ -283,10 +308,17 @@ var buttonFilter = {
 				for(var i = 0, group; group = self.groups[i]; i++){
 					self.outputString += group.active;
 				}
+				if(!datePick.trim()){
+					self.outputString += datePick;
+				}
+
 			}
 		} else {
 			for(var i = 0, group; group = self.groups[i]; i++){
 				self.outputString += group.active;
+			}
+			if(!datePick.trim()){
+				self.outputString += datePick;
 			}
 		}
 
