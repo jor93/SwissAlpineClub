@@ -5,7 +5,7 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-include_once ROOT_DIR. '/views/headeradmin.inc';
+include_once ROOT_DIR. 'views/headeradmin.inc';
 ?>
 <script>
     $(document).ready(function () {
@@ -94,7 +94,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Status</span>
                         <select name="stat" id="stat">
-                        <?php elementsController::statusSelect();?>
+                        <?php elementsController::statusSelect(false, 0);?>
                         </select>
                     </div>
 
@@ -105,7 +105,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Tour Type</span>
-                        <?php elementsController::typeTourCheckbox();?>
+                        <?php elementsController::typeTourCheckbox(false, 0);?>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -125,7 +125,6 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
         </div>
     </div>
 </div>
-
 
 
 <?php

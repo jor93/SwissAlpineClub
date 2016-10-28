@@ -6,11 +6,22 @@
  * Time: 09:26
  */
 include_once ROOT_DIR. '/views/headeradmin.inc';
+
+$tour = Tour::selectTour(34);
 ?>
 <script>
     $(document).ready(function () {
         $('#menu_manageHike').addClass('active');
     });
+
+    $( function() {
+        $( "#sdate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        $( "#edate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    } );
 
     function edit () {
         document.getElementById("hike").removeAttribute("disabled");
@@ -20,7 +31,8 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
         document.getElementById("loc").removeAttribute("disabled");
         document.getElementById("meeting").removeAttribute("disabled");
         document.getElementById("price").removeAttribute("disabled");
-        document.getElementById("desc").removeAttribute("disabled");
+        document.getElementById("descDE").removeAttribute("disabled");
+        document.getElementById("descFR").removeAttribute("disabled");
         document.getElementById("sdate").removeAttribute("disabled");
         document.getElementById("edate").removeAttribute("disabled");
         document.getElementById("deptime").removeAttribute("disabled");
@@ -28,6 +40,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
         document.getElementById("stat").removeAttribute("disabled");
         document.getElementById("field").removeAttribute("disabled");
         document.getElementById("fieldtour").removeAttribute("disabled");
+        document.getElementById("img").removeAttribute("disabled");
 
         document.getElementById("btn-save").style.display = "inline"
         document.getElementById("btn-edit").style.display = "none";
@@ -41,7 +54,8 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
         document.getElementById("loc").disabled = true;
         document.getElementById("meeting").disabled = true;
         document.getElementById("price").disabled = true;
-        document.getElementById("desc").disabled = true;
+        document.getElementById("descDE").disabled = true;
+        document.getElementById("descFR").disabled = true;
         document.getElementById("sdate").disabled = true;
         document.getElementById("edate").disabled = true;
         document.getElementById("deptime").disabled = true;
@@ -66,62 +80,71 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Hike</span>
-                        <input type="text" id="hike" name="hike" disabled>
+                        <input type="text" id="hike" name="hike" value="<?php echo $tour->getTitle()?>" disabled>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>difficulty</span>
-                        <select name="difficulty" id="lang" disabled>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                        <select name="difficulty" id="lang" name="difficulty" disabled>
+                            <?php for($i=0; $i<3;$i++){
+                                if(($i+1) === $tour->getDifficulty()){
+                                    echo "<option value='" . ($i+1) . "' selected=selected>" . ($i+1) . "</option>";
+                                }
+                                else{
+                                    echo "<option value='" . ($i+1) . "'>" . ($i+1) . "</option>";
+                                }
+                            } ?>
                         </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Subtitle</span>
-                        <input type="text" id="sub" name="sub" disabled>
+                        <input type="text" id="sub" name="sub" value="<?php echo $tour->getSubtitle()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" id="dur" name="dur" disabled>
+                        <input type="text" id="dur" name="dur" value="<?php echo $tour->getDuration()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
-                        <input type="text" id="meeting" name="locDep" disabled>
+                        <input type="text" id="meeting" name="locDep" value="<?php echo $tour->getLocationDep()->getLocationName()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Arrival</span>
-                        <input type="text" id="loc" name="locArriv" disabled>
+                        <input type="text" id="loc" name="locArriv" value="<?php echo $tour->getLocationArriv()->getLocationName()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" id="price" name="price" disabled>
+                        <input type="text" id="price" name="price" value="<?php echo $tour->getPrice()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description</span>
-                        <input type="text" id="desc" name="desc" disabled>
+                        <span>Description DE</span>
+                        <input type="text" id="descDE" name="descDE" value="<?php echo $tour->getLanguageDescriptionDE()?>" disabled>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Description FR</span>
+                        <input type="text" id="descFR" name="descFr" value="<?php echo $tour->getLanguageDescriptionFR()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Start Date</span>
-                        <input type="text" id="sdate" name="sdate" disabled>
+                        <input type="text" id="sdate" name="sdate" value="<?php echo $tour->getStartDate()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>End Date</span>
-                        <input type="text" id="edate" name="edate" disabled>
+                        <input type="text" id="edate" name="edate" value="<?php echo $tour->getEndDate()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Departure Time</span>
-                        <input type="text" id="deptime" name="deptime" disabled>
+                        <input type="text" id="deptime" name="deptime" value="<?php echo $tour->getDepartTime()?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Arrival Time</span>
-                        <input type="text" id="artime" name="artime" disabled>
+                        <input type="text" id="artime" name="artime" value="<?php echo $tour->getArrivalTime()?>" disabled>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Status</span>
                         <select name="stat" id="stat" name="stat" disabled>
-                        <?php elementsController::statusSelect();?>
+                        <?php elementsController::statusSelect(true, $tour->getStatus()->getIdStatus());?>
                         </select>
                     </div>
 
@@ -132,11 +155,10 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                         </fieldset>
                     </div>
 
-
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Tour Type</span>
                         <fieldset id="fieldtour" name="fieldtour" disabled>
-                            <?php elementsController::typeTourCheckbox();?>
+                            <?php elementsController::typeTourCheckbox(true, 34);?>
                         </fieldset>
                     </div>
 
@@ -145,16 +167,11 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                         <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" disabled>
                     </div>
 
-
-
                 </div>
 
                 <div class="register-but">
-
                     <a href="#" id ="btn-save" onclick="save()" class="btn btn-primary" style="display: none">Save</a>
                     <a href="#" id ="btn-edit" onclick="edit()" class="btn btn-primary">Edit</a>
-
-
                 </div>
 
             </form>

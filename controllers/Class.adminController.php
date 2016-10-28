@@ -22,4 +22,11 @@ class adminController extends Controller
 
     }
 
+    function hikemanage(){
+
+    }
+     function showadmin(){
+
+     }
+
 }

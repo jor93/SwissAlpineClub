@@ -36,7 +36,7 @@ include_once ROOT_DIR.'views/header.inc';
 				<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
 					<h3>NEW CUSTOMERS</h3>
 					<p>By creating an account on this site, you will be able to book our guided tours</p>
-					<a class="acount-btn" href="registration.php">Create an Account</a>
+					<a class="acount-btn" href="<?php echo URL_DIR.'login/register';?>">Create an Account</a>
 				</div>
 				<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 					<h3>REGISTERED CUSTOMERS</h3>
