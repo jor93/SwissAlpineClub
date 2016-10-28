@@ -1,22 +1,24 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: jor
  * Date: 18.10.2016
  * Time: 12:43
  */
+class elementsController extends Controller
+{
 
-
-class elementsController extends Controller {
-
-    public static function nrParticipantInputs(){
+    public static function nrParticipantInputs()
+    {
         $number = $_SESSION['msg'];
         for ($i = 0; $i < $number; ++$i) {
             echo "<input type='text' required>";
         }
     }
 
-    public static function favoritesSelect(){
+    public static function favoritesSelect()
+    {
         $currentUser = self::getActiveUserWithoutCookie();
         $idAcc = $currentUser->getIdAccount();
         $answer = Favorite::getAllFavorites($idAcc);
@@ -30,24 +32,23 @@ class elementsController extends Controller {
     }
 
     //idTour just necessary if you edit the transport
-    public static function transportCheckbox($edit, $idTour){
+    public static function transportCheckbox($edit, $idTour)
+    {
         $answer = Transport::getTranportByLanguage($_SESSION['lang']);
         $length = count($answer);
 
-        if(!(bool)$edit) {
+        if (!(bool)$edit) {
             for ($i = 0; $i < $length; ++$i) {
                 echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                 echo "</br>";
             }
-        }
-        else{
+        } else {
             $idsTour = Transport::getTransportIdsFromTour($idTour);
             for ($i = 0; $i < $length; ++$i) {
-                if(self::checkTranportIds(($i+1), $idsTour)){
+                if (self::checkTranportIds(($i + 1), $idsTour)) {
                     echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
                     echo "</br>";
-                }
-                else{
+                } else {
                     echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                     echo "</br>";
                 }
@@ -55,31 +56,68 @@ class elementsController extends Controller {
         }
     }
 
-    private static function checkTranportIds($id, $idsTour){
+    private static function checkTranportIds($id, $idsTour)
+    {
         for ($i = 0; $i < count($idsTour); ++$i) {
-            if($id === $idsTour[$i][0]) return true;
+            if ($id === $idsTour[$i][0]) return true;
         }
         return false;
     }
 
-    public static function statusSelect(){
+    public static function statusSelect($edit, $statusid)
+    {
         $answer = Status::getStatusByLanguage($_SESSION['lang']);
         $length = count($answer);
-        for ($i = 0; $i < $length; ++$i) {
-            echo "<option value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1] . "</option>";
+
+        if (!(bool)$edit) {
+            for ($i = 0; $i < $length; ++$i) {
+                echo "<option value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1] . "</option>";
+            }
+        } else {
+            for ($i = 0; $i < $length; ++$i) {
+                if (($i + 1) === $statusid) {
+                    echo "<option value='" . $answer[$i][0] . "'" . " selected=selected" . ">" . $answer[$i][1] . "</option>";
+                } else {
+                    echo "<option value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1] . "</option>";
+                }
+            }
         }
     }
 
-    public static function typeTourCheckbox(){
+    public static function typeTourCheckbox($edit, $idTour)
+    {
         $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
         $length = count($answer);
-        for ($i = 0; $i < $length; ++$i) {
-            echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
-            echo "</br>";
+
+        if (!(bool)$edit) {
+            for ($i = 0; $i < $length; ++$i) {
+                echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                echo "</br>";
+            }
+        } else {
+            $idsTour = TypeTour::getTypeIdsFromTour($idTour);
+            for ($i = 0; $i < $length; ++$i) {
+                if (self::checkTypeTourIds(($i + 1), $idsTour)) {
+                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
+                    echo "</br>";
+                } else {
+                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                    echo "</br>";
+                }
+            }
         }
     }
 
-    public static function aboSelect(){
+    private static function checkTypeTourIds($id, $idsTour)
+    {
+        for ($i = 0; $i < count($idsTour); ++$i) {
+            if ($id === $idsTour[$i][0]) return true;
+        }
+        return false;
+    }
+
+    public static function aboSelect()
+    {
         $answer = Abonnement::getAboByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
@@ -87,15 +125,16 @@ class elementsController extends Controller {
         }
     }
 
-    public static function langSelect(){
+    public static function langSelect()
+    {
         // get language if possible
         $language = loginController::getPreferredLanguage();
         // variables for views
-        $array = array('en','de','fr');
-        $tr = array('English','Deutsch','Français');
+        $array = array('en', 'de', 'fr');
+        $tr = array('English', 'Deutsch', 'Français');
         // add new option for each language and check if it matches the preferred language
-        for($i = 0; $i <= 2; ++$i) {
-            echo "<option value='" . $array[$i] ."'" . (strcmp($language,$array[$i])==0 ? 'selected' : '') . ">" . $tr[$i] . "</option>";
+        for ($i = 0; $i <= 2; ++$i) {
+            echo "<option value='" . $array[$i] . "'" . (strcmp($language, $array[$i]) == 0 ? 'selected' : '') . ">" . $tr[$i] . "</option>";
         }
     }
 }

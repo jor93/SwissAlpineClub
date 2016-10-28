@@ -14,11 +14,13 @@ include_once ROOT_DIR.'views/common.php';
 		<link href="/<?php echo SITE_NAME; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/<?php echo SITE_NAME; ?>/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
 		<meta name="/viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700,800' rel='stylesheet' type='text/css'>
 		<script src="/<?php echo SITE_NAME; ?>/js/jquery.min.js"></script>
+		<script src="/<?php echo SITE_NAME; ?>/js/jquery-ui.js"></script>
 		<link href="/<?php echo SITE_NAME; ?>/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
 		<script src="/<?php echo SITE_NAME; ?>/js/jquery.magnific-popup.js" type="text/javascript"></script>
 

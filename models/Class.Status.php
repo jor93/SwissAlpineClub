@@ -100,7 +100,7 @@ class Status
         $row = $result->fetch();
         if(!$row) return false;
 
-        return new Status($row['Status.idStatus'], $row['Status.Language_idLanguage'], $row['Language.de'], $row['Language.fr']);
+        return new Status($row['idStatus'], $row['Language_idLanguage'], $row['de'], $row['fr']);
     }
 
     public static function getStatusByLanguage($language){
