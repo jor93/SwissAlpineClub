@@ -23,6 +23,7 @@ class Tour
     private $languageDescriptionDE;
     private $languageDescriptionFR;
     private $picture;
+    private $mime;
     private $locationDep;
     private $locationArriv;
     private $type;
@@ -47,13 +48,11 @@ class Tour
      * @param $picture
      * @param $locationDep
      * @param $locationArriv
-     * @param $type
-     * @param $transport
      */
     public function __construct($idTour, $startDate, $endDate, $duration, $title, $subtitle,
                                 $depart_time, $arrival_time, $price, $difficulty, $status,
                                 $idLanguageDescription, $languageDescriptionDE, $languageDescriptionFR,
-                                $picture, $locationDep, $locationArriv, $type, $transport)
+                                $picture, $locationDep, $locationArriv)
     {
         $this->idTour = $idTour;
         $this->startDate = $startDate;
@@ -72,8 +71,6 @@ class Tour
         $this->picture = $picture;
         $this->locationDep = $locationDep;
         $this->locationArriv = $locationArriv;
-        $this->type = $type;
-        $this->transport = $transport;
     }
 
     /**
@@ -319,6 +316,22 @@ class Tour
     /**
      * @return mixed
      */
+    public function getMime()
+    {
+        return $this->mime;
+    }
+
+    /**
+     * @param mixed $mime
+     */
+    public function setMime($mime)
+    {
+        $this->mime = $mime;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getLocationDep()
     {
         return $this->locationDep;
@@ -402,7 +415,7 @@ class Tour
 
     static function selectTour($tourId){
         $query = "SELECT Tour.*, LanguageDesc.*
-                  FROM Tour, Language as LanguageDesc
+                  FROM Tour as Tour, Language as LanguageDesc
                  where Tour.idTour = '$tourId'
                  and Tour.Language_idLanguage = LanguageDesc.idLanguage";
         $result = SQL::getInstance()->select($query);
@@ -410,16 +423,24 @@ class Tour
 
         if(!$row) return false;
 
-        if($status = Status::selectStatus($row['Status_idStatus']) &&
-        $locationDep = Location::selectLocation($row['Tour.Location_idLocation']) &&
-        $locationArriv = Location::selectLocation($row['Tour.Location_idLocation1'])) {
-            return new Tour($tourId, $row['Tour.Start_date'], $row['Tour.End_date'], $row['Tour.Duration'],
-                $row['Tour.Titel'], $row['Tour.Subtitle'],
-                $row['Tour.Depart_time'], $row['Tour.Arrival_time'], $row['Tour.Price'], $row['Tour.Difficulty'], $status,
-                $row['Tour.Language_idLanguage'], $row['LanguageDesc.de'], $row['LanguageDesc.fr'],
-                $row['Tour.Picture'], $locationDep, $locationArriv, transport);
+        if(Status::selectStatus($row['Status_idStatus']) &&
+            Location::selectLocation($row['Location_idLocation']) &&
+            Location::selectLocation($row['Location_idLocation1'])) {
+            $status = Status::selectStatus($row['Status_idStatus']);
+            $locationDep = Location::selectLocation($row['Location_idLocation']);
+            $locationArriv = Location::selectLocation($row['Location_idLocation1']);
+
+            return new Tour($tourId, $row['Start_date'], $row['End_date'], $row['Duration'],
+                $row['Title'], $row['Subtitle'],
+                $row['Depart_time'], $row['Arrival_time'], $row['Price'], $row['Difficulty'], $status,
+                $row['Language_idLanguage'], $row['de'], $row['fr'],
+                $row['Picture'], $locationDep, $locationArriv);
         }
         return false;
+    }
+
+    static function updateTour(){
+
     }
 
     static function updateTourImage($tourid, $path, $mime){

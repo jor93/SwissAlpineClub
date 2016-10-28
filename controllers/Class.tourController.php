@@ -64,9 +64,9 @@ class tourController extends Controller
         Tour::updateTourImage(1, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
         $image = Tour::selectTourImage(1);
         $_SESSION['testImage'] = $image;
-        $this->redirect('admin', 'hikeImageTest');*/
+        $this->redirect('admin', 'hikeImageTest');
 
-       // exit();
+        exit();*/
 
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
