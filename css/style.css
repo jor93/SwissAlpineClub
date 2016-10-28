@@ -1704,7 +1704,7 @@ a.go {
 	display:inline-block;
 }
 a.go:hover{
-	background: #fbb034;
+	background: red;
 }
 .vide{
 	background:#e9e8dd;

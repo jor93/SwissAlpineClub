@@ -5,9 +5,8 @@
  * Date: 18.10.2016
  * Time: 08:38
  */
-include_once 'views/header.inc';
+include_once ROOT_DIR. 'views/header.inc';
 ?>
-
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function () {
         $('#menu_registration').addClass('active');
@@ -42,5 +41,5 @@ include_once 'views/header.inc';
 
 
 <?php
-include_once 'views/footer.inc';
+include_once ROOT_DIR . 'views/footer.inc';
 ?>
