@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Dennis
+ * User: vm
  * Date: 14.10.2016
  * Time: 09:26
  */
@@ -42,30 +42,18 @@ $tour = Tour::selectTour(34);
         document.getElementById("fieldtour").removeAttribute("disabled");
         document.getElementById("img").removeAttribute("disabled");
 
-        document.getElementById("btn-save").style.display = "inline"
+        document.getElementById("btn-save").style.display = "inline";
         document.getElementById("btn-edit").style.display = "none";
 
     }
     function save () {
-        document.getElementById("hike").disabled = true;
-        document.getElementById("lang").disabled = true;
-        document.getElementById("sub").disabled = true;
-        document.getElementById("dur").disabled = true;
-        document.getElementById("loc").disabled = true;
-        document.getElementById("meeting").disabled = true;
-        document.getElementById("price").disabled = true;
-        document.getElementById("descDE").disabled = true;
-        document.getElementById("descFR").disabled = true;
-        document.getElementById("sdate").disabled = true;
-        document.getElementById("edate").disabled = true;
-        document.getElementById("deptime").disabled = true;
-        document.getElementById("artime").disabled = true;
-        document.getElementById("stat").disabled = true;
-        document.getElementById("field").disabled = true;
-        document.getElementById("fieldtour").disabled = true;
 
-        document.getElementById("btn-save").style.display = "none"
+        document.getElementById('manageTour').submit();
+
+        document.getElementById("btn-save").style.display = "none";
         document.getElementById("btn-edit").style.display = "inline";
+
+
 
     }
 
@@ -74,13 +62,13 @@ $tour = Tour::selectTour(34);
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form action="<?php echo URL_DIR.'tour/insertTour';?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo URL_DIR.'tour/updateTour';?>" id="manageTour" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
                     <h3>MANAGE HIKE</h3>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Hike</span>
-                        <input type="text" id="hike" name="hike" value="<?php echo $tour->getTitle()?>" disabled>
+                        <input type="text" id="hike" name="hikeName" value="<?php echo $tour->getTitle();?>" disabled>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -98,47 +86,47 @@ $tour = Tour::selectTour(34);
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Subtitle</span>
-                        <input type="text" id="sub" name="sub" value="<?php echo $tour->getSubtitle()?>" disabled>
+                        <input type="text" id="sub" name="subtitle" value="<?php echo $tour->getSubtitle();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" id="dur" name="dur" value="<?php echo $tour->getDuration()?>" disabled>
+                        <input type="text" id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
-                        <input type="text" id="meeting" name="locDep" value="<?php echo $tour->getLocationDep()->getLocationName()?>" disabled>
+                        <input type="text" id="meeting" name="locationDep" value="<?php echo $tour->getLocationDep()->getLocationName();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Arrival</span>
-                        <input type="text" id="loc" name="locArriv" value="<?php echo $tour->getLocationArriv()->getLocationName()?>" disabled>
+                        <input type="text" id="loc" name="locationArriv" value="<?php echo $tour->getLocationArriv()->getLocationName();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" id="price" name="price" value="<?php echo $tour->getPrice()?>" disabled>
+                        <input type="text" id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description DE</span>
-                        <input type="text" id="descDE" name="descDE" value="<?php echo $tour->getLanguageDescriptionDE()?>" disabled>
+                        <input type="text" id="descDE" name="descDE" value="<?php echo $tour->getLanguageDescriptionDE();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description FR</span>
-                        <input type="text" id="descFR" name="descFr" value="<?php echo $tour->getLanguageDescriptionFR()?>" disabled>
+                        <input type="text" id="descFR" name="descFR" value="<?php echo $tour->getLanguageDescriptionFR();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Start Date</span>
-                        <input type="text" id="sdate" name="sdate" value="<?php echo $tour->getStartDate()?>" disabled>
+                        <input type="text" id="sdate" name="sdate" value="<?php echo $tour->getStartDate();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>End Date</span>
-                        <input type="text" id="edate" name="edate" value="<?php echo $tour->getEndDate()?>" disabled>
+                        <input type="text" id="edate" name="edate" value="<?php echo $tour->getEndDate();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Departure Time</span>
-                        <input type="text" id="deptime" name="deptime" value="<?php echo $tour->getDepartTime()?>" disabled>
+                        <input type="text" id="deptime" name="deptime" value="<?php echo $tour->getDepartTime();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Arrival Time</span>
-                        <input type="text" id="artime" name="artime" value="<?php echo $tour->getArrivalTime()?>" disabled>
+                        <input type="text" id="artime" name="artime" value="<?php echo $tour->getArrivalTime();?>" disabled>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
@@ -170,8 +158,8 @@ $tour = Tour::selectTour(34);
                 </div>
 
                 <div class="register-but">
-                    <a href="#" id ="btn-save" onclick="save()" class="btn btn-primary" style="display: none">Save</a>
-                    <a href="#" id ="btn-edit" onclick="edit()" class="btn btn-primary">Edit</a>
+                    <a id ="btn-save" onclick="save()" class="btn btn-primary" style="display: none">Save</a>
+                    <a id ="btn-edit" onclick="edit()" class="btn btn-primary">Edit</a>
                 </div>
 
             </form>
