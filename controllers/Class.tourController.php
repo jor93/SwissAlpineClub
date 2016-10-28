@@ -103,4 +103,8 @@ class tourController extends Controller
 
     }
 
+    function hikeShow(){
+
+    }
+
 }

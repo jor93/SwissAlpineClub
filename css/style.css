@@ -2327,12 +2327,12 @@ div#portfoliolist {
 	padding-bottom:5px;
 	margin-right:2em;
 }
-.contact-form input[type="text"],.contact-form textarea{
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea{
 	padding:10px;
 	display:block;
 	width:100%;
 	background:none;
-	border:1px solid #fbb034;
+	border:1px solid red;
 	outline:none;
 	color:#C5C5C5;
 	font-size:14px;
@@ -2347,7 +2347,7 @@ div#portfoliolist {
 	border-color:#C5C5C5;
 }
 .myButton{
-	background:#fbb034;
+	background:red;
 	color: #FFF;
 	text-shadow:0px 1px 0px rgba(0, 0, 0, 0.34);
 	font-size:1em;
@@ -2383,7 +2383,7 @@ div#portfoliolist {
 }
 .company_address p span a:hover{
 	text-decoration:none;
-	color:#fbb034;
+	color:red;
 }
 .contact_info{
 	float:right;
@@ -2401,7 +2401,7 @@ div#portfoliolist {
 	overflow: hidden;
 }
 .contact-data h2 {
-	color: #fbb034;
+	color: red;
 	font-size: 20px;
 	text-transform: uppercase;
 	padding: 15px 0;
@@ -2422,7 +2422,7 @@ div#portfoliolist {
 }
 .error-page h3{
 	font-size: 10em;
-	color:#fbb034;
+	color:red;
 }
 .error-page {
 	padding: 130px 0px 0 0;
