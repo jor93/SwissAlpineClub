@@ -207,7 +207,7 @@ var buttonFilter = {
 			minValue = rangevalues[0];
 			maxValue = rangevalues[1];
 			for (i = minValue; i <= maxValue; i += 1) {
-				rangeFilterValues.push(".duration-" + i);
+				rangeFilterValues.push(".duration" + i);
 			}
 			//alert(rangeFilterValues.join("\n"));
 			self.parseFilters();
@@ -295,7 +295,7 @@ var buttonFilter = {
 
 
 		//self.outputString = ".check1.radio2,.check2.radio2";
-	    alert(self.outputString);
+	    //alert(self.outputString);
 
 	    // If the output string is empty, show all rather than none:    
 	    !self.outputString.length && (self.outputString = 'all'); 

@@ -23,6 +23,7 @@ class Tour
     private $languageDescriptionDE;
     private $languageDescriptionFR;
     private $picture;
+    private $mime;
     private $locationDep;
     private $locationArriv;
     private $type;
@@ -380,6 +381,22 @@ class Tour
         $this->transport = $transport;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMime()
+    {
+        return $this->mime;
+    }
+
+    /**
+     * @param mixed $mime
+     */
+    public function setMime($mime)
+    {
+        $this->mime = $mime;
+    }
+
     static function insertTour($tour, &$lastInsertId){
         $query = "INSERT INTO Tour (Start_date, End_date, Duration, Title, Subtitle, Depart_time, Arrival_time,
                                   Price, Difficulty, Status_idStatus, Language_idLanguage, Location_idLocation,
@@ -436,4 +453,8 @@ class Tour
         return $result;
     }
 
+    static function selectAllTours(){
+        $query = "SELECT * FROM `tour`, `location` WHERE `Location_idLocation` = `idLocation`";
+        return SQL::getInstance()->select($query);
+    }
 }

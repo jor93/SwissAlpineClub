@@ -9,6 +9,26 @@
 
 class elementsController extends Controller {
 
+    public static function selectToursOFF(){
+        // call db
+        $answer = Tour::selectAllTours();
+
+        foreach ($answer as $item){
+            $tourImage = Tour::selectTourImage($item[0]);
+
+            $temp = "data:" . $tourImage['mime'] . ";base64," . base64_encode($tourImage['data']);
+            // set strings for filters
+            $duration = "duration" . $item[3];
+            $region = "region" . $item[18];
+
+            $finalClass = "'mix " . $duration . ' ' . $region . "'";
+
+            echo "<li class=$finalClass><img alt='Embedded Image' src=$temp /></li>";
+        }
+
+
+    }
+
     public static function nrParticipantInputs(){
         $number = $_SESSION['msg'];
         for ($i = 0; $i < $number; ++$i) {
@@ -17,8 +37,10 @@ class elementsController extends Controller {
     }
 
     public static function favoritesSelect(){
+        // id current user
         $currentUser = self::getActiveUserWithoutCookie();
         $idAcc = $currentUser->getIdAccount();
+        // call db
         $answer = Favorite::getAllFavorites($idAcc);
         foreach ($answer as $item) {
             echo "</br><label>'id Favorite =  $item[0]'</label>";

@@ -31,18 +31,10 @@
 
         <section class="cd-gallery">
             <ul>
-                <li class="mix color-1 fav1 check1 radio2 region3 duration-2"><img src="/<?php echo SITE_NAME; ?>/images/img-1.jpg" alt="Image 1"></li>
-                <li class="mix color-2 check2 radio2 region2 duration-5"><img src="/<?php echo SITE_NAME; ?>/images/img-2.jpg" alt="Image 2"></li>
-                <li class="mix color-1 check3 radio3 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-3.jpg" alt="Image 3"></li>
-                <li class="mix color-1 check3 radio2 region2 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-4.jpg" alt="Image 4"></li>
-                <li class="mix color-1 check1 radio3 region2 duration-3"><img src="/<?php echo SITE_NAME; ?>/images/img-5.jpg" alt="Image 5"></li>
-                <li class="mix color-2 fav1 check2 radio3 region1 duration-4"><img src="/<?php echo SITE_NAME; ?>/images/img-6.jpg" alt="Image 6"></li>
-                <li class="mix color-2 check2 radio2 region3 duration-1"><img src="/<?php echo SITE_NAME; ?>/images/img-7.jpg" alt="Image 7"></li>
-                <li class="mix color-1 check1 radio3 region2 duration-8"><img src="/<?php echo SITE_NAME; ?>/images/img-8.jpg" alt="Image 8"></li>
-                <li class="mix color-2 check1 radio2 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-9.jpg" alt="Image 9"></li>
-                <li class="mix color-1 check3 radio2 region3 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-10.jpg" alt="Image 10"></li>
-                <li class="mix color-1 check3 radio3 region2 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-11.jpg" alt="Image 11"></li>
-                <li class="mix color-2 check1 radio3 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-12.jpg" alt="Image 12"></li>
+
+                <?php echo elementsController::selectToursOFF();?>
+
+
                 <li class="gap"></li>
                 <li class="gap"></li>
                 <li class="gap"></li>
