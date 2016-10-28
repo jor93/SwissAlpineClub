@@ -12,6 +12,17 @@ include_once ROOT_DIR.'views/header.inc';
         $('#menu_hikeShow').addClass('active');
     });
 
+    function fill(clickedid) {
+        for(i=1;i<6;i++){
+            document.getElementById(i).className="";
+        }
+       for(i=1;i<=clickedid;i++){
+           document.getElementById(i).className="filled";
+       }
+
+
+    }
+
 </script>
 
 <div class="main-1">
@@ -19,6 +30,14 @@ include_once ROOT_DIR.'views/header.inc';
         <div class="register">
 
             <img src="/<?php echo SITE_NAME; ?>/images/matterhorn.jpg" style="margin-left: auto;margin-right: auto; display: block;width: 80%" />
+            <div class="rating">
+                <span id="5" onclick="fill(this.id)">☆</span>
+                <span id="4" onclick="fill(this.id)">☆</span>
+                <span id="3" onclick="fill(this.id)">☆</span>
+                <span id="2" onclick="fill(this.id)">☆</span>
+                <span id="1" onclick="fill(this.id)" class="filled">☆</span>
+
+            </div>
 
                 <div class="register-top-grid" style="padding-left: 70px">
 
