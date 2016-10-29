@@ -74,7 +74,7 @@ include_once ROOT_DIR.'views/common.php';
 					<span class="menu"> </span>
 					<ul>
 						<li><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
-						<li><a href="404.html"><?php echo $lang['MENU_EVENTS']; ?></a></li>
+						<li><a href="<?php echo URL_DIR.'tour/hiking';?>"><?php echo $lang['MENU_EVENTS']; ?></a></li>
 						<li><a href="404.html">Blog</a></li>
 						<li id="menu_about"><a href="<?php echo URL_DIR.'general/about';?>"><?php echo $lang['MENU_ABOUT']; ?></a></li>
 						<li id="menu_contact"><a href="<?php echo URL_DIR.'general/contact';?>"><?php echo $lang['MENU_CONTACT']; ?></a></li>

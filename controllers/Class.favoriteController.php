@@ -20,25 +20,44 @@ class favoriteController extends Controller
         // check if already a favorite then add or rm
         $inputFavorite = $_POST['selectedFav'];
 
-        // get the data
-        $result = Favorite::getFavorite($inputFavorite);
-        // read from pdo statement
-        $temp = $result->fetch();
-        $idFavorite = $temp[0];
+        // get all favorites from current user
+        $currentUser = self::getActiveUserWithoutCookie();
+        $idAcc = $currentUser->getIdAccount();
 
-        if ($idFavorite == 0){
-            self::addFavorite($idFavorite);
+        // get the data
+        $result = Favorite::getAllFavorites($idAcc);
+
+        // read from pdo statement
+        $j = 0;
+        $idFavorites = array();
+        // get all ids from table favorite
+        while ($temp = $result->fetch(PDO::FETCH_ASSOC)) {
+            $Favorite_idTour = $temp['Tour_idTour'];
+            $idFavorites[$j++] = $Favorite_idTour;
+        }
+
+        $check = false;
+        $countFav = count($idFavorites);
+        for ($i = 0; $i < $countFav; $i++){
+            if ($idFavorites[$i] == $inputFavorite){
+                $check = true;
+                break;
+            }
+        }
+
+        if (!$check){
+            self::addFavorite($idAcc, $inputFavorite);
         }else{
-            self::removeFavorite($idFavorite);
+            self::removeFavorite($idAcc, $inputFavorite);
         }
     }
 
-    static function addFavorite($newFavorite){
-        Favorite::insertFavorite($newFavorite);
+    static function addFavorite($idAcc, $inputFavorite){
+        Favorite::insertFavorite($idAcc, $inputFavorite);
     }
 
-    static function removeFavorite($rmFavorite){
-        Favorite::removeFavorite($rmFavorite);
+    static function removeFavorite($idAcc, $inputFavorite){
+        Favorite::removeFavorite($idAcc, $inputFavorite);
         self::redirect('favorite', 'favorite');
     }
 
