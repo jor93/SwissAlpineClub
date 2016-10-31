@@ -44,7 +44,7 @@ $length = count($data);
 for ($i = 0; $i < $length; ++$i) {
     $data2[$i] = $data[$i][0];
 }
-echo '<script>var myarray = '.json_encode($data2) .';</script>';
+//echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
 ?>
 

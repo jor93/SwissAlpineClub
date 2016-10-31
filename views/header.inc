@@ -58,6 +58,7 @@ include_once ROOT_DIR.'views/common.php';
 						<ul>
 							<li><a href="<?php echo URL_DIR.'login/register';?>">Registration</a></li>
 							<li><a href="<?php echo URL_DIR.'login/login';?>">Login</a></li>
+							<li><a href="<?php echo URL_DIR.'login/resetpw';?>">asdf</a></li>
 						</ul>
 					</div>
 					<div class="clearfix"> </div>

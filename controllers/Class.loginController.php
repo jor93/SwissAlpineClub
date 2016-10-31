@@ -67,11 +67,61 @@ class loginController extends Controller {
 
     function resetpw()
     {
-        //if a user is active he cannot re-login
-        if ($this->getActiveUser()) {
-            $this->redirect('forgotpw', 'resetpw');
-            exit;
+        echo 'arrived';
+
+
+        if (isset($_GET['action'])){
+            $value = $_GET['encrypt'];
+            echo 'Value : ' . $value;
+        }else{
+            echo 'figg di';
         }
+
+    }
+
+    function resetpassword()
+    {
+        $value = $_GET['encrypt'];
+        echo 'Value : ' . $value;
+
+        /*
+        // check if the source is from the mail or user pages
+        if ($_GET['action'] == "reset") {
+            $encrypt = mysqli_real_escape_string($_GET['encrypt']);
+            $idAcc = Account::selectAccountIdByMDA($encrypt);
+            if (count($idAcc) >= 1) {
+                $pw_new = $this->badassSafer($_POST['pw']);
+                $cpw = $this->badassSafer($_POST['cpw']);
+
+                $checkpwd = validatePWs($pw_new, $cpw);
+
+                if ($checkpwd) {
+                    // update pwd
+                    forgotpwController::resetpwDB($pw_new, $idAcc);
+                }
+            } else {
+                $message = 'Invalid key please try again. <a href="http://demo.phpgang.com/login-signup-in-php/#forget">Forget Password?</a>';
+            }
+        }
+
+        else{
+                $pw_new = $this->badassSafer($_POST['pw']);
+                $cpw = $this->badassSafer($_POST['cpw']);
+
+                // get the current user and identify his id!
+                $currentUser = $this->getActiveUserWithoutCookie();
+                $idAcc = $currentUser->getIdAccount();
+
+                $checkpwd = validatePWs($pw_new, $cpw);
+
+                if ($checkpwd) {
+                    $this->resetpwDB($pw_new, $idAcc);
+                }
+            }
+            //$this->redirect('login', 'resetpw');
+
+        }
+        */
     }
 
 
@@ -236,7 +286,6 @@ class loginController extends Controller {
 
             // insert new account
             Account::insertAccount($user);
-
 
             // send email
             forgotpwController::sendMail($user, 3);
