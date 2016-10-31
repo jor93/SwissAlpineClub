@@ -17,6 +17,19 @@ class elementsController extends Controller
         self::drawSortList($answer, null);
     }
 
+
+    public static function getAccounts(){
+        $answer = Account::selectAllAccounts();
+        $length = count($answer);
+        $img = '/' . SITE_NAME. '/images/img-6.jpg';
+
+        for ($i = 0; $i < $length; $i++) {
+            $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1]. ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4]. ' ' . $answer[$i][5].' ' . $answer[$i][6].' ' . $answer[$i][7].' ' . $answer[$i][8] . ' ' . $answer[$i][9] ."'";
+            $id = $answer[$i][0];
+            echo "<li class=$finalClass onclick='showUser($id)'><img alt='No image found' src='$img' /></li>";
+        }
+    }
+
     public static function drawSortList($answer, $answerFavorites)
     {
         $gelaber = $answerFavorites;

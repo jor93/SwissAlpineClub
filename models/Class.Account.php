@@ -270,8 +270,9 @@ class Account{
         $this->activated = $activated;
     }
 
+    // connect a user with username and pw
     public static function connect($email, $password){
-       // $pwd = sha1($password);
+        $pwd = sha1($password);
         $query = "SELECT *
                   FROM Account WHERE Account.Email='$email' AND Account.Password='$password'";
         $result = SQL::getInstance()->select($query);
@@ -288,12 +289,14 @@ class Account{
             $row['Phone'], $row['Language'], $row['Runlevel'], $abonnement, $row['Lastlogin_Date'], $row['Activated']);
     }
 
+    // update last login in db
     public static function updateLastLogin($accountId){
         $currentDate = date("Y-m-d");
         $query = "UPDATE Account SET Lastlogin_Date = '$currentDate' WHERE idAccount=$accountId";
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    // update account
     public static function updateAccount($accountid, $firstname, $lastname, $address, $locationid, $phone, $language, $countryId){
         $query = "UPDATE Account SET Firstname = '$firstname', Lastname = '$lastname',
                   Address = '$address', Location_idLocation = '$locationid',
@@ -314,5 +317,14 @@ class Account{
         $query = "INSERT INTO `grp1`.`account`(`Firstname`,`Lastname`,`Email`,`Address`,`Password`,`Phone`,`Language`,`Runlevel`,`Abonnement_idAbonnement`,`Lastlogin_Date`,`Activated`,`Location_idLocation`,`Country_idCountry`)
                   VALUES ('$obj->firstname','$obj->lastname','$obj->email','$obj->address','$obj->password','$obj->phone','$obj->language',1,'$obj->abonnement',now(),0,$obj->location,$obj->country);";
         return  SQL::getInstance()->executeQuery($query);
+    }
+
+    public static function selectAllAccounts(){
+        $query = "SELECT idAccount,Firstname,Lastname,Email,Address,Phone,locationName,Postcode,NameCountry, Language
+                  FROM account, abonnement, location, country  
+	              WHERE abonnement.idAbonnement = account.Abonnement_idAbonnement 
+	              AND location.idLocation = account.Location_idLocation
+	              AND country.idCountry = Country_idCountry;";
+        return SQL::getInstance()->select($query)->fetchAll();
     }
 }

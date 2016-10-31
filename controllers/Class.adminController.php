@@ -34,4 +34,11 @@ class adminController extends Controller
 
      }
 
+    function showAccount(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            echo 'hallo';
+        }
+
+    }
+
 }

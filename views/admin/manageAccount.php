@@ -11,116 +11,59 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
     $(document).ready(function () {
         $('#menu_manageHike').addClass('active');
     });
+
+    function showUser($idAccount){
+        $.ajax({
+            type: 'post',
+            url: '<?php echo URL_DIR.'admin/showAccount';?>',
+            data:{ selectedId : $idAccount},
+            success: function(response) {
+                window.location.replace('<?php echo URL_DIR.'admin/showAccount';?>');
+            }
+        });
+    }
 </script>
+
+
 
 <div class="main-1">
     <div class="container">
-        <div class="users">
+        <div class="register">
             <form action="<?php echo URL_DIR.'admin/manageAccount';?>" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
                     <h3>MANAGE ACCOUNTS</h3>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Hike</span>
-                        <input type="text" id="hike" name="hike" value="<?php echo $tour->getTitle()?>" disabled>
-                    </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>difficulty</span>
-                        <select name="difficulty" id="lang" name="difficulty" disabled>
-                            <?php for($i=0; $i<3;$i++){
-                                if(($i+1) === $tour->getDifficulty()){
-                                    echo "<option value='" . ($i+1) . "' selected=selected>" . ($i+1) . "</option>";
-                                }
-                                else{
-                                    echo "<option value='" . ($i+1) . "'>" . ($i+1) . "</option>";
-                                }
-                            } ?>
-                        </select>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Subtitle</span>
-                        <input type="text" id="sub" name="sub" value="<?php echo $tour->getSubtitle()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Duration</span>
-                        <input type="text" id="dur" name="dur" value="<?php echo $tour->getDuration()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Departure</span>
-                        <input type="text" id="meeting" name="locDep" value="<?php echo $tour->getLocationDep()->getLocationName()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Arrival</span>
-                        <input type="text" id="loc" name="locArriv" value="<?php echo $tour->getLocationArriv()->getLocationName()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Price</span>
-                        <input type="text" id="price" name="price" value="<?php echo $tour->getPrice()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description DE</span>
-                        <input type="text" id="descDE" name="descDE" value="<?php echo $tour->getLanguageDescriptionDE()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description FR</span>
-                        <input type="text" id="descFR" name="descFr" value="<?php echo $tour->getLanguageDescriptionFR()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Start Date</span>
-                        <input type="text" id="sdate" name="sdate" value="<?php echo $tour->getStartDate()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>End Date</span>
-                        <input type="text" id="edate" name="edate" value="<?php echo $tour->getEndDate()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Departure Time</span>
-                        <input type="text" id="deptime" name="deptime" value="<?php echo $tour->getDepartTime()?>" disabled>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Arrival Time</span>
-                        <input type="text" id="artime" name="artime" value="<?php echo $tour->getArrivalTime()?>" disabled>
-                    </div>
-
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Status</span>
-                        <select name="stat" id="stat" name="stat" disabled>
-                        <?php elementsController::statusSelect(true, $tour->getStatus()->getIdStatus());?>
-                        </select>
-                    </div>
-
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Transport</span>
-                        <fieldset id="field" name="fieldtransport" disabled>
-                        <?php elementsController::transportCheckbox(true, 34);?>
-                        </fieldset>
-                    </div>
-
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Tour Type</span>
-                        <fieldset id="fieldtour" name="fieldtour" disabled>
-                            <?php elementsController::typeTourCheckbox(true, 34);?>
-                        </fieldset>
-                    </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Image</span>
-                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" disabled>
-                    </div>
-
                 </div>
 
-                <div class="register-but">
-                    <a href="#" id ="btn-save" onclick="save()" class="btn btn-primary" style="display: none">Save</a>
-                    <a href="#" id ="btn-edit" onclick="edit()" class="btn btn-primary">Edit</a>
-                </div>
+                <main class="cd-main-content">
+                    <div class="cd-tab-filter-wrapper">
+                        <div class="cd-tab-filter">
+                            <div class="cd-filter-block">
+                                <div class="cd-filter-content">
+                                    <input type="search" placeholder="search...">
+                                </div> <!-- cd-filter-content -->
+                            </div> <!-- cd-filter-block -->
+                        </div> <!-- cd-tab-filter -->
+                    </div> <!-- cd-tab-filter-wrapper -->
 
+                    <section class="cd-gallery">
+                        <ul>
+                            <?php elementsController::getAccounts(); ?>
+                            <li class="gap"></li>
+                            <li class="gap"></li>
+                            <li class="gap"></li>
+                        </ul>
+                        <div class="cd-fail-message">No results found</div>
+                    </section> <!-- cd-gallery -->
+                </main> <!-- cd-main-content -->
             </form>
         </div>
     </div>
 </div>
 
+
+<script src="/<?php echo SITE_NAME; ?>/js/main.js"></script> <!-- Resource jQuery -->
+<script src="/<?php echo SITE_NAME; ?>/js/jquery.mixitup.min.js"></script>
+<script src="/<?php echo SITE_NAME; ?>/js/jquery-ui.js"></script>
 
 
 <?php
