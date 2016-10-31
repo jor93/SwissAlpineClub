@@ -6,6 +6,7 @@
  * Time: 09:26
  */
 include_once ROOT_DIR. '/views/headeradmin.inc';
+
 ?>
 <script>
     $(document).ready(function () {

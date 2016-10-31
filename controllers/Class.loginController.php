@@ -211,7 +211,6 @@ class loginController extends Controller {
 
             }
             // everything is fine, no errors, create account
-
             $user = new Account();
             $user->setFirstname(ucwords($firstName));
             $user->setLastname(ucwords($lastName));
