@@ -23,28 +23,27 @@ class Account{
     private $lastlogin;
     private $activated;
 
-    //public function __construct(){}
+    public function __construct(){}
 
-
-
-    public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
-                                $phone, $language, $runlevel, $abonnement, $lastlogin, $activated)
-    {
-        $this->idAccount = $idAccount;
-        $this->firstname = $firstname;
-        $this->lastname = $lastname;
-        $this->password = $password;
-        $this->email = $email;
-        $this->address = $address;
-        $this->location = $location;
-        $this->country = $country;
-        $this->phone = $phone;
-        $this->language = $language;
-        $this->runlevel = $runlevel;
-        $this->abonnement = $abonnement;
-        $this->lastlogin = $lastlogin;
-        $this->activated = $activated;
-    }
+    public static function createAccount($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
+                                 $phone, $language, $runlevel, $abonnement, $lastlogin, $activated){
+        $user = new Account();
+        $user->idAccount = $idAccount;
+        $user->firstname = $firstname;
+        $user->lastname = $lastname;
+        $user->password = $password;
+        $user->email = $email;
+        $user->address = $address;
+        $user->location = $location;
+        $user->country = $country;
+        $user->phone = $phone;
+        $user->language = $language;
+        $user->runlevel = $runlevel;
+        $user->abonnement = $abonnement;
+        $user->lastlogin = $lastlogin;
+        $user->activated = $activated;
+        return $user;
+     }
 
     /**
      * @return mixed
@@ -319,6 +318,7 @@ class Account{
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    // get all accounts for view
     public static function selectAllAccounts(){
         $query = "SELECT idAccount,Firstname,Lastname,Email,Address,Phone,locationName,Postcode,NameCountry, Language
                   FROM account, abonnement, location, country  
@@ -326,5 +326,11 @@ class Account{
 	              AND location.idLocation = account.Location_idLocation
 	              AND country.idCountry = Country_idCountry;";
         return SQL::getInstance()->select($query)->fetchAll();
+    }
+
+    // get single account by id
+    public static function selectAccountById($accountId){
+        $query = "SELECT * FROM Account where Account.idAccount = '$accountId'";
+        return $result = SQL::getInstance()->select($query)->fetch();
     }
 }

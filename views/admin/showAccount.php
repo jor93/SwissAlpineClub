@@ -7,9 +7,6 @@
  */
 include_once ROOT_DIR. '/views/headeradmin.inc';
 
-$id = $_POST['selectedId'];
-var_dump($id);
-
 
 ?>
 
