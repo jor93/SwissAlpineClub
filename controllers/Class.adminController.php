@@ -29,4 +29,9 @@ class adminController extends Controller
 
      }
 
+     function manageAccount(){
+
+
+     }
+
 }

@@ -33,7 +33,7 @@ include_once ROOT_DIR.'views/header.inc';
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <?php
 $query = "select CONCAT(Postcode, ', ' ,LocationName) from location;";
@@ -44,7 +44,7 @@ $length = count($data);
 for ($i = 0; $i < $length; ++$i) {
     $data2[$i] = $data[$i][0];
 }
-//echo '<script>var myarray = '.json_encode($data2) .';</script>';
+echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
 ?>
 
@@ -70,6 +70,10 @@ for ($i = 0; $i < $length; ++$i) {
           });
       });
 
+      function checkPhone(){
+
+      }
+
     </script>
 
 <br />
@@ -77,7 +81,7 @@ for ($i = 0; $i < $length; ++$i) {
     <div class="main-1">
         <div class="container">
             <div class="register">
-                <form method="post">
+                <form method="post" action="<?php echo URL_DIR.'login/register';?>">
                     <div class="register-top-grid">
                         <!-- Error message label general -->
                         <label id="label_fail_exec" class="error">
@@ -90,7 +94,7 @@ for ($i = 0; $i < $length; ++$i) {
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_FNAME'];?><label>*</label></span>
                             <input type="text" class="ok" id="fname" name="firstname" placeholder="Please enter Firstname" required>
-                            <span id="label_fail_fname" class="error"><?php if(errorController::showErrorFromSession(6) === true) echo $lang['REGISTER_ERROR_6'];?></span>
+                            <span id="label_fail_fname" class="error"><?php if(errorController::showErrorFromSession(6) === true) echo $lang['REGISTER_ERROR_6'];;?></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LNAME'];?><label>*</label></span>
@@ -134,7 +138,7 @@ for ($i = 0; $i < $length; ++$i) {
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_PHONE'];?><label>*</label></span>
-                            <input type="tel" id="phone" name="phone" placeholder="Please enter Phone" required>
+                            <input type="text"  id="phone" name="phone" placeholder="Please enter Phone" required>
                             <span id="label_fail_phone" class="error" ></span>
                         </div>
 
@@ -172,6 +176,8 @@ for ($i = 0; $i < $length; ++$i) {
                         <input type="submit" value="<?php echo $lang['REGISTER_SUBMIT'];?>" onclick="">
                     </div>
 
+
+                    <div class="g-recaptcha" data-sitekey="6LfhNQoUAAAAABf3Ia4vpBFtWclI7akUB7EH976f"></div>
                 </form>
             </div>
         </div>

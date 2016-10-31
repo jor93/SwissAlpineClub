@@ -303,6 +303,11 @@ class Account{
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    // activate account in db
+    public static function activate($accountId){
+        $query = "UPDATE Account SET Activated = 1 WHERE idAccount=$accountId";
+        return  SQL::getInstance()->executeQuery($query);
+    }
 
     // default value: runlevel 1, lastlogin: now(), activated 0
     public static function insertAccount($obj){
