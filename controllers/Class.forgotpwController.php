@@ -92,10 +92,12 @@ class forgotpwController extends Controller
     }
 
     static function prepMail($temp, $origin){
+        /*
         echo '</br>' . $temp[3];
         echo '</br>' . $temp[1];
         echo '</br>' . $temp[2];
         echo '</br>' . $temp[7];
+        */
 
         include_once(ROOT_DIR.'models/Class.PrepMail.php');
         $obj = new PrepMail($temp[3], $temp[1], $temp[2], null, null, $temp[7]);

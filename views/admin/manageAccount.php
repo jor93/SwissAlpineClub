@@ -13,15 +13,9 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
         $('#menu_manageHike').addClass('active');
     });
 
-    function showUser($idAccount){
-        $.ajax({
-            type: 'post',
-            url: '<?php echo URL_DIR.'admin/showAccount';?>',
-            data:{ selectedId : $idAccount},
-            success: function(response) {
-                window.location.replace('<?php echo URL_DIR.'admin/showAccount';?>');
-            }
-        });
+     function showUser($idAccount){
+         document.getElementById("saver").value = $idAccount;
+         document.getElementById("manageUser").submit();
     }
 </script>
 
@@ -30,7 +24,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form action="<?php echo URL_DIR.'admin/manageAccount';?>" method="post" enctype="multipart/form-data">
+            <form id="manageUser" action="<?php echo URL_DIR.'admin/manageAccount';?>" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
                     <h3>MANAGE ACCOUNTS</h3>
                 </div>

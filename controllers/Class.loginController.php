@@ -237,6 +237,7 @@ class loginController extends Controller {
             // insert new account
             Account::insertAccount($user);
 
+
             // send email
             forgotpwController::sendMail($user, 3);
 

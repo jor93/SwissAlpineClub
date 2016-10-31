@@ -24,10 +24,11 @@ class elementsController extends Controller
         $img = '/' . SITE_NAME. '/images/img-6.jpg';
 
         for ($i = 0; $i < $length; $i++) {
-            $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1]. ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4]. ' ' . $answer[$i][5]. ' ' . $answer[$i][6]. ' ' . $answer[$i][7]. ' ' . $answer[$i][8] . ' ' . $answer[$i][9] ."'";
+            $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1]. ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4]. ' ' . $answer[$i][5]. ' ' . $answer[$i][6]. ' ' . $answer[$i][7]. ' ' . substr($answer[0][8],0,-1) . ' ' . $answer[$i][9] ."'";
             $id = $answer[$i][0];
             echo "<li class=$finalClass onclick='showUser($id)'><img alt='No image found' src='$img' /></li>";
         }
+        echo "<input type='hidden' id='saver' name='showUser' value='0' />";
     }
 
     public static function drawSortList($answer, $answerFavorites)
