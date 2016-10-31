@@ -322,12 +322,8 @@ var buttonFilter = {
 			}
 		}
 
-
-
-
-
 		//self.outputString = ".check1.radio2,.check2.radio2";
-	    //alert(self.outputString);
+	    alert(self.outputString);
 
 	    // If the output string is empty, show all rather than none:    
 	    !self.outputString.length && (self.outputString = 'all'); 

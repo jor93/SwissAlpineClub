@@ -16,6 +16,11 @@ $lang = array();
 
 $lang['WELCOME_TITLE'] = 'Willkommen';
 
+/* #################### mail confirmation ####################  */
+/* confirm */
+$lang['CONFIRMATION_MAIL_SUBJECT'] = 'Bestätigungsmail';
+$lang['CONFIRMATION_MAIL_BODY'] = 'Drücken Sie auf den folgenedn Link um Ihr Account zu aktivieren.';
+
 /* #################### resetpw ####################  */
 /* resetpw */
 $lang['RESETPW_TITLE'] = 'Ändern Sie Ihr Passwort';

@@ -9,7 +9,7 @@ class forgotpwController extends Controller
 {
     const COMPANY = "Valrando";
     const USERNAME = 'gezu4911@gmail.com';
-    const PASSWORD = 'gyxv!';
+    const PASSWORD = 'zurGlebdGvGubeHgerGoo11!';
     const HOST = 'smtp.gmail.com';
     const PORT = 587;
     const SMTPSECURE = 'tls';
@@ -69,8 +69,8 @@ class forgotpwController extends Controller
         // 1 email exists 2 doesnt exists
         if ($result == 1){
             // for the modification of the view --> if send or not
-            $_SESSION['msg'] = 1;
             $this->getUserInfos($email_input);
+            $_SESSION['msg'] = 1;
         }else{
             $_SESSION['msg'] = 2;
         }
@@ -88,7 +88,44 @@ class forgotpwController extends Controller
         // get infos to send (name, language)
         $account = $this->getUserData($email_input);
         $temp = $account->fetch();
-        $this->sendMail($temp, true);
+        $this->sendMail($temp, 1);
+    }
+
+    static function prepMail($temp, $origin){
+        echo '</br>' . $temp[3];
+        echo '</br>' . $temp[1];
+        echo '</br>' . $temp[2];
+        echo '</br>' . $temp[7];
+        $obj = new Mail($temp[3], $temp[1], $temp[2], null, null, $temp[7]);
+        //echo 'HSADLFHASLDH';
+
+
+        $_SESSION['lang'] = $obj->getLang();
+        $language = $obj->getLang();
+        include_once(ROOT_DIR.'views/common.php');
+
+        if ($origin == 1){
+            // set the email content - forgot pw
+            if ($language == 'de'){
+                // here comes the mail content
+                $obj->setMsgSubject($lang['FORGOTPW_MAIL_SUBJECT']);
+                $obj->setMsgMail($lang['FORGOTPW_MAIL_BODY']);
+            }else {
+                $obj->setMsgSubject($lang['FORGOTPW_MAIL_SUBJECT']);
+                $obj->setMsgMail($lang['FORGOTPW_MAIL_BODY']);
+            }
+        }else if ($origin == 3){
+            // set the email content - forgot pw
+            if ($language == 'de'){
+                // here comes the mail content
+                $obj->setMsgSubject($lang['CONFIRMATION_MAIL_SUBJECT']);
+                $obj->setMsgMail($lang['CONFIRMATION_MAIL_BODY']);
+            }else {
+                $obj->setMsgSubject($lang['CONFIRMATION_MAIL_SUBJECT']);
+                $obj->setMsgMail($lang['CONFIRMATION_MAIL_BODY']);
+            }
+        }
+        return $obj;
     }
 
     public static function sendMail($temp, $origin){
@@ -104,28 +141,15 @@ class forgotpwController extends Controller
         require 'PHPMailerAutoload.php';
         $mail = new PHPMailer;
 
-        // from contact or forgotpw page?
-        if($origin){
+        // from confirmation or forgotpw page?
+        if($origin == 1 || $origin == 3){
             // forgot pw
-            $emailTo = $temp[3];
-            $firstname = $temp[1];
-            $lastname = $temp[2];
-            $fullname = $firstname . " " . $lastname;
-            $language = $temp[7];
+            $obj = self::prepMail($temp, $origin);
+            $emailTo = $obj->getEmailTo();
+            $fullname = $obj->getFullname();
 
-            $_SESSION['lang'] = $language;
-            include_once(ROOT_DIR.'views/common.php');
-
-            // set the email content
-            if ($language == 'de'){
-                // here comes the mail content
-                $msgSubject = $lang['FORGOTPW_MAIL_SUBJECT'];
-                $msgMail = $lang['FORGOTPW_MAIL_BODY'];
-            }else {
-                $msgSubject = $lang['FORGOTPW_MAIL_SUBJECT'];
-                $msgMail = $lang['FORGOTPW_MAIL_BODY'];
-            }
-        }else{
+            // contact formular
+        }else if ($origin == 2){
             // contact field - send email to myself with the content of the customer
             $firstname = $temp[0];
             $fullname = $firstname;
@@ -136,6 +160,7 @@ class forgotpwController extends Controller
 
             // add a reply
             $mail->addReplyTo($email_Customer, 'Customer Demand');
+            // pwd confirmation
         }
 
         //$mail->SMTPDebug = 3;                               // Enable verbose debug output
