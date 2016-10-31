@@ -86,14 +86,14 @@ class elementsController extends Controller
                         $favorite = "fav1";
                         $finalClass = "'mix " . $favorite . ' ' . $duration . ' ' . $region . "'";
                         echo "<li class=$finalClass><img alt='Embedded Image' src=$temp /></li>";
-                        echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star2.png' width='20' height='20' /></button>";
+                        echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
                         break;
                     }
                 }
                 if (!$draw){
                     $finalClass = "'mix " . $duration . ' ' . $region . "'";
                     echo "<li class=$finalClass><img alt='Embedded Image' src=$temp /></li>";
-                    echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
+                    echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star2.png' width='20' height='20' /></button>";
                 }
             } else {
                 $finalClass = "'mix " . $duration . ' ' . $region . "'";
