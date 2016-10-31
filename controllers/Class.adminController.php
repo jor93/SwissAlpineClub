@@ -35,10 +35,14 @@ class adminController extends Controller
      }
 
     function showAccount(){
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $id = $_POST['selectedId'];
-            var_dump($id);
-        }
+        var_dump($_POST);
+        $id = $_POST['selectedId'];
+        echo 'testtetsttest: ' . $id . '</br>';
+
+        if(isset($_SESSION['id']))
+            $id = $_SESSION['id'];
+            echo 'asdfasdf: ' . $id;
+
 
     }
 
