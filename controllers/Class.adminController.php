@@ -29,4 +29,17 @@ class adminController extends Controller
 
      }
 
+     function manageAccount(){
+
+
+     }
+
+    function showAccount(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = $_POST['selectedId'];
+            var_dump($id);
+        }
+
+    }
+
 }
