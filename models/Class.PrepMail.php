@@ -4,9 +4,9 @@
  * Created by PhpStorm.
  * User: gez
  * Date: 31.10.2016
- * Time: 09:27
+ * Time: 11:10
  */
-class Mail
+class PrepMail
 {
     private $emailTo;
     private $firstname;
@@ -147,4 +147,6 @@ class Mail
     {
         $this->lang = $lang;
     }
+
+
 }

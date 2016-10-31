@@ -239,7 +239,7 @@ class loginController extends Controller {
             Account::insertAccount($user);
 
             // send email
-            forgotpwController::sendMail();
+            forgotpwController::sendMail($user, 3);
 
 
             // redirect to other page

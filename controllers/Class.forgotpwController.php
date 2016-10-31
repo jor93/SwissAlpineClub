@@ -9,7 +9,7 @@ class forgotpwController extends Controller
 {
     const COMPANY = "Valrando";
     const USERNAME = 'gezu4911@gmail.com';
-    const PASSWORD = '!';
+    const PASSWORD = 'zurGlebdGvGubeHgerGoo11!';
     const HOST = 'smtp.gmail.com';
     const PORT = 587;
     const SMTPSECURE = 'tls';
@@ -74,7 +74,7 @@ class forgotpwController extends Controller
         }else{
             $_SESSION['msg'] = 2;
         }
-        $this->redirect('login', 'forgotpw');
+        //$this->redirect('login', 'forgotpw');
     }
 
     public static function checkMail($email_input){
@@ -96,9 +96,9 @@ class forgotpwController extends Controller
         echo '</br>' . $temp[1];
         echo '</br>' . $temp[2];
         echo '</br>' . $temp[7];
-        $obj = new Mail($temp[3], $temp[1], $temp[2], null, null, $temp[7]);
-        //echo 'HSADLFHASLDH';
 
+        include_once(ROOT_DIR.'models/Class.PrepMail.php');
+        $obj = new PrepMail($temp[3], $temp[1], $temp[2], null, null, $temp[7]);
 
         $_SESSION['lang'] = $obj->getLang();
         $language = $obj->getLang();
@@ -147,6 +147,12 @@ class forgotpwController extends Controller
             $obj = self::prepMail($temp, $origin);
             $emailTo = $obj->getEmailTo();
             $fullname = $obj->getFullname();
+            $msgSubject = $obj->getMsgSubject();
+            $msgMail = $obj->getMsgMail();
+            echo '</br>' . $emailTo;
+            echo '</br>' . $fullname;
+            echo '</br>' . $msgSubject;
+            echo '</br>' . $msgMail;
 
             // contact formular
         }else if ($origin == 2){
@@ -177,7 +183,6 @@ class forgotpwController extends Controller
         $mail->addAddress($emailTo, $fullname);               // Add a recipient
 
         $mail->isHTML(true);                                  // Set email format to HTML
-
         $mail->Subject = $msgSubject;
         $mail->Body = $msgMail;
 
@@ -188,6 +193,7 @@ class forgotpwController extends Controller
             echo 'Message has been sent';
         }
         return;
+
     }
 
     // returns all of the data
