@@ -32,17 +32,25 @@ include_once ROOT_DIR.'views/header.inc';
         $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
             x++; //text box increment
+            y = 0;
             if (x > max_fields)
                 alert('Sie können maximal ' + max_fields + ' zusätzliche Personen buchen!');
 
             if(x <= max_fields){ //max input box allowed
-                $(wrapper).append('<div><input type="text" name="participantFirstname[]" placeholder="Vorname" required/>' +
+                var first = x +'' + 1;
+                var second = x + '' + 1;
+                var third =  x + '' + 1;
+                var f = parseInt(first);
+                var b = parseInt(second);
+                var c = parseInt(third);
+                $(wrapper).append('' +
+                    '<div><input type="text" name="participantFirstname[]" placeholder="Vorname" required/>' +
                     '<input type="text" name="participantLastname[]"placeholder="Nachname"required/>' +
                     '</br>' +
                     '<fieldset>' +
-                    '<input type="radio" name="participantAbo'+x+'[]" value="1" >GA</input>' +
-                    '<input type="radio" name="participantAbo'+x+'[]" value="2" >HalbTax</input>' +
-                    '<input type="radio" name="participantAbo'+x+'[]" value="3" checked >NIX</input>' +
+                    '<input type="radio" name="participantAbo'+f+'[]" value="1" >GA</input>' +
+                    '<input type="radio" name="participantAbo'+b+'[]" value="2" >HalbTax</input>' +
+                    '<input type="radio" name="participantAbo'+c+'[]" value="3" checked >NIX</input>' +
                     '</fieldset>' +
                     '</br>' +
                     '<a href="#" class="remove_field">Remove</a></div>'); //add input box
@@ -55,7 +63,7 @@ include_once ROOT_DIR.'views/header.inc';
     });
 
 </script>
-
+<!--
 <div class="main-1">
     <div class="container">
         <div class="register">
@@ -128,55 +136,25 @@ include_once ROOT_DIR.'views/header.inc';
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <label id="price"><p>70.- per Person</p></label>
                     </div>
-
-
                 </div>
-
-
-
         </div>
     </div>
 </div>
+-->
 </br>
-
 
 <div class="main-1">
     <div class="container">
         <div class="register">
             <form action="<?php echo URL_DIR.'inscription/validateParticipants';?>" method="post">
                 <div class="register-top-grid">
-                    <h3>PERSONAL INFORMATION</h3>
+                    <h3>FÜR EINE TOUR EINSCHREIBEN</h3>
 
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Tour</span>
-                        <label type="text" id="tour" name="tour" disabled>
-                    </div>
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Status</span>
-                        <label type="email" id="mail" name="email" disabled>
-                            <span id="label_fail_mail" class="error" > aktiv </span>
-                    </div>
-
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>How many people</span>
-                        <label type="number" id="amount" name="amount" required>
-                    </div>
-
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Anmeldefrist</span>
-                        <label type="text" id="date" name="date" disabled>
-                    </div>
-
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Information</span>
-                        <label type="text" id="info" name="information" style="width: 100%; height: 115px;" disabled>
-                    </div>
-
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Nehme ich auch teil?</span>
-                        <input type="checkbox" id="me" name="me" >
-                    </div>
-
+                    <a class="news-letter">
+                        <label class="checkbox">
+                            <input type="checkbox" id="checkb" name="rememberMe" checked=""><i> </i> Nehme ich auch teil?
+                        </label>
+                    </a>
                     <div class="participants"style="width: 100%;">
 
                         <span>Meine Freunde:</span>

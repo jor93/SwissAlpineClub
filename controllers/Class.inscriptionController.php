@@ -25,38 +25,18 @@ class inscriptionController extends Controller
         $abo = null;
         $inscription = null;
 
-        for ($i = 0; $i <= $nrParticipants; $i++){
+        for ($i = 0; $i < $nrParticipants; $i++){
             // if there is no one more set break
-            if (isset($_POST['participantFirstname'][$i])){
-                echo '</br>' . $_POST['participantFirstname'][$i] . '</br>';
-                echo $_POST['participantLastname'][$i] . '</br>';
-
-                echo 'HEEEREEEE';
-                for ($a = $i-1; $a <= $nrParticipants; $a++){
-                    if (isset($_POST['participantAbo'.$a][$i]))
-                        $temp = $_POST['participantAbo'.$a][$i] . '</br>';
-
-                    echo 'Value: ' . $temp;
-                    break;
+            if (isset($_POST['participantFirstname'][$i])) {
+                echo '</br>firstname : ' . $_POST['participantFirstname'][$i];
+                echo '</br>lastname : ' . $_POST['participantLastname'][$i];
+                $key = $i + 1 . '' . 1;
+                $temp = (int)$key;
+                if (isset($_POST['participantAbo' . $temp])) {
+                    echo '</br>abo ----> ' . $_POST['participantAbo' . $temp][0];
+                    echo '</br>----------------------------------------';
                 }
-
-
-/*
-                $firstname = $this->badassSafer($_POST['participantFirstname'][$i]);
-                $lastname = $this->badassSafer($_POST['participantLastname'][$i]);
-                $abo = $this->badassSafer($_POST['participantAbo'.$i][$i]);
-
-                // set into object
-                $obj = new Participant(null, $firstname, $lastname, $abo, 1);
-
-                // insert into db
-               // Participant::insertParticipant($obj);
-*/
             }
         }
-
-
-        //$this->redirect('tour', 'inscription');
     }
-
 }
