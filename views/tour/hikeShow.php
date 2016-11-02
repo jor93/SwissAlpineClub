@@ -104,7 +104,7 @@ $image = Tour::selectTourImage(35);
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="dif"><?php echo  $tour->getDifficulty();?></label>
+                        <label id="dif"><?php $length = $tour->getDifficulty();for($i=0;$i<$length;$i++){echo "*";}?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
