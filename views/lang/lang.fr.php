@@ -52,7 +52,7 @@ $lang['FORGOTPW_NOT_EXISTS'] = 'Cet e-mail n\'existe pas.';
 
 /* mail */
 $lang['FORGOTPW_MAIL_SUBJECT'] = 'Créer un nouveau mot de passe';
-$lang['FORGOTPW_MAIL_BODY'] = '
+$lang['FORGOTPW_MAIL_BODY_P1'] = '
                                 <html>
                                     <body>
                                         <p>
@@ -61,9 +61,9 @@ $lang['FORGOTPW_MAIL_BODY'] = '
                                         <p>
                                             Vous avez oublié votre mot de passe? Pas de problème!
                                         </p>
-                                        <p>
-                                            Créer un nouveau mot de passe maintenant
-                                        </p>
+';
+
+$lang['FORGOTPW_MAIL_BODY_P2'] = '
                                         <p>
                                             En cliquant sur le lien ci-dessus vous amène à votre compte, où vous pouvez entrer un nouveau mot de passe.
                                         </p>
@@ -84,7 +84,6 @@ $lang['FORGOTPW_MAIL_BODY'] = '
                                     </body>
                                 </html>
 ';
-
 /* #################### header ####################  */
 /* Menu */
 $lang['MENU_NEWS'] = 'Nouvelles';

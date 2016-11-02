@@ -332,4 +332,16 @@ class Account{
         $query = "SELECT * FROM Account where Account.idAccount = '$accountId'";
         return $result = SQL::getInstance()->select($query)->fetch();
     }
+
+    // get single account id by email
+    public static function selectAccountByEmail($accountEmail){
+        $query = "SELECT idAccount FROM Account where Account.Email = '$accountEmail'";
+        return $result = SQL::getInstance()->select($query)->fetch();
+    }
+
+    // get id account per encrypted mda value
+    public static function selectAccountIdByMDA($encrypted){
+        $query = "SELECT idAccount FROM Account where md5(90*13+idAccount) = '$encrypted'";
+        return $result = SQL::getInstance()->select($query)->fetch();
+    }
 }
