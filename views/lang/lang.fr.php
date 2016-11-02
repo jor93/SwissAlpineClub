@@ -89,7 +89,7 @@ $lang['FORGOTPW_MAIL_BODY_P2'] = '
 /* #################### header ####################  */
 /* Menu */
 $lang['MENU_NEWS'] = 'Nouvelles';
-$lang['MENU_EVENTS'] = 'Événements';
+$lang['MENU_TOUR'] = 'Wanderung FR';
 $lang['MENU_ABOUT'] = 'Nous';
 $lang['MENU_CONTACT'] = 'Contact';
 
