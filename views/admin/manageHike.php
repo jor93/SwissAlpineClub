@@ -7,7 +7,11 @@
  */
 include_once ROOT_DIR. '/views/headeradmin.inc';
 
-$tour = Tour::selectTour(34);
+$tour = Tour::selectTour(36);
+$manageTourInfos = array();
+$manageTourInfos['idTour'] = $tour->getIdTour();
+$manageTourInfos['idTourDesc'] = $tour->getIdLanguageDescription();
+$_SESSION['manageTour'] = $manageTourInfos;
 ?>
 <script>
     $(document).ready(function () {
@@ -137,14 +141,14 @@ $tour = Tour::selectTour(34);
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Transport</span>
                         <fieldset id="field" name="fieldtransport" disabled>
-                        <?php elementsController::transportCheckbox(true, 34);?>
+                        <?php elementsController::transportCheckbox(true, $tour->getIdTour());?>
                         </fieldset>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Tour Type</span>
                         <fieldset id="fieldtour" name="fieldtour" disabled>
-                            <?php elementsController::typeTourCheckbox(true, 34);?>
+                            <?php elementsController::typeTourCheckbox(true, $tour->getIdTour());?>
                         </fieldset>
                     </div>
 

@@ -6,6 +6,10 @@
  * Time: 14:54
  */
 include_once ROOT_DIR.'views/header.inc';
+
+$tour = Tour::selectTour(35);
+$image = Tour::selectTourImage(35);
+
 ?>
 <script>
     $(document).ready(function () {
@@ -68,7 +72,7 @@ include_once ROOT_DIR.'views/header.inc';
     <div class="container">
         <div class="register">
 
-            <img src="/<?php echo SITE_NAME; ?>/images/matterhorn.jpg" style="margin-left: auto;margin-right: auto; display: block;width: 80%" />
+            <img alt="Embedded Image" src="data:<?php echo $image['mime']?>;base64,<?php echo base64_encode($image['data']); ?> " style="margin-left: auto;margin-right: auto; display: block;width: 50%" />
             <div class="rating">
                 <span id="5" onclick="fill(this.id)">☆</span>
                 <span id="4" onclick="fill(this.id)">☆</span>
@@ -77,24 +81,30 @@ include_once ROOT_DIR.'views/header.inc';
                 <span id="1" onclick="fill(this.id)" class="filled">☆</span>
 
             </div>
-
                 <div class="register-top-grid" style="padding-left: 70px">
-
                     </br>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Tour</span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="tour"><p>Tour Name</p></label>
+                        <label id="tour"><?php echo $tour->getTitle();?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description</span>
+                        <span>Description DE</span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="desc"><p>TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText</br>TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText</p></label>
+                        <label id="descDE"><?php echo $tour->getLanguageDescriptionDE();?></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Description FR</span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="descFR"><?php echo $tour->getLanguageDescriptionFR();?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -102,7 +112,7 @@ include_once ROOT_DIR.'views/header.inc';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="dif"><p>1</p></label>
+                        <label id="dif"><?php $length = $tour->getDifficulty();for($i=0;$i<$length;$i++){echo "*";}?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -110,7 +120,8 @@ include_once ROOT_DIR.'views/header.inc';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="loc"><p>Sierre / Brig</p></label>
+                        <label id="loc"><?php echo $tour->getLocationDep()->getPostcode() . " " . $tour->getLocationDep()->getLocationName(). " / " .
+                                $tour->getLocationArriv()->getPostcode() . " " .$tour->getLocationArriv()->getLocationName()?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -118,7 +129,8 @@ include_once ROOT_DIR.'views/header.inc';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="date"><p>25.6.2016 08:50 /26.6.2016 16:00</p></label>
+                        <label id="date"><?php echo $tour->getStartDate() . ": " . $tour->getDepartTime() . " / " .
+                            $tour->getEndDate() . ": " . $tour->getArrivalTime()?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -126,15 +138,16 @@ include_once ROOT_DIR.'views/header.inc';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="stat"><p>Gebucht</p></label>
+                        <label id="stat"><?php if($_SESSION['lang'] == 'de')echo $tour->getStatus()->getStatusDE();
+                                                else if($_SESSION['lang'] == 'fr')echo $tour->getStatus()->getStatusFR();?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Price</span>
+                        <span>Price per Person</span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="price"><p>70.- per Person</p></label>
+                        <label id="price"><?php echo "CHF: " . $tour->getPrice() . ".-"?></label>
                     </div>
                 </div>
         </div>

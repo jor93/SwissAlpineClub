@@ -123,7 +123,7 @@ class Transport
     }
 
     public static function getTranportByLanguage($language){
-        $query = "SELECT idTransport, $language FROM grp1.transport, language WHERE grp1.transport.Language_idLanguage = language.idLanguage;";
+        $query = "SELECT idTransport, $language FROM transport, language WHERE transport.Language_idLanguage = language.idLanguage;";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 
@@ -139,6 +139,11 @@ class Transport
         $row = $result->fetch();
         if(!$row) return false;
         return $row['ResultTransport'];
+    }
+
+    static function removeTransportsFromTour($idTour){
+        $query = "DELETE FROM Transport_tour where Tour_idTour = '$idTour'";
+        return SQL::getInstance()->executeQuery($query);
     }
 
 }

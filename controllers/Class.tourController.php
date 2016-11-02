@@ -86,7 +86,7 @@ class tourController extends Controller
                 $tour = new Tour('', $_POST['sdate'], $_POST['edate'], $_POST['duration'], $_POST['hikeName'], $_POST['subtitle'],
                     $_POST['deptime'], $_POST['artime'], $_POST['price'], $_POST['difficulty'], $_POST['stat'],
                     $insertedTourDescId, $_POST['descDE'], $_POST['descFR'], '', $_POST['locationDep'],
-                    $_POST['locationArriv'], '', '');
+                    $_POST['locationArriv']);
 
                 $insertedTourId = 0;
                 if(Tour::insertTour($tour, $insertedTourId)){
@@ -105,12 +105,34 @@ class tourController extends Controller
             && isset($_POST['sdate']) && isset($_POST['edate']) && isset($_POST['deptime'])
             && isset($_POST['artime'])
         ) {
+            $manageTourInfos = $_SESSION['manageTour'];
+            $tour = new Tour($manageTourInfos['idTour'], $_POST['sdate'], $_POST['edate'], $_POST['duration'], $_POST['hikeName'], $_POST['subtitle'],
+                $_POST['deptime'], $_POST['artime'], $_POST['price'], $_POST['difficulty'], $_POST['stat'],
+                $manageTourInfos['idTourDesc'], $_POST['descDE'], $_POST['descFR'], '', $_POST['locationDep'],
+                $_POST['locationArriv']);
 
             if(strcmp($_FILES['img']['tmp_name'], "") != 0){
-                Tour::updateTourImage();
+                Tour::updateTourImage($manageTourInfos['idTour'], $_FILES['img']['tmp_name'], $_FILES['img']['type']);
             }
+
+            $transportLength = Transport::selectTransportLength();
+            $typeTourLength = TypeTour::selectTypeTourLength();
+
+            $transportIds = $this->setTransportIds($transportLength);
+            $typetourIds = $this->setTypeTourIds($typeTourLength);
+
+            TypeTour::removeTypesFromTour($manageTourInfos['idTour']);
+            Transport::removeTransportsFromTour($manageTourInfos['idTour']);
+
+            Tour::updateTour($tour);
+
+            TypeTour::insertTypeTour($manageTourInfos['idTour'], $typetourIds);
+            Transport::insertTransportTour($manageTourInfos['idTour'], $transportIds);
+
+            $this->redirect('admin', 'showHike');
         }
     }
+
 
     function hikeShow(){
 
