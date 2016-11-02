@@ -92,10 +92,13 @@
       * @return User
       */
      static function getActiveUserWithoutCookie(){
-         if(isset($_SESSION['account']))
+         if(isset($_SESSION['account'])){
+             echo 'here';
              return $_SESSION['account'];
+         }
+
          else
-             return false;
+             return null;
      }
 
 

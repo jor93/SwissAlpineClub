@@ -25,9 +25,11 @@ class loginController extends Controller {
             //Check if Account can update Lastlogin
             if(strcmp((string)date("Y-m-d"), (string)$result->getLastlogin()) != 0){
                 var_dump($result->getIdAccount());
-                Account::updateLastLogin($result->getIdAccount());
+
+                Account::updateLastLogin(4);
                 $currentDate = date("Y-m-d");
                 $result->setLastlogin($currentDate);
+
             }
             //Set cookie for remember me if its active
             if (isset($_POST['rememberMe'])) {
@@ -67,63 +69,17 @@ class loginController extends Controller {
 
     function resetpw()
     {
-        echo 'arrived';
-
-
         if (isset($_GET['action'])){
-            $value = $_GET['encrypt'];
-            echo 'Value : ' . $value;
-        }else{
-            echo 'figg di';
+            $_SESSION['action_url'] = $_GET['action'];
+            $_SESSION['encrypt_url'] = $_GET['encrypt'];
         }
 
+        //if a user is active he cannot re-login
+        if ($this->getActiveUser()) {
+            $this->redirect('forgotpw', 'resetpw');
+            exit;
+        }
     }
-
-    function resetpassword()
-    {
-        $value = $_GET['encrypt'];
-        echo 'Value : ' . $value;
-
-        /*
-        // check if the source is from the mail or user pages
-        if ($_GET['action'] == "reset") {
-            $encrypt = mysqli_real_escape_string($_GET['encrypt']);
-            $idAcc = Account::selectAccountIdByMDA($encrypt);
-            if (count($idAcc) >= 1) {
-                $pw_new = $this->badassSafer($_POST['pw']);
-                $cpw = $this->badassSafer($_POST['cpw']);
-
-                $checkpwd = validatePWs($pw_new, $cpw);
-
-                if ($checkpwd) {
-                    // update pwd
-                    forgotpwController::resetpwDB($pw_new, $idAcc);
-                }
-            } else {
-                $message = 'Invalid key please try again. <a href="http://demo.phpgang.com/login-signup-in-php/#forget">Forget Password?</a>';
-            }
-        }
-
-        else{
-                $pw_new = $this->badassSafer($_POST['pw']);
-                $cpw = $this->badassSafer($_POST['cpw']);
-
-                // get the current user and identify his id!
-                $currentUser = $this->getActiveUserWithoutCookie();
-                $idAcc = $currentUser->getIdAccount();
-
-                $checkpwd = validatePWs($pw_new, $cpw);
-
-                if ($checkpwd) {
-                    $this->resetpwDB($pw_new, $idAcc);
-                }
-            }
-            //$this->redirect('login', 'resetpw');
-
-        }
-        */
-    }
-
 
     /**
      * Method called by the logout hyperlink
@@ -287,18 +243,33 @@ class loginController extends Controller {
             // insert new account
             Account::insertAccount($user);
 
-            // send email
+            // send email - confirmation -> set active
             forgotpwController::sendMail($user, 3);
 
-
             // redirect to other page
+            //$this->redirect('profile', 'showuser');
 
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
                 $_SESSION['error'] = null;
-
         }
+    }
 
+    function activateAccount(){
+        echo '</br> ACTIVATE';
+        // after confirming the mail get redirected here - modify db
+        if (isset($_GET['action']) && isset($_GET['encrypt'])){
+            $action = $_GET['action'];
+            $encrypt = $_GET['encrypt'];
+
+            // decrypt and set status 1(active)
+            $idAcc = Encryption::decode($encrypt);
+            echo '</br>idAcc : ' . $idAcc;
+            $status = 1;
+            // update db
+            Account::updateStatus($status, $idAcc);
+        }
+        $this->redirect('login', 'login');
     }
 
 

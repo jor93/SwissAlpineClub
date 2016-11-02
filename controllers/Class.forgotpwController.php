@@ -9,7 +9,7 @@ class forgotpwController extends Controller
 {
     const COMPANY = "Valrando";
     const USERNAME = 'gezu4911@gmail.com';
-    const PASSWORD = 'sdf!';
+    const PASSWORD = 'zurGlebdGvGubeHgerGoo11!';
     const HOST = 'smtp.gmail.com';
     const PORT = 587;
     const SMTPSECURE = 'tls';
@@ -24,10 +24,13 @@ class forgotpwController extends Controller
 
     function resetpw(){
         //if a user is active he cannot re-login
+        /*
         if($this->getActiveUser()){
             $this->redirect('forgotpw', 'resetpw');
             exit;
         }
+        */
+        $this->redirect('forgotpw', 'resetpw');
     }
 
     function resetpassword()
@@ -35,16 +38,46 @@ class forgotpwController extends Controller
         $pw_new = $this->badassSafer($_POST['pw']);
         $cpw = $this->badassSafer($_POST['cpw']);
 
-        // get the current user and identify his id!
-        $currentUser = $this->getActiveUserWithoutCookie();
-        $idAcc = $currentUser->getIdAccount();
+        $checkpwd = $this->validatePWs($pw_new, $cpw);
 
-        $checkpwd = validatePWs($pw_new, $cpw);
+        // get the current user if he is logged in!
+        $currentUser = $this->getActiveUserWithoutCookie();
 
         if ($checkpwd) {
-            $this->resetpwDB($pw_new, $idAcc);
+            if (isset($_SESSION['action_url']) && isset($_SESSION['encrypt_url']) && !$currentUser){
+                // get the values from the mail
+                $action_url = $_SESSION['action_url'];
+                $encrypt_url = $_SESSION['encrypt_url'];
+                echo '</br>action : ' . $action_url;
+                echo '</br>encrypt : ' . $encrypt_url;
+
+                // get the id from db ----> OLD
+                //$result = Account::selectAccountIdByMDA($encrypt_url);
+                //$result = md5(90*13+4);
+                //echo '</br>idAccount : ' . $result['idAccount'];
+
+                $idAcc = Encryption::decode($encrypt_url);
+
+                echo '</br>------------';
+                echo '</br> id : ' . $idAcc;
+
+                $pw_encode = sha1($pw_new);
+                Account::resetpwDB($pw_encode, $idAcc);
+
+                // unset the session for other use
+                unset($_SESSION['action_url']);
+                unset($_SESSION['encrypt_url']);
+                echo '</br>SESSION UNSETS!!';
+            }else {
+                // if he is logged in!
+                $idAcc = $currentUser->getIdAccount();
+                $pw_encode = sha1($pw_new);
+                Account::resetpwDB($pw_encode, $idAcc);
+                $this->redirect('profile', 'showuser');
+            }
         }
-        //$this->redirect('login', 'resetpw');
+        // if password convention is false!!
+        $this->redirect('login', 'resetpw');
     }
 
     function validatePWs($pw_new, $cpw){
@@ -69,9 +102,7 @@ class forgotpwController extends Controller
 
     function checkMailControl(){
         // call controller login and read result
-        $email_input = $_POST['mail'];
-        //$email_input = $this->badassSafer($_POST['mail']);
-
+        $email_input = $this->badassSafer($_POST['mail']);
         $result = $this->checkMail($email_input);
 
         // 1 email exists 2 doesnt exists
@@ -82,7 +113,7 @@ class forgotpwController extends Controller
         }else{
             $_SESSION['msg'] = 2;
         }
-        //$this->redirect('login', 'forgotpw');
+        $this->redirect('login', 'forgotpw');
     }
 
     public static function checkMail($email_input){
@@ -94,7 +125,7 @@ class forgotpwController extends Controller
 
     function getUserInfos($email_input){
         // get infos to send (name, language)
-        $result = $this->getUserData($email_input);
+        $result = Account::getUserData($email_input);
         $temp = $result->fetch();
         // create object account
         $user = new Account();
@@ -120,35 +151,45 @@ class forgotpwController extends Controller
         $language = $obj->getLang();
         include_once(ROOT_DIR.'views/common.php');
 
-        if ($origin == 1){
-            // set the email content - forgot pw
-            $Results = Account::selectAccountByEmail($temp->getEmail());
-            //$email = $Results->fetch();
+        $Results = Account::selectAccountByEmail($temp->getEmail());
 
-            if(count($Results) >= 1)
-            {
-                $encrypt = md5(1290*3+$Results['idAccount']);
-                $link = URL_DIR.'login/resetpw?' . 'encrypt=' . $encrypt . '&action=reset';
-                $body = '<a href="' . $link . '">CHAAANGE</a>';
+        if(count($Results) >= 1) {
+            //$encrypt = md5(1290*3+$Results['idAccount']);
+            include_once(ROOT_DIR . 'models/Class.Encryption.php');
+            $encrypt = Encryption::encode($Results['idAccount']);
 
-                if ($language == 'de'){
+            if ($origin == 1) {
+                $link_resetpw = URL_DIR . 'login/resetpw?' . 'encrypt=' . $encrypt . '&action=reset';
+
+                // set the email content - forgot pw
+                if ($language == 'de') {
                     // here comes the mail content
+                    $txt = $lang['FORGOTPW_MAIL_CLICK_LINK'];
+                    $body = '<a href="' . $link_resetpw . '">' . $txt . '</a>';
                     $obj->setMsgSubject($lang['FORGOTPW_MAIL_SUBJECT']);
                     $obj->setMsgMail($lang['FORGOTPW_MAIL_BODY_P1'] . $body . $lang['FORGOTPW_MAIL_BODY_P2']);
-                }else {
+                } else {
+                    $txt = $lang['FORGOTPW_MAIL_CLICK_LINK'];
+                    $body = '<a href="' . $link_resetpw . '">' . $txt . '</a>';
                     $obj->setMsgSubject($lang['FORGOTPW_MAIL_SUBJECT']);
                     $obj->setMsgMail($lang['FORGOTPW_MAIL_BODY_P1'] . $body . $lang['FORGOTPW_MAIL_BODY_P2']);
                 }
-            }
-        }else if ($origin == 3){
-            // set the email content - forgot pw
-            if ($language == 'de'){
-                // here comes the mail content
-                $obj->setMsgSubject($lang['CONFIRMATION_MAIL_SUBJECT']);
-                $obj->setMsgMail($lang['CONFIRMATION_MAIL_BODY']);
-            }else {
-                $obj->setMsgSubject($lang['CONFIRMATION_MAIL_SUBJECT']);
-                $obj->setMsgMail($lang['CONFIRMATION_MAIL_BODY']);
+            } else if ($origin == 3) {
+                $link_activate = URL_DIR . 'login/activateAccount?' . 'encrypt=' . $encrypt . '&action=activate';
+
+                // set the email content - forgot pw
+                if ($language == 'de') {
+                    // here comes the mail content
+                    $txt = $lang['CONFIRMATION_MAIL_CLICK_LINK'];
+                    $body = '</br><a href="' . $link_activate . '">' . $txt . '</a>';
+                    $obj->setMsgSubject($lang['CONFIRMATION_MAIL_SUBJECT']);
+                    $obj->setMsgMail($lang['CONFIRMATION_MAIL_BODY'] . $body);
+                } else {
+                    $txt = $lang['CONFIRMATION_MAIL_CLICK_LINK'];
+                    $body = '</br><a href="' . $link_activate . '">' . $txt . '</a>';
+                    $obj->setMsgSubject($lang['CONFIRMATION_MAIL_SUBJECT']);
+                    $obj->setMsgMail($lang['CONFIRMATION_MAIL_BODY'] . $body);
+                }
             }
         }
         return $obj;
@@ -219,19 +260,6 @@ class forgotpwController extends Controller
         } else {
             echo 'Message has been sent';
         }
-        return;
-    }
-
-    // returns all of the data
-    private function getUserData($emailToCheck){
-        $query = "SELECT * FROM account WHERE email = '$emailToCheck';";
-        return SQL::getInstance()->select($query);
-    }
-
-    // reset pwd
-    private function resetpwDB($pw_new, $idAcc){
-        $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$idAcc';";
-        SQL::getInstance()->select($update);
         return;
     }
 }

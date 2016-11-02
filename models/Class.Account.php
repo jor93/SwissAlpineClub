@@ -277,7 +277,8 @@ class Account{
         $row = $result->fetch();
         if(!$row) return false;
 
-        $abonnement = Abonnement::selectAbonnement($row['Abonnement_idAbonnement']);
+        //$abonnement = Abonnement::selectAbonnement($row['Abonnement_idAbonnement']);
+        $abonnement = null;
         $location = Location::selectLocation($row['Location_idLocation']);
         $country = Country::selectCountry($row['Country_idCountry']);
 
@@ -341,7 +342,28 @@ class Account{
 
     // get id account per encrypted mda value
     public static function selectAccountIdByMDA($encrypted){
+        //$query = "SELECT idAccount FROM Account where md5(90*13+idAccount) = '$encrypted'";
         $query = "SELECT idAccount FROM Account where md5(90*13+idAccount) = '$encrypted'";
         return $result = SQL::getInstance()->select($query)->fetch();
+    }
+
+    // returns all of the data
+    public static function getUserData($emailToCheck){
+        $query = "SELECT * FROM account WHERE email = '$emailToCheck';";
+        return SQL::getInstance()->select($query);
+    }
+
+    // reset pwd
+    public static function resetpwDB($pw_new, $idAcc){
+        $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$idAcc';";
+        SQL::getInstance()->select($update);
+        return;
+    }
+
+    // update status
+    public static function updateStatus($status, $idAcc){
+        $update = "UPDATE account SET Activated = $status WHERE idaccount = $idAcc;";
+        SQL::getInstance()->select($update);
+        return;
     }
 }

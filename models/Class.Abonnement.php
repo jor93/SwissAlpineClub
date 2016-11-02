@@ -95,7 +95,7 @@ class Abonnement
 
     static function selectAbonnement($idAbonnement){
         $query = "SELECT Abonnement.*, Language.*
-                  FROM Abonnement, Language WHERE idAbonnement = '$idAbonnement' and Abonnement.Language_idLanguage = Language.idLanguage";
+                  FROM Abonnement, Language WHERE idAbonnement = $idAbonnement and Abonnement.Language_idLanguage = Language.idLanguage";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;

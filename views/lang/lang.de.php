@@ -18,6 +18,7 @@ $lang['WELCOME_TITLE'] = 'Willkommen';
 
 /* #################### mail confirmation ####################  */
 /* confirm */
+$lang['CONFIRMATION_MAIL_CLICK_LINK'] = 'KLICKEN SIE HIER UM IHR KONTO ZU BESTÄTIGEN!';
 $lang['CONFIRMATION_MAIL_SUBJECT'] = 'Bestätigungsmail';
 $lang['CONFIRMATION_MAIL_BODY'] = 'Drücken Sie auf den folgenedn Link um Ihr Account zu aktivieren.';
 
@@ -50,6 +51,7 @@ $lang['FORGOTPW_EXISTS'] = 'Wir haben Ihnen eine Email an die eingegebene Addres
 $lang['FORGOTPW_NOT_EXISTS'] = 'Diese Email existiert nicht.';
 
 /* mail */
+$lang['FORGOTPW_MAIL_CLICK_LINK'] = 'KLICKEN SIE HIER!';
 $lang['FORGOTPW_MAIL_SUBJECT'] = 'Neues Passwort erstellen';
 $lang['FORGOTPW_MAIL_BODY_P1'] = '
                                 <html>
