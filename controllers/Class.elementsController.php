@@ -40,7 +40,6 @@ class elementsController extends Controller
         $title = array();
         $regions = array();
         $datePick = array();
-        $tourTypes = array();
         $location = array();
         $difficulty = array();
 
@@ -86,7 +85,7 @@ class elementsController extends Controller
             $temp = "data:" . $tourImage['mime'] . ";base64," . base64_encode($tourImage['data']);
             // set strings for filters
 
-
+            $tourTypes = array();
             $duration = "duration" . $durations[$x];
             $region = "region" . $regions[$x];
             $date = "datepick" . $datePick[$x];
