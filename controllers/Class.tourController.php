@@ -99,8 +99,17 @@ class tourController extends Controller
     }
 
     function updateTour(){
+        if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
+            && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
+            && isset($_POST['price']) && isset($_POST['stat']) && isset($_POST['descDE']) && isset($_POST['descFR'])
+            && isset($_POST['sdate']) && isset($_POST['edate']) && isset($_POST['deptime'])
+            && isset($_POST['artime'])
+        ) {
 
-
+            if(strcmp($_FILES['img']['tmp_name'], "") != 0){
+                Tour::updateTourImage();
+            }
+        }
     }
 
     function hikeShow(){
