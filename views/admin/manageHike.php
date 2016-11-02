@@ -53,8 +53,6 @@ $tour = Tour::selectTour(34);
         document.getElementById("btn-save").style.display = "none";
         document.getElementById("btn-edit").style.display = "inline";
 
-
-
     }
 
 </script>
