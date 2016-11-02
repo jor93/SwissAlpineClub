@@ -172,17 +172,19 @@ class elementsController extends Controller
         }
     }
 
-    public static function aboSelect(){
+    public static function aboSelect($defaultIndex){
         $answer = Abonnement::getAboByLanguage($_SESSION['lang']);
         $length = count($answer);
         for ($i = 0; $i < $length; ++$i) {
-            echo "<option value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1] . "</option>";
+            echo "<option value='" . $answer[$i][0] . "'" . ($defaultIndex == $i ? 'selected' : '')  . ">" . $answer[$i][1] . "</option>";
         }
     }
 
-    public static function langSelect(){
+    public static function langSelect($defaultIndex){
         // get language if possible
         $language = loginController::getPreferredLanguage();
+        if(strcmp($defaultIndex,'un') != 0)
+            $language = $defaultIndex;
         // variables for views
         $array = array('en','de','fr');
         $tr = array('English','Deutsch','Français');

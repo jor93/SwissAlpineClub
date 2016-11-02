@@ -116,6 +116,8 @@ class loginController extends Controller {
             $_SESSION['country'] = $data;
             echo 'session not existed yet!';
         }*/
+        if(!isset($_SESSION['saved']))
+            $_SESSION['saved'] = null;
 
         // validating form
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -155,6 +157,8 @@ class loginController extends Controller {
                 $password2 = $this->badassSafer($_POST['pwd2']);
                 $country = $this->badassSafer($_POST['country']);
                 $abo = $this->badassSafer($_POST['abo']);
+
+                $_SESSION['saved'] = array($firstName,$lastName,$email,$address,$zip,$location,$phone,$language,$country,$abo);
             } else {
                 $aborting = true;
                 array_push($errorsInForm, 1);
@@ -247,6 +251,7 @@ class loginController extends Controller {
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
                 $_SESSION['error'] = null;
+                $_SESSION['saved'] = null;
 
         }
 
