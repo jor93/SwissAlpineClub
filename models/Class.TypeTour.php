@@ -149,11 +149,16 @@ class TypeTour
         }
         $query = "INSERT INTO typetour_tour(TypeTour_idTypeTour, Tour_idTour)
                   VALUES " . $valueQuery;
-        return  SQL::getInstance()->executeQuery($query);
+        return SQL::getInstance()->executeQuery($query);
     }
 
     public static function getTypeTourByLanguage($language){
         $query = "SELECT idTypeTour, $language FROM grp1.typetour, language WHERE grp1.typetour.Language_idLanguage =  language.idLanguage;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
+
+    public static function getTypeTourByLanguageAndId($language, $id){
+        $query = "SELECT $language FROM grp1.typetour, language WHERE grp1.typetour.Language_idLanguage =  language.idLanguage AND grp1.typetour.idTypeTOur = $id;";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 

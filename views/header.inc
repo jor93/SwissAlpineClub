@@ -10,6 +10,7 @@ include_once ROOT_DIR.'views/common.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>SAC</title>
+		<link href="/<?php echo SITE_NAME; ?>/css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />

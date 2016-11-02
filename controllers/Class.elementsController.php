@@ -37,15 +37,26 @@ class elementsController extends Controller
         $idFavorites = array();
         $idTours = array();
         $durations = array();
+        $title = array();
         $regions = array();
+        $datePick = array();
+        $tourTypes = array();
+        $location = array();
+        $difficulty = array();
+
 
         $i = 0;
         // get all ids from table tour
         while ($temp = $answer->fetch(PDO::FETCH_ASSOC)) {
             $Tour_idTour = $temp['idTour'];
+            $title[$i] = $temp['Title'];
             $idTours[$i] = $Tour_idTour;
             $durations[$i] = $temp['Duration'];
             $regions[$i] = $temp['Region_idRegion'];
+            $datePick[$i] = $temp['Start_date'];
+            $location[$i] = $temp['LocationName'];
+            $difficulty[$i] = $temp['Difficulty'];
+
             /*
             echo '</br>---------------------------index : ' . $i;
             echo '</br>Tour_idTour : ' . $temp['idTour'];
@@ -54,6 +65,7 @@ class elementsController extends Controller
             */
             $i++;
         }
+
 
         if ($gelaber != null){
             $j = 0;
@@ -70,10 +82,44 @@ class elementsController extends Controller
         for ($x = 0; $x < $countTours; $x++) {
             $tourImage = Tour::selectTourImage($idTours[$x]);
 
+
             $temp = "data:" . $tourImage['mime'] . ";base64," . base64_encode($tourImage['data']);
             // set strings for filters
+
+
             $duration = "duration" . $durations[$x];
             $region = "region" . $regions[$x];
+            $date = "datepick" . $datePick[$x];
+            $diff = "diff" . $difficulty[$x];
+            $tourType = "tourtype";
+
+            $diffString = "";
+
+            for ($d = 0; $d < $difficulty[$x]; $d++){
+                $diffString = $diffString . "*";
+            }
+
+
+            $tourTypeTemp = Tour::selectTourTypes($idTours[$x]);
+
+
+            $k = 0;
+            while ($test = $tourTypeTemp->fetch(PDO::FETCH_ASSOC)) {
+                $tourTypes[$k] = $test['TypeTour_idTypeTour'];
+                $k++;
+            }
+
+
+
+            for ($i = 0; $i < count($tourTypes); $i++){
+                if($i < 1){
+                    $tourType = $tourType . $tourTypes[$i];
+                } else {
+                    $tourType = $tourType . " tourtype" . $tourTypes[$i];
+                }
+            }
+
+            $newDate = date("d.m.Y", strtotime($datePick[$x]));
 
             // offline so favorite does not exist! --> != -1(online)
             if ($gelaber != null && self::getActiveUserWithoutCookie() != null) {
@@ -85,20 +131,41 @@ class elementsController extends Controller
                         $draw = true;
                         //echo '</br>------> went through : ' . $idTours[$x] . ' and ' . $idFavorites[$y];
                         $favorite = "fav1";
-                        $finalClass = "'mix " . $favorite . ' ' . $duration . ' ' . $region . "'";
-                        echo "<li class=$finalClass><img alt='Embedded Image' src=$temp /></li>";
-                        echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
+                        $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
+                        echo "<li class=$finalClass>";
+                        echo "<div class='hovereffect'>";
+                        echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
+                        echo "<div class='overlay'>";
+                        echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
+                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                        echo "</div>";
+                        echo "</li>";
+                        echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star2.png' width='20' height='20' /></button>";
                         break;
                     }
                 }
                 if (!$draw){
-                    $finalClass = "'mix " . $duration . ' ' . $region . "'";
-                    echo "<li class=$finalClass><img alt='Embedded Image' src=$temp /></li>";
-                    echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star2.png' width='20' height='20' /></button>";
+                    $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
+                    echo "<li class=$finalClass>";
+                    echo "<div class='hovereffect'>";
+                    echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
+                    echo "<div class='overlay'>";
+                    echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
+                    echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                    echo "</div>";
+                    echo "</li>";
+                    echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
                 }
             } else {
-                $finalClass = "'mix " . $duration . ' ' . $region . "'";
-                echo "<li class=$finalClass><img alt='Embedded Image' src=$temp /></li>";
+                $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
+                echo "<li class=$finalClass>";
+                echo "<div class='hovereffect'>";
+                echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
+                echo "<div class='overlay'>";
+                echo "<h5>$title[$x]<br />$location[$x], $newDate</h5>";
+                echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]h<br /></h6>";
+                echo "</div>";
+                echo "</li>";
             }
         }
     }
@@ -169,6 +236,19 @@ class elementsController extends Controller
         for ($i = 0; $i < $length; ++$i) {
             echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
             echo "</br>";
+
+        }
+    }
+
+    public static function filterTourCheckbox(){
+
+        $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
+        $length = count($answer);
+        for ($i = 0, $j = 1; $i < $length; ++$i, $j++) {
+            echo "<li>";
+            echo "<input class='filter' data-filter='.tourtype" . $j . "' type='checkbox' id='checkbox" . $j . "'" . ">";
+            echo "<label class='checkbox-label' for='checkbox" . $j . "'>" . $answer[$i][1] . " </label>" ;
+            echo "</li>";
         }
     }
 
