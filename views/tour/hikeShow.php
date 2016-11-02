@@ -6,10 +6,6 @@
  * Time: 14:54
  */
 include_once ROOT_DIR.'views/header.inc';
-
-$tour = Tour::selectTour(35);
-$image = Tour::selectTourImage(35);
-
 ?>
 <script>
     $(document).ready(function () {
@@ -23,88 +19,103 @@ $image = Tour::selectTourImage(35);
        for(i=1;i<=clickedid;i++){
            document.getElementById(i).className="filled";
        }
-
-
     }
 
     $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper         = $(".participantsInputs"); //Fields wrapper
-        var add_button      = $(".add_field_button"); //Add button ID
+        // available places to restrict adding friends
+        var free_space = $("#av_space").text();
+        var u = parseInt(free_space);
+        // max part who can book
+        var max =  15; //maximum input boxes allowed
+        var max_fields =  max - u; //maximum input boxes allowed
 
-        var x = 0; //initlal text box count
+        // check if i want to take part -> if yes -1 from max_fields
+        var myself = $("#checkb:checked").val();
+        if (myself){
+           max_fields -= 1;
+        }
+        var wrapper = $(".participantsInputs"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+        var x = 1; //initlal array!
+        var nrInputs = 1;
+
         $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
-            x++; //text box increment
-            y = 0;
-            if (x > max_fields)
+
+            $.ajax({
+                type: 'post',
+                url: '<?php echo URL_DIR.'inscription/setIndexInputs';?>',
+                data:{ index : x},
+                success: function(response) {
+                    //alert(response);
+                }
+            });
+
+            if (nrInputs > max_fields)
                 alert('Sie können maximal ' + max_fields + ' zusätzliche Personen buchen!');
 
-            if(x <= max_fields){ //max input box allowed
+            if(nrInputs <= max_fields){ //max input box allowed
                 var first = x +'' + 1;
                 var second = x + '' + 1;
                 var third =  x + '' + 1;
                 var f = parseInt(first);
                 var b = parseInt(second);
                 var c = parseInt(third);
+                nrInputs++;
+
                 $(wrapper).append('' +
-                    '<div><input type="text" name="participantFirstname[]" placeholder="Vorname" required/>' +
-                    '<input type="text" name="participantLastname[]"placeholder="Nachname"required/>' +
+                    '<div><input type="text" name="participantFirstname['+x+']" placeholder="Vorname'+x+'" required/>' +
+                    '<input type="text" name="participantLastname['+x+']"placeholder="Nachname'+x+'"required/>' +
                     '</br>' +
                     '<fieldset>' +
-                    '<input type="radio" name="participantAbo'+f+'[]" value="1" >GA</input>' +
+                    '<input type="radio" name="participantAbo'+f+'[]" value="1" >GA'+x+'</input>' +
                     '<input type="radio" name="participantAbo'+b+'[]" value="2" >HalbTax</input>' +
                     '<input type="radio" name="participantAbo'+c+'[]" value="3" checked >NIX</input>' +
                     '</fieldset>' +
                     '</br>' +
                     '<a href="#" class="remove_field">Remove</a></div>'); //add input box
             }
+            x++; //text box increment
+
         });
 
         $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
+            e.preventDefault(); $(this).parent('div').remove(); nrInputs--;
+            alert('delete : ' + nrInputs);
         })
     });
 
 </script>
-<!--
+
 <div class="main-1">
     <div class="container">
         <div class="register">
-
-            <img alt="Embedded Image" src="data:<?php echo $image['mime']?>;base64,<?php echo base64_encode($image['data']); ?> " style="margin-left: auto;margin-right: auto; display: block;width: 50%" />
+            <img src="/<?php echo SITE_NAME; ?>/images/matterhorn.jpg" style="margin-left: auto;margin-right: auto; display: block;width: 80%" />
             <div class="rating">
                 <span id="5" onclick="fill(this.id)">☆</span>
                 <span id="4" onclick="fill(this.id)">☆</span>
                 <span id="3" onclick="fill(this.id)">☆</span>
                 <span id="2" onclick="fill(this.id)">☆</span>
                 <span id="1" onclick="fill(this.id)" class="filled">☆</span>
-
             </div>
+
                 <div class="register-top-grid" style="padding-left: 70px">
+
                     </br>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Tour</span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="tour"><?php echo $tour->getTitle();?></label>
+                        <label id="tour"><p>Tour Name</p></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description DE</span>
+                        <span>Description</span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="descDE"><?php echo $tour->getLanguageDescriptionDE();?></label>
-                    </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description FR</span>
-                    </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="descFR"><?php echo $tour->getLanguageDescriptionFR();?></label>
+                        <label id="desc"><p>TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText</br>TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText</p></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -112,7 +123,7 @@ $image = Tour::selectTourImage(35);
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="dif"><?php $length = $tour->getDifficulty();for($i=0;$i<$length;$i++){echo "*";}?></label>
+                        <label id="dif"><p>1</p></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -120,8 +131,7 @@ $image = Tour::selectTourImage(35);
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="loc"><?php echo $tour->getLocationDep()->getPostcode() . " " . $tour->getLocationDep()->getLocationName(). " / " .
-                                $tour->getLocationArriv()->getPostcode() . " " .$tour->getLocationArriv()->getLocationName()?></label>
+                        <label id="loc"><p>Sierre / Brig</p></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -129,8 +139,7 @@ $image = Tour::selectTourImage(35);
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="date"><?php echo $tour->getStartDate() . ": " . $tour->getDepartTime() . " / " .
-                            $tour->getEndDate() . ": " . $tour->getArrivalTime()?></label>
+                        <label id="date"><p>25.6.2016 08:50 /26.6.2016 16:00</p></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -138,28 +147,43 @@ $image = Tour::selectTourImage(35);
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="stat"><?php if($_SESSION['lang'] == 'de')echo $tour->getStatus()->getStatusDE();
-                                                else if($_SESSION['lang'] == 'fr')echo $tour->getStatus()->getStatusFR();?></label>
+                        <label id="stat"><p>Gebucht</p></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Price per Person</span>
+                        <span>Price</span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="price"><?php echo "CHF: " . $tour->getPrice() . ".-"?></label>
+                        <label id="price"><p>70.- per Person</p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Freie Plätze</span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="av_space">10</label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Anmeldeschluss</span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="expiration"><p>25.02.2016</p></label>
                     </div>
                 </div>
         </div>
     </div>
 </div>
--->
+
 </br>
 
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form action="<?php echo URL_DIR.'inscription/validateParticipants';?>" method="post">
+            <form action="<?php echo URL_DIR.'inscription/validateParticipants_Inscription';?>" method="post">
                 <div class="register-top-grid">
                     <h3>FÜR EINE TOUR EINSCHREIBEN</h3>
 
@@ -182,17 +206,10 @@ $image = Tour::selectTourImage(35);
                     <div class="register-but">
                         <input type="submit" value="Speichern">
                     </div>
-
-
-
                 </div>
-
-
             </form>
         </div>
     </div>
-
-
 </div>
 
 <?php include_once ROOT_DIR.'views/footer.inc'; ?>
