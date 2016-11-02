@@ -10,6 +10,7 @@ include_once ROOT_DIR.'views/common.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>SAC</title>
+		<link href="/<?php echo SITE_NAME; ?>/css/reset.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/<?php echo SITE_NAME; ?>/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
@@ -58,6 +59,7 @@ include_once ROOT_DIR.'views/common.php';
 						<ul>
 							<li><a href="<?php echo URL_DIR.'login/register';?>">Registration</a></li>
 							<li><a href="<?php echo URL_DIR.'login/login';?>">Login</a></li>
+							<li><a href="<?php echo URL_DIR.'login/resetpw';?>">asdf</a></li>
 						</ul>
 					</div>
 					<div class="clearfix"> </div>
@@ -74,7 +76,7 @@ include_once ROOT_DIR.'views/common.php';
 					<span class="menu"> </span>
 					<ul>
 						<li><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
-						<li><a href="404.html"><?php echo $lang['MENU_EVENTS']; ?></a></li>
+						<li><a href="<?php echo URL_DIR.'tour/hiking';?>"><?php echo $lang['MENU_EVENTS']; ?></a></li>
 						<li><a href="404.html">Blog</a></li>
 						<li id="menu_about"><a href="<?php echo URL_DIR.'general/about';?>"><?php echo $lang['MENU_ABOUT']; ?></a></li>
 						<li id="menu_contact"><a href="<?php echo URL_DIR.'general/contact';?>"><?php echo $lang['MENU_CONTACT']; ?></a></li>

@@ -83,13 +83,8 @@ class Favorite
         return  SQL::getInstance()->executeQuery($query);
     }
 
-    static function removeFavorite($idFavorite){
-        $query = "DELETE FROM Favorites WHERE idFavorites = '$idFavorite'";
+    static function removeFavorite($idAcc, $inputFavorite){
+        $query = "DELETE FROM Favorites WHERE Tour_idTour = '$inputFavorite' AND Account_idAccount = '$idAcc'";
         return  SQL::getInstance()->executeQuery($query);
-    }
-
-    static function getFavorite($idFavorite){
-        $query = "SELECT * FROM favorites WHERE idFavorites = '$idFavorite';";
-        return SQL::getInstance()->select($query);
     }
 }

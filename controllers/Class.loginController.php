@@ -25,9 +25,11 @@ class loginController extends Controller {
             //Check if Account can update Lastlogin
             if(strcmp((string)date("Y-m-d"), (string)$result->getLastlogin()) != 0){
                 var_dump($result->getIdAccount());
-                Account::updateLastLogin($result->getIdAccount());
+
+                Account::updateLastLogin(4);
                 $currentDate = date("Y-m-d");
                 $result->setLastlogin($currentDate);
+
             }
             //Set cookie for remember me if its active
             if (isset($_POST['rememberMe'])) {
@@ -67,13 +69,17 @@ class loginController extends Controller {
 
     function resetpw()
     {
+        if (isset($_GET['action'])){
+            $_SESSION['action_url'] = $_GET['action'];
+            $_SESSION['encrypt_url'] = $_GET['encrypt'];
+        }
+
         //if a user is active he cannot re-login
         if ($this->getActiveUser()) {
             $this->redirect('forgotpw', 'resetpw');
             exit;
         }
     }
-
 
     /**
      * Method called by the logout hyperlink
@@ -211,7 +217,6 @@ class loginController extends Controller {
 
             }
             // everything is fine, no errors, create account
-
             $user = new Account();
             $user->setFirstname(ucwords($firstName));
             $user->setLastname(ucwords($lastName));
@@ -238,16 +243,33 @@ class loginController extends Controller {
             // insert new account
             Account::insertAccount($user);
 
-                // send email
+            // send email - confirmation -> set active
+            forgotpwController::sendMail($user, 3);
 
             // redirect to other page
+            //$this->redirect('profile', 'showuser');
 
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
                 $_SESSION['error'] = null;
-
         }
+    }
 
+    function activateAccount(){
+        echo '</br> ACTIVATE';
+        // after confirming the mail get redirected here - modify db
+        if (isset($_GET['action']) && isset($_GET['encrypt'])){
+            $action = $_GET['action'];
+            $encrypt = $_GET['encrypt'];
+
+            // decrypt and set status 1(active)
+            $idAcc = Encryption::decode($encrypt);
+            echo '</br>idAcc : ' . $idAcc;
+            $status = 1;
+            // update db
+            Account::updateStatus($status, $idAcc);
+        }
+        $this->redirect('login', 'login');
     }
 
 

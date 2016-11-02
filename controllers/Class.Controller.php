@@ -34,7 +34,7 @@
             $view = "{$this->controller}.php";
  		else
  		    $view = "{$this->controller}/{$this->method}.php";
-        echo '</br> current view: ' . $view;
+        //echo '</br> current view: ' . $view;
  		if(file_exists('views/'.$view))
  			include 'views/'.$view;
  	}
@@ -92,10 +92,13 @@
       * @return User
       */
      static function getActiveUserWithoutCookie(){
-         if(isset($_SESSION['account']))
+         if(isset($_SESSION['account'])){
+             echo 'here';
              return $_SESSION['account'];
+         }
+
          else
-             return false;
+             return null;
      }
 
 

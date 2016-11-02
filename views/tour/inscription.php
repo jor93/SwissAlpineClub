@@ -26,7 +26,16 @@ include_once ROOT_DIR.'views/header.inc';
                 alert('Sie können maximal ' + max_fields + ' zusätzliche Personen buchen!');
 
             if(x <= max_fields){ //max input box allowed
-                $(wrapper).append('<div><input type="text" name="mytext[]" placeholder="Vorname"/><input type="text" name="mytext[]"placeholder="Nachname"/><input type="text" name="mytext[]"placeholder="Vergünstigungen"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                $(wrapper).append('<div><input type="text" name="participantFirstname[]" placeholder="Vorname" required/>' +
+                    '<input type="text" name="participantLastname[]"placeholder="Nachname"required/>' +
+                    '</br>' +
+                    '<fieldset>' +
+                        '<input type="radio" name="participantAbo'+x+'[]" value="1" >GA</input>' +
+                        '<input type="radio" name="participantAbo'+x+'[]" value="2" >HalbTax</input>' +
+                        '<input type="radio" name="participantAbo'+x+'[]" value="3" checked >NIX</input>' +
+                    '</fieldset>' +
+                '</br>' +
+                '<a href="#" class="remove_field">Remove</a></div>'); //add input box
             }
         });
 
@@ -39,7 +48,7 @@ include_once ROOT_DIR.'views/header.inc';
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form onsubmit="return false">
+            <form action="<?php echo URL_DIR.'inscription/validateParticipants';?>" method="post">
                 <div class="register-top-grid">
                     <h3>PERSONAL INFORMATION</h3>
 
@@ -50,7 +59,7 @@ include_once ROOT_DIR.'views/header.inc';
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Status</span>
                         <label type="email" id="mail" name="email" disabled>
-                            <span id="label_fail_mail" class="error" >The E-Mail address is not valid</span>
+                            <span id="label_fail_mail" class="error" > aktiv </span>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
@@ -67,12 +76,10 @@ include_once ROOT_DIR.'views/header.inc';
                         <span>Information</span>
                         <label type="text" id="info" name="information" style="width: 100%; height: 115px;" disabled>
                     </div>
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Wie viele Teilnehmer möchte ich anmelden (exkl. mir)?</span>
-                    </div>
+
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Nehme ich auch teil?</span>
-                        <input type="checkbox" id="me" name="me" required>
+                        <input type="checkbox" id="me" name="me" >
                     </div>
 
                     <div class="participants"style="width: 100%;">
@@ -87,7 +94,7 @@ include_once ROOT_DIR.'views/header.inc';
 
                     <div class="clearfix"></div>
                     <div class="register-but">
-                        <input type="submit" value="Speichern" onclick="letsgo()">
+                        <input type="submit" value="Speichern">
                     </div>
 
 

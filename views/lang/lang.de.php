@@ -16,6 +16,12 @@ $lang = array();
 
 $lang['WELCOME_TITLE'] = 'Willkommen';
 
+/* #################### mail confirmation ####################  */
+/* confirm */
+$lang['CONFIRMATION_MAIL_CLICK_LINK'] = 'KLICKEN SIE HIER UM IHR KONTO ZU BESTÄTIGEN!';
+$lang['CONFIRMATION_MAIL_SUBJECT'] = 'Bestätigungsmail';
+$lang['CONFIRMATION_MAIL_BODY'] = 'Drücken Sie auf den folgenedn Link um Ihr Account zu aktivieren.';
+
 /* #################### resetpw ####################  */
 /* resetpw */
 $lang['RESETPW_TITLE'] = 'Ändern Sie Ihr Passwort';
@@ -45,8 +51,9 @@ $lang['FORGOTPW_EXISTS'] = 'Wir haben Ihnen eine Email an die eingegebene Addres
 $lang['FORGOTPW_NOT_EXISTS'] = 'Diese Email existiert nicht.';
 
 /* mail */
+$lang['FORGOTPW_MAIL_CLICK_LINK'] = 'KLICKEN SIE HIER!';
 $lang['FORGOTPW_MAIL_SUBJECT'] = 'Neues Passwort erstellen';
-$lang['FORGOTPW_MAIL_BODY'] = '
+$lang['FORGOTPW_MAIL_BODY_P1'] = '
                                 <html>
                                     <body>       
                                         <p>
@@ -55,11 +62,12 @@ $lang['FORGOTPW_MAIL_BODY'] = '
                                         <p>
                                             Sie haben Ihr Passwort vergessen? Kein Problem!
                                         </p>
+                                                                      
+';
+
+$lang['FORGOTPW_MAIL_BODY_P2'] = '
                                         <p>
-                                            Jetzt ein neues Passwort erstellen
-                                        </p>
-                                        <p>
-                                            Mit einem Klick auf den obenstehenden Link gelangen Sie zu Ihrem Konto, wo Sie ein neues Passwort eintragen können.
+                                            Mit einem Klick auf den untenstehenden Link gelangen Sie zu Ihrem Konto, wo Sie ein neues Passwort eintragen können.
                                         </p>
                                         <p>
                                             Sollten andere Probleme beim Prozess auftreten, nehmen Sie bitte Kontakt mit uns auf, wir helfen Ihnen gerne weiter.

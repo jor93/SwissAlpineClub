@@ -23,28 +23,27 @@ class Account{
     private $lastlogin;
     private $activated;
 
-    //public function __construct(){}
+    public function __construct(){}
 
-
-
-    public function __construct($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
-                                $phone, $language, $runlevel, $abonnement, $lastlogin, $activated)
-    {
-        $this->idAccount = $idAccount;
-        $this->firstname = $firstname;
-        $this->lastname = $lastname;
-        $this->password = $password;
-        $this->email = $email;
-        $this->address = $address;
-        $this->location = $location;
-        $this->country = $country;
-        $this->phone = $phone;
-        $this->language = $language;
-        $this->runlevel = $runlevel;
-        $this->abonnement = $abonnement;
-        $this->lastlogin = $lastlogin;
-        $this->activated = $activated;
-    }
+    public static function createAccount($idAccount, $firstname, $lastname, $password, $email, $address, $location, $country,
+                                 $phone, $language, $runlevel, $abonnement, $lastlogin, $activated){
+        $user = new Account();
+        $user->idAccount = $idAccount;
+        $user->firstname = $firstname;
+        $user->lastname = $lastname;
+        $user->password = $password;
+        $user->email = $email;
+        $user->address = $address;
+        $user->location = $location;
+        $user->country = $country;
+        $user->phone = $phone;
+        $user->language = $language;
+        $user->runlevel = $runlevel;
+        $user->abonnement = $abonnement;
+        $user->lastlogin = $lastlogin;
+        $user->activated = $activated;
+        return $user;
+     }
 
     /**
      * @return mixed
@@ -270,15 +269,16 @@ class Account{
         $this->activated = $activated;
     }
 
+    // connect a user with username and pw
     public static function connect($email, $password){
-       // $pwd = sha1($password);
         $query = "SELECT *
                   FROM Account WHERE Account.Email='$email' AND Account.Password='$password'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
 
-        $abonnement = Abonnement::selectAbonnement($row['Abonnement_idAbonnement']);
+        //$abonnement = Abonnement::selectAbonnement($row['Abonnement_idAbonnement']);
+        $abonnement = null;
         $location = Location::selectLocation($row['Location_idLocation']);
         $country = Country::selectCountry($row['Country_idCountry']);
 
@@ -288,12 +288,14 @@ class Account{
             $row['Phone'], $row['Language'], $row['Runlevel'], $abonnement, $row['Lastlogin_Date'], $row['Activated']);
     }
 
+    // update last login in db
     public static function updateLastLogin($accountId){
         $currentDate = date("Y-m-d");
         $query = "UPDATE Account SET Lastlogin_Date = '$currentDate' WHERE idAccount=$accountId";
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    // update account
     public static function updateAccount($accountid, $firstname, $lastname, $address, $locationid, $phone, $language, $countryId){
         $query = "UPDATE Account SET Firstname = '$firstname', Lastname = '$lastname',
                   Address = '$address', Location_idLocation = '$locationid',
@@ -303,11 +305,65 @@ class Account{
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    // activate account in db
+    public static function activate($accountId){
+        $query = "UPDATE Account SET Activated = 1 WHERE idAccount=$accountId";
+        return  SQL::getInstance()->executeQuery($query);
+    }
 
     // default value: runlevel 1, lastlogin: now(), activated 0
     public static function insertAccount($obj){
         $query = "INSERT INTO `grp1`.`account`(`Firstname`,`Lastname`,`Email`,`Address`,`Password`,`Phone`,`Language`,`Runlevel`,`Abonnement_idAbonnement`,`Lastlogin_Date`,`Activated`,`Location_idLocation`,`Country_idCountry`)
                   VALUES ('$obj->firstname','$obj->lastname','$obj->email','$obj->address','$obj->password','$obj->phone','$obj->language',1,'$obj->abonnement',now(),0,$obj->location,$obj->country);";
         return  SQL::getInstance()->executeQuery($query);
+    }
+
+    // get all accounts for view
+    public static function selectAllAccounts(){
+        $query = "SELECT idAccount,Firstname,Lastname,Email,Address,Phone,locationName,Postcode,NameCountry, Language
+                  FROM account, abonnement, location, country  
+	              WHERE abonnement.idAbonnement = account.Abonnement_idAbonnement 
+	              AND location.idLocation = account.Location_idLocation
+	              AND country.idCountry = Country_idCountry;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
+
+    // get single account by id
+    public static function selectAccountById($accountId){
+        $query = "SELECT * FROM Account where Account.idAccount = '$accountId'";
+        return $result = SQL::getInstance()->select($query)->fetch();
+    }
+
+    // get single account id by email
+    public static function selectAccountByEmail($accountEmail){
+        $query = "SELECT idAccount FROM Account where Account.Email = '$accountEmail'";
+        return $result = SQL::getInstance()->select($query)->fetch();
+    }
+
+    // get id account per encrypted mda value
+    public static function selectAccountIdByMDA($encrypted){
+        //$query = "SELECT idAccount FROM Account where md5(90*13+idAccount) = '$encrypted'";
+        $query = "SELECT idAccount FROM Account where md5(90*13+idAccount) = '$encrypted'";
+        return $result = SQL::getInstance()->select($query)->fetch();
+    }
+
+    // returns all of the data
+    public static function getUserData($emailToCheck){
+        $query = "SELECT * FROM account WHERE email = '$emailToCheck';";
+        return SQL::getInstance()->select($query);
+    }
+
+    // reset pwd
+    public static function resetpwDB($pw_new, $idAcc){
+        $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$idAcc';";
+        SQL::getInstance()->select($update);
+        return;
+    }
+
+    // update status
+    public static function updateStatus($status, $idAcc){
+        $update = "UPDATE account SET Activated = $status WHERE idaccount = $idAcc;";
+        SQL::getInstance()->select($update);
+        return;
     }
 }

@@ -31,34 +31,29 @@
 
         <section class="cd-gallery">
             <ul>
-                <li class="mix color-1 fav1 check1 radio2 region3 duration-2"><img src="/<?php echo SITE_NAME; ?>/images/img-1.jpg" alt="Image 1"></li>
-                <li class="mix color-2 check2 radio2 region2 duration-5"><img src="/<?php echo SITE_NAME; ?>/images/img-2.jpg" alt="Image 2"></li>
-                <li class="mix color-1 check3 radio3 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-3.jpg" alt="Image 3"></li>
-                <li class="mix color-1 check3 radio2 region2 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-4.jpg" alt="Image 4"></li>
-                <li class="mix color-1 check1 radio3 region2 duration-3"><img src="/<?php echo SITE_NAME; ?>/images/img-5.jpg" alt="Image 5"></li>
-                <li class="mix color-2 fav1 check2 radio3 region1 duration-4"><img src="/<?php echo SITE_NAME; ?>/images/img-6.jpg" alt="Image 6"></li>
-                <li class="mix color-2 check2 radio2 region3 duration-1"><img src="/<?php echo SITE_NAME; ?>/images/img-7.jpg" alt="Image 7"></li>
-                <li class="mix color-1 check1 radio3 region2 duration-8"><img src="/<?php echo SITE_NAME; ?>/images/img-8.jpg" alt="Image 8"></li>
-                <li class="mix color-2 check1 radio2 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-9.jpg" alt="Image 9"></li>
-                <li class="mix color-1 check3 radio2 region3 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-10.jpg" alt="Image 10"></li>
-                <li class="mix color-1 check3 radio3 region2 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-11.jpg" alt="Image 11"></li>
-                <li class="mix color-2 check1 radio3 region1 duration-7"><img src="/<?php echo SITE_NAME; ?>/images/img-12.jpg" alt="Image 12"></li>
-                <li class="gap"></li>
-                <li class="gap"></li>
-                <li class="gap"></li>
+                <?php echo elementsController::selectToursOFF();?>
             </ul>
             <div class="cd-fail-message">No results found</div>
         </section> <!-- cd-gallery -->
 
         <div class="cd-filter">
             <form>
-                <div class="cd-filter-block">
+<!--                <div class="cd-filter-block">
                     <h4>Search</h4>
 
                     <div class="cd-filter-content">
                         <input type="search" placeholder="search...">
-                    </div> <!-- cd-filter-content -->
-                </div> <!-- cd-filter-block -->
+                    </div>  cd-filter-content
+                </div>  cd-filter-block -->
+                <div class="cd-filter-block">
+
+                    <h4>Date</h4>
+                    <div class="cd-filter-content cd-filters list">
+                        <input type="text" id="datepicker" readonly style="background: url(/<?php echo SITE_NAME; ?>/images/calendar-128.png) no-repeat scroll center right; background-size: 2.5em; " size="30">
+                    </div>
+                </div>
+
+
                 <div class="cd-filter-block">
 
                     <h4>Duration</h4>
@@ -73,36 +68,42 @@
 
 
                 <div class="cd-filter-block">
-                    <h4>Check boxes</h4>
+                    <h4>Art der Tour</h4>
+
 
                     <ul class="cd-filter-content cd-filters list">
-                        <li>
-                            <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-                            <label class="checkbox-label" for="checkbox1">Option 1</label>
-                        </li>
-
-                        <li>
-                            <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-                            <label class="checkbox-label" for="checkbox2">Option 2</label>
-                        </li>
-
-                        <li>
-                            <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-                            <label class="checkbox-label" for="checkbox3">Option 3</label>
-                        </li>
+                        <?php echo elementsController::filterTourCheckbox(); ?>
                     </ul> <!-- cd-filter-content -->
                 </div> <!-- cd-filter-block -->
 
                 <div class="cd-filter-block">
-                    <h4>Select</h4>
+                    <h4>Region</h4>
 
                     <div class="cd-filter-content">
                         <div class="cd-select cd-filters">
                             <select class="filter" name="selectThis" id="selectThis">
-                                <option value="">Choose an option</option>
+                                <option value="">Alle Regionen</option>
                                 <option value=".region1">Oberwallis</option>
                                 <option value=".region2">Mittelwallis</option>
                                 <option value=".region3">Unterwallis</option>
+                                <option value=".region4">Ausserkantonal</option>
+                            </select>
+                        </div> <!-- cd-select -->
+                    </div> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Difficulty</h4>
+
+                    <div class="cd-filter-content">
+                        <div class="cd-select cd-filters">
+                            <select class="filter" name="selectThis" id="selectThis">
+                                <option value="">All difficulties</option>
+                                <option value=".diff1">*</option>
+                                <option value=".diff2">**</option>
+                                <option value=".diff3">***</option>
+                                <option value=".diff4">****</option>
+                                <option value=".diff5">*****</option>
                             </select>
                         </div> <!-- cd-select -->
                     </div> <!-- cd-filter-content -->

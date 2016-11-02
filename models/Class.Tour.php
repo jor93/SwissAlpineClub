@@ -457,4 +457,17 @@ class Tour
         return $result;
     }
 
+    static function selectTourTypes($tourid){
+            $query = "SELECT TypeTour_idTypeTour from typetour_tour where Tour_idTour = $tourid";
+        $result = SQL::getInstance()->select($query);
+
+        if(!$result) return false;
+
+        return $result;
+    }
+
+    static function selectAllTours(){
+        $query = "SELECT * FROM `tour`, `location` WHERE `Location_idLocation` = `idLocation`";
+        return SQL::getInstance()->select($query);
+    }
 }
