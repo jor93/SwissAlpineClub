@@ -34,7 +34,7 @@
             $view = "{$this->controller}.php";
  		else
  		    $view = "{$this->controller}/{$this->method}.php";
-        echo '</br> current view: ' . $view;
+        //echo '</br> current view: ' . $view;
  		if(file_exists('views/'.$view))
  			include 'views/'.$view;
  	}

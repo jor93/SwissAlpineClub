@@ -6,6 +6,7 @@
  * Time: 14:54
  */
 include_once ROOT_DIR.'views/header.inc';
+$sav = $_SESSION['saved'];
 ?>
     <script>
         $(document).ready(function () {
@@ -69,11 +70,6 @@ for ($i = 0; $i < $length; ++$i) {
               }
           });
       });
-
-      function checkPhone(){
-
-      }
-
     </script>
 
 <br />
@@ -93,33 +89,33 @@ for ($i = 0; $i < $length; ++$i) {
                         <h3><?php echo $lang['REGISTER_TITLE'];?></h3>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_FNAME'];?><label>*</label></span>
-                            <input type="text" class="ok" id="fname" name="firstname" placeholder="Please enter Firstname" required>
-                            <span id="label_fail_fname" class="error"><?php if(errorController::showErrorFromSession(6) === true) echo $lang['REGISTER_ERROR_6'];;?></span>
+                            <input type="text" class="ok" id="fname" name="firstname" placeholder="Please enter Firstname" value="<?php echo $sav[0];?>" required>
+                            <span id="label_fail_fname" class="error"><?php if(errorController::showErrorFromSession(6) === true) echo $lang['REGISTER_ERROR_6'];?></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LNAME'];?><label>*</label></span>
-                            <input type="text" id="lname" name="lastname" placeholder="Please enter Lastname" required>
+                            <input type="text" id="lname" name="lastname" placeholder="Please enter Lastname" value="<?php echo $sav[1];?>" required>
                             <span id="label_fail_lname" class="error"><?php if(errorController::showErrorFromSession(7) === true) echo $lang['REGISTER_ERROR_7'];?></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_EMAIL'];?><label>*</label></span>
-                            <input type="email" id="mail" name="email" placeholder="Please enter E-Mail" required>
+                            <input type="email" id="mail" name="email" placeholder="Please enter E-Mail" value="<?php echo $sav[2];?>" required>
                             <span id="label_fail_mail" class="error"><?php  if(errorController::showErrorFromSession(2) === true) echo $lang['REGISTER_ERROR_2'];?></span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_ADDRESS'];?><label>*</label></span>
-                            <input type="text" id="address" name="address" placeholder="Please enter Adress" required>
+                            <input type="text" id="address" name="address" placeholder="Please enter Adress" value="<?php echo $sav[3];?>" required>
                             <span id="label_fail_address" class="error" ></span>
                         </div>
 
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_PLZ'];?><label>*</label></span>
-                            <input type="text" id="plz" name="zip" placeholder="Please enter ZIP code" required>
+                            <input type="text" id="plz" name="zip" placeholder="Please enter ZIP code" value="<?php echo $sav[4];?>" required>
                             <span id="label_fail_zip" class="error" ></span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LOCATION'];?><label>*</label></span>
-                            <input type="text" id="loc" name="location" placeholder="Please enter Location" required>
+                            <input type="text" id="loc" name="location" placeholder="Please enter Location" value="<?php echo $sav[5];?>" required>
                             <span id="label_fail_location" class="error" ></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
@@ -128,30 +124,40 @@ for ($i = 0; $i < $length; ++$i) {
                                 <?php
                                 // get location if possible
                                 $country = loginController::getLocation();
+                                if($sav[8]!=null)
+                                    $index = $sav[8];
+                                else
+                                    $index =-1;
                                 // count countries
                                 $length = count($_SESSION['country'])-1;
                                 // add new option for each country and check if it matches to location
-                                for($i = 0; $i <= $length; ++$i)
-                                    echo "<option value='" . $_SESSION['country'][$i][0]  ."'" .(strcmp($country,$_SESSION['country'][$i][2])==0 ? 'selected' : '') . ">" . $_SESSION['country'][$i][1] . "</option>";
+                                if($index == -1){
+                                    for($i = 0; $i <= $length; ++$i)
+                                        echo "<option value='" . $_SESSION['country'][$i][0]  ."'" .(strcmp($country,$_SESSION['country'][$i][2])==0  ? 'selected' : '') . ">" . $_SESSION['country'][$i][1] . "</option>";
+                                }
+                                else{
+                                    for($i = 0; $i <= $length; ++$i)
+                                        echo "<option value='" . $_SESSION['country'][$i][0]  ."'" .($index-1 == $i ? 'selected' : '') . ">" . $_SESSION['country'][$i][1] . "</option>";
+                                }
                                 ?>
                             </select>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_PHONE'];?><label>*</label></span>
-                            <input type="text"  id="phone" name="phone" placeholder="Please enter Phone" required>
+                            <input type="text"  id="phone" name="phone" placeholder="Please enter Phone" value="<?php echo $sav[6];?>" required>
                             <span id="label_fail_phone" class="error" ></span>
                         </div>
 
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LANG'];?><label>*</label></span>
                             <select name="lang">
-                                <?php elementsController::langSelect(); ?>
+                                <?php if($sav[7] != null) $index = $sav[7]; else $index = "un"; elementsController::langSelect($index); ?>
                             </select>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_ABO'];?><label>*</label></span>
                             <select name="abo">
-                                <?php elementsController::aboSelect(); ?>
+                                <?php if($sav[9] != null) $index = $sav[9]; else $index =-1; elementsController::aboSelect($index-1); ?>
                             </select>
                         </div>
 
@@ -173,7 +179,7 @@ for ($i = 0; $i < $length; ++$i) {
 
                     <div class="clearfix"> </div>
                     <div class="register-but">
-                        <input type="submit" value="<?php echo $lang['REGISTER_SUBMIT'];?>" onclick="">
+                        <input type="submit" value="<?php echo $lang['REGISTER_SUBMIT'];?>">
                     </div>
 
 

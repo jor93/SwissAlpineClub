@@ -31,26 +31,29 @@
 
         <section class="cd-gallery">
             <ul>
-
                 <?php echo elementsController::selectToursOFF();?>
-
-
-                <li class="gap"></li>
-                <li class="gap"></li>
-                <li class="gap"></li>
             </ul>
             <div class="cd-fail-message">No results found</div>
         </section> <!-- cd-gallery -->
 
         <div class="cd-filter">
             <form>
-                <div class="cd-filter-block">
+<!--                <div class="cd-filter-block">
                     <h4>Search</h4>
 
                     <div class="cd-filter-content">
                         <input type="search" placeholder="search...">
-                    </div> <!-- cd-filter-content -->
-                </div> <!-- cd-filter-block -->
+                    </div>  cd-filter-content
+                </div>  cd-filter-block -->
+                <div class="cd-filter-block">
+
+                    <h4>Date</h4>
+                    <div class="cd-filter-content cd-filters list">
+                        <input type="text" id="datepicker" readonly style="background: url(/<?php echo SITE_NAME; ?>/images/calendar-128.png) no-repeat scroll center right; background-size: 2.5em; " size="30">
+                    </div>
+                </div>
+
+
                 <div class="cd-filter-block">
 
                     <h4>Duration</h4>
@@ -65,36 +68,42 @@
 
 
                 <div class="cd-filter-block">
-                    <h4>Check boxes</h4>
+                    <h4>Art der Tour</h4>
+
 
                     <ul class="cd-filter-content cd-filters list">
-                        <li>
-                            <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-                            <label class="checkbox-label" for="checkbox1">Option 1</label>
-                        </li>
-
-                        <li>
-                            <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-                            <label class="checkbox-label" for="checkbox2">Option 2</label>
-                        </li>
-
-                        <li>
-                            <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-                            <label class="checkbox-label" for="checkbox3">Option 3</label>
-                        </li>
+                        <?php echo elementsController::filterTourCheckbox(); ?>
                     </ul> <!-- cd-filter-content -->
                 </div> <!-- cd-filter-block -->
 
                 <div class="cd-filter-block">
-                    <h4>Select</h4>
+                    <h4>Region</h4>
 
                     <div class="cd-filter-content">
                         <div class="cd-select cd-filters">
                             <select class="filter" name="selectThis" id="selectThis">
-                                <option value="">Choose an option</option>
+                                <option value="">Alle Regionen</option>
                                 <option value=".region1">Oberwallis</option>
                                 <option value=".region2">Mittelwallis</option>
                                 <option value=".region3">Unterwallis</option>
+                                <option value=".region4">Ausserkantonal</option>
+                            </select>
+                        </div> <!-- cd-select -->
+                    </div> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Difficulty</h4>
+
+                    <div class="cd-filter-content">
+                        <div class="cd-select cd-filters">
+                            <select class="filter" name="selectThis" id="selectThis">
+                                <option value="">All difficulties</option>
+                                <option value=".diff1">*</option>
+                                <option value=".diff2">**</option>
+                                <option value=".diff3">***</option>
+                                <option value=".diff4">****</option>
+                                <option value=".diff5">*****</option>
                             </select>
                         </div> <!-- cd-select -->
                     </div> <!-- cd-filter-content -->
