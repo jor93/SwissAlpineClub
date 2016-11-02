@@ -23,6 +23,7 @@ class forgotpwController extends Controller
     }
 
     function resetpw(){
+
         //if a user is active he cannot re-login
         /*
         if($this->getActiveUser()){
