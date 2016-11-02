@@ -281,9 +281,7 @@ class Account{
         $location = Location::selectLocation($row['Location_idLocation']);
         $country = Country::selectCountry($row['Country_idCountry']);
 
-        var_dump($location->getLocationName());
-
-        return new Account($row['idAccount'], $row['Firstname'], $row['Lastname'], $row['Password'], $row['Email'], $row['Address'], $location, $country,
+        return Account::createAccount($row['idAccount'], $row['Firstname'], $row['Lastname'], $row['Password'], $row['Email'], $row['Address'], $location, $country,
             $row['Phone'], $row['Language'], $row['Runlevel'], $abonnement, $row['Lastlogin_Date'], $row['Activated']);
     }
 

@@ -439,8 +439,18 @@ class Tour
         return false;
     }
 
-    static function updateTour(){
+    static function updateTour($tour){
+        $result = false;
+        $query = "UPDATE Tour SET Start_date='$tour->startDate', End_date='$tour->endDate', Duration='$tour->duration', Title='$tour->title', 
+                Subtitle='$tour->subtitle', Depart_time='$tour->depart_time', Arrival_time='$tour->arrival_time', Price='$tour->price', Difficulty='$tour->difficulty', 
+                Status_idStatus='$tour->status', Location_idLocation='$tour->locationDep', Location_idLocation1='$tour->locationArriv' where idTour='$tour->idTour'";
 
+        $queryLanguage = "UPDATE Language SET de='$tour->languageDescriptionDE', fr='$tour->languageDescriptionFR'
+        where idLanguage='$tour->idLanguageDescription'";
+
+        SQL::getInstance()->executeQuery($query);
+        SQL::getInstance()->executeQuery($queryLanguage);
+        return $result;
     }
 
     static function updateTourImage($tourid, $path, $mime){

@@ -176,5 +176,9 @@ class TypeTour
         return SQL::getInstance()->select($query)->fetchAll();
     }
 
+    public static function removeTypesFromTour($idTour){
+        $query = "DELETE FROM typetour_tour where Tour_idTour = '$idTour'";
+        return SQL::getInstance()->executeQuery($query);
+    }
 
 }

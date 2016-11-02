@@ -141,4 +141,9 @@ class Transport
         return $row['ResultTransport'];
     }
 
+    static function removeTransportsFromTour($idTour){
+        $query = "DELETE FROM Transport_tour where Tour_idTour = '$idTour'";
+        return SQL::getInstance()->executeQuery($query);
+    }
+
 }
