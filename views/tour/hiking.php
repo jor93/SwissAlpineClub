@@ -13,6 +13,11 @@
     $(document).ready(function () {
         $('#menu_hiking').addClass('active');
     });
+
+    function showHike($idHike){
+        document.getElementById("saver").value = $idHike;
+        document.getElementById("manageHikings").submit();
+    }
 </script>
 
 
@@ -29,13 +34,15 @@
             </div> <!-- cd-tab-filter -->
         </div> <!-- cd-tab-filter-wrapper -->
 
+
+        <form id="manageHikings" action="<?php echo URL_DIR.'tour/hiking';?>" method="post" enctype="multipart/form-data">
         <section class="cd-gallery">
             <ul>
                 <?php echo elementsController::selectToursOFF();?>
             </ul>
             <div class="cd-fail-message">No results found</div>
         </section> <!-- cd-gallery -->
-
+        </form>
         <div class="cd-filter">
             <form>
 <!--                <div class="cd-filter-block">

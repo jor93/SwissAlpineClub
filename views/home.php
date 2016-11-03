@@ -63,7 +63,7 @@ include_once 'header.inc';
             </ul>
             <div class="cd-fail-message">No results found</div>
         </section> <!-- cd-gallery -->
-
+        </form>
 
 
     </div>

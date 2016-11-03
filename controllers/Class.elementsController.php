@@ -30,6 +30,8 @@ class elementsController extends Controller
         // call db
         $answer = Tour::selectAllTours();
         self::drawSortList($answer, null);
+        echo "<input type='hidden' id='saver' name='showHike' value='0' />";
+
     }
 
     public static function getNext3Hikings(){
