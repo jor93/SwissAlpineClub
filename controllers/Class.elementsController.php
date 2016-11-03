@@ -13,7 +13,7 @@ class elementsController extends Controller
 
     public static function showLoggedInUser(){
         include_once (ROOT_DIR.'views/common.php');
-        $user = true;
+        $user = false;
 
         if(!$user){
             echo "<li><a href=\"login/register\">" . $lang['HEADER_REGISTER'] . "</a></li>";
