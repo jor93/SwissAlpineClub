@@ -55,7 +55,14 @@ class elementsController extends Controller
         for ($i = 0; $i < $length; $i++) {
             $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1] . ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4] . ' ' . $answer[$i][5] . ' ' . $answer[$i][6] . ' ' . $answer[$i][7] . ' ' . substr($answer[0][8], 0, -1) . ' ' . $answer[$i][9] . "'";
             $id = $answer[$i][0];
-            echo "<li class=$finalClass onclick='showUser($id)'><img alt='No image found' src='$img' /></li>";
+            echo "<li class=$finalClass onclick='showUser($id)'>";
+            echo "<div class='hovereffect'>";
+            echo "<img alt='No image found' src='$img' />";
+            echo "<div class='overlay'>";
+            echo "<h5>$answer[$i][1] $answer[$i][2]<br /></h5>";
+            echo "<h6>$answer[$i][4]<br />$answer[$i][8]</h6>";
+            echo "</div>";
+            echo "</li>";
         }
         echo "<input type='hidden' id='saver' name='showUser' value='0' />";
     }
@@ -159,7 +166,7 @@ class elementsController extends Controller
                         //echo '</br>------> went through : ' . $idTours[$x] . ' and ' . $idFavorites[$y];
                         $favorite = "fav1";
                         $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
-                        echo "<li class=$finalClass>";
+                        echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
                         echo "<div class='hovereffect'>";
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                         echo "<div class='overlay'>";
@@ -173,7 +180,7 @@ class elementsController extends Controller
                 }
                 if (!$draw) {
                     $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
-                    echo "<li class=$finalClass>";
+                    echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
                     echo "<div class='hovereffect'>";
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                     echo "<div class='overlay'>";
@@ -185,7 +192,7 @@ class elementsController extends Controller
                 }
             } else {
                 $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
-                echo "<li class=$finalClass>";
+                echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
                 echo "<div class='hovereffect'>";
                 echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                 echo "<div class='overlay'>";

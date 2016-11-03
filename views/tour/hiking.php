@@ -10,14 +10,14 @@
 ?>
 
 <script>
-    $(document).ready(function () {
-        $('#menu_hiking').addClass('active');
-    });
+    $('#menu_hiking').addClass('active');
 
     function showHike($idHike){
         document.getElementById("saver").value = $idHike;
         document.getElementById("manageHikings").submit();
     }
+
+
 </script>
 
 

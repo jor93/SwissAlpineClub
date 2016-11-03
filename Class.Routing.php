@@ -46,10 +46,6 @@ class Routing {
 		$controller = strtolower ( (@$parts [1]) ? $parts [1] : "home" );
 		$method = strtolower ( (@$parts [2]) ? $parts [2] : "home" );
 
-        echo '</br> controller:';
-        var_dump($controller);
-        echo '</br> method:';
-        var_dump($method);
 
 		// Check if controller and method exist, else show error page
 		if (! file_exists ( ROOT_DIR . "controllers/Class.{$controller}Controller.php" )) {

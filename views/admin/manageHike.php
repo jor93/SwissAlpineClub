@@ -15,7 +15,7 @@ $_SESSION['manageTour'] = $manageTourInfos;
 ?>
 <script>
     $(document).ready(function () {
-        $('#menu_manageHike').addClass('active');
+        $('#menu_hiking').addClass('active');
     });
 
     $( function() {

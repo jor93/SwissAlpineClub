@@ -93,6 +93,8 @@ $lang['MENU_NEWS'] = 'Home';
 $lang['MENU_TOUR'] = 'Wanderungen';
 $lang['MENU_ABOUT'] = 'Über Uns';
 $lang['MENU_CONTACT'] = 'Kontakt';
+$lang['MENU_PROFIL'] = 'Mein Profil';
+$lang['MENU_INSCRIPTION'] = 'Meine Anmeldungen';
 
 /* #################### footer ####################  */
 $lang['FOOTER_FOLLOW'] = 'Folge uns';
