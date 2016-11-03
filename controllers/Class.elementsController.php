@@ -60,7 +60,7 @@ class elementsController extends Controller
             echo "<img alt='No image found' src='$img' />";
             echo "<div class='overlay'>";
             echo "<h5>$answer[$i][1] $answer[$i][2]<br /></h5>";
-            echo "<h6>$answer[$i][4]<br />$answer[$i][8]</h6>";
+            echo "<h6>$answer[$i][4]<br />$answer[$i<EXTERNAL_FRAGMENT></EXTERNAL_FRAGMENT>]</h6>";
             echo "</div>";
             echo "</li>";
         }
