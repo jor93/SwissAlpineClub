@@ -60,7 +60,7 @@ class elementsController extends Controller
             echo "<img alt='No image found' src='$img' />";
             echo "<div class='overlay'>";
             echo "<h5>$answer[$i][1] $answer[$i][2]<br /></h5>";
-            echo "<h6>$answer[$i][4]<br />$answer[$i<EXTERNAL_FRAGMENT></EXTERNAL_FRAGMENT>]</h6>";
+            echo "<h6>$answer[$i][4]<br />$answer[$i][8]</h6>";
             echo "</div>";
             echo "</li>";
         }
@@ -171,7 +171,7 @@ class elementsController extends Controller
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                         echo "<div class='overlay'>";
                         echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
-                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                        echo "<h6>Schwierigkeit:Schwierigkeit:Schwierigkeit:Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                         echo "</div>";
                         echo "</li>";
                         echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star2.png' width='20' height='20' /></button>";
@@ -197,7 +197,7 @@ class elementsController extends Controller
                 echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                 echo "<div class='overlay'>";
                 echo "<h5>$title[$x]<br />$location[$x], $newDate</h5>";
-                echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]h<br /></h6>";
+                echo "<h6>Schwierigkeit:Schwierigkeit:Schwierigkeit:Schwierigkeit: $diffString<br />Dauer: $durations[$x]h<br /></h6>";
                 echo "</div>";
                 echo "</li>";
             }
