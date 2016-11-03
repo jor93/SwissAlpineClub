@@ -6,18 +6,22 @@
  * Date: 18.10.2016
  * Time: 12:43
  */
+
+
 class elementsController extends Controller
 {
 
     public static function showLoggedInUser(){
+        include_once (ROOT_DIR.'views/common.php');
         $user = true;
+
         if(!$user){
-            echo "<li><a href=\"login/register\">" . $lang["HEADER_REGISTER"] . "</a></li>";
-            echo "<li><a href=\"login/login\">" . $lang["HEADER_LOGIN"] . "</a></li>";
+            echo "<li><a href=\"login/register\">" . $lang['HEADER_REGISTER'] . "</a></li>";
+            echo "<li><a href=\"login/login\">" . $lang['HEADER_LOGIN'] . "</a></li>";
         }else{
             $name = $_SESSION["account"];
-            echo "<li><a href=\"login/register\">" . $lang["HEADER_LOGGED"] . $name->getFullName() . "</a></li>";
-            echo "<li><a href=\"login/login\">" . $lang["HEADER_LOGOUT"] . "</a></li>";
+            echo "<li><a href=\"login/register\">" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
+            echo "<li><a href=\"login/login\">" . $lang['HEADER_LOGOUT'] . "</a></li>";
         }
     }
 

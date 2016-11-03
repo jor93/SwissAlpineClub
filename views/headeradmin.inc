@@ -47,8 +47,7 @@ include_once ROOT_DIR.'views/common.php';
 				</div>
 				<div class="header-left">
 					<ul>
-						<li id="menu_registration"><a href="registration.php">Registration</a></li>
-						<li id="menu_login"><a href="login.php">Login</a></li>
+						<?php elementsController::showLoggedInUser(); ?>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
