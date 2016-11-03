@@ -33,8 +33,15 @@ class elementsController extends Controller
     }
 
     public static function getNext3Hikings(){
-        $answer = Account::selectAllAccounts();
+        $answer = Tour::getNext3Hikings();
         $length = count($answer);
+        $img = '/' . SITE_NAME . '/images/img-6.jpg';
+
+        for ($i = 0; $i < $length; $i++) {
+            $id = $answer[$i][0];
+            echo "<li class='' onclick='showHike($id)'><img alt='No image found' src='$img' /></li>";
+        }
+        echo "<input type='hidden' id='saver' name='showHike' value='0' />";
     }
 
     public static function getAccounts()

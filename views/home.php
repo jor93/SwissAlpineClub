@@ -13,6 +13,11 @@ include_once 'header.inc';
     $(document).ready(function () {
         $('#menu_home').addClass('active');
     });
+
+    function showUser($idAccount){
+        document.getElementById("saver").value = $idAccount;
+        document.getElementById("manage3Hikings").submit();
+    }
 </script>
 
 <br />
@@ -47,6 +52,17 @@ include_once 'header.inc';
             <label for="ss2-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
             <label for="ss2-item-1" class="slideshow--nav slideshow--nav-next">Go to slide 1</label>
         </div>
+
+        <form id="manage3Hikings" action="<?php echo URL_DIR.'home/';?>" method="post" enctype="multipart/form-data">
+        <section class="cd-gallery">
+            <ul>
+                <?php elementsController::getNext3Hikings(); ?>
+                <li class="gap"></li>
+                <li class="gap"></li>
+                <li class="gap"></li>
+            </ul>
+            <div class="cd-fail-message">No results found</div>
+        </section> <!-- cd-gallery -->
 
 
 
