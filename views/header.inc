@@ -57,11 +57,7 @@ include_once ROOT_DIR.'views/common.php';
 					</div>
 					<div class="header-left">
 						<ul>
-							<li><a href="<?php echo URL_DIR.'login/register';?>">Registration</a></li>
-							<li><a href="<?php echo URL_DIR.'login/login';?>">Login</a></li>
-							<li><a href="<?php echo URL_DIR.'login/register';?>">Registration</a></li>
-							<li><a href="<?php echo URL_DIR.'login/login';?>">Login</a></li>
-							<li><a href="<?php echo URL_DIR.'login/resetpw';?>">asdf</a></li>
+							<?php elementsController::showLoggedInUser(); ?>
 						</ul>
 					</div>
 					<div class="clearfix"> </div>

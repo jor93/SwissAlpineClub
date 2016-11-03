@@ -45,6 +45,10 @@ class Account{
         return $user;
      }
 
+     public function getFullName(){
+         return $this->firstname . ' ' . $this->lastname;
+     }
+
     /**
      * @return mixed
      */

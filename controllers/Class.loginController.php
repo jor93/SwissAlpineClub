@@ -158,6 +158,7 @@ class loginController extends Controller {
                 $password2 = $this->badassSafer($_POST['pwd2']);
                 $country = $this->badassSafer($_POST['country']);
                 $abo = $this->badassSafer($_POST['abo']);
+                $_SESSION['saved'] = array($firstName,$lastName,$email,$address,$zip,$zip,$location,$phone,$language,$country,$abo);
             } else {
                 $aborting = true;
                 array_push($errorsInForm, 1);
@@ -199,8 +200,6 @@ class loginController extends Controller {
                     $aborting = true;
                 }
             }
-
-
             if($aborting){
                 // write all errors to session
                 $_SESSION['errors'] = $errorsInForm;
@@ -249,6 +248,7 @@ class loginController extends Controller {
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
                 $_SESSION['error'] = null;
+                $_SESSION['saved'] = null;
         }
     }
 

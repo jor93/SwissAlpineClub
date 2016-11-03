@@ -154,4 +154,11 @@ $lang['REGISTER_ERROR_7'] = 'Bitte geben Sie einen gültigen Nachnamen ein!';
 /* #################### global errors ####################  */
 $lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie es erneut!';
 
+/* #################### header ####################  */
+$lang['HEADER_REGISTER'] = 'Registieren';
+$lang['HEADER_LOGIN'] = 'Login';
+$lang['HEADER_LOGOUT'] = 'Logout';
+$lang['HEADER_LOGGED'] = 'Willkommen';
+
+
 ?>

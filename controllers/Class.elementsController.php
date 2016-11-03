@@ -9,6 +9,18 @@
 class elementsController extends Controller
 {
 
+    public static function showLoggedInUser(){
+        $user = true;
+        if(!$user){
+            echo "<li><a href=\"login/register\">" . $lang["HEADER_REGISTER"] . "</a></li>";
+            echo "<li><a href=\"login/login\">" . $lang["HEADER_LOGIN"] . "</a></li>";
+        }else{
+            $name = $_SESSION["account"];
+            echo "<li><a href=\"login/register\">" . $lang["HEADER_LOGGED"] . $name->getFullName() . "</a></li>";
+            echo "<li><a href=\"login/login\">" . $lang["HEADER_LOGOUT"] . "</a></li>";
+        }
+    }
+
     public static function selectToursOFF()
     {
         // call db
