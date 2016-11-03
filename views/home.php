@@ -14,8 +14,8 @@ include_once 'header.inc';
         $('#menu_home').addClass('active');
     });
 
-    function showUser($idAccount){
-        document.getElementById("saver").value = $idAccount;
+    function showUser($idHike){
+        document.getElementById("saver").value = $idHike;
         document.getElementById("manage3Hikings").submit();
     }
 </script>
