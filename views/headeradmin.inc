@@ -64,7 +64,6 @@ include_once ROOT_DIR.'views/common.php';
 				<span class="menu"> </span>
 				<ul>
 					<li id="menu_home"><a href="home.php">Home</a></li>
-
 					<li id="menu_hikemanage"><a href="hikemanage.php">Manage Hikes</a></li>
 					<li id="menu_about"><a href="about.php">About</a></li>
 					<li id="menu_contact"><a href="contact.php">Contact</a></li>
