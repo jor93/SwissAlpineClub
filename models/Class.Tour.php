@@ -413,6 +413,9 @@ class Tour
         return $result;
     }
 
+
+
+
     static function selectTour($tourId){
         $query = "SELECT Tour.*, LanguageDesc.*
                   FROM Tour as Tour, Language as LanguageDesc
@@ -479,5 +482,18 @@ class Tour
     static function selectAllTours(){
         $query = "SELECT * FROM `tour`, `location` WHERE `Location_idLocation` = `idLocation`";
         return SQL::getInstance()->select($query);
+    }
+
+    // get the next 3 hikings for home page
+    public static function getNext3Hikings(){
+        $query = "SELECT tour.idTour,tour.Start_date,tour.End_date,tour.Duration,tour.Title,tour.Subtitle,tour.Depart_time,tour.Arrival_time,tour.Price,tour.Status_idStatus,tour.Language_idLanguage,tour.Picture,tour.Location_idLocation
+                    FROM grp1.tour, grp1.location, grp1.status, grp1.language
+                    WHERE tour.Language_idLanguage = language.idLanguage 
+                    AND tour.Status_idStatus = status.idStatus 
+                    AND tour.Location_idLocation = location.idLocation
+                    AND tour.Start_date > now()
+                    ORDER BY tour.Start_date ASC
+                    LIMIT 3;";
+        return SQL::getInstance()->select($query)->fetchAll();
     }
 }

@@ -32,6 +32,10 @@ class elementsController extends Controller
         self::drawSortList($answer, null);
     }
 
+    public static function getNext3Hikings(){
+        $answer = Account::selectAllAccounts();
+        $length = count($answer);
+    }
 
     public static function getAccounts()
     {
