@@ -47,7 +47,7 @@ include_once ROOT_DIR. '/views/headeradmin.inc';
                             <li class="gap"></li>
                             <li class="gap"></li>
                         </ul>
-                        <div class="cd-fail-message">No results found</div>
+                        <div class="cd-fail-message"><?php echo $lang['NO_RESULTS']; ?></div>
                     </section> <!-- cd-gallery -->
                 </main> <!-- cd-main-content -->
             </form>

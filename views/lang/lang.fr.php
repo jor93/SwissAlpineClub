@@ -94,6 +94,9 @@ $lang['MENU_ABOUT'] = 'Nous';
 $lang['MENU_CONTACT'] = 'Contact';
 $lang['MENU_PROFIL'] = 'Mon profil';
 $lang['MENU_INSCRIPTION'] = 'Mes inscriptions';
+$lang['MENU_HIKEMGMT'] = 'Gestion tour';
+$lang['MENU_ACCMGMT'] = 'Utilisateurs';
+$lang['MENU_INSCRIPTIONMGMT']  = 'Inscriptions';
 
 /* #################### footer ####################  */
 $lang['FOOTER_FOLLOW'] = 'Suivez-nous';
@@ -154,6 +157,7 @@ $lang['REGISTER_ERROR_7'] = 'S\'il vous plaît entrer un nom valide!';
 
 /* #################### global errors ####################  */
 $lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie es erneut!';
+$lang['NO_RESULTS'] = 'Aucun résultat correspondant à votre sélection';
 
 /* #################### header ####################  */
 $lang['HEADER_REGISTER'] = 'Enregistrer';

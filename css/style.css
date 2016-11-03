@@ -51,6 +51,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	transition: all 0.4s ease-in-out;
 }
 
+.hovereffect:hover {
+	cursor: pointer;
+}
+
 .hovereffect:hover h5 {
 	background: rgba(0, 0, 0, 0);
 	-webkit-transform: translateY(5px);
