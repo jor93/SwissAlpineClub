@@ -60,6 +60,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 }
 
 .hovereffect h6 {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	display: inline-block;
 	text-decoration: none;
 	padding: 7px 14px;
