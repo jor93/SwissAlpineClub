@@ -121,4 +121,42 @@ $lang['ABOUT_MEMBER_ADVANTAGE_4'] = 'Recevoir 6 fois par année le magazine Suis
 $lang['ABOUT_MEMBER_ADVANTAGE_5'] = 'Réductions de prix sur les cartes pédestres de notre canton et les cartes de l’Office fédéral de la topographie';
 $lang['ABOUT_CONSTITUTION'] = 'Statuts:';
 $lang['ABOUT_CONSTITUTION_DESC'] = 'Statuts peuvent être téléchargés ici';
+
+/* #################### register ####################  */
+$lang['REGISTER_TITLE'] = 'INFORMATIONS PERSONEL';
+$lang['REGISTER_FNAME'] = 'Prénom';
+$lang['REGISTER_LNAME'] = 'Nom';
+$lang['REGISTER_EMAIL'] = 'E-Mail';
+$lang['REGISTER_ADDRESS'] = 'Adresse';
+$lang['REGISTER_LOCATION'] = 'Lieu';
+$lang['REGISTER_COUNTRY'] = 'Pays';
+$lang['REGISTER_PLZ'] = 'Code postal';
+$lang['REGISTER_PHONE'] = 'Numeréro de téléphone';
+$lang['REGISTER_LANG'] = 'Langue de communication';
+$lang['REGISTER_ABO'] = 'Abonnement';
+$lang['REGISTER_TITLE_2'] = 'INFORMATIONS LOGIN';
+$lang['REGISTER_PWD'] = 'Mot de passe';
+$lang['REGISTER_PWD_2'] = 'Confirmation du mot de passe';
+$lang['REGISTER_SUBMIT'] = 'Registrieren';
+$lang['REGISTER_FORGOT_PW'] = 'Mot de passe oublié?';
+
+/* #################### register errors ####################  */
+$lang['REGISTER_ERROR_1'] = 'S\'il vous plaît remplir tous les champs!';
+$lang['REGISTER_ERROR_2'] = 'S\'il vous plaît entrer un e-mail valide!';
+$lang['REGISTER_ERROR_3'] = 'Cet e-mail est déjà utilisé! Est-ce que vous avez ';
+$lang['REGISTER_ERROR_4'] = 'Les mots de passe ne sont pas identiques!';
+$lang['REGISTER_ERROR_5'] = 'Les mots de passe sont trop faibles';
+$lang['REGISTER_ERROR_6'] = 'S\'il vous plaît entrer un prénom valide!';
+$lang['REGISTER_ERROR_7'] = 'S\'il vous plaît entrer un nom valide!';
+
+
+/* #################### global errors ####################  */
+$lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie es erneut!';
+
+/* #################### header ####################  */
+$lang['HEADER_REGISTER'] = 'Enregistrer';
+$lang['HEADER_LOGIN'] = 'Login';
+$lang['HEADER_LOGOUT'] = 'Logout';
+$lang['HEADER_LOGGED'] = 'Bienvenue';
+
 ?>
