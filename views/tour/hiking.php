@@ -40,7 +40,7 @@
             <ul>
                 <?php echo elementsController::selectToursOFF();?>
             </ul>
-            <div class="cd-fail-message">No results found</div>
+            <div class="cd-fail-message"><?php echo $lang['NO_RESULTS']; ?></div>
         </section> <!-- cd-gallery -->
         </form>
         <div class="cd-filter">
@@ -116,26 +116,7 @@
                     </div> <!-- cd-filter-content -->
                 </div> <!-- cd-filter-block -->
 
-                <div class="cd-filter-block">
-                    <h4>Radio buttons</h4>
 
-                    <ul class="cd-filter-content cd-filters list">
-                        <li>
-                            <input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
-                            <label class="radio-label" for="radio1">All</label>
-                        </li>
-
-                        <li>
-                            <input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">
-                            <label class="radio-label" for="radio2">Choice 2</label>
-                        </li>
-
-                        <li>
-                            <input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
-                            <label class="radio-label" for="radio3">Choice 3</label>
-                        </li>
-                    </ul> <!-- cd-filter-content -->
-                </div> <!-- cd-filter-block -->
             </form>
 
             <a href="#0" class="cd-close">Close</a>

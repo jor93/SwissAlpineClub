@@ -95,6 +95,9 @@ $lang['MENU_ABOUT'] = 'Über Uns';
 $lang['MENU_CONTACT'] = 'Kontakt';
 $lang['MENU_PROFIL'] = 'Mein Profil';
 $lang['MENU_INSCRIPTION'] = 'Meine Anmeldungen';
+$lang['MENU_HIKEMGMT'] = 'Tourverwaltung';
+$lang['MENU_ACCMGMT'] = 'Benutzerverwaltung';
+$lang['MENU_INSCRIPTIONMGMT']  = 'Anmeldungen';
 
 /* #################### footer ####################  */
 $lang['FOOTER_FOLLOW'] = 'Folge uns';
@@ -155,6 +158,7 @@ $lang['REGISTER_ERROR_7'] = 'Bitte geben Sie einen gültigen Nachnamen ein!';
 
 /* #################### global errors ####################  */
 $lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie es erneut!';
+$lang['NO_RESULTS'] = 'Keine Ergebnisse gefunden, die ihrer Auswahl entsprechen';
 
 /* #################### header ####################  */
 $lang['HEADER_REGISTER'] = 'Registieren';
