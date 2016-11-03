@@ -53,14 +53,14 @@ class elementsController extends Controller
         $img = '/' . SITE_NAME . '/images/img-6.jpg';
 
         for ($i = 0; $i < $length; $i++) {
-            $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1] . ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4] . ' ' . $answer[$i][5] . ' ' . $answer[$i][6] . ' ' . $answer[$i][7] . ' ' . substr($answer[0][8], 0, -1) . ' ' . $answer[$i][9] . "'";
+            $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1] . ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4] . ' ' . $answer[$i][5] . ' ' . $answer[$i][6] . ' ' . $answer[$i][7] . ' ' . substr($answer[$i][8], 0, -1) . ' ' . $answer[$i][9] . "'";
             $id = $answer[$i][0];
             echo "<li class=$finalClass onclick='showUser($id)'>";
             echo "<div class='hovereffect'>";
             echo "<img alt='No image found' src='$img' />";
             echo "<div class='overlay'>";
-            echo "<h5>$answer[$i][1] $answer[$i][2]<br /></h5>";
-            echo "<h6>$answer[$i][4]<br />$answer[$i][8]</h6>";
+            echo "<h5>" .$answer[$i][1] .' ' . $answer[$i][2] . "<br /></h5>";
+            echo "<h6>" . $answer[$i][3]."<br />".$answer[$i][4]."<br />".$answer[$i][7]. ' ' .$answer[$i][6] ."<br />". $answer[$i][8]. "<br />". $answer[$i][5]. "<br />". $answer[$i][9]. "</h6>";
             echo "</div>";
             echo "</li>";
         }
