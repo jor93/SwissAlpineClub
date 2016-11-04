@@ -66,6 +66,7 @@ $account = $_SESSION['account'];
                 <div class="register-top-grid" style="padding-left: 70px">
 
                     </br>
+                    <form id="editForm" action="<?php echo URL_DIR.'showuser/updateUserAccount';?>" method="post">
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>E-Mail</span>
                     </div>
@@ -144,7 +145,7 @@ $account = $_SESSION['account'];
                     </div>
 
 
-
+                    </form>
 
 
                     </div>
