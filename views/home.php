@@ -66,20 +66,20 @@ include_once 'header.inc';
     <div class="container">
         <div class="col-md-4 curabitur-top">
             <i class="hammer"></i>
-            <h4>Contrary to popular</h4>
-            <p>Pellentesque eu congue sapien. Donec hendrerit viverra finibus. Nulla eget sollicitudin leo. Morbi lacinia libero urna necrfaucibus nulla mollis et. </p>
+            <h4>Ihre Vorteile</h4>
+            <p>Wir bieten Ihnen verschiedene Wanderungen mit Familie und Freunden an. Sie können bei uns Ideen für Wanderungen finden oder eine von uns geführte Wanderung buchen.</p>
             <a href="#" class="btn  btn-1c btn1 btn-1d">More</a>
         </div>
         <div class="col-md-4 curabitur-top">
             <i class="timer"></i>
-            <h4>Contrary to popular</h4>
-            <p>Pellentesque eu congue sapien. Donec hendrerit viverra finibus. Nulla eget sollicitudin leo. Morbi lacinia libero urna necrfaucibus nulla mollis et. </p>
+            <h4>Sehen Sie sich Bewertungen an</h4>
+            <p>Auf unserer Seite können Sie die Wanderungen genauenstens ansehen und sich die Bewertungen unserer Community ansehen.</p>
             <a href="#" class="btn  btn-1c btn1 btn-1d">More</a>
         </div>
         <div class="col-md-4 curabitur-top">
             <i class="tent"></i>
-            <h4>Contrary to popular</h4>
-            <p>Pellentesque eu congue sapien. Donec hendrerit viverra finibus. Nulla eget sollicitudin leo. Morbi lacinia libero urna necrfaucibus nulla mollis et. </p>
+            <h4>Wanderungen</h4>
+            <p>Wir bieten Ihnen verschiedene Wanderungen an. Von Klettertouren bis Skitouren über mehrtägige geführte Wanderungen überall im Wallis.</p>
             <a href="#" class="btn  btn-1c btn1 btn-1d">More</a>
         </div>
         <div class="clearfix"> </div>
