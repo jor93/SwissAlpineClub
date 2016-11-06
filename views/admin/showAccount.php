@@ -250,7 +250,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         <input onclick="canc()" id="btn-cancel" type="button" value="Cancel"  style="display: none">
                     </div>
                 </div>
-                   <input type='hidden' id='decider' name='operation' value='0' />;
+                   <input type='hidden' id='decider' name='operation' value='0' />
                     </form>
 
             </div>
