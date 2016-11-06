@@ -9,7 +9,7 @@
 class showuserController extends Controller
 {
 
-    private $accountId;
+    private $account;
 
     function showuser(){
         if(self::getActiveUserWithoutCookie())$this->account = $_SESSION['account'];
@@ -19,33 +19,27 @@ class showuserController extends Controller
     //Account::updateAccount(1, 'PeterNames', 'PeterLastname', 'Address Peter', '1', '5555555', 'SE', '2');
 
     function updateUserAccount(){
-        if(!isset($_SESSION['country'])){
-            $query = "select idCountry,NameCountry,CodeCountry from country;";
-            $data = SQL::getInstance()->select($query)->fetchAll();
-            $_SESSION['country'] = $data;
-        }
-        //var_dump($this->account->getIdAccount());
 
         if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address'])
-        && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['countryId'])
-        && $_POST['country']){
+        && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang'])
+        && isset($_POST['country'])){
 
             $idLocation = loginController::getIdLocationFromZipAndLocationName($_POST['loc'], $_POST['plz']);
 
-            $this->accountId = $_SESSION['account']->getIdAccount();
+            $this->account = $_SESSION['account'];
 
             //Check if something has changed in the database
-            if(Account::updateAccount($this->accountId, $this->badassSafer($_POST['firstname']), $this->badassSafer($_POST['lastname']),
-                $this->badassSafer($_POST['address']), $this->badassSafer($_POST['locationId']), $this->badassSafer($_POST['phone']),
-                $this->badassSafer($_POST['language']), $this->badassSafer($_POST['countryId']))){
-                $this->account->setFirstname($_POST['firstname']);
-                $this->account->setLastname($_POST['lastname']);
+            if(Account::updateAccount($this->account->getIdAccount(), $this->badassSafer($_POST['fname']), $this->badassSafer($_POST['lname']),
+                $this->badassSafer($_POST['address']), $idLocation, $this->badassSafer($_POST['phone']),
+                $this->badassSafer($_POST['lang']), $_POST['country'])){
+                $this->account->setFirstname($_POST['fname']);
+                $this->account->setLastname($_POST['lname']);
                 $this->account->setAddress($_POST['address']);
-                $this->account->getLocation()->setLocationName($_POST['locationName']);
-                $this->account->getLocation()->setPostcode($_POST['postcode']);
+                $this->account->getLocation()->setLocationName($_POST['loc']);
+                $this->account->getLocation()->setPostcode($_POST['plz']);
                 $this->account->setPhone($_POST['phone']);
-                $this->account->setLanguage($_POST['language']);
-                $this->account->getCountry()->setNameCountry($_POST['countryName']);
+                $this->account->setLanguage($_POST['lang']);
+                $this->account->getCountry()->setIdCountry(($_POST['country']));
                 $_SESSION['account'] = $this->account;
                 $this->redirect('profile', 'showuser');
             }
