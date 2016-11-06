@@ -38,6 +38,10 @@ class adminController extends Controller
 
      }
 
+    function manageInscription(){
+
+    }
+
     function showAccount(){
         if(isset($_SESSION['accountId'])) {
             $id = $this->badassSafer($_SESSION['accountId']);
