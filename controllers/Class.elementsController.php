@@ -95,8 +95,8 @@ class elementsController extends Controller
                     echo "<span>☆</span>";
                 }
             }
-            echo "<label value='name$i date$i'>";
-            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '>";
+            echo "<label value='name$i date$i'></label>";
+            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '></textarea>";
 
 
         }
