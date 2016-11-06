@@ -58,7 +58,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
     function edit() {
 
-        document.getElementById("fname").removeAttribute(disabled);
+        document.getElementById("fname").removeAttribute("disabled");
         document.getElementById("lname").removeAttribute(disabled);
         document.getElementById("address").removeAttribute(disabled);
         document.getElementById("plz").removeAttribute(disabled);
@@ -198,7 +198,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
-                        <input onclick="edit()" id="btn-edit" type="submit" value="Edit">
+                        <input onclick="edit()" id="btn-edit" type="button" value="Edit">
                         <input onclick="save()" id="btn-save" type="submit" value="Save" style="display: none">
                         <input onclick="delete()" id="btn-edit" type="submit" value="Delete" >
                     </div>
