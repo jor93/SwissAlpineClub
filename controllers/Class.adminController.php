@@ -52,6 +52,32 @@ class adminController extends Controller
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // get form
+            $firstName = $this->badassSafer($_POST['firstname']);
+            $lastName = $this->badassSafer($_POST['lastname']);
+            $email = $this->badassSafer($_POST['email']);
+            $address = $this->badassSafer($_POST['address']);
+            $zip = $this->badassSafer($_POST['zip']);
+            $location = $this->badassSafer($_POST['location']);
+            $phone = $this->badassSafer($_POST['phone']);
+            $language = $this->badassSafer($_POST['lang']);
+            $country = $this->badassSafer($_POST['country']);
+            $abo = $this->badassSafer($_POST['abo']);
+            $run = $this->badassSafer($_POST['runlevel']);
+
+            // create new account
+            $user = new Account();
+            $user->setFirstname(ucwords($firstName));
+            $user->setLastname(ucwords($lastName));
+            $user->setPassword($_SESSION['accountToChange']->getPassword());
+            $user->setEmail($_SESSION['accountToChange']->getEmail());
+            $user->setAddress(ucwords($address));
+            $user->setPhone($phone);
+            $user->setLanguage($language);
+            $user->setAbonnement($abo);
+            $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
+            $user->setLocation($locationId);
+            $user->setCountry($country);
 
         }
 
