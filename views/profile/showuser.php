@@ -169,8 +169,15 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         <span>Land</span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <input class="proedit" type="text" id="country" name="country" required disabled
-                               value="<?php echo $account->getCountry()->getNameCountry(); ?>">
+                        <select  class="proedit" id="country" name="country" disabled>
+                            <?php
+                            $index = $account->getCountry();
+                            $length = count($_SESSION['country'])-1;
+                            for($i = 0; $i <= $length; ++$i)
+                                echo "<option value='" . $_SESSION['country'][$i][0]  ."'" .($index-1 == $i ? 'selected' : '') . ">" . $_SESSION['country'][$i][1] . "</option>";
+
+                            ?>
+                        </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <div class="register-but">
