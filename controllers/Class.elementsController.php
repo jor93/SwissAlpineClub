@@ -69,6 +69,21 @@ class elementsController extends Controller
         echo "<input type='hidden' id='saver' name='showUser' value='0' />";
     }
 
+    public static function getInscription()
+    {
+
+        for ($i = 0; $i < 8; $i++) {
+            echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\">";
+
+            echo "<input type='text' value='name$i'>";
+            echo "<input type='text' value='vorname$i'>";
+            echo "<input type='text' value='Abo$i'>";
+            echo "</div>";
+            echo "</br>";
+        }
+
+    }
+
     public static function drawSortList($answer, $answerFavorites)
     {
         $gelaber = $answerFavorites;
