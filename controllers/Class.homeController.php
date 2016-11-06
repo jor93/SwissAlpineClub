@@ -11,7 +11,7 @@ class homeController extends Controller {
 
     public function home(){
         if ($this->getActiveUser()) {
-            $this->redirect('showuser', 'showuser');
+            $this->redirect('profile', 'showuser');
             exit;
         }
     }

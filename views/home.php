@@ -5,8 +5,7 @@
  * Date: 23.09.2016
  * Time: 09:17
  */
-
-include_once 'header.inc';
+Controller::checkHeader();
 ?>
 
 <script>
