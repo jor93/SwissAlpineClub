@@ -390,10 +390,13 @@ class Account{
 
     // delete account
     public static function deleteAccount($idAcc){
-        $update = "DELETE FROM account_inscription WHERE idaccount = $idAcc;
-                    DELETE FROM favorites WHERE idaccount = $idAcc;
-                    DELETE FROM rating WHERE idaccount = $idAcc;
-                    DELETE FROM account WHERE idaccount = $idAcc;";
+        $update = "DELETE FROM account_inscription WHERE Account_idAccount = $idAcc;";
+        SQL::getInstance()->executeQuery($update);
+        $update = "DELETE FROM favorites WHERE Account_idAccount = $idAcc;";
+        SQL::getInstance()->executeQuery($update);
+        $update = "DELETE FROM rating WHERE Account_idAccount = $idAcc;";
+        SQL::getInstance()->executeQuery($update);
+        $update = "DELETE FROM account WHERE idAccount = $idAcc;";
         SQL::getInstance()->executeQuery($update);
         return;
     }

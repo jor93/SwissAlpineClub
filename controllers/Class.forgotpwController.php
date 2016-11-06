@@ -69,7 +69,14 @@ class forgotpwController extends Controller
                 unset($_SESSION['action_url']);
                 unset($_SESSION['encrypt_url']);
                 echo '</br>SESSION UNSETS!!';
-            }else {
+            }else if (isset($_SESSION['accountToChange'])){
+                // if he is logged in!
+                $idAcc = $_SESSION['accountToChange']->getIdAccount();
+                $pw_encode = sha1($pw_new);
+                Account::resetpwDB($pw_encode, $idAcc);
+                return $this->redirect('admin', 'showAccount');
+            }
+            else {
                 // if he is logged in!
                 $idAcc = $currentUser->getIdAccount();
                 $pw_encode = sha1($pw_new);

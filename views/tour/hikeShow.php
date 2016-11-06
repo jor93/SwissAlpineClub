@@ -113,6 +113,10 @@ if (isset($_SESSION['tourId'])) {
             })
         });
 
+        function comments() {
+            <?php elementsController::comments(); ?>
+        }
+
     </script>
 
     <div class="main-1">
@@ -129,14 +133,7 @@ if (isset($_SESSION['tourId'])) {
                     <span id="2" onclick="fill(this.id)">☆</span>
                     <span id="1" onclick="fill(this.id)" class="filled">☆</span>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <!-- gez rating comment -->
-                        <textarea class="" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
-                                  style="width: 400px;"></textarea>
-                        <button onclick="validateRating()" class="add_comment_field">Rating veröffentlichen</button>
-                        </br>
-                        <a href="">Alle Kommentare öffnen</a>
-                    </div>
+
                 </div>
                 <div class="register-top-grid" style="padding-left: 70px">
                     </br>
@@ -270,6 +267,18 @@ if (isset($_SESSION['tourId'])) {
             </div>
         </div>
     </div>
+<div class="container">
+    <div class="register">
+        <div class="wow fadeInLeft" data-wow-delay="0.4s">
+            <!-- gez rating comment -->
+            <textarea class="" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
+                      style="width: 400px;"></textarea>
+            <button onclick="validateRating()" class="add_comment_field">Rating veröffentlichen</button>
+            </br>
+            <a onclick="comments()">Alle Kommentare öffnen</a>
+        </div>
+    </div>
+</div>
 
 <?php
 unset($_SESSION['account_participant']);

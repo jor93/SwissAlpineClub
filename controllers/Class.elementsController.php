@@ -15,7 +15,8 @@ class elementsController extends Controller
         include_once(ROOT_DIR.'views/lang/lang.de.php');
         include_once(ROOT_DIR.'views/lang/lang.fr.php');
 
-        $user = false;
+
+        $user = $this->;
 
         if(!$user){
             echo "<li><a href=\"login/register\">" . $lang['HEADER_REGISTER'] . "</a></li>";
@@ -79,6 +80,25 @@ class elementsController extends Controller
             echo "<input type='text' value='vorname$i'>";
             echo "<input type='text' value='Abo$i'>";
             echo "</div>";
+
+        }
+
+    }
+    public static function comments()
+    {
+
+        for ($i = 0; $i < 8; $i++) {
+            for ($j = 1; $j <= 5; $j++) {
+                if(3 >= j){
+                    echo "<span class='filled'>☆</span>";
+                }
+                else{
+                    echo "<span>☆</span>";
+                }
+            }
+            echo "<label value='name$i date$i'></label>";
+            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '></textarea>";
+
 
         }
 
