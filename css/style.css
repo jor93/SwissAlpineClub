@@ -2436,7 +2436,7 @@ div#portfoliolist {
 }
 .right_form{
 	float:left;
-	width:48%;
+	width:60%;
 }
 .contact-form div{
 	padding:5px 0;
@@ -2491,7 +2491,7 @@ div#portfoliolist {
 }
 .company_address{
 	float:left;
-	width:25%;
+	width:40%;
 }
 .company_address p{
 	color:#888;
@@ -2508,8 +2508,7 @@ div#portfoliolist {
 }
 .contact_info{
 	float:right;
-	width:70%;
-	margin-left:5%;
+	width:100%;
 }
 .map iframe {
 	-webkit-box-sizing: border-box;
@@ -2525,7 +2524,17 @@ div#portfoliolist {
 	color: red;
 	font-size: 20px;
 	text-transform: uppercase;
-	padding: 15px 0;
+	padding: 0 0 15px 0;
+	font-weight: 600;
+	border-bottom: 1px solid rgba(245, 238, 243, 0.15);
+	margin:0;
+}
+
+.about h2 {
+	color: red;
+	font-size: 20px;
+	text-transform: uppercase;
+	padding: 0;
 	font-weight: 600;
 	border-bottom: 1px solid rgba(245, 238, 243, 0.15);
 	margin:0;
@@ -2896,6 +2905,7 @@ div.register-bottom-grid {
 	.contact-data {
 		padding: 3em 0;
 	}
+
 	.about h4 {
 		font-size: 1.7em;
 	}
