@@ -76,6 +76,14 @@ class tourController extends Controller
 
     function insertTour()
     {
+        /*
+        Tour::updateTourImage(1, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
+        $image = Tour::selectTourImage(1);
+        $_SESSION['testImage'] = $image;
+        $this->redirect('admin', 'hikeImageTest');
+
+        exit();*/
+
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
             && isset($_POST['price']) && isset($_POST['stat']) && isset($_POST['descDE']) && isset($_POST['descFR'])
@@ -89,7 +97,6 @@ class tourController extends Controller
 
             $transportIds = $this->setTransportIds($transportLength);
             $typetourIds = $this->setTypeTourIds($typeTourLength);
-            if(count($transportIds) == 0 || count($typetourIds == 0))$this->redirect('admin', 'showHike');
 
             $insertedTourDescId = 0;
             if(Tour::insertTourDescription($_POST['descDE'], $_POST['descFR'], $insertedTourDescId)){

@@ -19,12 +19,70 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
     });
 
     function fill(clickedid) {
+        var valueSelected = 0;
         for(i=1;i<6;i++){
             document.getElementById(i).className="";
         }
         for(i=1;i<=clickedid;i++){
+            document.getElementById(i.toString()).setAttribute("id", i.toString());
             document.getElementById(i).className="filled";
+            valueSelected = i;
         }
+
+        if (valueSelected != 0){
+            // set back
+            alert(valueSelected);
+            document.getElementById(valueSelected.toString()).setAttribute("id", valueSelected);
+        }
+
+        document.getElementById(valueSelected.toString()).setAttribute("id", "selected"+valueSelected);
+
+        /*
+        // send the rating to the controller to validate
+        $.ajax({
+            type: 'post',
+            url: '<!--?php echo URL_DIR.'inscription/validateRating';?>',
+            data:{ selectedStar : valueSelected},
+            success: function(response) {
+                alert('Kommentar adden');
+            }
+        });
+        **/
+    }
+
+    function validateRating() {
+        // first get ratingstars
+        var valueSelected = 0;
+        for(i=1;i<6;i++){
+             valueSelected = document.getElementById("selected"+i);
+
+            if (valueSelected != null){
+                valueSelected = i;
+                // set back
+                document.getElementById("selected"+i).setAttribute("id", i);
+                break;
+            }
+        }
+        alert(valueSelected);
+    }
+
+    function selectAccount() {
+        // validate the checkbox
+        var value = 0;
+        if (document.getElementById('checkb').checked)
+            value = 1;
+        else
+            value = 0;
+
+        // notify the controller if the user is selected
+        $.ajax({
+            type: 'post',
+            url: '<?php echo URL_DIR.'inscription/setAccountToParticipants';?>',
+            data:{ acc_part : value},
+            success: function(response) {
+                //alert(response);
+            }
+        });
     }
 
     function selectAccount() {
@@ -52,11 +110,13 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
         var u = parseInt(free_space);
         var max_fields = u; //maximum input boxes allowed
 
-        // wrapper and button declaration
+        // check if i want to take part -> if yes -1 from max_fields
+        var myself = $("#checkb:checked").val();
+        if (myself){
+           max_fields -= 1;
+        }
         var wrapper = $(".participantsInputs"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID
-
-        // index/values to set the panels with right index
         var x = 1; //initlal array!
         var nrInputs = 1;
 
@@ -102,10 +162,12 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
                     '<a href="#" class="remove_field">Remove</a></div>'); //add input box
             }
             x++; //text box increment
+
         });
 
         $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
             e.preventDefault(); $(this).parent('div').remove(); nrInputs--;
+            alert('delete : ' + nrInputs);
         })
     });
 
@@ -114,8 +176,7 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
 <div class="main-1">
     <div class="container">
         <div class="register">
-
-            <img alt="Embedded Image" src="data:<?php echo $image['mime']?>;base64,<?php echo base64_encode($image['data']); ?> " style="margin-left: auto;margin-right: auto; display: block;width: 50%" />
+            <img src="/<?php echo SITE_NAME; ?>/images/matterhorn.jpg" style="margin-left: auto;margin-right: auto; display: block;width: 80%" />
             <div class="rating">
                 <span id="5" onclick="fill(this.id)">☆</span>
                 <span id="4" onclick="fill(this.id)">☆</span>
@@ -137,72 +198,61 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
                     <span>Tour</span>
                 </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="tour"><?php echo $tour->getTitle();?></label>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="tour"><p>Tour Name</p></label>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Description DE</span>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Description</span>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="descDE"><?php echo $tour->getLanguageDescriptionDE();?></label>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="desc"><p>TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText</br>TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText</p></label>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Description FR</span>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Difficulty</span>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="descFR"><?php echo $tour->getLanguageDescriptionFR();?></label>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="dif"><p>1</p></label>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Difficulty</span>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Location Departure / Arrival</span>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="dif"><?php $length = $tour->getDifficulty();for($i=0;$i<$length;$i++){echo "*";}?></label>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="loc"><p>Sierre / Brig</p></label>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Location Departure / Arrival</span>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Date Departure / Arrival</span>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="loc"><?php echo $tour->getLocationDep()->getPostcode() . " " . $tour->getLocationDep()->getLocationName(). " / " .
-                            $tour->getLocationArriv()->getPostcode() . " " .$tour->getLocationArriv()->getLocationName()?></label>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="date"><p>25.6.2016 08:50 /26.6.2016 16:00</p></label>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Date Departure / Arrival</span>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Status</span>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="date"><?php echo $tour->getStartDate() . ": " . $tour->getDepartTime() . " / " .
-                            $tour->getEndDate() . ": " . $tour->getArrivalTime()?></label>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="stat"><p>Gebucht</p></label>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Status</span>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Price</span>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="stat"><?php if($_SESSION['lang'] == 'de')echo $tour->getStatus()->getStatusDE();
-                        else if($_SESSION['lang'] == 'fr')echo $tour->getStatus()->getStatusFR();?></label>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="price"><p>70.- per Person</p></label>
+                    </div>
 
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Price per Person</span>
-                </div>
-
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <label id="price"><?php echo "CHF: " . $tour->getPrice() . ".-"?></label>
-                </div>
-
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Freie Plätze</span>
-                </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Freie Plätze</span>
+                    </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <label id="av_space"><?php echo $inscription->getFreeSpace();?></label>
@@ -222,12 +272,12 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
 </div>
     </br>
 
-    <div class="main-1">
-        <div class="container">
-            <div class="register">
-                <form action="<?php echo URL_DIR.'inscription/validateParticipants_Inscription';?>" method="post">
-                    <div class="register-top-grid">
-                        <h3>FÜR EINE TOUR EINSCHREIBEN</h3>
+<div class="main-1">
+    <div class="container">
+        <div class="register">
+            <form action="<?php echo URL_DIR.'inscription/validateParticipants_Inscription';?>" method="post">
+                <div class="register-top-grid">
+                    <h3>FÜR EINE TOUR EINSCHREIBEN</h3>
 
                         <a class="news-letter">
                             <label class="checkbox">
@@ -241,23 +291,23 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
                             ?></psan>
                         <div class="participants"style="width: 100%;">
 
-                            <span>Meine Freunde:</span>
+                        <span>Meine Freunde:</span>
 
-                            <div class="participantsInputs" style="width: 100%;">
-                                <button class="add_field_button">Add More Fields</button>
-                                </br>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-                        <div class="register-but">
-                            <input type="submit" value="Speichern">
+                        <div class="participantsInputs" style="width: 100%;">
+                            <button class="add_field_button">Add More Fields</button>
+                            </br>
                         </div>
                     </div>
-                </form>
-            </div>
+
+                    <div class="clearfix"></div>
+                    <div class="register-but">
+                        <input type="submit" value="Speichern">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
 <?php
 unset($_SESSION['account_participant']);

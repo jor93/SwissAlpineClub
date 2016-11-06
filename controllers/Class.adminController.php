@@ -35,7 +35,6 @@ class adminController extends Controller
             $_SESSION['accountId'] = $id;
              $this->redirect('admin','showAccount');
          }
-
      }
 
     function showAccount(){

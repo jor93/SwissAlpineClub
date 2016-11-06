@@ -31,11 +31,17 @@ class inscriptionController extends Controller
         $maxPart = $_SESSION['index'];
 
         // get id of tour and inscription
-        $idInscription = $_SESSION['idInscription'];
+        //$idInscription = $_SESSION['idInscription'];
+        $idInscription = 3;
+        //$tour = $_SESSION['tour'];
+        //$idtour = $tour->getIdTour();
+        $idtour = 7;
         $countParticipants = 0;
 
 
-        $account = self::getActiveUserWithoutCookie()->getIdAccount();
+        $curentUser = self::getActiveUserWithoutCookie();
+        //$account = $curentUser->getIdAccount();
+        $account = 4;
 
         // myself and update acc + inscription
         if (isset($_SESSION['account_participant'])){
@@ -55,13 +61,18 @@ class inscriptionController extends Controller
         for ($i = 1; $i <= $maxPart; $i++){
             if (isset($_POST['participantFirstname'][$i])) {
                 // get value from inputs
+                echo '</br>firstname : ' . $_POST['participantFirstname'][$i];
+                echo '</br>lastname : ' . $_POST['participantLastname'][$i];
                 $firstname = $this->badassSafer($_POST['participantFirstname'][$i]);
                 $lastname = $this->badassSafer($_POST['participantLastname'][$i]);
 
                 // get the selected abo from radios
                 $key = $i . '' . 1;
                 $temp = (int)$key;
+                echo '</br>temp' . $temp;
                 if (isset($_POST['participantAbo' . $temp])) {
+                    echo '</br>abo ----> ' . $_POST['participantAbo' . $temp][0];
+                    echo '</br>----------------------------------------';
                     $abo = $this->badassSafer($_POST['participantAbo' . $temp][0]);
                 }
 
@@ -83,7 +94,7 @@ class inscriptionController extends Controller
         $selectedRating = $this->badassSafer($_POST['selectedStar']);
 
         if (isset($_POST['givenComment']) && $_POST)
-            $givenComment = $this->badassSafer($_POST['givenComment']);
+        $givenComment = $this->badassSafer($_POST['givenComment']);
         $idAcc = 2;
         $idTour = 8;
         /*
@@ -122,4 +133,5 @@ class inscriptionController extends Controller
     {
         $this->max_participants = $max_participants;
     }
+
 }

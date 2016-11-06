@@ -122,10 +122,19 @@ class Rating
         return new Rating($row['idRating'], $row['Account_idAccount'], $row['Tour_idTour'], $row['Rating'], $row['Comment']);
     }
 
+    // check if account has already rated a tour
+    static function selectRatingByidAccount($idAcc, $idTour){
+        $query = "SELECT Account_idAccount FROM rating WHERE Account_idAccount = $idAcc AND Tour_idTour = $idTour;";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetch();
+        if(!$row) return true;
 
-    static function insertRating($idTour, $idAccount, $rate, $comment){
+        return false;
+    }
+
+    static function insertRating($obj){
         $query = "INSERT INTO Rating('Account_idAccount', 'Tour_idTour', 'Rating', 'Comment') 
-                  VALUES ('$idAccount', '$idTour', '$rate','$comment')";
+                  VALUES ($obj->account_idAccount, $obj->tour_idTour, $obj->rating,'$obj->comment')";
         return  SQL::getInstance()->executeQuery($query);
     }
 

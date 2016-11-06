@@ -12,6 +12,12 @@ include_once ROOT_DIR. 'views/header.inc';
         $('#menu_registration').addClass('active');
     });
 
+    /* gez: to handle tours - waiting on sam
+    function showTour($idTour){
+        document.getElementById("saver").value = $idTour;
+        document.getElementById("manageTour").submit();
+    }
+*/
     function letsgo($selectedFavorite){
         // transfer the id from favorite you wanna delete
         $.ajax({
@@ -23,6 +29,10 @@ include_once ROOT_DIR. 'views/header.inc';
             }
         });
 
+        function showUser($idAccount){
+            document.getElementById("saver").value = $idAccount;
+            document.getElementById("manageUser").submit();
+        }
     }
 </script>
 

@@ -18,8 +18,8 @@ class Inscription
 
     /**
      * Inscription constructor.
-     * @param $idInscription
      * @param $tour_idTour
+     * @param $account_idAcoount
      * @param $max_inscriptions
      * @param $expiration_date
      * @param $status_idStatus
@@ -34,22 +34,6 @@ class Inscription
         $this->expiration_date = $expiration_date;
         $this->status_idStatus = $status_idStatus;
         $this->information = $information;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdInscription()
-    {
-        return $this->idInscription;
-    }
-
-    /**
-     * @param mixed $idInscription
-     */
-    public function setIdInscription($idInscription)
-    {
-        $this->idInscription = $idInscription;
     }
 
     /**

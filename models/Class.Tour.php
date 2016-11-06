@@ -73,6 +73,32 @@ class Tour
         $this->locationArriv = $locationArriv;
     }
 
+    public static function createTour($idTour, $startDate, $endDate, $duration, $title, $subtitle,
+                                $depart_time, $arrival_time, $price, $difficulty, $status,
+                                $idLanguageDescription, $languageDescriptionDE, $languageDescriptionFR,
+                                $picture, $locationDep, $locationArriv)
+    {
+        $tour = new Tour();
+        $tour->idTour = $idTour;
+        $tour->startDate = $startDate;
+        $tour->endDate = $endDate;
+        $tour->duration = $duration;
+        $tour->title = $title;
+        $tour->subtitle = $subtitle;
+        $tour->depart_time = $depart_time;
+        $tour->arrival_time = $arrival_time;
+        $tour->price = $price;
+        $tour->difficulty = $difficulty;
+        $tour->status = $status;
+        $tour->idLanguageDescription = $idLanguageDescription;
+        $tour->languageDescriptionDE = $languageDescriptionDE;
+        $tour->languageDescriptionFR = $languageDescriptionFR;
+        $tour->picture = $picture;
+        $tour->locationDep = $locationDep;
+        $tour->locationArriv = $locationArriv;
+        return $tour;
+    }
+
     /**
      * @return mixed
      */

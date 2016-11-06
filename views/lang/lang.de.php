@@ -11,10 +11,13 @@
 Language: GERMAN
 -----------------
 */
-
 $lang = array();
 
 $lang['WELCOME_TITLE'] = 'Willkommen';
+
+/* #################### showhike ####################  */
+$lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Die Anzahl möglicher Teilnehmer muss grösser als die bereits gebuchten Teilnehmer sein!';
+$lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Sie müssen an der Tour selber Teilnehmen!';
 
 /* #################### mail confirmation ####################  */
 /* confirm */

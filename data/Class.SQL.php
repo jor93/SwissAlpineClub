@@ -58,8 +58,6 @@ class SQL {
         $this->lastInsertedId = $lastInsertedId;
     }
 
-
-
 	/**
 	 * singleton method
 	 * @return resource

@@ -7,7 +7,7 @@
  */
 include_once ROOT_DIR. '/views/headeradmin.inc';
 
-$tour = Tour::selectTour(1);
+$tour = Tour::selectTour(36);
 $manageTourInfos = array();
 $manageTourInfos['idTour'] = $tour->getIdTour();
 $manageTourInfos['idTourDesc'] = $tour->getIdLanguageDescription();
@@ -15,12 +15,10 @@ $_SESSION['manageTour'] = $manageTourInfos;
 
 // gez: get the inscription object
 $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
-
-//http://www.the-art-of-web.com/javascript/validate-date/
 ?>
 <script>
     $(document).ready(function () {
-        $('#menu_hiking').addClass('active');
+        $('#menu_manageHike').addClass('active');
     });
 
     $( function() {
@@ -115,7 +113,7 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" onkeypress='return validateQty(event);' id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled>
+                        <input type="text" id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
@@ -127,7 +125,7 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" onkeypress='return validateQty(event);' id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled>
+                        <input type="text" id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description DE</span>
