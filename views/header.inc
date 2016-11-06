@@ -49,15 +49,12 @@ include ROOT_DIR.'views/common.php';
 			<div class="container">
 				<div class="header-top">
 					<div class="header-right">
-						<div id="languages">
-							<a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="24px" height="24px" /></a>
-							<br />
-							<a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="24px" height="24px" /></a>
-						</div>
 					</div>
 					<div class="header-left">
 						<ul>
 							<?php elementsController::showLoggedInUser(); ?>
+							<a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="20px" height="20px" /></a>
+							<a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="20px" height="20px" /></a>
 						</ul>
 					</div>
 					<div class="clearfix"> </div>
@@ -67,13 +64,12 @@ include ROOT_DIR.'views/common.php';
 		<div class="header-bottom">
 			<div class="container">
 				<div class="logo">
-					<a href="<?php echo URL_DIR.'home/home';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo.png" class="img-responsive" alt="" /></a>
-					<a href="<?php echo URL_DIR.'tour/inscription';?>">Inscription</a>
+					<a href="<?php echo URL_DIR.'';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo-2.png" class="img-responsive" alt="" /></a>
 				</div>
 				<div class="head-nav">
 					<span class="menu"> </span>
 					<ul>
-						<li id="menu_home"><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
+						<li id="menu_home"><a href="<?php echo URL_DIR.'';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
 						<li id="menu_hiking"><a href="<?php echo URL_DIR.'tour/hiking';?>"><?php echo $lang['MENU_TOUR']; ?></a></li>
 						<li id="menu_about"><a href="<?php echo URL_DIR.'general/about';?>"><?php echo $lang['MENU_ABOUT']; ?></a></li>
 						<li id="menu_contact"><a href="<?php echo URL_DIR.'general/contact';?>"><?php echo $lang['MENU_CONTACT']; ?></a></li>
@@ -94,10 +90,7 @@ include ROOT_DIR.'views/common.php';
 				<!-- script-for-nav -->
 			</div>
 		</div>
-		<div class="banner1">
-			<div class="container">
-			</div>
-		</div>
+
 	</div>
 	<!-- header -->
 

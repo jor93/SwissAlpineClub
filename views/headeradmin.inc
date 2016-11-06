@@ -38,55 +38,55 @@ include_once ROOT_DIR.'views/common.php';
 		</script>
 	</head>  
 	<body>
-	<!-- header -->
-	<div class="header">
-		<div class="container">
-			<div class="header-top">
-				<div class="header-right">
+    <div class="head">
 
-				</div>
-				<div class="header-left">
-					<ul>
-						<?php elementsController::showLoggedInUser(); ?>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<div class="header-bottom">
-		<div class="container">
-			<div class="logo">
-				<a href="index.html"><img src="../images/logo.png" class="img-responsive" alt="" /></a>
-			</div>
-			<div class="head-nav">
-				<span class="menu"> </span>
-				<ul>
-					<li id="menu_home"><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
-					<li id="menu_hiking"><a href="<?php echo URL_DIR.'tour/hiking';?>"><?php echo $lang['MENU_TOUR']; ?></a></li>
-					<li id="menu_hikemanage"><a href="<?php echo URL_DIR.'admin/hikemanage';?>"><?php echo $lang['MENU_HIKEMGMT']; ?></a></li>
-					<li id="menu_accmanage"><a href="<?php echo URL_DIR.'admin/manageAccount';?>"><?php echo $lang['MENU_ACCMGMT']; ?></a></li>
-					<li id="menu_insmanage"><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_INSCRIPTIONMGMT']; ?></a></li>
-					<li id="menu_profil"><a href="<?php echo URL_DIR.'admin/showAccount';?>"><?php echo $lang['MENU_PROFIL']; ?></a></li>
-					<div class="clearfix"> </div>
-				</ul>
-			</div>
-			<div class="clearfix"> </div>
-			<!-- script-for-nav -->
-			<script>
-				$( "span.menu" ).click(function() {
-					$( ".head-nav ul" ).slideToggle(300, function() {
-						// Animation complete.
-					});
-				});
-			</script>
-			<!-- script-for-nav -->
-		</div>
-	</div>
-	<div class="banner1">
-		<div class="container">
-		</div>
-	</div>
-	<!-- header -->
+        <div class="header">
+            <div class="container">
+                <div class="header-top">
+                    <div class="header-right">
+                    </div>
+                    <div class="header-left">
+                        <ul>
+                            <?php elementsController::showLoggedInUser(); ?>
+                            <a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="20px" height="20px" /></a>
+                            <a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="20px" height="20px" /></a>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="logo">
+                    <a href="<?php echo URL_DIR.'';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo-2.png" class="img-responsive" alt="" /></a>
+                </div>
+                <div class="head-nav">
+                    <span class="menu"> </span>
+                    <ul>
+                        <li id="menu_home"><a href="<?php echo URL_DIR.'';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
+                        <li id="menu_hiking"><a href="<?php echo URL_DIR.'tour/hiking';?>"><?php echo $lang['MENU_TOUR']; ?></a></li>
+                        <li id="menu_hikemanage"><a href="<?php echo URL_DIR.'admin/hikemanage';?>"><?php echo $lang['MENU_HIKEMGMT']; ?></a></li>
+                        <li id="menu_accmanage"><a href="<?php echo URL_DIR.'admin/manageAccount';?>"><?php echo $lang['MENU_ACCMGMT']; ?></a></li>
+                        <li id="menu_insmanage"><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_INSCRIPTIONMGMT']; ?></a></li>
+                        <li id="menu_profil"><a href="<?php echo URL_DIR.'admin/showAccount';?>"><?php echo $lang['MENU_PROFIL']; ?></a></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+                <!-- script-for-nav -->
+                <script>
+                    $( "span.menu" ).click(function() {
+                        $( ".head-nav ul" ).slideToggle(300, function() {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script-for-nav -->
+            </div>
+        </div>
+
+    </div>
+ 	<!-- header -->
 
 
