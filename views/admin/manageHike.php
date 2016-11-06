@@ -19,6 +19,9 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
 //http://www.the-art-of-web.com/javascript/validate-date/
 ?>
 <script>
+
+    var readySubmit = false;
+
     $(document).ready(function () {
         $('#menu_hiking').addClass('active');
     });
@@ -47,16 +50,19 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
         else return true;
     };
 
+
     $(document).ready(function () {
-        $('#checkBtn').click(function() {
+        $('#btn-save').click(function() {
             checked = $("input[id=typetour]:checked").length;
 
             if(!checked) {
                 document.getElementById('selectCheck').style.display = 'block';
+                readySubmit = false;
                 return false;
             }
             else{
                 document.getElementById('selectCheck').style.display = 'none';
+                readySubmit = true;
             }
         });
     });
@@ -67,6 +73,8 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
         document.getElementById("sub").removeAttribute("disabled");
         document.getElementById("dur").removeAttribute("disabled");
         document.getElementById("loc").removeAttribute("disabled");
+        document.getElementById("postcodeDep").removeAttribute("disabled");
+        document.getElementById("postcodeArriv").removeAttribute("disabled");
         document.getElementById("meeting").removeAttribute("disabled");
         document.getElementById("price").removeAttribute("disabled");
         document.getElementById("descDE").removeAttribute("disabled");
@@ -87,13 +95,9 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
         document.getElementById("btn-edit").style.display = "none";
 
     }
+
     function save () {
-
         document.getElementById('manageTour').submit();
-
-        document.getElementById("btn-save").style.display = "none";
-        document.getElementById("btn-edit").style.display = "inline";
-
     }
 
 </script>
@@ -107,7 +111,7 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Hike</span>
-                        <input type="text" id="hike" name="hikeName" value="<?php echo $tour->getTitle();?>" disabled>
+                        <input type="text" id="hike" name="hikeName" value="<?php echo $tour->getTitle();?>" disabled required>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -121,52 +125,59 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                                     echo "<option value='" . ($i+1) . "'>" . ($i+1) . "</option>";
                                 }
                             } ?>
-
                         </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Subtitle</span>
-                        <input type="text" id="sub" name="subtitle" value="<?php echo $tour->getSubtitle();?>" disabled>
+                        <input type="text" id="sub" name="subtitle" value="<?php echo $tour->getSubtitle();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" onkeypress='return validateQty(event);' id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled>
+                        <input type="text" onkeypress='return validateQty(event);' id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
-                        <input type="text" id="meeting" name="locationDep" value="<?php echo $tour->getLocationDep()->getLocationName();?>" disabled>
+                        <input type="text" id="meeting" name="locationDep" value="<?php echo $tour->getLocationDep()->getLocationName();?>" disabled required>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Postcode Departure</span>
+                        <input type="text" id="postcodeDep" name="postcodeDep" value="<?php echo $tour->getLocationDep()->getPostcode();?>" required disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Arrival</span>
-                        <input type="text" id="loc" name="locationArriv" value="<?php echo $tour->getLocationArriv()->getLocationName();?>" disabled>
+                        <input type="text" id="loc" name="locationArriv" value="<?php echo $tour->getLocationArriv()->getLocationName();?>" disabled required>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Postcode arrival</span>
+                        <input type="text" id="postcodeArriv" name="postcodeArriv" value="<?php echo $tour->getLocationArriv()->getPostcode();?>" required disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" onkeypress='return validateQty(event);' id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled>
+                        <input type="text" onkeypress='return validateQty(event);' id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description DE</span>
-                        <input type="text" id="descDE" name="descDE" value="<?php echo $tour->getLanguageDescriptionDE();?>" disabled>
+                        <input class="MyClass" type="text" id="descDE" name="descDE" value="<?php echo $tour->getLanguageDescriptionDE();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description FR</span>
-                        <input type="text" id="descFR" name="descFR" value="<?php echo $tour->getLanguageDescriptionFR();?>" disabled>
+                        <input type="text" id="descFR" name="descFR" value="<?php echo $tour->getLanguageDescriptionFR();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Start Date</span>
-                        <input type="text" id="sdate" name="sdate" value="<?php echo $tour->getStartDate();?>" disabled>
+                        <input type="text" id="sdate" name="sdate" value="<?php echo $tour->getStartDate();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>End Date</span>
-                        <input type="text" id="edate" name="edate" value="<?php echo $tour->getEndDate();?>" disabled>
+                        <input type="text" id="edate" name="edate" value="<?php echo $tour->getEndDate();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Departure Time</span>
-                        <input type="text" id="deptime" name="deptime" value="<?php echo $tour->getDepartTime();?>" disabled>
+                        <input type="text" id="deptime" name="deptime" value="<?php echo $tour->getDepartTime();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Arrival Time</span>
-                        <input type="text" id="artime" name="artime" value="<?php echo $tour->getArrivalTime();?>" disabled>
+                        <input type="text" id="artime" name="artime" value="<?php echo $tour->getArrivalTime();?>" disabled required>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
@@ -199,11 +210,11 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                     <!-- gez: for inscription necessary infos! -->
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Expiration Date</span>
-                        <input type="text" id="exdate" name="exdate" disabled value="<?php echo $inscription->getExpirationDate();?>">
+                        <input type="text" id="exdate" name="exdate" disabled value="<?php echo $inscription->getExpirationDate();?>" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Available Places</span>
-                        <input type="number" id="a_places" name="a_places" disabled value="<?php echo $inscription->getMaxInscriptions();?>">
+                        <input type="number" id="a_places" name="a_places" disabled value="<?php echo $inscription->getMaxInscriptions();?>" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Notes for tourguide</span>
@@ -213,7 +224,7 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                 </div>
 
                 <div class="register-but">
-                    <a id ="btn-save" onclick="save()" class="btn btn-primary" style="display: none">Save</a>
+                    <button id ="btn-save" type="submit" class="btn btn-primary" style="display: none">Save</button>
                     <a id ="btn-edit" onclick="edit()" class="btn btn-primary">Edit</a>
                 </div>
 
