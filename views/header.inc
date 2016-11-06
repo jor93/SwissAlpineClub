@@ -50,9 +50,9 @@ include ROOT_DIR.'views/common.php';
 				<div class="header-top">
 					<div class="header-right">
 						<div id="languages">
-							<a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="24px" height="24px" /></a>
-							<br />
-							<a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="24px" height="24px" /></a>
+							<a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="20px" height="20px" /></a>
+
+							<a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="20px" height="20px" /></a>
 						</div>
 					</div>
 					<div class="header-left">
@@ -67,8 +67,7 @@ include ROOT_DIR.'views/common.php';
 		<div class="header-bottom">
 			<div class="container">
 				<div class="logo">
-					<a href="<?php echo URL_DIR.'';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo.png" class="img-responsive" alt="" /></a>
-					<a href="<?php echo URL_DIR.'tour/inscription';?>">Inscription</a>
+					<a href="<?php echo URL_DIR.'';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo-2.png" class="img-responsive" alt="" /></a>
 				</div>
 				<div class="head-nav">
 					<span class="menu"> </span>
