@@ -132,6 +132,10 @@ class tourController extends Controller
     }
 
     function updateTour(){
+
+        var_dump($_POST['descFR']);
+        exit();
+
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
             && isset($_POST['price']) && isset($_POST['stat']) && isset($_POST['descDE']) && isset($_POST['descFR'])

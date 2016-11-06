@@ -17,6 +17,7 @@ $_SESSION['manageTour'] = $manageTourInfos;
 $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
 ?>
 <script>
+
     $(document).ready(function () {
         $('#menu_manageHike').addClass('active');
     });
@@ -45,8 +46,9 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
         else return true;
     };
 
+
     $(document).ready(function () {
-        $('#checkBtn').click(function() {
+        $('#btn-save').click(function() {
             checked = $("input[id=typetour]:checked").length;
 
             if(!checked) {
@@ -55,9 +57,11 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
             }
             else{
                 document.getElementById('selectCheck').style.display = 'none';
+                readySubmit = true;
             }
         });
     });
+
 
     function edit () {
         document.getElementById("hike").removeAttribute("disabled");
@@ -85,13 +89,15 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
         document.getElementById("btn-edit").style.display = "none";
 
     }
-    function save () {
 
-        document.getElementById('manageTour').submit();
+    function save () {
+        if(a()){
+            alert("Asdfasdf");
+        }
+        //document.getElementById('manageTour').submit();
 
         document.getElementById("btn-save").style.display = "none";
         document.getElementById("btn-edit").style.display = "inline";
-
     }
 
 </script>
