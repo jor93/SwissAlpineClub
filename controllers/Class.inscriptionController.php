@@ -31,17 +31,11 @@ class inscriptionController extends Controller
         $maxPart = $_SESSION['index'];
 
         // get id of tour and inscription
-        //$idInscription = $_SESSION['idInscription'];
-        $idInscription = 3;
-        //$tour = $_SESSION['tour'];
-        //$idtour = $tour->getIdTour();
-        $idtour = 7;
+        $idInscription = $_SESSION['idInscription'];
         $countParticipants = 0;
 
 
-        $curentUser = self::getActiveUserWithoutCookie();
-        //$account = $curentUser->getIdAccount();
-        $account = 4;
+        $account = self::getActiveUserWithoutCookie()->getIdAccount();
 
         // myself and update acc + inscription
         if (isset($_SESSION['account_participant'])){
@@ -61,18 +55,13 @@ class inscriptionController extends Controller
         for ($i = 1; $i <= $maxPart; $i++){
             if (isset($_POST['participantFirstname'][$i])) {
                 // get value from inputs
-                echo '</br>firstname : ' . $_POST['participantFirstname'][$i];
-                echo '</br>lastname : ' . $_POST['participantLastname'][$i];
                 $firstname = $this->badassSafer($_POST['participantFirstname'][$i]);
                 $lastname = $this->badassSafer($_POST['participantLastname'][$i]);
 
                 // get the selected abo from radios
                 $key = $i . '' . 1;
                 $temp = (int)$key;
-                echo '</br>temp' . $temp;
                 if (isset($_POST['participantAbo' . $temp])) {
-                    echo '</br>abo ----> ' . $_POST['participantAbo' . $temp][0];
-                    echo '</br>----------------------------------------';
                     $abo = $this->badassSafer($_POST['participantAbo' . $temp][0]);
                 }
 
@@ -90,32 +79,38 @@ class inscriptionController extends Controller
     }
 
     function validateRating(){
-        // get the rating from view
+        // get the rating from view, user and the tour
         $selectedRating = $this->badassSafer($_POST['selectedStar']);
-
-        if (isset($_POST['givenComment']) && $_POST)
         $givenComment = $this->badassSafer($_POST['givenComment']);
+
+        // get the current user
+        $idAcc = self::getActiveUserWithoutCookie()->getIdAccount();
+        $idTour = $_SESSION['tourId'];
+
+        echo '</br>rating : ' . $selectedRating;
+        echo '</br>comment : ' . $givenComment;
+        echo '</br>account : ' . $idAcc;
+        echo '</br>tour : ' . $idTour;
+
         $idAcc = 2;
-        $idTour = 8;
-        /*
 
         // check if already rated - if no discard
         $checkAccount = Rating::selectRatingByidAccount($idAcc, $idTour);
 
-        // if true is already in db
+        // if true he hasnt added a rate in db
         if ($checkAccount){
             // insert into db
-            $rating = new Rating('', $idAcc, $idTour, $selectedRating, $givenComment);
+            $rating = new Rating(null, $idAcc, $idTour, $selectedRating, $givenComment);
             Rating::insertRating($rating);
         }else{
-            $_SESSION['error_alreadyRated'] = 1;
-            //return $this->redirect('tour', 'hikeShow');
+            $_SESSION['error_account_rating'] = 1;
+            return;
         }
 
         // update tour rating - calc the average - load all tours and save into session (in elementscontroller)
 
         // load the page
-*/
+
     }
 
     /**

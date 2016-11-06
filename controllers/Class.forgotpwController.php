@@ -49,13 +49,6 @@ class forgotpwController extends Controller
                 // get the values from the mail
                 $action_url = $_SESSION['action_url'];
                 $encrypt_url = $_SESSION['encrypt_url'];
-                echo '</br>action : ' . $action_url;
-                echo '</br>encrypt : ' . $encrypt_url;
-
-                // get the id from db ----> OLD
-                //$result = Account::selectAccountIdByMDA($encrypt_url);
-                //$result = md5(90*13+4);
-                //echo '</br>idAccount : ' . $result['idAccount'];
 
                 $idAcc = Encryption::decode($encrypt_url);
 

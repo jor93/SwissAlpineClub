@@ -41,7 +41,6 @@ class elementsController extends Controller
             echo "<li id='menu_insmanage'><a href=\"<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_INSCRIPTIONMGMT']; ?></a></li>";
             echo "<li id='menu_profil'><a href=\"<?php echo URL_DIR.'admin/showAccount';?>"><?php echo $lang['MENU_PROFIL']; ?></a></li>";*/
         }
-
     }
 
     public static function selectToursOFF()
@@ -50,7 +49,6 @@ class elementsController extends Controller
         $answer = Tour::selectAllTours();
         self::drawSortList($answer, null);
         echo "<input type='hidden' id='saver' name='showHike' value='0' />";
-
     }
 
     public static function getNext3Hikings(){

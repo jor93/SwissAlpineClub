@@ -133,7 +133,7 @@ class Rating
     }
 
     static function insertRating($obj){
-        $query = "INSERT INTO Rating('Account_idAccount', 'Tour_idTour', 'Rating', 'Comment') 
+        $query = "INSERT INTO Rating(Account_idAccount, Tour_idTour, Rating, Comment) 
                   VALUES ($obj->account_idAccount, $obj->tour_idTour, $obj->rating,'$obj->comment')";
         return  SQL::getInstance()->executeQuery($query);
     }
