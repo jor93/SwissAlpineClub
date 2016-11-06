@@ -41,6 +41,9 @@ class adminController extends Controller
     function manageInscription(){
 
     }
+    function showInscription(){
+
+    }
 
     function showAccount(){
         if(isset($_SESSION['accountId'])) {
