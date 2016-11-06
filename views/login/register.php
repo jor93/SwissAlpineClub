@@ -37,15 +37,14 @@ $sav = $_SESSION['saved'];
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <?php
-$query = "select CONCAT(Postcode, ', ' ,LocationName) from location;";
-//$query = "select distinct Postcode, LocationName from location;";
+$query = "select distinct CONCAT(Postcode, ', ' ,LocationName) from location;";
 $data = array();
 $data = SQL::getInstance()->select($query)->fetchAll();
 $length = count($data);
 for ($i = 0; $i < $length; ++$i) {
     $data2[$i] = $data[$i][0];
 }
-//echo '<script>var myarray = '.json_encode($data2) .';</script>';
+echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
 ?>
 
@@ -55,7 +54,6 @@ for ($i = 0; $i < $length; ++$i) {
           $("#plz").keyup(function() {
               var keyword = $("#plz").val();
               if (keyword.length >= MIN_LENGTH) {
-                  console.log('php function call');
 ;                  $(document).ready(function() {
                       $( "#plz" ).autocomplete({
                             source: myarray,
@@ -89,33 +87,33 @@ for ($i = 0; $i < $length; ++$i) {
                         <h3><?php echo $lang['REGISTER_TITLE'];?></h3>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_FNAME'];?><label>*</label></span>
-                            <input type="text" class="ok" id="fname" name="firstname" placeholder="Please enter Firstname" value="<?php echo $sav[0];?>" required>
+                            <input type="text" class="ok" id="fname" name="firstname" value="<?php echo $sav[0];?>" required>
                             <span id="label_fail_fname" class="error"><?php if(errorController::showErrorFromSession(6) === true) echo $lang['REGISTER_ERROR_6'];?></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LNAME'];?><label>*</label></span>
-                            <input type="text" id="lname" name="lastname" placeholder="Please enter Lastname" value="<?php echo $sav[1];?>" required>
+                            <input type="text" id="lname" name="lastname" value="<?php echo $sav[1];?>" required>
                             <span id="label_fail_lname" class="error"><?php if(errorController::showErrorFromSession(7) === true) echo $lang['REGISTER_ERROR_7'];?></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_EMAIL'];?><label>*</label></span>
-                            <input type="email" id="mail" name="email" placeholder="Please enter E-Mail" value="<?php echo $sav[2];?>" required>
+                            <input type="email" id="mail" name="email" value="<?php echo $sav[2];?>" required>
                             <span id="label_fail_mail" class="error"><?php  if(errorController::showErrorFromSession(2) === true) echo $lang['REGISTER_ERROR_2'];?></span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_ADDRESS'];?><label>*</label></span>
-                            <input type="text" id="address" name="address" placeholder="Please enter Adress" value="<?php echo $sav[3];?>" required>
+                            <input type="text" id="address" name="address" value="<?php echo $sav[3];?>" required>
                             <span id="label_fail_address" class="error" ></span>
                         </div>
 
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_PLZ'];?><label>*</label></span>
-                            <input type="text" id="plz" name="zip" placeholder="Please enter ZIP code" value="<?php echo $sav[4];?>" required>
+                            <input type="text" id="plz" name="zip" value="<?php echo $sav[4];?>" required>
                             <span id="label_fail_zip" class="error" ></span>
                         </div>
                         <div class="wow fadeInLeft" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_LOCATION'];?><label>*</label></span>
-                            <input type="text" id="loc" name="location" placeholder="Please enter Location" value="<?php echo $sav[5];?>" required>
+                            <input type="text" id="loc" name="location" value="<?php echo $sav[5];?>" required>
                             <span id="label_fail_location" class="error" ></span>
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
@@ -144,7 +142,7 @@ for ($i = 0; $i < $length; ++$i) {
                         </div>
                         <div class="wow fadeInRight" data-wow-delay="0.4s">
                             <span><?php echo $lang['REGISTER_PHONE'];?><label>*</label></span>
-                            <input type="text"  id="phone" name="phone" placeholder="Please enter Phone" value="<?php echo $sav[6];?>" required>
+                            <input type="text"  id="phone" name="phone" value="<?php echo $sav[6];?>" required>
                             <span id="label_fail_phone" class="error" ></span>
                         </div>
 

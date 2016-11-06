@@ -42,9 +42,19 @@ class adminController extends Controller
         if(isset($_SESSION['accountId'])) {
             $id = $this->badassSafer($_SESSION['accountId']);
             $result = Account::selectAccountById($id);
-            $account = Account::createAccount($result[0], $result[1], $result[2], $result[3], $result[4], $result[5], $result[6], $result[7], $result[8], $result[9], $result[10], $result[11], $result[12], $result[13]);
-            $_SESSION['account'] = $account;
+            $account = Account::createAccount($result[0], $result[1], $result[2], $result[5], $result[3], $result[4], $result[12], $result[13], $result[6], $result[7], $result[8], $result[9], $result[10], $result[11]);
+            $_SESSION['accountToChange'] = $account;
         }
+        if(!isset($_SESSION['country'])){
+            $query = "select idCountry,NameCountry,CodeCountry from country;";
+            $data = SQL::getInstance()->select($query)->fetchAll();
+            $_SESSION['country'] = $data;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        }
+
     }
 
 }

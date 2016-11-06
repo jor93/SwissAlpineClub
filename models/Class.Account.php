@@ -331,7 +331,7 @@ class Account{
 
     // get single account by id
     public static function selectAccountById($accountId){
-        $query = "SELECT * FROM Account where Account.idAccount = '$accountId'";
+        $query = "SELECT * FROM Account where Account.idAccount = '$accountId';";
         return $result = SQL::getInstance()->select($query)->fetch();
     }
 
@@ -357,14 +357,24 @@ class Account{
     // reset pwd
     public static function resetpwDB($pw_new, $idAcc){
         $update = "UPDATE account SET Password = '$pw_new' WHERE idaccount = '$idAcc';";
-        SQL::getInstance()->select($update);
+        SQL::getInstance()->executeQuery($update);
         return;
     }
 
     // update status
     public static function updateStatus($status, $idAcc){
         $update = "UPDATE account SET Activated = $status WHERE idaccount = $idAcc;";
-        SQL::getInstance()->select($update);
+        SQL::getInstance()->executeQuery($update);
+        return;
+    }
+
+    // delete account
+    public static function deleteAccount($idAcc){
+        $update = "DELETE FROM account_inscription WHERE idaccount = $idAcc;
+                    DELETE FROM favorites WHERE idaccount = $idAcc;
+                    DELETE FROM rating WHERE idaccount = $idAcc;
+                    DELETE FROM account WHERE idaccount = $idAcc;";
+        SQL::getInstance()->executeQuery($update);
         return;
     }
 }

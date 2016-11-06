@@ -112,14 +112,6 @@ class loginController extends Controller {
             $data = SQL::getInstance()->select($query)->fetchAll();
             $_SESSION['country'] = $data;
         }
-        /*
-        if(!isset($_SESSION['zipcode'])){
-            $query = "select idCountry,NameCountry from country;";
-            $data = SQL::getInstance()->select($query)->fetchAll();
-            $_SESSION['country'] = $data;
-            echo 'session not existed yet!';
-        }*/
-
         // validating form
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // reseting errors
