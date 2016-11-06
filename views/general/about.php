@@ -18,111 +18,112 @@ include_once ROOT_DIR.'views/header.inc';
 <div class="main">
     <div class="container">
         <div class="about">
-            <h4><?php echo $lang['ABOUT_TAG']; ?></h4>
+            <h4 style="padding-left: 6%"><?php echo $lang['ABOUT_TAG']; ?></h4>
             <div class="about-bottom">
 
-                <table width="1200"  align="center" border="10" cellspacing="10" cellpadding="20" frame="void" rules="rows" >
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_NAME']; ?></h3>
-                        </th>
-                        <th>
-                            <p><?php echo $lang['ABOUT_NAME_FULL']; ?></p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_FOUNDATION']; ?></h3>
-                        </th>
-                        <th>
-                            <p>1943</p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_BASED']; ?></h3>
-                        </th>
-                        <th>
-                            <p>CH-1951<?php echo $lang['ABOUT_BASED_SION']; ?></p>
-                        </th>
-                    </tr>
+                <div class="register-top-grid" style="padding-left: 70px">
 
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_UMBRELLA_GROUP']; ?></h3>
-                        </th>
-                        <th>
-                            <p><?php echo $lang['ABOUT_CH_HIKS']; ?></p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_CERTIFICATION']; ?></h3>
-                        </th>
-                        <th>
-                            <p>ISO 9001 - ISO 14001 - Valais Excellence</p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_OPERATIONS']; ?></h3>
-                        </th>
-                        <th>
-                            <p>
-                                <?php echo $lang['ABOUT_OPERATIONS_DESC']; ?>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_QUANTITY_MEMBERS']; ?></h3>
-                        </th>
-                        <th>
-                            <p>2000</p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_MEMBER_CONTRIBUTION']; ?></h3>
-                        </th>
-                        <th>
-                            <p><?php echo $lang['ABOUT_MEMBER_CONTRIBUTION_DESC']; ?></p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_MEMBER_ADVANTAGE']; ?></h3>
-                        </th>
-                        <th>
+                    </br>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_NAME']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="tour"><p><?php echo $lang['ABOUT_NAME_FULL']; ?></p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_FOUNDATION']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="desc"><p>1943</p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_BASED']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="dif"><p>CH-1951<?php echo $lang['ABOUT_BASED_SION']; ?></p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_UMBRELLA_GROUP']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="loc"><p><?php echo $lang['ABOUT_CH_HIKS']; ?></p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_CERTIFICATION']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="date"><p>ISO 9001 - ISO 14001 - Valais Excellence</p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_OPERATIONS']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="stat"><p> <?php echo $lang['ABOUT_OPERATIONS_DESC']; ?></p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_QUANTITY_MEMBERS']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="price"><p>2000</p></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_MEMBER_CONTRIBUTION']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="av_space"><?php echo $lang['ABOUT_MEMBER_CONTRIBUTION_DESC']; ?></label>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_MEMBER_ADVANTAGE']; ?></span>
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="expiration">
+
                             <ul style="list-style-type: disc">
                                 <li>
-                                    <p><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_1']; ?></p>
+                                    <p style="width: 539px;"><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_1']; ?></p>
                                 </li>
                                 <li>
-                                    <p><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_2']; ?></p>
+                                    <p style="width: 539px;"><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_2']; ?></p>
                                 </li>
                                 <li>
-                                    <p><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_3']; ?></p>
+                                    <p style="width: 539px;"><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_3']; ?></p>
                                 </li>
                                 <li>
-                                    <p><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_4']; ?></p>
+                                    <p style="width: 539px;"><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_4']; ?></p>
                                 </li>
                                 <li>
-                                    <p><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_5']; ?></p>
+                                    <p style="width: 539px;"><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_5']; ?></p>
                                 </li>
                             </ul>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <h3><?php echo $lang['ABOUT_CONSTITUTION']; ?></h3>
-                        </th>
-                        <th>
-                            <p><?php echo $lang['ABOUT_CONSTITUTION_DESC']; ?></p>
-                        </th>
-                    </tr>
+                        </label>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['ABOUT_CONSTITUTION']; ?></span>
+                    </div>
 
-                </table>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <label id="av_space"><?php echo $lang['ABOUT_CONSTITUTION_DESC']; ?></label>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
