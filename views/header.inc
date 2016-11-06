@@ -67,13 +67,13 @@ include ROOT_DIR.'views/common.php';
 		<div class="header-bottom">
 			<div class="container">
 				<div class="logo">
-					<a href="<?php echo URL_DIR.'home/home';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo.png" class="img-responsive" alt="" /></a>
+					<a href="<?php echo URL_DIR.'';?>"><img src="/<?php echo SITE_NAME; ?>/images/logo.png" class="img-responsive" alt="" /></a>
 					<a href="<?php echo URL_DIR.'tour/inscription';?>">Inscription</a>
 				</div>
 				<div class="head-nav">
 					<span class="menu"> </span>
 					<ul>
-						<li id="menu_home"><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
+						<li id="menu_home"><a href="<?php echo URL_DIR.'';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
 						<li id="menu_hiking"><a href="<?php echo URL_DIR.'tour/hiking';?>"><?php echo $lang['MENU_TOUR']; ?></a></li>
 						<li id="menu_about"><a href="<?php echo URL_DIR.'general/about';?>"><?php echo $lang['MENU_ABOUT']; ?></a></li>
 						<li id="menu_contact"><a href="<?php echo URL_DIR.'general/contact';?>"><?php echo $lang['MENU_CONTACT']; ?></a></li>
