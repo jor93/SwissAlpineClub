@@ -64,13 +64,14 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         document.getElementById("runlevel").removeAttribute('disabled');
         // enable save button
         document.getElementById("btn-save").style.display = "inline";
+        document.getElementById("btn-cancel").style.display = "inline";
         // hide buttons while editing
         document.getElementById("btn-edit").style.display = "none";
         document.getElementById("btn-delete").style.display = "none";
         document.getElementById("btn-change").style.display = "none";
     }
 
-    function save() {
+    function controlGUI(){
         // enable form
         document.getElementById("fname").disabled = true;
         document.getElementById("lname").disabled = true;
@@ -84,10 +85,29 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         document.getElementById("runlevel").disabled = true;
         // enable save button
         document.getElementById("btn-save").style.display = "none";
+        document.getElementById("btn-cancel").style.display = "none";
         // hide buttons while editing
         document.getElementById("btn-edit").style.display = "inline";
         document.getElementById("btn-delete").style.display = "inline";
         document.getElementById("btn-change").style.display = "inline";
+    }
+
+    function save() {
+        document.getElementById("decider").value = 0;
+        document.getElementById("editForm").submit();
+
+        controlGUI();
+    }
+
+    function del() {
+        if (confirm("Are you sure you want to delete?")) {
+            document.getElementById("decider").value = 1;
+            document.getElementById("editForm").submit();
+        }
+
+    }
+    function canc() {
+        controlGUI();
     }
 </script>
 
@@ -206,30 +226,29 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                             <?php
                             $index = $account->getRunlevel();
                             for($i = 1; $i <= 10; ++$i)
-                                echo "<option value='" . $i  ."'" .($index-1 == $i ? 'selected' : '') . ">" . $i . "</option>";
+                                echo "<option value='" . $i  ."'" .($index == $i ? 'selected' : '') . ">" . $i . "</option>";
                             ?>
                         </select>
                     </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
-                        <input type="submit" id="btn-change" value="Change PW">
+                        <input type="button" id="btn-change" value="Change PW">
                     </div>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
                         <input onclick="edit()" id="btn-edit" type="button" value="Edit">
-                        <input onclick="save()" id="btn-save" type="submit" value="Save" name="saving" style="display: none">
-                        <input id="btn-delete" type="submit" value="Delete" >
+                        <input onclick="save()" id="btn-save" type="button" value="Save" style="display: none">
+                        <input onclick="del()" id="btn-delete" type="button" value="Delete" >
+                        <input onclick="canc()" id="btn-cancel" type="button" value="Cancel"  style="display: none">
                     </div>
                 </div>
+                    echo "<input type='hidden' id='decider' name='operation' value='0' />";
+
                     </form>
 
             </div>
-
-
-
-
         </div>
     </div>
 </div>
