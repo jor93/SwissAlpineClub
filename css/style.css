@@ -2727,7 +2727,7 @@ span.error{
 .register-but{
 	margin-top:1em;
 }
-.register-but input[type="submit"],.register-but input[type="button"] {
+.register-but input[type="submit"], .register-but input[type="button"] {
 	background: #ff0000;
 	color: #FFF;
 	font-size: 1.2em;
@@ -2741,7 +2741,7 @@ span.error{
 	border: none;
 	outline: none;
 }
-.register-but input[type="submit"]:hover {
+.register-but input[type="submit"]:hover, .register-but input[type="button"]:hover {
 	background:#6a737b;
 }
 div.register-bottom-grid {
@@ -3090,7 +3090,7 @@ div.register-bottom-grid {
 	.register-top-grid span, .register-bottom-grid span {
 		font-size: 0.8125em;
 	}
-	.register-but form input[type="submit"] {
+	.register-but form input[type="submit"], .register-but input[type="button"] {
 		font-size: 1em;
 		padding: 0.5em 1.5em;
 	}
@@ -3362,7 +3362,7 @@ div.register-bottom-grid {
 	.login-page {
 		padding: 2em 0;
 	}
-	.register-but form input[type="submit"] {
+	.register-but form input[type="submit"], .register-but input[type="button"] {
 		font-size: 0.9em;
 		padding: 0.5em 1.5em;
 	}
