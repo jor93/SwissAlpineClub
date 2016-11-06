@@ -98,8 +98,16 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
                         <input type="text" id="locationDep" name="locationDep" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Postcode Departure</span>
+                        <input type="text" id="postcodeDep" name="postcodeDep" required>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Arrival</span>
                         <input type="text" id="loc" name="locationArriv" required>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Postcode arrival</span>
+                        <input type="text" id="postcodeArriv" name="postcodeArriv" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>

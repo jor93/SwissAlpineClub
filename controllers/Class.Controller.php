@@ -87,7 +87,7 @@
       * Get active (logged-in) admin
       * @return User
       */
-     function getAdminUserWithoutCookie(){
+      static function  getAdminUserWithoutCookie(){
          if(isset($_SESSION['account']) && $_SESSION['account']->getRunlevel() == 10)
              return $_SESSION['account'];
          else {
@@ -143,10 +143,12 @@
 
      static function checkHeader(){
          $user = Controller::checkActiveUser();
-         if(is_int($user) === true && $user == 10)
+         if(is_bool($user) === true && !$user)
+             include_once ROOT_DIR . '/views/header.inc';
+         else if(is_int($user) === true && $user == 10)
              include_once ROOT_DIR. '/views/headeradmin.inc';
-         else if(is_int($user) === true && $user == 1)
-             include_once ROOT_DIR. '/views/header.inc';
+         else
+             include_once ROOT_DIR . '/views/header.inc';
      }
 
      /**

@@ -34,7 +34,6 @@ class inscriptionController extends Controller
         $idInscription = $_SESSION['idInscription'];
         $countParticipants = 0;
 
-
         $account = self::getActiveUserWithoutCookie()->getIdAccount();
 
         // myself and update acc + inscription

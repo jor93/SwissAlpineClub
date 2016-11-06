@@ -64,12 +64,7 @@ include_once ROOT_DIR.'views/common.php';
                 <div class="head-nav">
                     <span class="menu"> </span>
                     <ul>
-                        <li id="menu_home"><a href="<?php echo URL_DIR.'';?>"><?php echo $lang['MENU_NEWS']; ?></a></li>
-                        <li id="menu_hiking"><a href="<?php echo URL_DIR.'tour/hiking';?>"><?php echo $lang['MENU_TOUR']; ?></a></li>
-                        <li id="menu_hikemanage"><a href="<?php echo URL_DIR.'admin/hikemanage';?>"><?php echo $lang['MENU_HIKEMGMT']; ?></a></li>
-                        <li id="menu_accmanage"><a href="<?php echo URL_DIR.'admin/manageAccount';?>"><?php echo $lang['MENU_ACCMGMT']; ?></a></li>
-                        <li id="menu_insmanage"><a href="<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_INSCRIPTIONMGMT']; ?></a></li>
-                        <li id="menu_profil"><a href="<?php echo URL_DIR.'admin/showAccount';?>"><?php echo $lang['MENU_PROFIL']; ?></a></li>
+                        <?php elementsController::showMenuForUser(); ?>
                         <div class="clearfix"> </div>
                     </ul>
                 </div>
