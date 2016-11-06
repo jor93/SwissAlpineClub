@@ -84,7 +84,7 @@ class adminController extends Controller
             $user->setCountry($country);
 
             // update account
-            //Account::updateAccountAdmin($user);
+            Account::updateAccountAdmin($user);
 
         }
 
