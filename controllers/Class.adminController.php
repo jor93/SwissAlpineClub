@@ -37,6 +37,10 @@ class adminController extends Controller
          }
      }
 
+    function manageInscription(){
+
+    }
+
     function showAccount(){
         if(isset($_SESSION['accountId'])) {
             $id = $this->badassSafer($_SESSION['accountId']);
@@ -64,7 +68,7 @@ class adminController extends Controller
             $abo = $this->badassSafer($_POST['abo']);
             $run = $this->badassSafer($_POST['runlevel']);
 
-            // create new account
+            // create new account and fill with data
             $user = new Account();
             $user->setFirstname(ucwords($firstName));
             $user->setLastname(ucwords($lastName));
@@ -77,6 +81,9 @@ class adminController extends Controller
             $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
             $user->setLocation($locationId);
             $user->setCountry($country);
+
+            // update account
+            Account::updateAccountAdmin($user);
 
         }
 

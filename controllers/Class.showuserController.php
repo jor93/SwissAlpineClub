@@ -19,10 +19,18 @@ class showuserController extends Controller
     //Account::updateAccount(1, 'PeterNames', 'PeterLastname', 'Address Peter', '1', '5555555', 'SE', '2');
 
     function updateUserAccount(){
+        if(!isset($_SESSION['country'])){
+            $query = "select idCountry,NameCountry,CodeCountry from country;";
+            $data = SQL::getInstance()->select($query)->fetchAll();
+            $_SESSION['country'] = $data;
+        }
         //var_dump($this->account->getIdAccount());
-        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address']) &&
-        isset($_POST['locationId']) && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['countryId'])
+
+        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address'])
+        && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['countryId'])
         && $_POST['country']){
+
+            $idLocation = loginController::getIdLocationFromZipAndLocationName($_POST['loc'], $_POST['plz']);
 
             $this->accountId = $_SESSION['account']->getIdAccount();
 

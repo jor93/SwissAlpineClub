@@ -319,6 +319,26 @@ class Account{
         return  SQL::getInstance()->executeQuery($query);
     }
 
+    public static function updateAccountAdmin($obj){
+        $query = "UPDATE account SET
+                idAccount = '$obj->idAccount',
+                Firstname = '$obj->firstname',
+                Lastname = '$obj->lastname',
+                Email = '$obj->email',
+                Address = '$obj->address',
+                Password = '$obj->password',
+                Phone = '$obj->phone',
+                Language = '$obj->language',
+                Runlevel = '$obj->runlevel',
+                Abonnement_idAbonnement = '$obj->abonnement',
+                Lastlogin_Date = '$obj->lastlogin',
+                Activated = '$obj->activated',
+                Location_idLocation = '$obj->location',
+                Country_idCountry = '$obj->country'
+                WHERE idAccount = '$obj->idAccount';";
+        return  SQL::getInstance()->executeQuery($query);
+    }
+
     // get all accounts for view
     public static function selectAllAccounts(){
         $query = "SELECT idAccount,Firstname,Lastname,Email,Address,Phone,locationName,Postcode,NameCountry, Language
