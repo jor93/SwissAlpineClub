@@ -10,6 +10,7 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
 <script>
     $(document).ready(function () {
         $('#menu_showhike').addClass('active');
+
     });
 
     var expanded = false;
@@ -23,6 +24,31 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
             expanded = false;
         }
     }
+
+    $( function() {
+        $( "#sdate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        $( "#edate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        $( "#exdate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    } );
+
+    function validateQty(event) {
+        var key = window.event ? event.keyCode : event.which;
+        if (event.keyCode == 8 || event.keyCode == 46
+            || event.keyCode == 37 || event.keyCode == 39) {
+            return true;
+        }
+        else if ( key < 48 || key > 57 ) {
+            return false;
+        }
+        else return true;
+    };
+
 
 </script>
 
@@ -52,7 +78,7 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" id="dur" name="duration" required>
+                        <input type="text" onkeypress='return validateQty(event);' id="dur" name="duration" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
@@ -64,7 +90,7 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" id="price" name="price" required>
+                        <input type="text" onkeypress='return validateQty(event);' id="price" name="price" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description Deutsch</span>
@@ -106,14 +132,29 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Tour Type</span>
                         <?php elementsController::typeTourCheckbox(false, 0);?>
+                        <div id="selectCheck" style="display:none">Select</div>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
-                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
+                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" required>
                     </div>
-                    <div class="wow fadeInRight" data-wow-delay="0.4s">
 
+                    <!-- gez: for inscription necessary infos! -->
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Expiration Date</span>
+                        <input type="text" id="exdate" name="exdate" required style="background: url(<?php echo SITE_NAME; ?>/images/calendar-128.png) no-repeat scroll center right; background-size: 2.5em; " size="30">
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Available Places</span>
+                        <input type="text" onkeypress='return validateQty(event);' id="a_places" name="a_places" required>
+                        <?php if (isset($_SESSION['available'])){
+                            echo $lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'];
+                        } ?>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Notes for tourguide</span>
+                        <input type="text" id="notes_guide" name="notes_guide">
                     </div>
                 </div>
 

@@ -114,7 +114,17 @@ class Participant
     public static function insertParticipant($obj){
         $query = "INSERT INTO `grp1`.`participant` (`Firstname`, `Lastname`, `Abonnement_idAbonnement`, `Inscription_idInscription`)
                     VALUES ('$obj->firstname','$obj->lastname', $obj->abonnement, $obj->inscription);";
-        return  SQL::getInstance()->executeQuery($query);
+        return SQL::getInstance()->executeQuery($query);
+    }
+
+    public static function getNumberOfParticipants($idInscription){
+        $query = "SELECT COUNT(*) as NP FROM participant WHERE inscription_idInscription = '$idInscription'";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetch();
+
+        if(!$row) return false;
+
+        return $row['NP'];
     }
 
     public static function deleteParticipant(){

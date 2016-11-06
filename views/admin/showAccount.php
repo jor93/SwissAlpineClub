@@ -30,12 +30,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 ?>
 
 <script type="text/javascript">
-    if(<?php echo ($account->getActivated() == 0); ?>){
-        document.getElementById("active").style.color='red';
-    }else {
-        document.getElementById("active").style.color='green';
-    }
-
     var MIN_LENGTH = 2;
     $( document ).ready(function() {
         $("#plz").keyup(function() {
@@ -57,17 +51,43 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
     });
 
     function edit() {
+        // enable form
+        document.getElementById("fname").removeAttribute('disabled');
+        document.getElementById("lname").removeAttribute('disabled');
+        document.getElementById("address").removeAttribute('disabled');
+        document.getElementById("plz").removeAttribute('disabled');
+        document.getElementById("loc").removeAttribute('disabled');
+        document.getElementById("phone").removeAttribute('disabled');
+        document.getElementById("lang").removeAttribute('disabled');
+        document.getElementById("country").removeAttribute('disabled');
+        document.getElementById("abo").removeAttribute('disabled');
+        document.getElementById("runlevel").removeAttribute('disabled');
+        // enable save button
+        document.getElementById("btn-save").style.display = "inline";
+        // hide buttons while editing
+        document.getElementById("btn-edit").style.display = "none";
+        document.getElementById("btn-delete").style.display = "none";
+        document.getElementById("btn-change").style.display = "none";
+    }
 
-        document.getElementById("fname").removeAttribute("disabled");
-        document.getElementById("lname").removeAttribute(disabled);
-        document.getElementById("address").removeAttribute(disabled);
-        document.getElementById("plz").removeAttribute(disabled);
-        document.getElementById("loc").removeAttribute(disabled);
-        document.getElementById("phone").removeAttribute(disabled);
-        document.getElementById("lang").removeAttribute(disabled);
-        document.getElementById("country").removeAttribute(disabled);
-        document.getElementById("abo").removeAttribute(disabled);
-
+    function save() {
+        // enable form
+        document.getElementById("fname").disabled = true;
+        document.getElementById("lname").disabled = true;
+        document.getElementById("address").disabled = true;
+        document.getElementById("plz").disabled = true;
+        document.getElementById("loc").disabled = true;
+        document.getElementById("phone").disabled = true;
+        document.getElementById("lang").disabled = true;
+        document.getElementById("country").disabled = true;
+        document.getElementById("abo").disabled = true;
+        document.getElementById("runlevel").disabled = true;
+        // enable save button
+        document.getElementById("btn-save").style.display = "none";
+        // hide buttons while editing
+        document.getElementById("btn-edit").style.display = "inline";
+        document.getElementById("btn-delete").style.display = "inline";
+        document.getElementById("btn-change").style.display = "inline";
     }
 </script>
 
@@ -193,14 +213,14 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
-                        <input type="submit" value="Change PW">
+                        <input type="submit" id="btn-change" value="Change PW">
                     </div>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
                         <input onclick="edit()" id="btn-edit" type="button" value="Edit">
-                        <input onclick="save()" id="btn-save" type="submit" value="Save" style="display: none">
-                        <input onclick="delete()" id="btn-edit" type="submit" value="Delete" >
+                        <input onclick="save()" id="btn-save" type="submit" value="Save" name="saving" style="display: none">
+                        <input id="btn-delete" type="submit" value="Delete" >
                     </div>
                 </div>
                     </form>

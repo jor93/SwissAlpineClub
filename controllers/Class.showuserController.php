@@ -20,14 +20,19 @@ class showuserController extends Controller
 
     function updateUserAccount(){
         //var_dump($this->account->getIdAccount());
-        $this->accountId = $_SESSION['account']->getIdAccount();
 
-        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address']) &&
-        isset($_POST['locationId']) && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['countryId'])
+        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address'])
+        && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['countryId'])
         && $_POST['country']){
+
+            $idLocation = loginController::getIdLocationFromZipAndLocationName($_POST['loc'], $_POST['plz']);
+
+            $this->accountId = $_SESSION['account']->getIdAccount();
+
             //Check if something has changed in the database
-            if(Account::updateAccount($this->accountId, $_POST['firstname'], $_POST['lastname'], $_POST['address'],
-                $_POST['locationId'], $_POST['phone'], $_POST['language'], $_POST['countryId'])){
+            if(Account::updateAccount($this->accountId, $this->badassSafer($_POST['firstname']), $this->badassSafer($_POST['lastname']),
+                $this->badassSafer($_POST['address']), $this->badassSafer($_POST['locationId']), $this->badassSafer($_POST['phone']),
+                $this->badassSafer($_POST['language']), $this->badassSafer($_POST['countryId']))){
                 $this->account->setFirstname($_POST['firstname']);
                 $this->account->setLastname($_POST['lastname']);
                 $this->account->setAddress($_POST['address']);
@@ -40,7 +45,6 @@ class showuserController extends Controller
                 $this->redirect('profile', 'showuser');
             }
         }
-
         $this->redirect('profile', 'showuser');
     }
 }

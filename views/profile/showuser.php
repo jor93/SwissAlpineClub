@@ -11,10 +11,51 @@ $account = $_SESSION['account'];
 
 ?>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<?php
+$query = "select distinct CONCAT(Postcode, ', ' ,LocationName) from location;";
+$data = array();
+$data = SQL::getInstance()->select($query)->fetchAll();
+$length = count($data);
+for ($i = 0; $i < $length; ++$i) {
+    $data2[$i] = $data[$i][0];
+}
+echo '<script>var myarray = '.json_encode($data2) .';</script>';
+
+?>
+
+
 <script>
     $(document).ready(function () {
         $('#menu_profile').addClass('active');
     });
+
+
+    var MIN_LENGTH = 2;
+    $( document ).ready(function() {
+        $("#plz").keyup(function() {
+            var keyword = $("#plz").val();
+            if (keyword.length >= MIN_LENGTH) {
+                $(document).ready(function() {
+                    $( "#plz" ).autocomplete({
+                        source: myarray,
+                        select: function (event, ui) {
+                            event.preventDefault();
+                            var s = ui.item.value;
+                            $("#plz").val(s.substring(0, s.indexOf(',')));
+                            $("#loc").val(s.substring(s.indexOf(',')+2, s.length));
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+
 
     function save(){
 
@@ -62,11 +103,10 @@ $account = $_SESSION['account'];
         <div class="about">
             <h4 style="padding-left: 6%">Welcome</h4>
 
+            <div class="register-top-grid" style="padding-left: 70px">
 
-                <div class="register-top-grid" style="padding-left: 70px">
-
-                    </br>
-                    <form id="editForm" action="<?php echo URL_DIR.'showuser/updateUserAccount';?>" method="post">
+                </br>
+                <form id="editForm" action="<?php echo URL_DIR.'showuser/updateUserAccount';?>" method="post">
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>E-Mail</span>
                     </div>
@@ -133,29 +173,21 @@ $account = $_SESSION['account'];
                                value="<?php echo $account->getCountry()->getNameCountry(); ?>">
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <div class="register-but">
-                        <input type="submit" value="Change PW">
-                    </div>
+                        <div class="register-but">
+                            <input type="submit" value="Change PW">
+                        </div>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <div class="register-but">
-                            <input onclick="edit()" id="btn-edit" type="submit" value="Edit">
-                            <input onclick="save()" id="btn-save" type="submit" value="Save" style="display: none">
+                            <input onclick="edit()" id="btn-edit" type="button" value="Edit">
+                            <input onclick="save()" id="btn-save" type="button" value="Save" style="display: none">
                         </div>
                     </div>
-
-
-                    </form>
-
-
-                    </div>
-
-
-
-
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 <?php
 include_once ROOT_DIR . 'views/footer.inc';
