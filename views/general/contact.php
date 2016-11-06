@@ -33,6 +33,7 @@ include_once ROOT_DIR.'views/header.inc';
 
                 <p>Tel. +41 (0)27 / 327 35 80</p>
                 <p>Fax +41 (0)27 / 327 35 81</p>
+                <br />
 
             </div>
             <form class="right_form" action="<?php echo URL_DIR.'general/getRequestCustomer';?>" method="post">
