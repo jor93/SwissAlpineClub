@@ -67,13 +67,14 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
         });
     });
 
-
     function edit () {
         document.getElementById("hike").removeAttribute("disabled");
         document.getElementById("lang").removeAttribute("disabled");
         document.getElementById("sub").removeAttribute("disabled");
         document.getElementById("dur").removeAttribute("disabled");
         document.getElementById("loc").removeAttribute("disabled");
+        document.getElementById("postcodeDep").removeAttribute("disabled");
+        document.getElementById("postcodeArriv").removeAttribute("disabled");
         document.getElementById("meeting").removeAttribute("disabled");
         document.getElementById("price").removeAttribute("disabled");
         document.getElementById("descDE").removeAttribute("disabled");
@@ -124,7 +125,6 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                                     echo "<option value='" . ($i+1) . "'>" . ($i+1) . "</option>";
                                 }
                             } ?>
-
                         </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -140,8 +140,16 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                         <input type="text" id="meeting" name="locationDep" value="<?php echo $tour->getLocationDep()->getLocationName();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Postcode Departure</span>
+                        <input type="text" id="postcodeDep" name="postcodeDep" value="<?php echo $tour->getLocationDep()->getPostcode();?>" required disabled>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Arrival</span>
                         <input type="text" id="loc" name="locationArriv" value="<?php echo $tour->getLocationArriv()->getLocationName();?>" disabled required>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Postcode arrival</span>
+                        <input type="text" id="postcodeArriv" name="postcodeArriv" value="<?php echo $tour->getLocationArriv()->getPostcode();?>" required disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
