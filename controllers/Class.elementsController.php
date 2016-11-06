@@ -108,7 +108,6 @@ class elementsController extends Controller
 
     public static function getInscription()
     {
-
         for ($i = 0; $i < 8; $i++) {
             echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
@@ -116,28 +115,51 @@ class elementsController extends Controller
             echo "<input type='text' value='vorname$i'>";
             echo "<input type='text' value='Abo$i'>";
             echo "</div>";
-
         }
 
     }
+
+    public static function avgRatings(){
+        // get tour and get all ratings / all accs
+        $idTour = $_SESSION['tourId'];
+        $ratingsTour = Rating::selectRatingsFromTour($idTour);
+        $nrRatings = count($ratingsTour);
+        $sumRatings = Rating::getSumRatings($idTour);
+        $avgRatings = $sumRatings / $nrRatings;
+
+        echo "<label>Total Bewertungen : ". $nrRatings . "</label></br>";
+        echo "<label>" . $avgRatings . " von 5 Sternen</label>";
+    }
+
     public static function comments()
     {
+        // get all ratings from the current tour
+        $idTour = $_SESSION['tourId'];
 
-        for ($i = 0; $i < 8; $i++) {
+        $ratingsTour = Rating::selectRatingsFromTour($idTour);
+
+        foreach ($ratingsTour as $item){
+            // get account infos to display
+            $accountRated = Account::selectAccountById($item['Account_idAccount']);
+            echo "<label>" . "Von " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " am " . $item['Date_of_comment'] . "</label></br>";
+
+            $prepStars = array();
             for ($j = 1; $j <= 5; $j++) {
-                if(3 >= j){
-                    echo "<span class='filled'>☆</span>";
+                if($item['Rating'] >= $j){
+                    $prepStars[$j] = "<span class='filled'>☆</span>";
                 }
                 else{
-                    echo "<span>☆</span>";
+                    $prepStars[$j] = "<span class=''>☆</span>";
                 }
             }
-            echo "<label value='name$i date$i'></label>";
-            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '></textarea>";
+            echo $prepStars[1] . $prepStars[2] . $prepStars[3] . $prepStars[4] . $prepStars[5];
+            if ($item['Comment'] == null)
+                $inputComment = '-';
+            else
+                $inputComment = $item['Comment'];
 
-
+            echo "<textarea class='' style='width: 500px; height: 100px;' type='text' disabled>" . $inputComment . "</textarea>";
         }
-
     }
 
     public static function drawSortList($answer, $answerFavorites)

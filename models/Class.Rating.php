@@ -13,6 +13,7 @@ class Rating
     private $account_idAccount;
     private $tour_idTour;
     private $rating;
+    private $date_of_comment;
     private $comment;
 
     /**
@@ -23,13 +24,14 @@ class Rating
      * @param $rating
      * @param $comment
      */
-    public function __construct($idRating, $account_idAccount, $tour_idTour, $rating, $comment)
+    public function __construct($idRating, $account_idAccount, $tour_idTour, $rating, $comment, $date_of_comment)
     {
         $this->idRating = $idRating;
         $this->account_idAccount = $account_idAccount;
         $this->tour_idTour = $tour_idTour;
         $this->rating = $rating;
         $this->comment = $comment;
+        $this->date_of_comment = $date_of_comment;
     }
 
     /**
@@ -112,6 +114,22 @@ class Rating
         $this->comment = $comment;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDateOfComment()
+    {
+        return $this->date_of_comment;
+    }
+
+    /**
+     * @param mixed $date_of_comment
+     */
+    public function setDateOfComment($date_of_comment)
+    {
+        $this->date_of_comment = $date_of_comment;
+    }
+
     static function selectRating($idRating){
         $query = "SELECT *
                   FROM Rating WHERE idRating = '$idRating'";
@@ -119,7 +137,22 @@ class Rating
         $row = $result->fetch();
         if(!$row) return false;
 
-        return new Rating($row['idRating'], $row['Account_idAccount'], $row['Tour_idTour'], $row['Rating'], $row['Comment']);
+        return new Rating($row['idRating'], $row['Account_idAccount'], $row['Tour_idTour'], $row['Rating'], $row['Comment'], $row['Date_of_comment']);
+    }
+
+    // get all ratings for one tour
+    static function selectRatingsFromTour($idtour){
+        $query = "SELECT *
+                  FROM Rating WHERE Tour_idTour = '$idtour'";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
+
+    // get sum of ratings
+    static function getSumRatings($idtour){
+        $query = "SELECT SUM(Rating) FROM Rating WHERE Tour_idTour = $idtour";
+        $temp = SQL::getInstance()->select($query)->fetch();
+        $result = $temp[0];
+        return $result;
     }
 
     // check if account has already rated a tour
@@ -133,8 +166,8 @@ class Rating
     }
 
     static function insertRating($obj){
-        $query = "INSERT INTO Rating(Account_idAccount, Tour_idTour, Rating, Comment) 
-                  VALUES ($obj->account_idAccount, $obj->tour_idTour, $obj->rating,'$obj->comment')";
+        $query = "INSERT INTO Rating(Account_idAccount, Tour_idTour, Rating, Comment, Date_of_comment) 
+                  VALUES ($obj->account_idAccount, $obj->tour_idTour, $obj->rating,'$obj->comment', '$obj->date_of_comment')";
         return  SQL::getInstance()->executeQuery($query);
     }
 

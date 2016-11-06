@@ -157,10 +157,10 @@ if (isset($_SESSION['tourId'])) {
     <div class="main-1">
         <div class="container">
             <div class="register">
-
                 <img alt="Embedded Image"
                      src="data:<?php echo $image['mime'] ?>;base64,<?php echo base64_encode($image['data']); ?> "
                      style="margin-left: auto;margin-right: auto; display: block;width: 50%"/>
+                <h3>IHRE BEWERTUNG</h3>
                 <div class="rating">
                     <span id="5" onclick="fill(this.id)">☆</span>
                     <span id="4" onclick="fill(this.id)">☆</span>
@@ -168,6 +168,7 @@ if (isset($_SESSION['tourId'])) {
                     <span id="2" onclick="fill(this.id)">☆</span>
                     <span id="selected1" onclick="fill(this.id)" class="filled">☆</span>
                 </div>
+                <?php echo elementsController::avgRatings();?>
                 <div class="register-top-grid" style="padding-left: 70px">
                     </br>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -317,7 +318,10 @@ if (isset($_SESSION['tourId'])) {
                               style="width: 400px;"></textarea>
                     <button onclick="validateRating()" class="add_comment_field">Rating veröffentlichen</button>
                     </br>
-                    <a onclick="comments()">Alle Kommentare öffnen</a>
+                    </br>
+                    <div class="rating">
+                        <?php echo elementsController::comments();?>
+                    </div>
                 </div>
             </div>
         </div>

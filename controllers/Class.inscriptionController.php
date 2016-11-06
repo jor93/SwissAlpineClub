@@ -86,12 +86,7 @@ class inscriptionController extends Controller
         $idAcc = self::getActiveUserWithoutCookie()->getIdAccount();
         $idTour = $_SESSION['tourId'];
 
-        echo '</br>rating : ' . $selectedRating;
-        echo '</br>comment : ' . $givenComment;
-        echo '</br>account : ' . $idAcc;
-        echo '</br>tour : ' . $idTour;
-
-        $idAcc = 2;
+        $idAcc = 1;
 
         // check if already rated - if no discard
         $checkAccount = Rating::selectRatingByidAccount($idAcc, $idTour);
@@ -99,7 +94,8 @@ class inscriptionController extends Controller
         // if true he hasnt added a rate in db
         if ($checkAccount){
             // insert into db
-            $rating = new Rating(null, $idAcc, $idTour, $selectedRating, $givenComment);
+            $currentDate = date("Y-m-d");
+            $rating = new Rating(null, $idAcc, $idTour, $selectedRating, $givenComment, $currentDate);
             Rating::insertRating($rating);
         }else{
             $_SESSION['error_account_rating'] = 1;
