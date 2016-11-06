@@ -7,11 +7,16 @@
  */
 include_once ROOT_DIR. '/views/headeradmin.inc';
 
-$tour = Tour::selectTour(36);
+$tour = Tour::selectTour(1);
 $manageTourInfos = array();
 $manageTourInfos['idTour'] = $tour->getIdTour();
 $manageTourInfos['idTourDesc'] = $tour->getIdLanguageDescription();
 $_SESSION['manageTour'] = $manageTourInfos;
+
+// gez: get the inscription object
+$inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
+
+//http://www.the-art-of-web.com/javascript/validate-date/
 ?>
 <script>
     $(document).ready(function () {
@@ -25,7 +30,22 @@ $_SESSION['manageTour'] = $manageTourInfos;
         $( "#edate" ).datepicker({
             dateFormat: "yy-mm-dd"
         });
+        $( "#exdate" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
     } );
+
+    function validateQty(event) {
+        var key = window.event ? event.keyCode : event.which;
+        if (event.keyCode == 8 || event.keyCode == 46
+            || event.keyCode == 37 || event.keyCode == 39) {
+            return true;
+        }
+        else if ( key < 48 || key > 57 ) {
+            return false;
+        }
+        else return true;
+    };
 
     function edit () {
         document.getElementById("hike").removeAttribute("disabled");
@@ -45,6 +65,9 @@ $_SESSION['manageTour'] = $manageTourInfos;
         document.getElementById("field").removeAttribute("disabled");
         document.getElementById("fieldtour").removeAttribute("disabled");
         document.getElementById("img").removeAttribute("disabled");
+        document.getElementById("exdate").removeAttribute("disabled");
+        document.getElementById("a_places").removeAttribute("disabled");
+        document.getElementById("notes_guide").removeAttribute("disabled");
 
         document.getElementById("btn-save").style.display = "inline";
         document.getElementById("btn-edit").style.display = "none";
@@ -92,7 +115,7 @@ $_SESSION['manageTour'] = $manageTourInfos;
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Duration</span>
-                        <input type="text" id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled>
+                        <input type="text" onkeypress='return validateQty(event);' id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
@@ -104,7 +127,7 @@ $_SESSION['manageTour'] = $manageTourInfos;
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
-                        <input type="text" id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled>
+                        <input type="text" onkeypress='return validateQty(event);' id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Description DE</span>
@@ -155,6 +178,20 @@ $_SESSION['manageTour'] = $manageTourInfos;
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
                         <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" disabled>
+                    </div>
+
+                    <!-- gez: for inscription necessary infos! -->
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Expiration Date</span>
+                        <input type="text" id="exdate" name="exdate" disabled value="<?php echo $inscription->getExpirationDate();?>">
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Available Places</span>
+                        <input type="number" id="a_places" name="a_places" disabled value="<?php echo $inscription->getMaxInscriptions();?>">
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Notes for tourguide</span>
+                        <input type="text" id="notes_guide" name="notes_guide" disabled value="<?php echo $inscription->getInformation();?>">
                     </div>
 
                 </div>

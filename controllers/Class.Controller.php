@@ -49,6 +49,14 @@
  		header($url);
  	}
 
+     //check if user is active and get back which runlevel has account
+     static function checkActiveUser()
+     {
+         if(self::getActiveUserWithoutCookie())return 1;
+         if(self::getAdminUserWithoutCookie())return 10;
+         else return false;
+     }
+
      /**
       * Get active (logged-in) user
       * @return User
