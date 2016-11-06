@@ -29,6 +29,7 @@ else if(isSet($_COOKIE['lang']))
 else
 {
     $lang = 'de';
+    $_SESSION['lang'] = $lang;
 }
 
 switch ($lang) {

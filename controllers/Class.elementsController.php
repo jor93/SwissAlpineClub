@@ -12,7 +12,17 @@ class elementsController extends Controller
 {
 
     public static function showLoggedInUser(){
-        include_once (ROOT_DIR.'views/common.php');
+
+        $temp = $_SESSION['lang'];
+
+        echo $temp;
+        if ($temp == 'de')
+            include_once (ROOT_DIR. 'views/lang/lang.de.php');
+        else
+            include_once (ROOT_DIR. 'views/lang/lang.fr.php');
+
+
+
         $user = false;
 
         if(!$user){
