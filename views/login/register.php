@@ -177,13 +177,12 @@ for ($i = 0; $i < $length; ++$i) {
                         </div>
                     </div>
 
-                    <div class="g-recaptcha" data-sitekey="6LfhNQoUAAAAABf3Ia4vpBFtWclI7akUB7EH976f"></div>
-
                     <div class="clearfix"> </div>
                     <div class="register-but">
                         <input type="submit" value="<?php echo $lang['REGISTER_SUBMIT'];?>">
                     </div>
 
+                    <div class="g-recaptcha" data-sitekey="6LfhNQoUAAAAABf3Ia4vpBFtWclI7akUB7EH976f"></div>
 
 
                 </form>

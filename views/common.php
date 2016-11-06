@@ -45,5 +45,4 @@ switch ($lang) {
         $lang_file = 'lang.de.php';
 }
 include_once 'lang/'.$lang_file;
-
 ?>
