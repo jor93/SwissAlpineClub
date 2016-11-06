@@ -39,6 +39,24 @@ class Inscription
     /**
      * @return mixed
      */
+    public function getIdInscription()
+    {
+        return $this->idInscription;
+    }
+
+    /**
+     * @param mixed $idInscription
+     */
+    public function setIdInscription($idInscription)
+    {
+        $this->idInscription = $idInscription;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
     public function getTourIdTour()
     {
         return $this->tour_idTour;

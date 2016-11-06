@@ -199,7 +199,7 @@ $_SESSION['idInscription'] = $inscription->getIdInscription();
                 </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <label id="tour"><p>Tour Name</p></label>
+                        <label id="tour"><?php echo $tour->getIdTour() ?></label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
