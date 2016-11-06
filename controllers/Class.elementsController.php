@@ -15,7 +15,8 @@ class elementsController extends Controller
         include_once(ROOT_DIR.'views/lang/lang.de.php');
         include_once(ROOT_DIR.'views/lang/lang.fr.php');
 
-        $user = false;
+
+        $user = $this->;
 
         if(!$user){
             echo "<li><a href=\"login/register\">" . $lang['HEADER_REGISTER'] . "</a></li>";
