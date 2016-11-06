@@ -30,6 +30,12 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 ?>
 
 <script type="text/javascript">
+    if(<?php echo ($account->getActivated() == 0); ?>){
+        document.getElementById("active").style.color='red';
+    }else {
+        document.getElementById("active").style.color='green';
+    }
+
     var MIN_LENGTH = 2;
     $( document ).ready(function() {
         $("#plz").keyup(function() {
@@ -49,6 +55,20 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
             }
         });
     });
+
+    function edit() {
+
+        document.getElementById("fname").removeAttribute(disabled);
+        document.getElementById("lname").removeAttribute(disabled);
+        document.getElementById("address").removeAttribute(disabled);
+        document.getElementById("plz").removeAttribute(disabled);
+        document.getElementById("loc").removeAttribute(disabled);
+        document.getElementById("phone").removeAttribute(disabled);
+        document.getElementById("lang").removeAttribute(disabled);
+        document.getElementById("country").removeAttribute(disabled);
+        document.getElementById("abo").removeAttribute(disabled);
+
+    }
 </script>
 
 
@@ -64,7 +84,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <span>E-Mail</span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <input class="proedit" type="text" id="mail" name="mail" required disabled
+                    <input class="proedit" type="text" id="mail" name="email" required disabled
                            value="<?php echo $account->getEmail(); ?>">
                 </div>
 
@@ -72,14 +92,14 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <span>Vorname</span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <input class="proedit" type="text" id="fname" name="fname" required disabled
+                    <input class="proedit" type="text" id="fname" name="firstname" required disabled
                            value="<?php echo $account->getFirstname(); ?>">
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <span>Nachname</span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <input class="proedit" type="text" id="lname" name="lname" required disabled
+                    <input class="proedit" type="text" id="lname" name="lastname" required disabled
                            value="<?php echo $account->getLastname(); ?>">
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -93,7 +113,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         <span>PLZ</span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <input class="proedit" type="text" id="plz" name="plz" required disabled
+                        <input class="proedit" type="text" id="plz" name="zip" required disabled
                                value="<?php echo $loc->getPostcode(); ?>">
                     </div>
 
@@ -101,7 +121,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <span>Ort</span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <input class="proedit" type="text" id="loc" name="loc" required disabled
+                    <input class="proedit" type="text" id="loc" name="location" required disabled
                            value="<?php echo $loc->getLocationName(); ?>">
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
