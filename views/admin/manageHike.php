@@ -45,6 +45,20 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
         else return true;
     };
 
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            checked = $("input[id=typetour]:checked").length;
+
+            if(!checked) {
+                document.getElementById('selectCheck').style.display = 'block';
+                return false;
+            }
+            else{
+                document.getElementById('selectCheck').style.display = 'none';
+            }
+        });
+    });
+
     function edit () {
         document.getElementById("hike").removeAttribute("disabled");
         document.getElementById("lang").removeAttribute("disabled");
@@ -105,6 +119,7 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                                     echo "<option value='" . ($i+1) . "'>" . ($i+1) . "</option>";
                                 }
                             } ?>
+
                         </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -170,6 +185,7 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                         <span>Tour Type</span>
                         <fieldset id="fieldtour" name="fieldtour" disabled>
                             <?php elementsController::typeTourCheckbox(true, $tour->getIdTour());?>
+                            <label id="selectCheck" class="error" style="display:none">Please choose at least one type</label>
                         </fieldset>
                     </div>
 

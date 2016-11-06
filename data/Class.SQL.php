@@ -74,7 +74,6 @@ class SQL {
 
 	// function for select query
 	public function select($query){
-        echo '</br>' . 'SQL query: ' . $query;
         // prepare query (sql injection)
         $stmt = $this->_conn->prepare($query);
         // execute query or show error
@@ -85,8 +84,6 @@ class SQL {
 
 	// function for insert/update/delete
 	public function executeQuery($query){
-	    echo '</br>' . 'SQL query: ';
-        var_dump($query);
         try {
             // begin trans
             $this->_conn->beginTransaction();
@@ -119,8 +116,6 @@ class SQL {
 
     // function for select query
     public function selectBLOB($query, $tourid){
-       // echo '</br>' . 'SQL query: ';
-        //var_dump($query);
         // prepare query (sql injection)
         $stmt = $this->_conn->prepare($query);
         $stmt->execute(array(":id" => $tourid));

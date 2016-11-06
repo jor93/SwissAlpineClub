@@ -15,16 +15,33 @@ class elementsController extends Controller
         include_once(ROOT_DIR.'views/lang/lang.de.php');
         include_once(ROOT_DIR.'views/lang/lang.fr.php');
 
-        $user = false;
-
-        if(!$user){
-            echo "<li><a href=\"login/register\">" . $lang['HEADER_REGISTER'] . "</a></li>";
-            echo "<li><a href=\"login/login\">" . $lang['HEADER_LOGIN'] . "</a></li>";
-        }else{
+        $user = self::checkActiveUser();
+        if(is_bool($user) === true && !$user){
+            echo "<li><a href=". URL_DIR."login/register>" . $lang['HEADER_REGISTER'] . "</a></li>";
+            echo "<li><a href=". URL_DIR."login/login>" . $lang['HEADER_LOGIN'] . "</a></li>";
+        } else {
             $name = $_SESSION["account"];
-            echo "<li><a href=\"login/register\">" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
-            echo "<li><a href=\"login/login\">" . $lang['HEADER_LOGOUT'] . "</a></li>";
+            echo "<li><a href=". URL_DIR."profile/showuser>" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
+            echo "<li><a href=". URL_DIR."home>" . $lang['HEADER_LOGOUT'] . "</a></li>";
         }
+    }
+
+    public static function showMenuForUser(){
+        include_once(ROOT_DIR.'views/lang/lang.de.php');
+        include_once(ROOT_DIR.'views/lang/lang.fr.php');
+
+        $user = self::checkActiveUser();
+        if(is_int($user) === true && $user == 1){
+
+        } else if (is_int($user) === true && $user == 10){
+           /* echo "<li id='menu_home'><a href=\"\">" . $lang['MENU_NEWS'] . "</a></li>";
+            echo "<li id='menu_hiking'><a href=\"tour/hiking\">" . $lang['MENU_TOUR'] . "</a></li>";
+            echo "<li id='menu_hikemanage'><a href=\"<?php echo URL_DIR.'admin/hikemanage';?>"><?php echo $lang['MENU_HIKEMGMT']; ?></a></li>";
+            echo "<li id='menu_accmanage'><a href=\"<?php echo URL_DIR.'admin/manageAccount';?>"><?php echo $lang['MENU_ACCMGMT']; ?></a></li>";
+            echo "<li id='menu_insmanage'><a href=\"<?php echo URL_DIR.'home/home';?>"><?php echo $lang['MENU_INSCRIPTIONMGMT']; ?></a></li>";
+            echo "<li id='menu_profil'><a href=\"<?php echo URL_DIR.'admin/showAccount';?>"><?php echo $lang['MENU_PROFIL']; ?></a></li>";*/
+        }
+
     }
 
     public static function selectToursOFF()
@@ -95,8 +112,8 @@ class elementsController extends Controller
                     echo "<span>☆</span>";
                 }
             }
-            echo "<label value='name$i date$i'>";
-            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '>";
+            echo "<label value='name$i date$i'></label>";
+            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '></textarea>";
 
 
         }
@@ -321,17 +338,17 @@ class elementsController extends Controller
 
         if (!(bool)$edit) {
             for ($i = 0; $i < $length; ++$i) {
-                echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                 echo "</br>";
             }
         } else {
             $idsTour = TypeTour::getTypeIdsFromTour($idTour);
             for ($i = 0; $i < $length; ++$i) {
                 if (self::checkTypeTourIds(($i + 1), $idsTour)) {
-                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
+                    echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
                     echo "</br>";
                 } else {
-                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                    echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                     echo "</br>";
                 }
             }

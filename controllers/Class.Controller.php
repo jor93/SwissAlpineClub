@@ -50,7 +50,7 @@
  	}
 
      //check if user is active and get back which runlevel has account
-     static function checkActiveUser()
+     public static function checkActiveUser()
      {
          if(self::getActiveUserWithoutCookie())return 1;
          if(self::getAdminUserWithoutCookie())return 10;
@@ -139,6 +139,14 @@
          }
          return true;
 
+     }
+
+     static function checkHeader(){
+         $user = Controller::checkActiveUser();
+         if(is_int($user) === true && $user == 10)
+             include_once ROOT_DIR. '/views/headeradmin.inc';
+         else if(is_int($user) === true && $user == 1)
+             include_once ROOT_DIR. '/views/header.inc';
      }
 
      /**

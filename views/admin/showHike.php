@@ -48,13 +48,27 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
         else return true;
     };
 
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            checked = $("input[id=typetour]:checked").length;
+
+            if(!checked) {
+                document.getElementById('selectCheck').style.display = 'block';
+                return false;
+            }
+            else{
+                document.getElementById('selectCheck').style.display = 'none';
+            }
+        });
+    });
+
 
 </script>
 
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form action="<?php echo URL_DIR.'tour/insertTour';?>" method="post" enctype="multipart/form-data">
+            <form id="editForm" action="<?php echo URL_DIR.'tour/insertTour';?>" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
                     <h3>HIKE INFORMATION</h3>
 
@@ -131,7 +145,7 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Tour Type</span>
                         <?php elementsController::typeTourCheckbox(false, 0);?>
-                        <div id="selectCheck" style="display:none">Select</div>
+                        <label id="selectCheck" class="error" style="display:none">Please choose at least one type</label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -158,9 +172,8 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
                 </div>
 
                 <div class="register-but">
-                    <input type="submit" value="submit" onclick="check()">
+                    <input type="submit" id="checkBtn" value="submit" onclick="check()">
                 </div>
-
             </form>
         </div>
     </div>
