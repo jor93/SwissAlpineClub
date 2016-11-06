@@ -9,6 +9,8 @@ include_once ROOT_DIR . 'views/header.inc';
 
 $account = $_SESSION['account'];
 
+var_dump($account->getCountry()->getIdCountry());
+
 ?>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
@@ -59,6 +61,8 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
     function save(){
 
+        document.getElementById('editForm').submit();
+
         document.getElementById("mail").disabled = true;
         document.getElementById("fname").disabled = true;
         document.getElementById("lname").disabled = true;
@@ -71,8 +75,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
         document.getElementById("btn-save").style.display = "none"
         document.getElementById("btn-edit").style.display = "inline";
-
-        document.getElementById('editForm').submit();
 
     }
 
@@ -90,7 +92,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
         document.getElementById("btn-save").style.display = "inline"
         document.getElementById("btn-edit").style.display = "none";
-
 
     }
 
@@ -171,11 +172,10 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <select  class="proedit" id="country" name="country" disabled>
                             <?php
-                            $index = $account->getCountry();
+                            $index = $account->getCountry()->getIdCountry();
                             $length = count($_SESSION['country'])-1;
                             for($i = 0; $i <= $length; ++$i)
                                 echo "<option value='" . $_SESSION['country'][$i][0]  ."'" .($index-1 == $i ? 'selected' : '') . ">" . $_SESSION['country'][$i][1] . "</option>";
-
                             ?>
                         </select>
                     </div>
