@@ -49,15 +49,12 @@ include ROOT_DIR.'views/common.php';
 			<div class="container">
 				<div class="header-top">
 					<div class="header-right">
-						<div id="languages">
-							<a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="20px" height="20px" /></a>
-
-							<a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="20px" height="20px" /></a>
-						</div>
 					</div>
 					<div class="header-left">
 						<ul>
 							<?php elementsController::showLoggedInUser(); ?>
+							<a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="20px" height="20px" /></a>
+							<a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="20px" height="20px" /></a>
 						</ul>
 					</div>
 					<div class="clearfix"> </div>
@@ -93,10 +90,7 @@ include ROOT_DIR.'views/common.php';
 				<!-- script-for-nav -->
 			</div>
 		</div>
-		<div class="banner1">
-			<div class="container">
-			</div>
-		</div>
+
 	</div>
 	<!-- header -->
 
