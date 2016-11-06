@@ -302,17 +302,17 @@ class elementsController extends Controller
 
         if (!(bool)$edit) {
             for ($i = 0; $i < $length; ++$i) {
-                echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                 echo "</br>";
             }
         } else {
             $idsTour = TypeTour::getTypeIdsFromTour($idTour);
             for ($i = 0; $i < $length; ++$i) {
                 if (self::checkTypeTourIds(($i + 1), $idsTour)) {
-                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
+                    echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
                     echo "</br>";
                 } else {
-                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                    echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                     echo "</br>";
                 }
             }

@@ -14,7 +14,6 @@ if (isset($_SESSION['tourId'])) {
     $_SESSION['idInscription'] = $inscription->getIdInscription();
 }
 
-
 ?>
     <script>
         $(document).ready(function () {
