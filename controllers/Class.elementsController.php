@@ -73,13 +73,13 @@ class elementsController extends Controller
     {
 
         for ($i = 0; $i < 8; $i++) {
-            echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\">";
+            echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
             echo "<input type='text' value='name$i'>";
             echo "<input type='text' value='vorname$i'>";
             echo "<input type='text' value='Abo$i'>";
             echo "</div>";
-            echo "</br>";
+
         }
 
     }

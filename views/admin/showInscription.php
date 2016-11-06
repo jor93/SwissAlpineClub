@@ -19,12 +19,13 @@ include_once ROOT_DIR.'views/header.inc';
     <div class="main-1">
         <div class="container">
             <div class="register">
+                <h3 style="color: red">SHOW INSCRIPTION</h3>
                 <form method="post" action="<?php echo URL_DIR.'admin/showInscription';?>">
+
                     <div class="register-top-grid">
-                        <!-- Error message label general -->
 
                             <?php elementsController::getInscription(); ?>
-
+                    <br>
 
                 </form>
             </div>
