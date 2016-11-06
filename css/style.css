@@ -2736,7 +2736,7 @@ span.error{
 .register-but{
 	margin-top:1em;
 }
-.register-but input[type="submit"] {
+.register-but input[type="submit"],.register-but input[type="button"] {
 	background: #ff0000;
 	color: #FFF;
 	font-size: 1.2em;
