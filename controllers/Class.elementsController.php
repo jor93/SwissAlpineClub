@@ -83,6 +83,25 @@ class elementsController extends Controller
         }
 
     }
+    public static function comments()
+    {
+
+        for ($i = 0; $i < 8; $i++) {
+            for ($j = 1; $j <= 5; $j++) {
+                if(3 >= j){
+                    echo "<span class='filled'>☆</span>";
+                }
+                else{
+                    echo "<span>☆</span>";
+                }
+            }
+            echo "<label value='name$i date$i'></label>";
+            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '></textarea>";
+
+
+        }
+
+    }
 
     public static function drawSortList($answer, $answerFavorites)
     {
