@@ -20,9 +20,12 @@ class showuserController extends Controller
 
     function updateUserAccount(){
         //var_dump($this->account->getIdAccount());
-        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address']) &&
-        isset($_POST['locationId']) && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['countryId'])
+
+        if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address'])
+        && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['countryId'])
         && $_POST['country']){
+
+            $idLocation = loginController::getIdLocationFromZipAndLocationName($_POST['loc'], $_POST['plz']);
 
             $this->accountId = $_SESSION['account']->getIdAccount();
 
