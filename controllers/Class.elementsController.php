@@ -313,13 +313,22 @@ class elementsController extends Controller
 
     public static function favoritesSelect()
     {
-        // id current user
-        $currentUser = self::getActiveUserWithoutCookie();
-        $idAcc = $currentUser->getIdAccount();
 
-        // call db
+        // id current user
+        if(self::getActiveUserWithoutCookie()){
+            $currentUser = self::getActiveUserWithoutCookie();
+            $idAcc = $currentUser->getIdAccount();
+
+            // call db
+            $answerFavorites = Favorite::getAllFavorites($idAcc);
+        }
+        else{
+            $answerFavorites = false;
+        }
+
+        // get tours
         $answer = Tour::selectAllTours();
-        $answerFavorites = Favorite::getAllFavorites($idAcc);
+
         // lets draw
         self::drawSortList($answer, $answerFavorites);
     }

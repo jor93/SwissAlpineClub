@@ -41,9 +41,13 @@ class tourController extends Controller
             $id = $this->badassSafer($_POST['showHike']);
             if($id != -1){
                 $_SESSION['tourId'] = $id;
-                $this->redirect('tour', 'hikeShow');
+                if (!self::checkActiveUser())
+                    $this->redirect('tour', 'hikeShowOff');
+                else
+                    $this->redirect('tour', 'hikeShow');
             }
         }
+
 
     }
 
@@ -56,6 +60,9 @@ class tourController extends Controller
         }
     }
 
+    function hikeShowOff(){
+
+    }
 
     private function setTransportIds($transportLength){
         $transportIds = array();
