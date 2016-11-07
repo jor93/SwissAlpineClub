@@ -20,15 +20,9 @@ class showuserController extends Controller
 
     function updateUserAccount(){
 
-        var_dump($_POST['loc']);
-        exit();
-
         if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address'])
         && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang'])
         && isset($_POST['country'])){
-
-            var_dump($_SESSION['account']);
-            exit();
 
             $idLocation = loginController::getIdLocationFromZipAndLocationName($_POST['loc'], $_POST['plz']);
 

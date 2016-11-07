@@ -59,8 +59,7 @@ Controller::checkHeader();
 								<input type="checkbox" id="checkb" name="rememberMe" checked=""><i> </i>Stay logged in
 							</label>
 						</a>
-
-						<Label class="error"><?php if(isset($_SESSION['wrongUserError'])) echo $_SESSION['wrongUserError'] ?></Label>
+						<Label class="error"><?php if(isset($_SESSION['wrongUserError'])) echo $_SESSION['wrongUserError']; unset($_SESSION['wrongUserError']) ?></Label>
 						<a>
 							<input type="submit" value="Login" onclick="checkLogin()">
 						</a>

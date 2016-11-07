@@ -17,7 +17,7 @@ class loginController extends Controller {
             $password = $_POST['password'];
         }
         //Load account from DB if exists
-        $result = Account::connect($email, sha1($password));
+        $result = Account::connect($email, $password);
         //Put account in session if exists or return error msg
         if (!$result) {
             $_SESSION['wrongUserError'] = "Wrong Username or Password";
