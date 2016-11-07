@@ -5,7 +5,7 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-include_once ROOT_DIR. 'views/headeradmin.inc';
+Controller::checkHeader();
 ?>
 <!-- 404 -->
 	<div class="main">

@@ -5,7 +5,7 @@
  * Date: 30.09.2016
  * Time: 10:14
  */
-include_once ROOT_DIR. '/views/headeradmin.inc';
+Controller::checkHeader();
 
 $account = $_SESSION['accountToChange'];
 $loc = Location::selectLocation($account->getLocation());

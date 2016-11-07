@@ -9,27 +9,37 @@
 class adminController extends Controller
 {
 
+    function checkRights(){
+        $user = Controller::checkActiveUser();
+        if(is_bool($user) === true && !$user)
+            $this->redirect('login', 'login');
+        else if(is_int($user) === true && $user == 1)
+            $this->redirect('profile', 'showuser');
+    }
+
     function showHike(){
+        $this->checkRights();
 
     }
 
     function manageHike(){
-
+        $this->checkRights();
     }
 
     function hikeImageTest(){
-
+        $this->checkRights();
 
     }
 
     function hikemanage(){
-
+        $this->checkRights();
     }
      function showadmin(){
-
+         $this->checkRights();
      }
 
      function manageAccount(){
+         $this->checkRights();
          if ($_SERVER["REQUEST_METHOD"] == "POST") {
              $id = $this->badassSafer($_POST['showUser']);
             $_SESSION['accountId'] = $id;
@@ -38,14 +48,16 @@ class adminController extends Controller
      }
 
     function manageInscription(){
+        $this->checkRights();
 
     }
     function showInscription(){
+        $this->checkRights();
 
     }
 
     function showAccount(){
-
+        $this->checkRights();
         if(isset($_SESSION['accountId'])) {
             $id = $this->badassSafer($_SESSION['accountId']);
             $result = Account::selectAccountById($id);

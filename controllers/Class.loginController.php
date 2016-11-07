@@ -20,6 +20,7 @@ class loginController extends Controller {
         $result = Account::connect($email, sha1($password));
         //Put account in session if exists or return error msg
         if (!$result) {
+            $_SESSION['wrongUserError'] = "Wrong Username or Password";
             $this->redirect('login', 'login');
         } else {
             //Check if Account can update Lastlogin
@@ -149,7 +150,6 @@ class loginController extends Controller {
                 $password2 = $this->badassSafer($_POST['pwd2']);
                 $country = $this->badassSafer($_POST['country']);
                 $abo = $this->badassSafer($_POST['abo']);
-                $_SESSION['saved'] = array($firstName,$lastName,$email,$address,$zip,$zip,$location,$phone,$language,$country,$abo);
             } else {
                 $aborting = true;
                 array_push($errorsInForm, 1);
@@ -192,6 +192,7 @@ class loginController extends Controller {
                 }
             }
             if($aborting){
+                $_SESSION['saved'] = array($firstName,$lastName,$email,$address,$zip,$location,$phone,$language,$country,$abo);
                 // write all errors to session
                 $_SESSION['errors'] = $errorsInForm;
 
@@ -238,7 +239,7 @@ class loginController extends Controller {
 
                 // registration successfull --> reset everything
                 $_SESSION['country'] = null;
-                $_SESSION['error'] = null;
+                $_SESSION['errors'] = null;
                 $_SESSION['saved'] = null;
         }
     }

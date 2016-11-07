@@ -5,7 +5,7 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-include_once ROOT_DIR. 'views/headeradmin.inc';
+Controller::checkHeader();
 ?>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -217,7 +217,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
-                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
+                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" required>
                     </div>
 
                     <!-- gez: for inscription necessary infos! -->

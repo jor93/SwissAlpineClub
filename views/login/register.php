@@ -5,12 +5,13 @@
  * Date: 27.09.2016
  * Time: 14:54
  */
-include_once ROOT_DIR.'views/header.inc';
-
-if(isset($_SESSION['saved']))
-    $sav = $_SESSION['saved'];
-else
+Controller::checkHeader();
+if(!isset($_SESSION['saved']))
     $sav = null;
+else
+    $sav = $_SESSION['saved'];
+
+
 ?>
     <script>
         $(document).ready(function () {

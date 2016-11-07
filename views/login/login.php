@@ -5,7 +5,7 @@
  * Date: 28.09.2016
  * Time: 14:01
  */
-include_once ROOT_DIR.'views/header.inc';
+Controller::checkHeader();
 ?>
 	<script>
 		$(document).ready(function () {
@@ -59,6 +59,8 @@ include_once ROOT_DIR.'views/header.inc';
 								<input type="checkbox" id="checkb" name="rememberMe" checked=""><i> </i>Stay logged in
 							</label>
 						</a>
+
+						<Label class="error"><?php if(isset($_SESSION['wrongUserError'])) echo $_SESSION['wrongUserError'] ?></Label>
 						<a>
 							<input type="submit" value="Login" onclick="checkLogin()">
 						</a>

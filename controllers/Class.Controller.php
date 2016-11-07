@@ -52,11 +52,10 @@
      //check if user is active and get back which runlevel has account
      public static function checkActiveUser()
      {
-         if(self::getActiveUserWithoutCookie())return 1;
+         if(self::getNormalUserWithoutCookie())return 1;
          if(self::getAdminUserWithoutCookie())return 10;
          else return false;
      }
-
      /**
       * Get active (logged-in) user
       * @return User
@@ -107,6 +106,13 @@
              return false;
      }
 
+     static function getNormalUserWithoutCookie(){
+         if(isset($_SESSION['account']) && $_SESSION['account']->getRunlevel() == 1){
+             return $_SESSION['account'];
+         }
+         else
+             return false;
+     }
 
      /**
       * Make a string safe
@@ -116,7 +122,6 @@
  	    $secured = trim($secureMe);
         $secured = stripslashes($secured);
         $secured = htmlspecialchars($secured, ENT_QUOTES, 'UTF-8');
- 	    echo '</br>' . 'secured string: ' . $secured;
         return $secured;
     }
 
@@ -144,11 +149,11 @@
      static function checkHeader(){
          $user = Controller::checkActiveUser();
          if(is_bool($user) === true && !$user)
-             include_once ROOT_DIR . '/views/header.inc';
+            return include_once ROOT_DIR . '/views/header.inc';
          else if(is_int($user) === true && $user == 10)
-             include_once ROOT_DIR. '/views/headeradmin.inc';
+            return include_once ROOT_DIR. '/views/headeradmin.inc';
          else
-             include_once ROOT_DIR . '/views/header.inc';
+            return include_once ROOT_DIR . '/views/header.inc';
      }
 
      /**

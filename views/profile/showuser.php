@@ -5,10 +5,9 @@
  * Date: 30.09.2016
  * Time: 10:14
  */
-include_once ROOT_DIR . 'views/header.inc';
+Controller::checkHeader();
 
 $account = $_SESSION['account'];
-
 //var_dump($account->getCountry()->getIdCountry());
 
 ?>
