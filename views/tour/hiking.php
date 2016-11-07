@@ -26,6 +26,11 @@ include_once $header;
         });
     }
 
+    function resetDate(){
+        alert("HELP");
+        $( "#datepicker" ).val('');
+    }
+
     function showHike($idHike){
         document.getElementById("saver").value = $idHike;
         document.getElementById("manageHikings").submit();
@@ -68,7 +73,8 @@ include_once $header;
 
                     <h4><?php echo $lang['HIKING_DATE']; ?></h4>
                     <div class="cd-filter-content cd-filters list">
-                        <input type="text" id="datepicker" readonly style="background: url(/<?php echo SITE_NAME; ?>/images/calendar-128.png) no-repeat scroll center right; background-size: 2.5em; " size="30">
+                        <input type="text" id="datepicker" readonly style="background: url(/<?php echo SITE_NAME; ?>/images/calendar-128.png) no-repeat scroll center right; background-size: 2.5em; " size="25" width="80%">
+                        <a onclick="resetDate()">Delete</a>
                     </div>
                 </div>
 

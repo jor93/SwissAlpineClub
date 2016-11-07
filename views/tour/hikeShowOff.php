@@ -9,6 +9,7 @@ $header = Controller::checkHeader();
 include_once $header;
 
 if (isset($_SESSION['tourId'])) {
+    echo "Tour-ID: " . $_SESSION['tourId'] . "!";
     $tour = Tour::selectTour($_SESSION['tourId']);
     $image = Tour::selectTourImage($_SESSION['tourId']);
     $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
