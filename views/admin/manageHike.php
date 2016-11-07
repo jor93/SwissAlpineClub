@@ -164,15 +164,15 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         <div class="register">
             <form action="<?php echo URL_DIR.'tour/updateTour';?>" id="manageTour" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
-                    <h3>MANAGE HIKE</h3>
+                    <h3><?php echo $lang['SHOWHIKEADMIN_TITLE']; ?></h3>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Hike</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_TOUR']; ?></span>
                         <input type="text" id="hike" name="hikeName" value="<?php echo $tour->getTitle();?>" disabled required>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>difficulty</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_DIFF']; ?></span>
                         <select name="difficulty" id="lang" name="difficulty" disabled>
                             <?php for($i=0; $i<3;$i++){
                                 if(($i+1) === $tour->getDifficulty()){
@@ -185,74 +185,74 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         </select>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Subtitle</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_SUBTITLE']; ?></span>
                         <input type="text" id="sub" name="subtitle" value="<?php echo $tour->getSubtitle();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Duration</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_DURATION']; ?></span>
                         <input type="text" onkeypress='return validateQty(event);' id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Postcode Departure</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_ZIPDEP']; ?></span>
                         <input type="text" id="plz_dep" name="postcodeDep" value="<?php echo $tour->getLocationDep()->getPostcode();?>" required disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Departure</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_LOCDEP']; ?></span>
                         <input type="text" id="loc_dep" name="locationDep" value="<?php echo $tour->getLocationDep()->getLocationName();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Postcode arrival</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_ZIPARR']; ?></span>
                         <input type="text" id="plz_arr" name="postcodeArriv" value="<?php echo $tour->getLocationArriv()->getPostcode();?>" required disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Arrival</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_LOCARR']; ?></span>
                         <input type="text" id="loc_arr" name="locationArriv" value="<?php echo $tour->getLocationArriv()->getLocationName();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Price</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_PRICE']; ?></span>
                         <input type="text" onkeypress='return validateQty(event);' id="price" name="price" value="<?php echo $tour->getPrice();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description DE</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_DESCDE']; ?></span>
                         <input class="MyClass" type="text" id="descDE" name="descDE" value="<?php echo $tour->getLanguageDescriptionDE();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description FR</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_DESCFR']; ?></span>
                         <input type="text" id="descFR" name="descFR" value="<?php echo $tour->getLanguageDescriptionFR();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Start Date</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_STARTDATE']; ?></span>
                         <input type="text" id="sdate" name="sdate" value="<?php echo $tour->getStartDate();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>End Date</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_ENDDATE']; ?></span>
                         <input type="text" id="edate" name="edate" value="<?php echo $tour->getEndDate();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Departure Time</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_DEPTIME']; ?></span>
                         <input type="text" id="deptime" name="deptime" value="<?php echo $tour->getDepartTime();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Arrival Time</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_ARRTIME']; ?></span>
                         <input type="text" id="artime" name="artime" value="<?php echo $tour->getArrivalTime();?>" disabled required>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Status</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_STATUS']; ?></span>
                         <select name="stat" id="stat" name="stat" disabled>
                             <?php elementsController::statusSelect(true, $tour->getStatus()->getIdStatus());?>
                         </select>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Transport</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_TRANSPORT']; ?></span>
                         <fieldset id="field" name="fieldtransport" disabled>
                             <?php elementsController::transportCheckbox(true, $tour->getIdTour());?>
                         </fieldset>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Tour Type</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_TYPE']; ?></span>
                         <fieldset id="fieldtour" name="fieldtour" disabled>
                             <?php elementsController::typeTourCheckbox(true, $tour->getIdTour());?>
                             <label id="selectCheck" class="error" style="display:none">Please choose at least one type</label>
@@ -260,29 +260,29 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Image</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_IMG']; ?></span>
                         <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" disabled>
                     </div>
 
                     <!-- gez: for inscription necessary infos! -->
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Expiration Date</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_EXPDATE']; ?></span>
                         <input type="text" id="exdate" name="exdate" disabled value="<?php echo $inscription->getExpirationDate();?>" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Available Places</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_AVPLACE']; ?></span>
                         <input type="number" id="a_places" name="a_places" disabled value="<?php echo $inscription->getMaxInscriptions();?>" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Notes for tourguide</span>
+                        <span><?php echo $lang['SHOWHIKEADMIN_NOTES']; ?></span>
                         <input type="text" id="notes_guide" name="notes_guide" disabled value="<?php echo $inscription->getInformation();?>">
                     </div>
 
                 </div>
 
                 <div class="register-but">
-                    <button id ="btn-save" type="submit" class="btn btn-primary" style="display: none">Save</button>
-                    <a id ="btn-edit" onclick="edit()" class="btn btn-primary">Edit</a>
+                    <button id ="btn-save" type="submit" class="btn btn-primary" style="display: none"><?php echo $lang['SHOWADMIN_SAVE']; ?></button>
+                    <a id ="btn-edit" onclick="edit()" class="btn btn-primary"><?php echo $lang['SHOWADMIN_EDIT']; ?></a>
                 </div>
 
             </form>

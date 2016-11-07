@@ -20,7 +20,7 @@ include_once $header;
     <div class="main-1">
         <div class="container">
             <div class="register">
-                <h3 style="color: red">SHOW INSCRIPTION</h3>
+                <h3 style="color: red"><?php echo $lang['SHOWINSCRIPTION_TITLE']; ?></h3>
                 <form method="post" action="<?php echo URL_DIR.'admin/showInscription';?>">
 
                     <div class="register-top-grid">

@@ -35,30 +35,29 @@ include_once $header;
 		<div class="container">
 			<div class="account_grid">
 				<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
-					<h3>NEW CUSTOMERS</h3>
-					<p>By creating an account on this site, you will be able to book our guided tours</p>
-					<a class="acount-btn" href="<?php echo URL_DIR.'login/register';?>">Create an Account</a>
+					<h3><?php echo $lang['LOGIN_TITLE'];?></h3>
+					<p><?php echo $lang['LOGIN_DESC'];?></p>
+					<a class="acount-btn" href="<?php echo URL_DIR.'login/register';?>"><?php echo $lang['LOGIN_CREATEACC'];?></a>
 				</div>
 				<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
-					<h3>REGISTERED CUSTOMERS</h3>
-					<p>If you have an account with us, please log in.</p>
+					<h3><?php echo $lang['LOGIN_REG'];?></h3>
+					<p><?php echo $lang['LOGIN_REG_DESC'];?></p>
 					<form action="<?php echo URL_DIR.'login/connection';?>" method="post">
 						<div>
-							<span>Email Address<label>*</label></span>
+							<span><?php echo $lang['LOGIN_MAIL'];?><label>*</label></span>
 							<input type="email" id="mail" name="email" required>
 						</div>
 						<div>
-							<span>Password<label>*</label></span>
+							<span><?php echo $lang['LOGIN_PW'];?><label>*</label></span>
 							<input type="password" id="pw" name="password" required>
 						</div>
 
-						<a class="forgot" href="<?php echo URL_DIR.'login/forgotpw';?>">Forgot Your Password?</a>
+						<a class="forgot" href="<?php echo URL_DIR.'login/forgotpw';?>"><?php echo $lang['LOGIN_PW_FORGOT'];?></a>
 						<a class="clearfix" ></a>
 
 						<a class="news-letter">
 							<label class="checkbox">
-								<input type="checkbox" id="checkb" name="rememberMe" checked=""><i> </i>Stay logged in
-							</label>
+								<input type="checkbox" id="checkb" name="rememberMe" checked=""><i> </i><?php echo $lang['LOGIN_STAY'];?></label>
 						</a>
 						<Label class="error"><?php if(isset($_SESSION['wrongUserError'])) echo $_SESSION['wrongUserError']; unset($_SESSION['wrongUserError']) ?></Label>
 						<a>

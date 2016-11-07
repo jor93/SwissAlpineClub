@@ -27,7 +27,7 @@ include_once $header;
         <div class="register">
             <form id="manageUser" action="<?php echo URL_DIR.'admin/manageInscription';?>" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
-                    <h3>MANAGE INSCRIPTIONS</h3>
+                    <h3><?php echo $lang['MANAGEINSCRIPTION_TITLE']; ?></h3>
                 </div>
 
                 <main class="cd-main-content">

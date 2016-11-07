@@ -254,7 +254,68 @@ $lang['THANK_TEXT'] ='Sie erhalten in Kürze eine Bestätigungsemail.';
 $lang['THANK_BTN'] ='Weiter';
 
 /* #################### LOGIN ######################*/
+$lang['LOGIN_TITLE'] = 'NEUE REGISTRIERUNG';
+$lang['LOGIN_DESC'] = 'Durch die Registrierung auf unserer Seite erhalten sie die Möglichkeit, unsere geführten Wanderungen zu buchen.';
+$lang['LOGIN_REG'] = 'Registrierte Kunden';
+$lang['LOGIN_REG_DESC'] = 'Wenn Sie einen Account haben, loggen Sie sich bitte ein';
+$lang['LOGIN_MAIL'] = 'Email';
+$lang['LOGIN_PW'] = 'Passwort';
+$lang['LOGIN_PW_FORGOT'] = 'Passwort vergessen';
+$lang['LOGIN_STAY'] = 'Angemeldet bleiben';
+$lang['LOGIN_CREATEACC'] = 'Neuen Account erstellen';
 
+/* #################### SHOWINSCRIPTION ######################*/
+$lang['SHOWINSCRIPTION_TITLE'] ='EINSCHREIBUNGEN ANZEIGEN';
 
+/* #################### SHOWHIKE ######################*/
+$lang['SHOWHIKEADMIN_TITLE'] = 'TOUR INFORMATIONEN';
+$lang['SHOWHIKEADMIN_TITLE2'] = 'TOUR MANAGEMENT';
+$lang['SHOWHIKEADMIN_TITLE3'] ='ACCOUNT MANAGEMENT';
+$lang['SHOWHIKEADMIN_TOUR'] = 'TOUR';
+$lang['SHOWHIKEADMIN_DIFF'] = 'Schwierigkeit';
+$lang['SHOWHIKEADMIN_SUBTITLE'] = 'Subtitle';
+$lang['SHOWHIKEADMIN_DURATION'] = 'Dauer';
+$lang['SHOWHIKEADMIN_ZIPDEP'] = 'PLZ Abfahrt';
+$lang['SHOWHIKEADMIN_LOCDEP'] = 'Abfahrtsort';
+$lang['SHOWHIKEADMIN_ZIPARR'] = 'PLZ Ankunft';
+$lang['SHOWHIKEADMIN_LOCARR'] = 'Ankunftsort';
+$lang['SHOWHIKEADMIN_PRICE'] = 'Preis';
+$lang['SHOWHIKEADMIN_DESCDE'] = 'Beschreibung Deutsch';
+$lang['SHOWHIKEADMIN_DESCFR'] = 'Beschreibung Franzoesisch';
+$lang['SHOWHIKEADMIN_STARTDATE'] = 'Startdatum';
+$lang['SHOWHIKEADMIN_ENDDATE'] = 'Enddatum';
+$lang['SHOWHIKEADMIN_DEPTIME'] = 'Abfahrtszeit';
+$lang['SHOWHIKEADMIN_ARRTIME'] = 'Ankunftszeit';
+$lang['SHOWHIKEADMIN_STATUS'] = 'Status';
+$lang['SHOWHIKEADMIN_TRANSPORT'] = 'Transport';
+$lang['SHOWHIKEADMIN_TYPE'] = 'Tour Typ';
+$lang['SHOWHIKEADMIN_TYPE_DESC'] = 'Wählen Sie mindestens eines aus';
+$lang['SHOWHIKEADMIN_IMG'] = 'Bild';
+$lang['SHOWHIKEADMIN_EXPDATE'] = 'Auslaufdatum';
+$lang['SHOWHIKEADMIN_AVPLACE'] = 'Freie Plätze';
+$lang['SHOWHIKEADMIN_NOTES'] = 'Notizen für Guide';
 
+/* #################### SHOWADMIN ######################*/
+$lang['SHOWADMIN_TITLE'] = 'Willkommen';
+$lang['SHOWADMIN_EMAIL'] = 'Email';
+$lang['SHOWADMIN_FN'] = 'Vorname';
+$lang['SHOWADMIN_LN'] = 'Name';
+$lang['SHOWADMIN_ADDRESS'] = 'Adresse';
+$lang['SHOWADMIN_LOC'] = 'Ort';
+$lang['SHOWADMIN_ZIP'] = 'PLZ';
+$lang['SHOWADMIN_PHONE'] = 'Telefonnummer';
+$lang['SHOWADMIN_LANG'] = 'Sprache';
+$lang['SHOWADMIN_COUNTRY'] = 'Land';
+$lang['SHOWADMIN_SAVE'] = 'Speichern';
+$lang['SHOWADMIN_EDIT'] = 'Bearbeiten';
+$lang['SHOWADMIN_CHANGEPW'] = 'Passwort ändern';
+$lang['SHOWADMIN_ABO'] = 'Abo';
+$lang['SHOWADMIN_ACTIVE'] = 'Aktiv';
+$lang['SHOWADMIN_LASTLOGIN'] = 'Letztes Login';
+$lang['SHOWADMIN_RUNLEVEL'] = 'Berechtigungslevel';
+$lang['SHOWADMIN_DELETE'] = 'Löschen';
+$lang['SHOWADMIN_CANCEL'] = 'Abbrechen';
+
+/* #################### MANAGEINSCRIPTIONS ######################*/
+$lang['MANAGEINSCRIPTION_TITLE']='EINSCHREIBUNGEN VERWALTEN';
 ?>

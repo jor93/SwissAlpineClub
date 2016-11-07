@@ -62,7 +62,7 @@ include_once $header;
             <div class="panel panel-info">
                 <form>
                 <div class="panel-heading">
-                    <h3 class="panel-title">Welcome</h3>
+                    <h3 class="panel-title"><?php echo $lang['SHOWADMIN_TITLE']; ?></h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -72,40 +72,40 @@ include_once $header;
                                 <tbody>
 
                                 <tr>
-                                    <td>E-Mail</td>
+                                    <td><?php echo $lang['SHOWADMIN_EMAIL']; ?></td>
                                     <td>
                                         <input class="proedit" type="text" id="mail" name="mail" required disabled>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Firstname:</td>
+                                    <td><?php echo $lang['SHOWADMIN_FN']; ?></td>
                                     <td><input class="proedit" type="text" id="fname" name="fname" required disabled></td>
                                 </tr>
                                 <tr>
-                                    <td>Lastname</td>
+                                    <td><?php echo $lang['SHOWADMIN_LN']; ?></td>
                                     <td><input class="proedit" type="text" id="lname" name="lname" required disabled></td>
                                 </tr>
                                 <tr>
-                                    <td>Address</td>
+                                    <td><?php echo $lang['SHOWADMIN_ADDRESS']; ?></td>
                                     <td><input class="proedit" type="text" id="address" name="address" required disabled></td>
                                 </tr>
                                 <tr>
-                                    <td>Location</td>
+                                    <td><?php echo $lang['SHOWADMIN_LOC']; ?></td>
                                     <td><input class="proedit" type="text" id="loc" name="loc" required disabled></td>
                                 </tr>
                                 <tr>
-                                    <td>PLZ</td>
+                                    <td><?php echo $lang['SHOWADMIN_ZIP']; ?></td>
                                     <td><input class="proedit" type="text" id="plz" name="plz" required disabled></td>
                                 </tr>
-                                <td>Phone Number</td>
+                                <td><?php echo $lang['SHOWADMIN_PHONE']; ?></td>
                                 <td><input class="proedit" type="text" id="phone" name="phone" required disabled>
                                 </td>
                                 <tr>
-                                    <td>Language</td>
+                                    <td><?php echo $lang['SHOWADMIN_LANG']; ?></td>
                                     <td><input class="proedit" type="text" id="lang" name="lang" required disabled></td>
                                 </tr>
                                 <tr>
-                                    <td>Country</td>
+                                    <td><?php echo $lang['SHOWADMIN_COUNTRY']; ?></td>
                                     <td><input class="proedit" type="text" id="country" name="country" required disabled></td>
                                 </tr>
 
@@ -119,10 +119,10 @@ include_once $header;
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <a href="#" id ="btn-save" onclick="save()" class="btn btn-primary" style="display: none">Save</a>
-                    <a href="#" id ="btn-edit" onclick="edit()" class="btn btn-primary">Edit</a>
+                    <a href="#" id ="btn-save" onclick="save()" class="btn btn-primary" style="display: none"><?php echo $lang['SHOWADMIN_SAVE']; ?>Save</a>
+                    <a href="#" id ="btn-edit" onclick="edit()" class="btn btn-primary"><?php echo $lang['SHOWADMIN_EDIT']; ?></a>
                     <div class="pull-right">
-                    <a href="resetpw.php" class="btn btn-primary">Change Password</a>
+                    <a href="resetpw.php" class="btn btn-primary"><?php echo $lang['SHOWADMIN_CHANGEPW']; ?></a>
                     </div>
 
                 </div>
