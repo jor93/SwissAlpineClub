@@ -5,7 +5,8 @@
  * Date: 27.09.2016
  * Time: 14:54
  */
-Controller::checkHeader();
+//Controller::checkHeader();
+include_once ROOT_DIR.'views/header.inc';
 
 if (isset($_SESSION['tourId'])) {
     $tour = Tour::selectTour($_SESSION['tourId']);
@@ -278,9 +279,10 @@ if (isset($_SESSION['tourId'])) {
                             </label>
                         </a>
                         <label class="error"><?php
-                            if (isset($_SESSION['error_account'])) {
+                            if (isset($_SESSION['error_account']))
                                 echo $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'];
-                            }
+                            if (isset($_SESSION['error_account_inserted']))
+                                echo $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'];
                             ?></label>
                         <div class="participants" style="width: 100%;">
 
@@ -331,5 +333,6 @@ if (isset($_SESSION['tourId'])) {
 unset($_SESSION['account_participant']);
 unset($_SESSION['error_account']);
 unset($_SESSION['error_account_rating']);
+unset($_SESSION['error_account_inserted']);
 include_once ROOT_DIR . 'views/footer.inc';
 ?>

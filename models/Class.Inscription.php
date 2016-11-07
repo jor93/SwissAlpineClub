@@ -201,6 +201,17 @@ class Inscription
         return;
     }
 
+    // check if acc for tour already in db
+    public static function checkAccForTour($idAcc){
+        $query = "SELECT * FROM account_inscription WHERE Account_idAccount = $idAcc;";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetch();
+
+        if(!$row) return false;
+
+        return true;
+    }
+
     // update inscription
     public static function updateFreeSpace($inscription, $new_ones){
         $query = "UPDATE inscription SET free_space = (free_space - $new_ones) WHERE idInscription = $inscription;";

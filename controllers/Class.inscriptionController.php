@@ -34,47 +34,52 @@ class inscriptionController extends Controller
         $idInscription = $_SESSION['idInscription'];
         $countParticipants = 0;
 
-        $account = self::getActiveUserWithoutCookie()->getIdAccount();
+        //$account = self::getActiveUserWithoutCookie()->getIdAccount();
+        $account = 1;
+        // check if account is already inserted for this tour!
+        $checkAccForTour = Inscription::checkAccForTour($account);
+            // myself and update acc + inscription
+            if (isset($_SESSION['account_participant'])) {
+                if ($checkAccForTour){
+                    $_SESSION['error_account_inserted'] = 1;
 
-        // myself and update acc + inscription
-        if (isset($_SESSION['account_participant'])){
-            $countParticipants++;
-
-            // update account_inscription table
-            Inscription::insertInscriptionAccount($account, $idInscription);
-        }else{
-            // if not selected he has to be already inscripted!
-            $result = Inscription::selectAccountInscripted($account, $idInscription);
-            if ($result == null){
-                $_SESSION['error_account'] = 1;
-                return $this->redirect('tour', 'hikeShow');
-            }
-        }
-
-        for ($i = 1; $i <= $maxPart; $i++){
-            if (isset($_POST['participantFirstname'][$i])) {
-                // get value from inputs
-                $firstname = $this->badassSafer($_POST['participantFirstname'][$i]);
-                $lastname = $this->badassSafer($_POST['participantLastname'][$i]);
-
-                // get the selected abo from radios
-                $key = $i . '' . 1;
-                $temp = (int)$key;
-                if (isset($_POST['participantAbo' . $temp])) {
-                    $abo = $this->badassSafer($_POST['participantAbo' . $temp][0]);
+                }else{
+                    $countParticipants++;
+                    // update account_inscription table
+                    Inscription::insertInscriptionAccount($account, $idInscription);
                 }
-
-                // prepare and insert into participant
-                $participant = new Participant(null, $firstname, $lastname, $abo, $idInscription);
-                Participant::insertParticipant($participant);
-
-                // count to modify the available places
-                $countParticipants++;
+            }else {
+                // if not selected -> he has to be already inscripted!
+                $result = Inscription::selectAccountInscripted($account, $idInscription);
+                if ($result == null) {
+                    $_SESSION['error_account'] = 1;
+                    return $this->redirect('tour', 'hikeShow');
+                }
             }
-        }
-        // update free space in db
-        Inscription::updateFreeSpace($idInscription, $countParticipants);
-        $this->redirect('tour', 'hikeshow');
+            for ($i = 1; $i <= $maxPart; $i++) {
+                if (isset($_POST['participantFirstname'][$i])) {
+                    // get value from inputs
+                    $firstname = $this->badassSafer($_POST['participantFirstname'][$i]);
+                    $lastname = $this->badassSafer($_POST['participantLastname'][$i]);
+
+                    // get the selected abo from radios
+                    $key = $i . '' . 1;
+                    $temp = (int)$key;
+                    if (isset($_POST['participantAbo' . $temp])) {
+                        $abo = $this->badassSafer($_POST['participantAbo' . $temp][0]);
+                    }
+
+                    // prepare and insert into participant
+                    $participant = new Participant(null, $firstname, $lastname, $abo, $idInscription);
+                    Participant::insertParticipant($participant);
+
+                    // count to modify the available places
+                    $countParticipants++;
+                }
+            }
+            // update free space in db
+            Inscription::updateFreeSpace($idInscription, $countParticipants);
+            $this->redirect('tour', 'hikeshow');
     }
 
     function validateRating(){

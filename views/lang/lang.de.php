@@ -19,6 +19,7 @@ $lang['WELCOME_TITLE'] = 'Willkommen';
 $lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Die Anzahl möglicher Teilnehmer muss grösser als die bereits gebuchten Teilnehmer sein!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Sie müssen an der Tour selber Teilnehmen!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'] = 'Sie haben bereits eine Bewertung abgegeben!';
+$lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'] = 'Sie dürfen sich nich mehrmals für eine Tour einschreiben!';
 
 /* #################### mail confirmation ####################  */
 /* confirm */
