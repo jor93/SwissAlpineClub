@@ -18,7 +18,63 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
 
 //http://www.the-art-of-web.com/javascript/validate-date/
 ?>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<?php
+$query = "select distinct CONCAT(Postcode, ', ' ,LocationName) from location;";
+$data = array();
+$data = SQL::getInstance()->select($query)->fetchAll();
+$length = count($data);
+for ($i = 0; $i < $length; ++$i) {
+    $data2[$i] = $data[$i][0];
+}
+echo '<script>var myarray = '.json_encode($data2) .';</script>';
+
+?>
+
 <script>
+
+    var MIN_LENGTH = 2;
+    $( document ).ready(function() {
+        $("#plz_arr").keyup(function() {
+            var keyword = $("#plz_arr").val();
+            if (keyword.length >= MIN_LENGTH) {
+                ;                  $(document).ready(function() {
+                    $( "#plz_arr" ).autocomplete({
+                        source: myarray,
+                        select: function (event, ui) {
+                            event.preventDefault();
+                            var s = ui.item.value;
+                            $("#plz_arr").val(s.substring(0, s.indexOf(',')));
+                            $("#loc_arr").val(s.substring(s.indexOf(',')+2, s.length));
+                        }
+                    });
+                });
+            }
+        });
+    });
+    $( document ).ready(function() {
+        $("#plz_dep").keyup(function() {
+            var keyword = $("#plz_dep").val();
+            if (keyword.length >= MIN_LENGTH) {
+                ;                  $(document).ready(function() {
+                    $( "#plz_dep" ).autocomplete({
+                        source: myarray,
+                        select: function (event, ui) {
+                            event.preventDefault();
+                            var s = ui.item.value;
+                            $("#plz_dep").val(s.substring(0, s.indexOf(',')));
+                            $("#loc_dep").val(s.substring(s.indexOf(',')+2, s.length));
+                        }
+                    });
+                });
+            }
+        });
+    });
+
 
     var readySubmit = false;
 
@@ -136,20 +192,20 @@ $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
                         <input type="text" onkeypress='return validateQty(event);' id="dur" name="duration" value="<?php echo $tour->getDuration();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Departure</span>
-                        <input type="text" id="meeting" name="locationDep" value="<?php echo $tour->getLocationDep()->getLocationName();?>" disabled required>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Postcode Departure</span>
-                        <input type="text" id="postcodeDep" name="postcodeDep" value="<?php echo $tour->getLocationDep()->getPostcode();?>" required disabled>
+                        <input type="text" id="plz_dep" name="postcodeDep" value="<?php echo $tour->getLocationDep()->getPostcode();?>" required disabled>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Arrival</span>
-                        <input type="text" id="loc" name="locationArriv" value="<?php echo $tour->getLocationArriv()->getLocationName();?>" disabled required>
+                        <span>Location Departure</span>
+                        <input type="text" id="loc_dep" name="locationDep" value="<?php echo $tour->getLocationDep()->getLocationName();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Postcode arrival</span>
-                        <input type="text" id="postcodeArriv" name="postcodeArriv" value="<?php echo $tour->getLocationArriv()->getPostcode();?>" required disabled>
+                        <input type="text" id="plz_arr" name="postcodeArriv" value="<?php echo $tour->getLocationArriv()->getPostcode();?>" required disabled>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Location Arrival</span>
+                        <input type="text" id="loc_arr" name="locationArriv" value="<?php echo $tour->getLocationArriv()->getLocationName();?>" disabled required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Price</span>
