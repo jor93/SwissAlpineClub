@@ -57,7 +57,17 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         });
     });
 
-
+    function validateQty(event) {
+        var key = window.event ? event.keyCode : event.which;
+        if (event.keyCode == 8 || event.keyCode == 46
+            || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 9) {
+            return true;
+        }
+        else if ( key < 48 || key > 57 ) {
+            return false;
+        }
+        else return true;
+    };
 
     function save(){
 
@@ -137,19 +147,21 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         <input class="proedit" type="text" id="address" name="address" required disabled
                                value="<?php echo $account->getAddress(); ?>">
                     </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['SHOWUSER_ZIP']; ?></span>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <input onkeypress='return validateQty(event);' class="proedit" type="text" id="plz" name="plz" required disabled
+                               value="<?php echo $account->getLocation()->getPostcode(); ?>">
+                    </div>
+
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWUSER_LOC']; ?></span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <input class="proedit" type="text" id="loc" name="loc" required disabled
                                value="<?php echo $account->getLocation()->getLocationName(); ?>">
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span><?php echo $lang['SHOWUSER_ZIP']; ?></span>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <input class="proedit" type="text" id="plz" name="plz" required disabled
-                               value="<?php echo $account->getLocation()->getPostcode(); ?>">
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
