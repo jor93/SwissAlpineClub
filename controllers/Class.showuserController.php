@@ -15,20 +15,13 @@ class showuserController extends Controller
         if(self::getActiveUserWithoutCookie())$this->account = $_SESSION['account'];
         else $this->redirect('login', 'login');
     }
-
     //Account::updateAccount(1, 'PeterNames', 'PeterLastname', 'Address Peter', '1', '5555555', 'SE', '2');
 
     function updateUserAccount(){
 
-        var_dump($_POST['loc']);
-        exit();
-
         if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address'])
         && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang'])
         && isset($_POST['country'])){
-
-            var_dump($_SESSION['account']);
-            exit();
 
             $idLocation = loginController::getIdLocationFromZipAndLocationName($_POST['loc'], $_POST['plz']);
 

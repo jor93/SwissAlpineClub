@@ -155,7 +155,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Postcode Departure</span>
-                        <input type="text" id="plz_dep" name="postcodeDep" required>
+                        <input type="text" onkeypress='return validateQty(event);' id="plz_dep" name="postcodeDep" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Departure</span>
@@ -163,7 +163,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Postcode arrival</span>
-                        <input type="text" id="plz_arr" name="postcodeArriv" required>
+                        <input type="text" onkeypress='return validateQty(event);' id="plz_arr" name="postcodeArriv" required>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Location Arrival</span>
