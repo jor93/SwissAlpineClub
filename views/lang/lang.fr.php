@@ -21,6 +21,7 @@ $lang['WELCOME_TITLE'] = 'Bienvenue';
 $lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Le nombre de participants possibles doit être plus grande que les abonnés déjà réservé!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Vous devez à la visite elle-même participer!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'] = 'Vous avez déjà écrit un commentaire!';
+$lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'] = 'Vous ne pouvez pas être inscrire à plusieurs reprises pour un tour!';
 
 /* #################### mail confirmation ####################  */
 /* confirm */
