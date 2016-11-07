@@ -32,14 +32,17 @@ class tourController extends Controller
 
     function hiking()
     {
+
         if ($this->getAdminUser()) {
             $this->redirect('hiking', 'hiking');
             exit;
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $this->badassSafer($_POST['showHike']);
-            $_SESSION['tourId'] = $id;
-            $this->redirect('tour','hikeShow');
+            if($id != -1){
+                $_SESSION['tourId'] = $id;
+                $this->redirect('tour', 'hikeShow');
+            }
         }
         if (!self::checkActiveUser()){
             $this->redirect('tour', 'hikeShowOff');

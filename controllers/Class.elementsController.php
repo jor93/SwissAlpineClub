@@ -22,7 +22,7 @@ class elementsController extends Controller
         } else {
             $name = $_SESSION["account"];
             echo "<li><a href=". URL_DIR."profile/showuser>" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
-            echo "<li><a href=". URL_DIR."home>" . $lang['HEADER_LOGOUT'] . "</a></li>";
+            echo "<li><a href=". URL_DIR."login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
         }
     }
 
@@ -70,7 +70,6 @@ class elementsController extends Controller
         // call db
         $answer = Tour::selectAllTours();
         self::drawSortList($answer, null);
-        echo "<input type='hidden' id='saver' name='showHike' value='0' />";
     }
 
     public static function getNext3Hikings(){
@@ -261,30 +260,32 @@ class elementsController extends Controller
                         //echo '</br>------> went through : ' . $idTours[$x] . ' and ' . $idFavorites[$y];
                         $favorite = "fav1";
                         $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
-                        echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
-                        echo "<div class='hovereffect'>";
+                        echo "<li class=$finalClass>";
+                        echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 20px;' /></button>";
+
+                        echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                         echo "<div class='overlay'>";
                         echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                         echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                         echo "</div>";
                         echo "</li>";
-                        echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star2.png' width='20' height='20' /></button>";
-                        break;
+                         break;
                     }
                 }
                 if (!$draw) {
                     $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
-                    echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
-                    echo "<div class='hovereffect'>";
+                    echo "<li class=$finalClass>";
+                    echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 20px;' /></button>";
+
+                    echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                     echo "<div class='overlay'>";
                     echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                     echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                     echo "</div>";
                     echo "</li>";
-                    echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
-                }
+                                   }
             } else {
                 $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                 echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
@@ -295,8 +296,11 @@ class elementsController extends Controller
                 echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]h<br /></h6>";
                 echo "</div>";
                 echo "</li>";
+
+
             }
         }
+        echo "<input type='hidden' id='saver' name='showHike' value='0' />";
     }
 
     public static function nrParticipantInputs()

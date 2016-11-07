@@ -6,7 +6,11 @@
  * Time: 14:54
  */
 include_once ROOT_DIR.'views/header.inc';
-$sav = $_SESSION['saved'];
+
+if(isset($_SESSION['saved']))
+    $sav = $_SESSION['saved'];
+else
+    $sav = null;
 ?>
     <script>
         $(document).ready(function () {
