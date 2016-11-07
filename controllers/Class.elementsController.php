@@ -433,7 +433,11 @@ class elementsController extends Controller
 
     public static function typeTourCheckbox($edit, $idTour)
     {
-        $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
+        if($_SESSION['lang'])
+            $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
+        else
+            $answer = TypeTour::getTypeTourByLanguage('de');
+
         $length = count($answer);
 
         if (!(bool)$edit) {

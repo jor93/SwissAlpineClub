@@ -1,6 +1,5 @@
 jQuery(document).ready(function($){
 
-
 	//open/close lateral filter
 	$('.cd-filter-trigger').on('click', function(){
 		triggerFilter(true);
@@ -52,7 +51,7 @@ jQuery(document).ready(function($){
 		}
 	});
 
-	//close filter dropdown inside lateral .cd-filter 
+	//close filter dropdown inside lateral .cd-filter
 	$('.cd-filter-block h4').on('click', function(){
 		$(this).toggleClass('closed').siblings('.cd-filter-content').slideToggle(300);
 	})
@@ -199,19 +198,11 @@ var buttonFilter = {
 	// The "bindHandlers" method will listen for whenever a button is clicked.
 	bindHandlers: function(){
 		var self = this;
-		datePick = "";
 
 		self.$filters.on('click', 'a', function(e){
 			self.parseFilters();
-
 		});
 		self.$filters.on('change', function(){
-
-			if($( "#datepicker" ).val().length > 0){
-				datePick = ".datepick" + $( "#datepicker" ).val();
-			}
-
-			alert(datePick);
 			self.parseFilters();
 		});
 
@@ -262,6 +253,10 @@ var buttonFilter = {
 
 	concatenate: function(){
 		var self = this;
+		datePick = "";
+		if($( "#datepicker" ).val().length > 0){
+			datePick = ".datepick" + $( "#datepicker" ).val();
+		}
 
 		self.outputString = ''; // Reset output string
 
@@ -321,14 +316,6 @@ var buttonFilter = {
 				self.outputString += datePick;
 			}
 		}
-
-
-
-
-
-		//self.outputString = ".check1.radio2,.check2.radio2";
-		alert(self.outputString);
-
 
 		// If the output string is empty, show all rather than none:
 		!self.outputString.length && (self.outputString = 'all');
