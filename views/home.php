@@ -7,6 +7,7 @@
  */
 $header = Controller::checkHeader();
 include_once $header;
+
 ?>
 
 <script>
