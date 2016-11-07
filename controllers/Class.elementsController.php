@@ -58,10 +58,10 @@ class elementsController extends Controller
             echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". 'Mein Profil'."</a></li>";
             echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". 'Meine Anmeldungen' ."</a></li>";
         } else if (is_int($user) === true && $user == 10){
-            echo "<li id='menu_hikemanage'><a href=".URL_DIR.'admin/hikemanage'.">". 'Tourverwaltung'. "</a></li>";
+            echo "<li id='menu_hikemanage'><a href=".URL_DIR.'admin/manageHike'.">". 'Tourverwaltung'. "</a></li>";
             echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  'Benutzerverwaltung' . "</a></li>";
             echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". 'Anmeldungen' . "</a></li>";
-            echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". 'Mein Profil' . "</a></li>";
+            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". 'Mein Profil' . "</a></li>";
         }
     }
 
