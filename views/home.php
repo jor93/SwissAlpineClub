@@ -57,21 +57,21 @@ include_once 'header.inc';
     <div class="container">
         <div class="col-md-4 curabitur-top">
             <i class="tent"></i>
-            <h4>Wanderungen</h4>
-            <p>Wir bieten Ihnen verschiedene Wanderungen an. Von Klettertouren bis Skitouren über mehrtägige geführte Wanderungen überall im Wallis.</p>
-            <a href="#" class="btn  btn-1c btn1 btn-1d">More</a>
+            <h4><?php echo $lang['HOME_HIKE']; ?></h4>
+            <p><?php echo $lang['HOME_HIKE_DESC']; ?></p>
+            <a href="#" class="btn  btn-1c btn1 btn-1d"><?php echo $lang['HOME_BTN_MORE']; ?></a>
         </div>
         <div class="col-md-4 curabitur-top">
             <i class="hammer"></i>
-            <h4>Ihre Vorteile</h4>
-            <p>Wir bieten Ihnen verschiedene Wanderungen mit Familie und Freunden an. Sie können bei uns Ideen für Wanderungen finden oder eine von uns geführte Wanderung buchen.</p>
-            <a href="#" class="btn  btn-1c btn1 btn-1d">More</a>
+            <h4><?php echo $lang['HOME_ADVANTAGE']; ?></h4>
+            <p><?php echo $lang['HOME_ADVANTAGE_DESC']; ?></p>
+            <a href="#" class="btn  btn-1c btn1 btn-1d"><?php echo $lang['HOME_BTN_MORE']; ?></a>
         </div>
         <div class="col-md-4 curabitur-top">
             <i class="timer"></i>
-            <h4>Sehen Sie sich Bewertungen an</h4>
-            <p>Auf unserer Seite können Sie die Wanderungen genauenstens ansehen und sich die Bewertungen unserer Community ansehen.</p>
-            <a href="#" class="btn  btn-1c btn1 btn-1d">More</a>
+            <h4><?php echo $lang['HOME_RATING']; ?></h4>
+            <p><?php echo $lang['HOME_RATING_DESC']; ?></p>
+            <a href="#" class="btn  btn-1c btn1 btn-1d"><?php echo $lang['HOME_BTN_MORE']; ?></a>
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -83,12 +83,9 @@ include_once 'header.inc';
 <div class="vide">
     <div class="container">
         <div class="col-md-8 vide-left">
-            <h3>Lorem ipsum dolor sit amet, consectetur a maximus metus semper et. </h3>
-            <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas congue gravida ex,a maximus metus semper et. Curabitur non enim pharetra, dictum tortor quis, hendrerit tortor.</h6>
-            <p>Maecenas finibus quis nulla id facilisis. Aenean dignissim magna et est elit porttitor
-                gravida lacinia. Fusce elementum massa at eros lacinia imperdiet. Aenean mollis ultricies
-                dictum.Praesent suscipit urna eget elit porttitor mollis. Quisque mollis rhoncus ante, eu
-                interdum quam vehicula cursus. Nam bibendum odio eu sem semper posuere.  </p>
+            <h3><?php echo $lang['HOME_VIDEO_TITLE']; ?></h3>
+            <h6><?php echo $lang['HOME_VIDEO_SUBTITLE']; ?></h6>
+            <p><?php echo $lang['HOME_VIDEO_DESC']; ?> </p>
         </div>
         <div class="col-md-4 vide-right">
             <img src="images/img1.jpg" class="img-responsive" alt="" />
