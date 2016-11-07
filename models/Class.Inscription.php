@@ -226,7 +226,7 @@ class Inscription
     // update inscription
     public static function updateFreeSpace($inscription, $new_ones){
         $query = "UPDATE inscription SET free_space = (free_space - $new_ones) WHERE idInscription = $inscription;";
-        SQL::getInstance()->select($query);
+        SQL::getInstance()->executeQuery($query);
         return;
     }
 
@@ -239,5 +239,12 @@ class Inscription
         if(!$row) return false;
 
         return $row['Account_idAccount'];
+    }
+
+    // update inscription --> set status new!!
+    public static function updateStatus($inscription, $idStatus){
+        $query = "UPDATE inscription SET Status_idStatus = $idStatus WHERE idInscription = $inscription;";
+        SQL::getInstance()->executeQuery($query);
+        return;
     }
 }

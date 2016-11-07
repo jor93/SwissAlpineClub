@@ -24,6 +24,7 @@ $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'] = 'Vous avez déjà écrit un commentair
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'] = 'Vous ne pouvez pas être inscrire à plusieurs reprises pour un tour!';
 $lang['SHOWHIKE_INSCRIPTION_NO_SPACE'] = 'Pas de parking disponible gratuitement!';
 $lang['SHOWHIKE_INSCRIPTION_BOOKED_OUT'] = 'Ce circuit est complet!';
+$lang['SHOWHIKE_INSCRIPTION_NO_SPACE_PART'] = 'Vous avez enregistré pour de nombreux participants - pas assez de places disponibles!';
 $lang['SHOWHIKE_INSCRIPTION_CANCELED'] = 'La randonnée a été annulée!';
 
 /* #################### mail confirmation ####################  */

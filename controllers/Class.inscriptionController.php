@@ -42,16 +42,14 @@ class inscriptionController extends Controller
         $checkStatus = Inscription::selectInscriptionByIdInscription($idInscription);
 
         // 1 = open
-        if ($checkStatus['Status_idStatus'] == 1){
+        if ($checkStatus->getStatusIdStatus() == 1){
             // check if space is available
-            $free_space = $checkStatus['Free_Space'];
+            $free_space = $checkStatus->getFreeSpace();
             if ($free_space > 0){
                 // insert into db + myself and update acc + inscription
                 if (isset($_SESSION['account_participant'])) {
                     if ($checkAccForTour){
                         $_SESSION['error_msg'] = 1;
-
-                        $_SESSION['error_account_inserted'] = 1;
                     }else{
                         $countParticipants++;
                         // update account_inscription table
@@ -62,8 +60,6 @@ class inscriptionController extends Controller
                     $result = Inscription::selectAccountInscripted($account, $idInscription);
                     if ($result == null) {
                         $_SESSION['error_msg'] = 2;
-
-                        $_SESSION['error_account'] = 1;
                         return $this->redirect('tour', 'hikeShow');
                     }
                 }
@@ -96,22 +92,18 @@ class inscriptionController extends Controller
                     $_SESSION['error_msg'] = 3;
                 }
             }else{
+                // booked out
+                Inscription::updateStatus($idInscription, 2);
                 $_SESSION['error_msg'] = 4;
-
-                $_SESSION['error_no_space'] = 1;
             }
             // 2 = booked out/already executed
         }else if ($checkStatus['Status_idStatus'] == 2){
             $_SESSION['error_msg'] = 5;
-
-            $_SESSION['error_booked_out'] = 1;
             // 3 = canceled
         }else if ($checkStatus['Status_idStatus'] == 3){
             $_SESSION['error_msg'] = 6;
-
-            $_SESSION['error_canceled'] = 1;
         }
-        $this->redirect('tour', 'hikeshow');
+        //$this->redirect('tour', 'hikeshow');
     }
 
     function validateRating(){
@@ -138,11 +130,6 @@ class inscriptionController extends Controller
             $_SESSION['error_account_rating'] = 1;
             return;
         }
-
-        // update tour rating - calc the average - load all tours and save into session (in elementscontroller)
-
-        // load the page
-
     }
 
     /**
