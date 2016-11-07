@@ -180,13 +180,13 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                             <span id="label_fail_pw2" class="error" ></span>
                         </div>
                     </div>
-
                     <div class="clearfix"> </div>
+                    <div class="g-recaptcha" data-sitekey="6LfhNQoUAAAAABf3Ia4vpBFtWclI7akUB7EH976f"></div>
                     <div class="register-but">
                         <input type="submit" value="<?php echo $lang['REGISTER_SUBMIT'];?>">
                     </div>
 
-                    <div class="g-recaptcha" data-sitekey="6LfhNQoUAAAAABf3Ia4vpBFtWclI7akUB7EH976f"></div>
+
 
 
                 </form>
