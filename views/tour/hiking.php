@@ -37,10 +37,10 @@
             <div class="cd-tab-filter">
                 <ul class="cd-filters">
                     <li class="placeholder">
-                        <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+                        <a data-type="all" href="#0"><?php echo $lang['HIKING_ALL']; ?> </a> <!-- selected option on mobile -->
                     </li>
-                    <li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
-                    <li class="filter" data-filter=".fav1"><a href="#0" data-type="color-1">Favorites</a></li>
+                    <li class="filter"><a class="selected" href="#0" data-type="all"><?php echo $lang['HIKING_ALL']; ?></a></li>
+                    <li class="filter" data-filter=".fav1"><a href="#0" data-type="color-1"><?php echo $lang['HIKING_FAVORITES']; ?></a></li>
                 </ul> <!-- cd-filters -->
             </div> <!-- cd-tab-filter -->
         </div> <!-- cd-tab-filter-wrapper -->
@@ -65,7 +65,7 @@
                 </div>  cd-filter-block -->
                 <div class="cd-filter-block">
 
-                    <h4>Date</h4>
+                    <h4><?php echo $lang['HIKING_DATE']; ?></h4>
                     <div class="cd-filter-content cd-filters list">
                         <input type="text" id="datepicker" readonly style="background: url(/<?php echo SITE_NAME; ?>/images/calendar-128.png) no-repeat scroll center right; background-size: 2.5em; " size="30">
                     </div>
@@ -74,7 +74,7 @@
 
                 <div class="cd-filter-block">
 
-                    <h4>Duration</h4>
+                    <h4><?php echo $lang['HIKING_DURATION']; ?></h4>
                     <div class="cd-filter-content cd-filters list">
                         <p>
                             <input type="text" id="amount" readonly style="border:0">
@@ -86,7 +86,7 @@
 
 
                 <div class="cd-filter-block">
-                    <h4>Art der Tour</h4>
+                    <h4><?php echo $lang['HIKING_TYPE']; ?></h4>
 
 
                     <ul class="cd-filter-content cd-filters list">
@@ -95,28 +95,28 @@
                 </div> <!-- cd-filter-block -->
 
                 <div class="cd-filter-block">
-                    <h4>Region</h4>
+                    <h4><?php echo $lang['HIKING_REGION']; ?></h4>
 
                     <div class="cd-filter-content">
                         <div class="cd-select cd-filters">
                             <select class="filter" name="selectThis" id="selectThis">
-                                <option value="">Alle Regionen</option>
-                                <option value=".region1">Oberwallis</option>
-                                <option value=".region2">Mittelwallis</option>
-                                <option value=".region3">Unterwallis</option>
-                                <option value=".region4">Ausserkantonal</option>
+                                <option value=""><?php echo $lang['HIKING_ALLREGIONS']; ?></option>
+                                <option value=".region1"><?php echo $lang['HIKING_OW']; ?></option>
+                                <option value=".region2"><?php echo $lang['HIKING_MW']; ?></option>
+                                <option value=".region3"><?php echo $lang['HIKING_UW']; ?></option>
+                                <option value=".region4"><?php echo $lang['HIKING_AK']; ?></option>
                             </select>
                         </div> <!-- cd-select -->
                     </div> <!-- cd-filter-content -->
                 </div> <!-- cd-filter-block -->
 
                 <div class="cd-filter-block">
-                    <h4>Difficulty</h4>
+                    <h4><?php echo $lang['HIKING_DIFF']; ?></h4>
 
                     <div class="cd-filter-content">
                         <div class="cd-select cd-filters">
                             <select class="filter" name="selectThis" id="selectThis">
-                                <option value="">All difficulties</option>
+                                <option value=""><?php echo $lang['HIKING_ALLDIFF']; ?></option>
                                 <option value=".diff1">*</option>
                                 <option value=".diff2">**</option>
                                 <option value=".diff3">***</option>
@@ -130,10 +130,10 @@
 
             </form>
 
-            <a href="#0" class="cd-close">Close</a>
+            <a href="#0" class="cd-close"><?php echo $lang['HIKING_CLOSE']; ?></a>
         </div> <!-- cd-filter -->
 
-        <a href="#0" class="cd-filter-trigger">Filters</a>
+        <a href="#0" class="cd-filter-trigger"><?php echo $lang['HIKING_FILTER']; ?></a>
     </main> <!-- cd-main-content -->
 
     <script src="/<?php echo SITE_NAME; ?>/js/jquery-2.1.1.js"></script>
