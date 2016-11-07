@@ -89,7 +89,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
     function edit() {
 
-        document.getElementById("mail").removeAttribute("disabled");
+        //document.getElementById("mail").removeAttribute("disabled");
         document.getElementById("fname").removeAttribute("disabled");
         document.getElementById("lname").removeAttribute("disabled");
         document.getElementById("address").removeAttribute("disabled");
