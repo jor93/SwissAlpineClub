@@ -6,7 +6,7 @@
  * Time: 14:25
  */
 
-    include_once ROOT_DIR.'views/header.inc';
+Controller::checkHeader();
 ?>
 
 <script>

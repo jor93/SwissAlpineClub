@@ -149,11 +149,11 @@
      static function checkHeader(){
          $user = Controller::checkActiveUser();
          if(is_bool($user) === true && !$user)
-             include_once ROOT_DIR . '/views/header.inc';
+            return include_once ROOT_DIR . '/views/header.inc';
          else if(is_int($user) === true && $user == 10)
-             include_once ROOT_DIR. '/views/headeradmin.inc';
+            return include_once ROOT_DIR. '/views/headeradmin.inc';
          else
-             include_once ROOT_DIR . '/views/header.inc';
+            return include_once ROOT_DIR . '/views/header.inc';
      }
 
      /**

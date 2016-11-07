@@ -5,7 +5,7 @@
  * Date: 18.10.2016
  * Time: 08:38
  */
-include_once 'views/header.inc';
+Controller::checkHeader();
 ?>
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function () {

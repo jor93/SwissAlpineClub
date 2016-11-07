@@ -5,7 +5,7 @@
  * Date: 27.09.2016
  * Time: 14:54
  */
-include_once ROOT_DIR.'views/header.inc';
+Controller::checkHeader();
 if(!isset($_SESSION['saved']))
     $sav = null;
 else
