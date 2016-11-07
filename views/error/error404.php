@@ -5,7 +5,8 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
 ?>
 <!-- 404 -->
 	<div class="main">

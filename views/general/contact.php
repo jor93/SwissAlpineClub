@@ -6,7 +6,8 @@
  * Time: 09:17
  */
 
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
 ?>
 <script>
     $(document).ready(function () {

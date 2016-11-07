@@ -5,7 +5,8 @@
  * Date: 07.11.2016
  * Time: 08:44
  */
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
 
 if (isset($_SESSION['tourId'])) {
     $tour = Tour::selectTour($_SESSION['tourId']);

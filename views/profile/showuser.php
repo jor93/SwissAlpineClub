@@ -5,8 +5,8 @@
  * Date: 30.09.2016
  * Time: 10:14
  */
-//Controller::checkHeader();
-include_once ROOT_DIR . 'views/header.inc';
+Controller::checkHeader();
+
 $account = $_SESSION['account'];
 //var_dump($account->getCountry()->getIdCountry());
 
@@ -56,17 +56,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         });
     });
 
-    function validateQty(event) {
-        var key = window.event ? event.keyCode : event.which;
-        if (event.keyCode == 8 || event.keyCode == 46
-            || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 9) {
-            return true;
-        }
-        else if ( key < 48 || key > 57 ) {
-            return false;
-        }
-        else return true;
-    };
+
 
     function save(){
 
@@ -89,6 +79,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
     function edit() {
 
+        document.getElementById("mail").removeAttribute("disabled");
         document.getElementById("fname").removeAttribute("disabled");
         document.getElementById("lname").removeAttribute("disabled");
         document.getElementById("address").removeAttribute("disabled");
@@ -145,7 +136,13 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         <input class="proedit" type="text" id="address" name="address" required disabled
                                value="<?php echo $account->getAddress(); ?>">
                     </div>
-
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span><?php echo $lang['SHOWUSER_LOC']; ?></span>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <input class="proedit" type="text" id="loc" name="loc" required disabled
+                               value="<?php echo $account->getLocation()->getLocationName(); ?>">
+                    </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWUSER_ZIP']; ?></span>
                     </div>
@@ -155,18 +152,10 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span><?php echo $lang['SHOWUSER_LOC']; ?></span>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <input class="proedit" type="text" id="loc" name="loc" required disabled
-                               value="<?php echo $account->getLocation()->getLocationName(); ?>">
-                    </div>
-
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWUSER_PHONE']; ?></span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <input class="proedit" type="text" onkeypress='return validateQty(event);' id="phone" name="phone" required disabled
+                        <input class="proedit" type="text" id="phone" name="phone" required disabled
                                value="<?php echo $account->getPhone(); ?>">
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -197,7 +186,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <div class="register-but">
                             <input onclick="edit()" id="btn-edit" type="button" value="<?php echo $lang['SHOWUSER_EDIT']; ?>">
-                            <input id="btn-save" type="submit" value="<?php echo $lang['SHOWUSER_SAVE']; ?>" style="display: none">
+                            <input onclick="save()" id="btn-save" type="button" value="<?php echo $lang['SHOWUSER_SAVE']; ?>" style="display: none">
                         </div>
                     </div>
                 </form>
@@ -207,6 +196,5 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 </div>
 </div>
 <?php
-
 include_once ROOT_DIR . 'views/footer.inc';
 ?>

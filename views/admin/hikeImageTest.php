@@ -6,7 +6,8 @@
  * Time: 09:26
  */
 
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
 
 
 $imageTest = $_SESSION['testImage'];
