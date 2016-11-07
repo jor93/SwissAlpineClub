@@ -84,6 +84,7 @@ class SQL {
 
 	// function for insert/update/delete
 	public function executeQuery($query){
+
         try {
             // begin trans
             $this->_conn->beginTransaction();
@@ -132,8 +133,6 @@ class SQL {
 
     // function for insert/update/delete
     public function executeBLOBQuery($query, $tourid, $filePath, $mime){
-        echo '</br>' . 'SQL query: ';
-        var_dump($query);
         try {
             // begin trans
             $this->_conn->beginTransaction();
