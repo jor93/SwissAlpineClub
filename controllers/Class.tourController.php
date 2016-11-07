@@ -121,7 +121,7 @@ class tourController extends Controller
                     Tour::updateTourImage($insertedTourId, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
 
                     // gez: get expiration date and available places
-                    $edate = $this->badassSafer($_POST['edate']);
+                    $edate = $this->badassSafer($_POST['exdate']);
                     $ap = $this->badassSafer($_POST['a_places']);
                     $status = $this->badassSafer($_POST['stat']);
                     $notes = null;
