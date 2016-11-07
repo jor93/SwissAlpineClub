@@ -232,4 +232,21 @@ $lang['HIKESHOW_SAVE'] = 'Speichern';
 $lang['HIKESHOW_RATING'] = 'BEWERTUNGEN';
 $lang['HIKESHOW_RATING_PUBLIC'] = 'Bewertung veröffentlichen';
 
+/* #################### SHOWUSER ######################*/
+$lang['SHOWUSER_WELCOME'] = 'Welcome';
+$lang['SHOWUSER_EMAIL'] = 'Email';
+$lang['SHOWUSER_FNAME'] = 'Vorname';
+$lang['SHOWUSER_NNAME'] = 'Nachname';
+$lang['SHOWUSER_ADDRESS'] = 'Adresse';
+$lang['SHOWUSER_LOC'] = 'Ort';
+$lang['SHOWUSER_ZIP'] = 'PLZ';
+$lang['SHOWUSER_PHONE'] = 'Telefonnummer';
+$lang['SHOWUSER_LANG'] = 'Sprache';
+$lang['SHOWUSER_COUNTRY'] = 'Land';
+$lang['SHOWUSER_CHANGEPW'] = 'Passwort ändern';
+$lang['SHOWUSER_EDIT'] = 'Bearbeiten';
+$lang['SHOWUSER_SAVE'] = 'Speichern';
+
+
+
 ?>
