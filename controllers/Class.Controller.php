@@ -116,7 +116,6 @@
  	    $secured = trim($secureMe);
         $secured = stripslashes($secured);
         $secured = htmlspecialchars($secured, ENT_QUOTES, 'UTF-8');
- 	    echo '</br>' . 'secured string: ' . $secured;
         return $secured;
     }
 

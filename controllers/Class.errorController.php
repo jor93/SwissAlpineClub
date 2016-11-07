@@ -29,10 +29,10 @@ class errorController extends Controller {
     }
 
     public static function showErrorFromSession($errorNumber){
-        if(!isset($_SESSION['error'])){
+        if(!isset($_SESSION['errors'])){
             return false;
         }
-        $array = $_SESSION['error'];
+        $array = $_SESSION['errors'];
         $length = count($array);
         for ($i = 0; $i < $length; ++$i) {
             if($errorNumber === $array[$i])
