@@ -17,6 +17,11 @@ $lang = array();
 
 $lang['WELCOME_TITLE'] = 'Bienvenue';
 
+/* #################### showhike ####################  */
+$lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Le nombre de participants possibles doit être plus grande que les abonnés déjà réservé!';
+$lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Vous devez à la visite elle-même participer!';
+$lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'] = 'Vous avez déjà écrit un commentaire!';
+
 /* #################### mail confirmation ####################  */
 /* confirm */
 $lang['CONFIRMATION_MAIL_CLICK_LINK'] = 'CLIQUEZ ICI POUR VOTRE COMPTE POUR CONFIRMER!';

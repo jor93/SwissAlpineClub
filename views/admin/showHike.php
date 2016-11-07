@@ -158,7 +158,7 @@ include_once ROOT_DIR. 'views/headeradmin.inc';
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Image</span>
-                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" required>
+                        <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png">
                     </div>
 
                     <!-- gez: for inscription necessary infos! -->

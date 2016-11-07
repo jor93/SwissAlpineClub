@@ -114,7 +114,7 @@ class Participant
     public static function insertParticipant($obj){
         $query = "INSERT INTO `grp1`.`participant` (`Firstname`, `Lastname`, `Abonnement_idAbonnement`, `Inscription_idInscription`)
                     VALUES ('$obj->firstname','$obj->lastname', $obj->abonnement, $obj->inscription);";
-        return SQL::getInstance()->executeQuery($query);
+        return  SQL::getInstance()->executeQuery($query);
     }
 
     public static function getNumberOfParticipants($idInscription){
