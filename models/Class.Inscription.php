@@ -247,4 +247,26 @@ class Inscription
         SQL::getInstance()->executeQuery($query);
         return;
     }
+
+    // get all inscriptions for the admin
+    public static function selectAllInscriptions(){
+        $query = "select t.idTour, i.Max_Inscriptions, i.Free_Space, i.Expiration_Date, i.Information, t.Title, t.Subtitle, l.de, l.fr, LocationName 
+                  from inscription as i, tour as t, status as s, language as l, location as lo where i.Tour_idTour = t.idTour 
+                  and s.idStatus = i.Status_idStatus and s.Language_idLanguage = l.idLanguage and lo.idlocation = t.location_idlocation;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
+
+    // check if acc for tour already in db
+    public static function getAccsInscriptedByIdInscription($idInscription){
+        $query = "select idaccount, firstname, Lastname, Email, Abonnement_idAbonnement, l.de, l.fr 
+                  from account a, account_inscription as ai, inscription as i, abonnement as ab, 
+                  language as l where a.idAccount = ai.Account_idAccount and ai.Inscription_idInscription = i.idInscription 
+                  and a.Abonnement_idAbonnement = ab.idAbonnement and ab.Language_idLanguage = l.idLanguage and i.idInscription = $idInscription;";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetchAll();
+
+        if(!$row) return false;
+
+        return $row;
+    }
 }

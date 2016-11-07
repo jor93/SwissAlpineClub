@@ -77,7 +77,7 @@ class inscriptionController extends Controller
                         }
 
                         // prepare and insert into participant
-                        $participant = new Participant(null, $firstname, $lastname, $abo, $idInscription);
+                        $participant = new Participant(null, $firstname, $lastname, $abo, $idInscription, $account);
                         Participant::insertParticipant($participant);
 
                         // count to modify the available places
@@ -97,10 +97,10 @@ class inscriptionController extends Controller
                 $_SESSION['error_msg'] = 4;
             }
             // 2 = booked out/already executed
-        }else if ($checkStatus['Status_idStatus'] == 2){
+        }else if ($checkStatus->getStatusIdStatus() == 2){
             $_SESSION['error_msg'] = 5;
             // 3 = canceled
-        }else if ($checkStatus['Status_idStatus'] == 3){
+        }else if ($checkStatus->getStatusIdStatus() == 3){
             $_SESSION['error_msg'] = 6;
         }
         $this->redirect('tour', 'hikeshow');

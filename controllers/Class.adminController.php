@@ -19,7 +19,6 @@ class adminController extends Controller
 
     function showHike(){
         $this->checkRights();
-
     }
 
     function manageHike(){
@@ -28,12 +27,12 @@ class adminController extends Controller
 
     function hikeImageTest(){
         $this->checkRights();
-
     }
 
     function hikemanage(){
         $this->checkRights();
     }
+
      function showadmin(){
          $this->checkRights();
      }
@@ -49,11 +48,15 @@ class adminController extends Controller
 
     function manageInscription(){
         $this->checkRights();
-
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = $this->badassSafer($_POST['showInscription']);
+            $_SESSION['idInscription'] = $id;
+            $this->redirect('admin','showInscription');
+        }
     }
+
     function showInscription(){
         $this->checkRights();
-
     }
 
     function showAccount(){
@@ -117,9 +120,6 @@ class adminController extends Controller
             } else if($operation == 2){
                 $this->redirect('forgotpw','resetpassword');
             }
-
         }
-
     }
-
 }
