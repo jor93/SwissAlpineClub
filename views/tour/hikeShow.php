@@ -5,8 +5,8 @@
  * Date: 27.09.2016
  * Time: 14:54
  */
-//Controller::checkHeader();
-include_once ROOT_DIR.'views/header.inc';
+$header = Controller::checkHeader();
+include_once $header;
 
 if (isset($_SESSION['tourId'])) {
     $tour = Tour::selectTour($_SESSION['tourId']);

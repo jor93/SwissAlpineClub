@@ -1,6 +1,6 @@
 <?php
 // include lang files
-include ROOT_DIR.'views/common.php';
+include_once 'common.php';
 ?>
 
 <!DOCTYPE html
