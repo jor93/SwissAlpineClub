@@ -170,5 +170,66 @@ $lang['HEADER_LOGIN'] = 'Login';
 $lang['HEADER_LOGOUT'] = 'Logout';
 $lang['HEADER_LOGGED'] = 'Bienvenue';
 
+/* #################### Home ######################*/
+$lang['HOME_HIKE'] = 'Wanderungen';
+$lang['HOME_ADVANTAGE'] = 'Ihre Vorteile';
+$lang['HOME_HIKE_DESC'] = 'Wir bieten Ihnen verschiedene Wanderungen an. Von Klettertouren bis Skitouren über mehrtägige geführte Wanderungen überall im Wallis.';
+$lang['HOME_ADVANTAGE_DESC'] = 'Wir bieten Ihnen verschiedene Wanderungen mit Familie und Freunden an. Sie können bei uns Ideen für Wanderungen finden oder eine von uns geführte Wanderung buchen.';
+$lang['HOME_RATING'] = 'Sehen Sie sich Bewertungen an';
+$lang['HOME_RATING_DESC'] ='Auf unserer Seite können Sie die Wanderungen genauenstens ansehen und sich die Bewertungen unserer Community ansehen.';
+$lang['HOME_BTN_MORE'] = 'Mehr';
+$lang['HOME_VIDEO_TITLE'] = 'Titel Video';
+$lang['HOME_VIDEO_SUBTITLE'] = 'Untertitel Video';
+$lang['HOME_VIDEO_DESC'] = "Maecenas finibus quis nulla id facilisis. Aenean dignissim magna et est elit porttitor
+                gravida lacinia. Fusce elementum massa at eros lacinia imperdiet. Aenean mollis ultricies
+                dictum.Praesent suscipit urna eget elit porttitor mollis. Quisque mollis rhoncus ante, eu
+                interdum quam vehicula cursus. Nam bibendum odio eu sem semper posuere.  ";
+
+/* #################### Tour ######################*/
+$lang['TOUR_TITLE'] = 'Wanderung';
+$lang['TOUR_TOUR'] = 'Tour';
+$lang['TOUR_INFO'] = 'Information';
+$lang['TOUR_STATUS'] = 'Status';
+$lang['TOUR_MEMBERS'] = 'Anzahl Einschreibungen';
+$lang['TOUR_GA'] = 'GA';
+$lang['TOUR_HT'] = 'Halb-Tax';
+$lang['TOUR_NOTHING'] = 'Kein Abo';
+$lang['TOUR_BTN'] = 'Anzeigen';
+
+/* #################### HIKING ######################*/
+$lang['HIKING_ALL'] = 'Alle';
+$lang['HIKING_FAVORITES'] = 'Favoriten';
+$lang['HIKING_DURATION'] = 'Dauer';
+$lang['HIKING_TYPE'] = 'Art der Wanderung';
+$lang['HIKING_REGION'] = 'Region';
+$lang['HIKING_ALLREGIONS'] = 'Alle Regionen';
+$lang['HIKING_OW'] = 'Oberwallis';
+$lang['HIKING_MW'] = 'Mittelwallis';
+$lang['HIKING_UW'] = 'Unterwallis';
+$lang['HIKING_AK'] = 'Ausserkantonal';
+$lang['HIKING_DIFF'] = 'Schwierigkeit';
+$lang['HIKING_ALLDIFF'] = 'Alle Schwierigkeiten';
+$lang['HIKING_CLOSE'] = 'Schliessen';
+$lang['HIKING_FILTER'] = 'Filter';
+$lang['HIKING_DATE'] = 'Datum';
+
+/* #################### HIKESHOW/SHOWOFF ######################*/
+$lang['HIKESHOW_TOUR'] = 'Wanderung';
+$lang['HIKESHOW_DESC_DE'] = 'Beschreibung DE';
+$lang['HIKESHOW_DESC_FR'] = 'Beschreibung FR';
+$lang['HIKESHOW_DIFF'] = 'Schwierigkeit';
+$lang['HIKESHOW_LOCATION'] = 'Ort der Abreise/Ankunft';
+$lang['HIKESHOW_DATE'] = 'Datum der Abreise/Ankunft';
+$lang['HIKESHOW_STATUS'] = 'Status';
+$lang['HIKESHOW_PRICE'] = 'Preis pro Person';
+$lang['HIKESHOW_PLACE'] = 'Freie Plätze';
+$lang['HIKESHOW_ANMELDESCHLUSS'] = 'Anmeldeschluss';
+$lang['HIKESHOW_INSCRIPTION'] = 'FÜR EINE TOUR EINSCHREIBEN';
+$lang['HIKESHOW_JOIN'] = 'Nehme ich auch teil?';
+$lang['HIKESHOW_FRIENDS'] = 'Meine Freunde:';
+$lang['HIKESHOW_MORE_FRIENDS'] = 'Freund hinzufügen';
+$lang['HIKESHOW_SAVE'] = 'Speichern';
+$lang['HIKESHOW_RATING'] = 'BEWERTUNGEN';
+$lang['HIKESHOW_RATING_PUBLIC'] = 'Bewertung veröffentlichen';
 
 ?>

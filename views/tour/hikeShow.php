@@ -172,7 +172,7 @@ if (isset($_SESSION['tourId'])) {
                 <div class="register-top-grid" style="padding-left: 70px">
                     </br>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Tour</span>
+                        <span><?php echo $lang['HIKESHOW_TOUR']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -180,7 +180,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description DE</span>
+                        <span><?php echo $lang['HIKESHOW_DESC_DE']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -188,7 +188,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Description FR</span>
+                        <span><?php echo $lang['HIKESHOW_DESC_FR']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -196,7 +196,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Difficulty</span>
+                        <span><?php echo $lang['HIKESHOW_DIFF']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -207,7 +207,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Location Departure / Arrival</span>
+                        <span><?php echo $lang['HIKESHOW_LOCATION']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -217,7 +217,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Date Departure / Arrival</span>
+                        <span><?php echo $lang['HIKESHOW_DATE']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -226,7 +226,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Status</span>
+                        <span><?php echo $lang['HIKESHOW_STATUS']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -235,7 +235,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Price per Person</span>
+                        <span><?php echo $lang['HIKESHOW_PRICE']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -243,7 +243,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Freie Plätze</span>
+                        <span><?php echo $lang['HIKESHOW_PLACE']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -251,7 +251,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Anmeldeschluss</span>
+                        <span><?php echo $lang['HIKESHOW_ANMELDESCHLUSS']; ?></span>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -269,12 +269,12 @@ if (isset($_SESSION['tourId'])) {
             <div class="register">
                 <form action="<?php echo URL_DIR . 'inscription/validateParticipants_Inscription'; ?>" method="post">
                     <div class="register-top-grid">
-                        <h3>FÜR EINE TOUR EINSCHREIBEN</h3>
+                        <h3><?php echo $lang['HIKESHOW_INSCRIPTION']; ?></h3>
 
                         <a class="news-letter">
                             <label class="checkbox">
                                 <input type="checkbox" id="checkb" name="rememberMe" onclick="selectAccount()"><i> </i>
-                                Nehme ich auch teil?
+                                <?php echo $lang['HIKESHOW_JOIN']; ?>
                             </label>
                         </a>
                         <label class="error"><?php
@@ -284,17 +284,17 @@ if (isset($_SESSION['tourId'])) {
                             ?></label>
                         <div class="participants" style="width: 100%;">
 
-                            <span>Meine Freunde:</span>
+                            <span><?php echo $lang['HIKESHOW_FRIENDS']; ?></span>
 
                             <div class="participantsInputs" style="width: 100%;">
-                                <button class="add_field_button">Add More Fields</button>
+                                <button class="add_field_button"><?php echo $lang['HIKESHOW_MORE_FRIENDS']; ?></button>
                                 </br>
                             </div>
                         </div>
 
                         <div class="clearfix"></div>
                         <div class="register-but">
-                            <input type="submit" value="Speichern">
+                            <input type="submit" value="<?php echo $lang['HIKESHOW_SAVE']; ?>">
                         </div>
                     </div>
                 </form>
@@ -304,7 +304,7 @@ if (isset($_SESSION['tourId'])) {
     <div class="container">
         <div class="register">
             <div class="register-top-grid">
-                <h3>BEWERTUNGEN</h3>
+                <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
                 <label class="error">
                     <?php
                     if (isset($_SESSION['error_account_rating'])) {
@@ -316,7 +316,7 @@ if (isset($_SESSION['tourId'])) {
                     <!-- gez rating comment -->
                     <textarea id="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
                               style="width: 400px;"></textarea>
-                    <button onclick="validateRating()" class="add_comment_field">Rating veröffentlichen</button>
+                    <button onclick="validateRating()" class="add_comment_field"><?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></button>
                     </br>
                     </br>
                     <div class="rating">

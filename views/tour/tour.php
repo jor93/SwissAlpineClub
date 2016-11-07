@@ -19,39 +19,39 @@ include_once 'views/header.inc';
         <div class="register">
             <form onsubmit="return false">
                 <div class="register-top-grid">
-                    <h3>HIKE</h3>
+                    <h3><?php echo $lang['TOUR_TITLE']; ?></h3>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Tour</span>
+                        <span><?php echo $lang['TOUR_TOUR']; ?></span>
                         <input type="text" id="tour" name="tour" required>
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
-                        <span>Status</span>
+                        <span><?php echo $lang['TOUR_STATUS']; ?></span>
                         <input type="text" id="status" name="status" required>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Number of Members<label>*</label></span>
+                        <span><?php echo $lang['TOUR_MEMBERS']; ?><label>*</label></span>
                         <input type="number" id="member" name="member" required>
 
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>GA<label>*</label></span>
+                        <span><?php echo $lang['TOUR_GA']; ?><label>*</label></span>
                         <input type="number" id="ga" name="ga" required>
 
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Halb-Tax<label>*</label></span>
+                        <span><?php echo $lang['TOUR_HT']; ?><label>*</label></span>
                         <input type="number" id="halb" name="halb" required>
 
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Nothing<label>*</label></span>
+                        <span><?php echo $lang['TOUR_NOTHING']; ?><label>*</label></span>
                         <input type="number" id="no" name="no" required>
 
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Informationen</span>
+                        <span><?php echo $lang['TOUR_INFO']; ?></span>
                         <textarea style="width: 527px; height: 76px" type="TEXT" id="info" name="info" required></textarea>
 
                     </div>
@@ -60,7 +60,7 @@ include_once 'views/header.inc';
                 <div class="clearfix"></div>
                 <div class="register-but">
 
-                    <input type="submit" value="Show" onclick="check()">
+                    <input type="submit" value="<?php echo $lang['TOUR_BTN']; ?>" onclick="check()">
 
 
                 </div>
