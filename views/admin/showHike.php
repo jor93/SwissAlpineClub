@@ -5,7 +5,8 @@
  * Date: 14.10.2016
  * Time: 09:26
  */
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
 ?>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>

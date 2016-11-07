@@ -5,7 +5,8 @@
  * Date: 28.09.2016
  * Time: 14:01
  */
-Controller::checkHeader();;
+$header = Controller::checkHeader();
+include_once $header;
 ?>
 
 <script language="JavaScript" type="text/javascript">

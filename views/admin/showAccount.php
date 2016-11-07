@@ -5,7 +5,8 @@
  * Date: 30.09.2016
  * Time: 10:14
  */
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
 
 $account = $_SESSION['accountToChange'];
 $loc = Location::selectLocation($account->getLocation());

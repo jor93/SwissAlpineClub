@@ -5,7 +5,8 @@
  * Date: 27.09.2016
  * Time: 14:54
  */
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
 if(!isset($_SESSION['saved']))
     $sav = null;
 else

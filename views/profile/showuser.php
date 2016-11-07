@@ -5,7 +5,9 @@
  * Date: 30.09.2016
  * Time: 10:14
  */
-Controller::checkHeader();
+$header = Controller::checkHeader();
+include_once $header;
+
 
 $account = $_SESSION['account'];
 //var_dump($account->getCountry()->getIdCountry());
