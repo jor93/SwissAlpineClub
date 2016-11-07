@@ -41,6 +41,9 @@ class tourController extends Controller
             $_SESSION['tourId'] = $id;
             $this->redirect('tour','hikeShow');
         }
+        if (!self::checkActiveUser()){
+            $this->redirect('tour', 'hikeShowOff');
+        }
 
     }
 
@@ -53,6 +56,9 @@ class tourController extends Controller
         }
     }
 
+    function hikeShowOff(){
+
+    }
 
     private function setTransportIds($transportLength){
         $transportIds = array();

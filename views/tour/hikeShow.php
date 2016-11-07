@@ -162,11 +162,11 @@ if (isset($_SESSION['tourId'])) {
                      style="margin-left: auto;margin-right: auto; display: block;width: 50%"/>
                 <h3>IHRE BEWERTUNG</h3>
                 <div class="rating">
-                    <span id="5" onclick="fill(this.id)">☆</span>
-                    <span id="4" onclick="fill(this.id)">☆</span>
-                    <span id="3" onclick="fill(this.id)">☆</span>
-                    <span id="2" onclick="fill(this.id)">☆</span>
-                    <span id="selected1" onclick="fill(this.id)" class="filled">☆</span>
+                    <span id="5" title="ausgezeichnet" onclick="fill(this.id)" >☆</span>
+                    <span id="4" title="sehr gut" onclick="fill(this.id)">☆</span>
+                    <span id="3" title="gut" onclick="fill(this.id)">☆</span>
+                    <span id="2" title="genügend" onclick="fill(this.id)">☆</span>
+                    <span id="selected1" title="schlecht" onclick="fill(this.id)" class="filled">☆</span>
                 </div>
                 <?php echo elementsController::avgRatings();?>
                 <div class="register-top-grid" style="padding-left: 70px">
@@ -331,4 +331,5 @@ if (isset($_SESSION['tourId'])) {
 unset($_SESSION['account_participant']);
 unset($_SESSION['error_account']);
 unset($_SESSION['error_account_rating']);
-include_once ROOT_DIR . 'views/footer.inc'; ?>
+include_once ROOT_DIR . 'views/footer.inc';
+?>
