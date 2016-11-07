@@ -124,10 +124,13 @@ class elementsController extends Controller
         $ratingsTour = Rating::selectRatingsFromTour($idTour);
         $nrRatings = count($ratingsTour);
         $sumRatings = Rating::getSumRatings($idTour);
-        $avgRatings = $sumRatings / $nrRatings;
 
         echo "<label>Total Bewertungen : ". $nrRatings . "</label></br>";
-        echo "<label>" . $avgRatings . " von 5 Sternen</label>";
+
+        if ($nrRatings != 0){
+            $avgRatings = $sumRatings / $nrRatings;
+            echo "<label>" . $avgRatings . " von 5 Sternen</label>";
+        }
     }
 
     public static function comments()
