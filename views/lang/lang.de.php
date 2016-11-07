@@ -247,6 +247,13 @@ $lang['SHOWUSER_CHANGEPW'] = 'Passwort ändern';
 $lang['SHOWUSER_EDIT'] = 'Bearbeiten';
 $lang['SHOWUSER_SAVE'] = 'Speichern';
 
+/* #################### THANK ######################*/
+$lang['THANK_TITLE']='Vielen Dank für die Registrierung';
+$lang['THANK_TEXT'] ='Sie erhalten in Kürze eine Bestätigungsemail.';
+$lang['THANK_BTN'] ='Weiter';
+
+/* #################### LOGIN ######################*/
+
 
 
 ?>
