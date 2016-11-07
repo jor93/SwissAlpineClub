@@ -23,9 +23,9 @@ include_once ROOT_DIR.'views/header.inc';
                 <div class="register-top-grid">
 
 
-                    <h3>Vielen Dank für die Registrierung</h3>
+                    <h3><?php echo $lang['THANK_TITLE']; ?></h3>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <p>Sie erhalten in kürze eine Bestätigungsemail.</p>
+                        <p><?php echo $lang['THANK_TEXT']; ?></p>
 
                     </div>
 
@@ -34,7 +34,7 @@ include_once ROOT_DIR.'views/header.inc';
 
                 <div class="clearfix"> </div>
                 <div class="register-but">
-                    <input type="submit" value="Weiter" onclick="">
+                    <input type="submit" value="<?php echo $lang['THANK_BTN']; ?>" onclick="">
                 </div>
 
             </form>
