@@ -70,7 +70,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
     };
 
     function save(){
-
         document.getElementById('editForm').submit();
 
         document.getElementById("mail").disabled = true;
@@ -94,11 +93,11 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         document.getElementById("fname").removeAttribute("disabled");
         document.getElementById("lname").removeAttribute("disabled");
         document.getElementById("address").removeAttribute("disabled");
-        document.getElementById("loc").removeAttribute("disabled");
         document.getElementById("phone").removeAttribute("disabled");
         document.getElementById("lang").removeAttribute("disabled");
         document.getElementById("country").removeAttribute("disabled");
         document.getElementById("plz").removeAttribute("disabled");
+        document.getElementById("loc").removeAttribute("disabled");
 
         document.getElementById("btn-save").style.display = "inline"
         document.getElementById("btn-edit").style.display = "none";
@@ -199,7 +198,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <div class="register-but">
                             <input onclick="edit()" id="btn-edit" type="button" value="<?php echo $lang['SHOWUSER_EDIT']; ?>">
-                            <input onclick="save()" id="btn-save" type="button" value="<?php echo $lang['SHOWUSER_SAVE']; ?>" style="display: none">
+                            <input id="btn-save" type="submit" value="<?php echo $lang['SHOWUSER_SAVE']; ?>" style="display: none">
                         </div>
                     </div>
                 </form>
