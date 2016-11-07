@@ -56,7 +56,6 @@
          if(self::getAdminUserWithoutCookie())return 10;
          else return false;
      }
-
      /**
       * Get active (logged-in) user
       * @return User
