@@ -9,6 +9,8 @@
 $header = Controller::checkHeader();
 include_once $header;
 ?>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
     $(document).ready(function () {
         $('#menu_contact').addClass('active');
@@ -51,6 +53,7 @@ include_once $header;
                     <span><label><?php echo $lang['CONTACT_SUBJECT']; ?></label></span>
                     <span><textarea name="userMsg"></textarea></span>
                 </div>
+                <div class="g-recaptcha" data-sitekey="6LfhNQoUAAAAABf3Ia4vpBFtWclI7akUB7EH976f"></div>
                 <div>
                     <span><input type="submit" value="<?php echo $lang['CONTACT_SENDMAIL_BUTTON']; ?>" class="myButton"></span>
                     <span>

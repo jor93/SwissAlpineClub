@@ -159,6 +159,7 @@ $lang['REGISTER_ERROR_4'] = 'Les mots de passe ne sont pas identiques!';
 $lang['REGISTER_ERROR_5'] = 'Les mots de passe sont trop faibles';
 $lang['REGISTER_ERROR_6'] = 'S\'il vous plaît entrer un prénom valide!';
 $lang['REGISTER_ERROR_7'] = 'S\'il vous plaît entrer un nom valide!';
+$lang['REGISTER_ERROR_8'] = 'Bot! Va-t\'en!!';
 
 
 /* #################### global errors ####################  */

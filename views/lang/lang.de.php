@@ -159,6 +159,7 @@ $lang['REGISTER_ERROR_4'] = 'Passwörter sind nicht identisch!';
 $lang['REGISTER_ERROR_5'] = 'Passwörter sind zu schwach';
 $lang['REGISTER_ERROR_6'] = 'Bitte geben Sie einen gültigen Vornamen ein!';
 $lang['REGISTER_ERROR_7'] = 'Bitte geben Sie einen gültigen Nachnamen ein!';
+$lang['REGISTER_ERROR_8'] = 'Bot! GEH WEG!';
 
 
 /* #################### global errors ####################  */

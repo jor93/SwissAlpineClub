@@ -18,20 +18,30 @@ class generalController extends Controller
         $email_name = $_POST['userName'];
         $email_address = $_POST['userEmail'];
         $email_msg = $_POST['userMsg'];
+        $captcha = $_POST['g-recaptcha-response'];
 
-        // create object to transmit
-        $temp = array();
-        $temp[0] = $email_name;
-        $temp[1] = $email_address;
-        $temp[2] = $email_msg;
+        // check captcha
+        $secretKey = "6LfhNQoUAAAAAOOKEW62RA5s6dZwL54lXO-OGWmy";
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+        $responseKeys = json_decode($response,true);
+        if(intval($responseKeys["success"]) !== 1) {
+            // do here when captcha was error
+        } else{
+            // create object to transmit
+            $temp = array();
+            $temp[0] = $email_name;
+            $temp[1] = $email_address;
+            $temp[2] = $email_msg;
 
-        // call method to send mail
-        forgotpwController::sendMail($temp, false);
+            // call method to send mail
+            forgotpwController::sendMail($temp, false);
 
-        // make visible that the demand was send to the company
-        $_SESSION['msg'] = true;
+            // make visible that the demand was send to the company
+            $_SESSION['msg'] = true;
 
-        $this->redirect('general', 'contact');
+            $this->redirect('general', 'contact');
+        }
     }
 
     function about(){

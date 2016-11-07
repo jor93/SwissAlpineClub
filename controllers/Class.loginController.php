@@ -131,11 +131,12 @@ class loginController extends Controller {
             $abo = "";
             $aborting = false;
 
+
             $errorsInForm = array();
 
             // checking if form is filled out
             if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['location'])
-                && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['pwd1']) && isset($_POST['abo']) && isset($_POST['country'])) {
+                && isset($_POST['phone']) && isset($_POST['lang']) && isset($_POST['pwd1']) && isset($_POST['abo']) && isset($_POST['country']) && isset($_POST['g-recaptcha-response'])) {
 
                 // get data from post and secured it
                 $firstName = $this->badassSafer($_POST['firstname']);
@@ -150,9 +151,20 @@ class loginController extends Controller {
                 $password2 = $this->badassSafer($_POST['pwd2']);
                 $country = $this->badassSafer($_POST['country']);
                 $abo = $this->badassSafer($_POST['abo']);
+                $captcha = $_POST['g-recaptcha-response'];
             } else {
                 $aborting = true;
                 array_push($errorsInForm, 1);
+            }
+
+            // check captcha
+            $secretKey = "6LfhNQoUAAAAAOOKEW62RA5s6dZwL54lXO-OGWmy";
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+            $responseKeys = json_decode($response,true);
+            if(intval($responseKeys["success"]) !== 1) {
+                $aborting = true;
+                array_push($errorsInForm, 8);
             }
 
             // check if names are valid
@@ -160,7 +172,7 @@ class loginController extends Controller {
                 array_push($errorsInForm, 6);
                 $aborting = true;
             }
-
+            // check if names are valid
             if($this->checkNames($lastName) === false){
                 array_push($errorsInForm, 7);
                 $aborting = true;
@@ -191,18 +203,12 @@ class loginController extends Controller {
                     $aborting = true;
                 }
             }
+            // they are errors
             if($aborting){
                 $_SESSION['saved'] = array($firstName,$lastName,$email,$address,$zip,$location,$phone,$language,$country,$abo);
                 // write all errors to session
                 $_SESSION['errors'] = $errorsInForm;
-
-                echo '</br>' . 'error in form';
-                $length = count($errorsInForm);
-                for ($i = 0; $i < $length; ++$i) {
-                    echo "</br>" . $errorsInForm[$i];
-                }
                 return;
-
             }
             // everything is fine, no errors, create account
             $user = new Account();
