@@ -229,6 +229,7 @@ $lang['HIKESHOW_JOIN'] = 'Nehme ich auch teil?';
 $lang['HIKESHOW_FRIENDS'] = 'Meine Freunde:';
 $lang['HIKESHOW_MORE_FRIENDS'] = 'Freund hinzufügen';
 $lang['HIKESHOW_SAVE'] = 'Speichern';
-
+$lang['HIKESHOW_RATING'] = 'BEWERTUNGEN';
+$lang['HIKESHOW_RATING_PUBLIC'] = 'Bewertung veröffentlichen';
 
 ?>
