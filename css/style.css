@@ -838,13 +838,21 @@ xgallery
 	height: 0;
 	display: inline-block;
 }
+
+
 .cd-gallery img {
 	display: block;
 	object-fit: cover;
 	height: 280px;
 	width: 100%;
-
 }
+
+.cd-gallery ul li .stars img {
+	height: 15px;
+	width: 15px;
+}
+
+
 .cd-gallery .cd-fail-message {
 	display: none;
 	text-align: center;

@@ -30,12 +30,15 @@ function __autoload($class)
         require(ROOT_DIR."data/Class.$class.php");
         return;
     }
+
 }
+
 // start the session
 session_start();
 
 // call the controller, method and view
 require_once 'Class.Routing.php';
 Routing::getInstance()->route();
+
 
 

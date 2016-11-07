@@ -50,7 +50,7 @@
  	}
 
      //check if user is active and get back which runlevel has account
-     static function checkActiveUser()
+     public static function checkActiveUser()
      {
          if(self::getActiveUserWithoutCookie())return 1;
          if(self::getAdminUserWithoutCookie())return 10;
@@ -87,7 +87,7 @@
       * Get active (logged-in) admin
       * @return User
       */
-     function getAdminUserWithoutCookie(){
+      static function  getAdminUserWithoutCookie(){
          if(isset($_SESSION['account']) && $_SESSION['account']->getRunlevel() == 10)
              return $_SESSION['account'];
          else {
@@ -139,6 +139,16 @@
          }
          return true;
 
+     }
+
+     static function checkHeader(){
+         $user = Controller::checkActiveUser();
+         if(is_bool($user) === true && !$user)
+             include_once ROOT_DIR . '/views/header.inc';
+         else if(is_int($user) === true && $user == 10)
+             include_once ROOT_DIR. '/views/headeradmin.inc';
+         else
+             include_once ROOT_DIR . '/views/header.inc';
      }
 
      /**

@@ -109,6 +109,12 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
     function canc() {
         controlGUI();
     }
+    function forgot(){
+        document.getElementById("decider").value = 2;
+        document.getElementById("editForm").submit();
+
+
+    }
 </script>
 
 
@@ -233,7 +239,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
-                        <input type="button" id="btn-change" value="Change PW">
+                        <input type="button" id="btn-forgot" onclick="forgot()" value="Change PW">
                     </div>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -244,8 +250,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         <input onclick="canc()" id="btn-cancel" type="button" value="Cancel"  style="display: none">
                     </div>
                 </div>
-                    echo "<input type='hidden' id='decider' name='operation' value='0' />";
-
+                   <input type='hidden' id='decider' name='operation' value='0' />
                     </form>
 
             </div>

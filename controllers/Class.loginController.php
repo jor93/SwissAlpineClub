@@ -17,7 +17,7 @@ class loginController extends Controller {
             $password = $_POST['password'];
         }
         //Load account from DB if exists
-        $result = Account::connect($email, $password);
+        $result = Account::connect($email, sha1($password));
         //Put account in session if exists or return error msg
         if (!$result) {
             $this->redirect('login', 'login');
@@ -45,8 +45,7 @@ class loginController extends Controller {
     /**
      * Method that controls the page 'login.php'
      */
-    function login()
-    {
+    function login(){
         //if a user is active he cannot re-login
         if ($this->getActiveUser()) {
             $this->redirect('profile', 'showuser');
@@ -86,7 +85,7 @@ class loginController extends Controller {
         if(isset($_COOKIE["Rme"])){
             setcookie("Rme", "", time() - 3600, "/");
         }
-        session_destroy();
+        $_SESSION['account'] = null;
         $this->redirect('login', 'login');
     }
 

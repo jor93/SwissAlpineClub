@@ -9,7 +9,7 @@ include_once ROOT_DIR . 'views/header.inc';
 
 $account = $_SESSION['account'];
 
-var_dump($account->getCountry()->getIdCountry());
+//var_dump($account->getCountry()->getIdCountry());
 
 ?>
 

@@ -32,27 +32,37 @@ class tourController extends Controller
 
     function hiking()
     {
+
         if ($this->getAdminUser()) {
             $this->redirect('hiking', 'hiking');
             exit;
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $this->badassSafer($_POST['showHike']);
-            $_SESSION['tourId'] = $id;
-            $this->redirect('tour','hikeShow');
+            if($id != -1){
+                $_SESSION['tourId'] = $id;
+                if (!self::checkActiveUser())
+                    $this->redirect('tour', 'hikeShowOff');
+                else
+                    $this->redirect('tour', 'hikeShow');
+            }
         }
+
 
     }
 
     function hikeShow(){
         if(isset($_SESSION['tourId'])) {
             $id = $this->badassSafer($_SESSION['accountId']);
-            /*$result = Account::selectAccountById($id);
+            $result = Account::selectAccountById($id);
             $account = Account::createAccount($result[0], $result[1], $result[2], $result[3], $result[4], $result[5], $result[6], $result[7], $result[8], $result[9], $result[10], $result[11], $result[12], $result[13]);
-            $_SESSION['account'] = $account;*/
+            $_SESSION['account'] = $account;
         }
     }
 
+    function hikeShowOff(){
+
+    }
 
     private function setTransportIds($transportLength){
         $transportIds = array();
@@ -76,6 +86,14 @@ class tourController extends Controller
 
     function insertTour()
     {
+        /*
+        Tour::updateTourImage(1, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
+        $image = Tour::selectTourImage(1);
+        $_SESSION['testImage'] = $image;
+        $this->redirect('admin', 'hikeImageTest');
+
+        exit();*/
+
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
             && isset($_POST['price']) && isset($_POST['stat']) && isset($_POST['descDE']) && isset($_POST['descFR'])
@@ -89,7 +107,6 @@ class tourController extends Controller
 
             $transportIds = $this->setTransportIds($transportLength);
             $typetourIds = $this->setTypeTourIds($typeTourLength);
-            if(count($transportIds) == 0 || count($typetourIds == 0))$this->redirect('admin', 'showHike');
 
             $insertedTourDescId = 0;
             if(Tour::insertTourDescription($_POST['descDE'], $_POST['descFR'], $insertedTourDescId)){
@@ -101,7 +118,7 @@ class tourController extends Controller
                 $insertedTourId = 0;
                 if(Tour::insertTour($tour, $insertedTourId)){
                     TypeTour::insertTypeTour($insertedTourId, $typetourIds);
-                    Transport::insertTransportTour($insertedTourId, $transportIds);
+                    //Transport::insertTransportTour($insertedTourId, $transportIds);
                     Tour::updateTourImage($insertedTourId, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
 
                     // gez: get expiration date and available places
@@ -125,6 +142,7 @@ class tourController extends Controller
     }
 
     function updateTour(){
+
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['locationArriv'])
             && isset($_POST['price']) && isset($_POST['stat']) && isset($_POST['descDE']) && isset($_POST['descFR'])

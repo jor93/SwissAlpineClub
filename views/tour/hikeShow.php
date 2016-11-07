@@ -13,21 +13,63 @@ if (isset($_SESSION['tourId'])) {
     $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
     $_SESSION['idInscription'] = $inscription->getIdInscription();
 }
-
-
 ?>
-    <script>
+<script>
         $(document).ready(function () {
             $('#menu_hikeShow').addClass('active');
         });
 
         function fill(clickedid) {
-            for (i = 1; i < 6; i++) {
-                document.getElementById(i).className = "";
+            var valueSelected = 0;
+            var valueBefore = 0;
+            // set all back
+            for(i=1;i<6;i++){
+                valueBefore = document.getElementById(i);
+                // if it is selected from before set the original id
+                if (valueBefore == null){
+                    document.getElementById("selected"+i).setAttribute("id", i);
+                }
+                // set back the filled tag of the stars
+                document.getElementById(i).className="";
             }
-            for (i = 1; i <= clickedid; i++) {
-                document.getElementById(i).className = "filled";
+            // fill the stars
+            for(i=1;i<=clickedid;i++){
+                document.getElementById(i).className="filled";
+                valueSelected = i;
             }
+            // change the id tag to handle the value afterwards
+            document.getElementById(valueSelected.toString()).setAttribute("id", "selected"+valueSelected);
+
+        }
+
+        function validateRating() {
+            // first get ratingstars
+            var valueSelected = 0;
+            for(i=1;i<6;i++){
+                // get the selected star
+                valueSelected = document.getElementById("selected"+i);
+
+                // save value
+                if (valueSelected != null){
+                    valueSelected = i;
+                    break;
+                }
+            }
+
+            // get the comment
+            var valueComment = document.getElementById('input_comment').value;
+
+            // save into db - call controllers
+            $.ajax({
+                type: 'post',
+                url: '<?php echo URL_DIR.'inscription/validateRating';?>',
+                data:{ selectedStar : valueSelected,
+                    givenComment: valueComment},
+                success: function(response) {
+                    //alert(response);
+                }
+            });
+            location.reload();
         }
 
         function selectAccount() {
@@ -41,15 +83,15 @@ if (isset($_SESSION['tourId'])) {
             // notify the controller if the user is selected
             $.ajax({
                 type: 'post',
-                url: '<?php echo URL_DIR . 'inscription/setAccountToParticipants';?>',
-                data: {acc_part: value},
-                success: function (response) {
+                url: '<?php echo URL_DIR.'inscription/setAccountToParticipants';?>',
+                data:{ acc_part : value},
+                success: function(response) {
                     //alert(response);
                 }
             });
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             // available places to restrict adding friends
             var free_space = $("#av_space").text();
             var u = parseInt(free_space);
@@ -63,14 +105,14 @@ if (isset($_SESSION['tourId'])) {
             var x = 1; //initlal array!
             var nrInputs = 1;
 
-            $(add_button).click(function (e) { //on add input button click
+            $(add_button).click(function(e){ //on add input button click
                 e.preventDefault();
 
                 $.ajax({
                     type: 'post',
-                    url: '<?php echo URL_DIR . 'inscription/setIndexInputs';?>',
-                    data: {index: x},
-                    success: function (response) {
+                    url: '<?php echo URL_DIR.'inscription/setIndexInputs';?>',
+                    data:{ index : x},
+                    success: function(response) {
                         //alert(response);
                     }
                 });
@@ -78,28 +120,28 @@ if (isset($_SESSION['tourId'])) {
                 // check if i want to take part -> if yes -1 from max_fields
                 var myself = $("#checkb:checked").val();
                 if (myself && x == 1)
-                    max_fields -= 1;
+                    max_fields-=1;
 
                 if (nrInputs > max_fields)
                     alert('Sie können maximal ' + max_fields + ' zusätzliche Personen buchen!');
 
-                if (nrInputs <= max_fields) { //max input box allowed
-                    var first = x + '' + 1;
+                if(nrInputs <= max_fields){ //max input box allowed
+                    var first = x +'' + 1;
                     var second = x + '' + 1;
-                    var third = x + '' + 1;
+                    var third =  x + '' + 1;
                     var f = parseInt(first);
                     var b = parseInt(second);
                     var c = parseInt(third);
                     nrInputs++;
 
                     $(wrapper).append('' +
-                        '<div><input type="text" name="participantFirstname[' + x + ']" placeholder="Vorname' + x + '" required/>' +
-                        '<input type="text" name="participantLastname[' + x + ']"placeholder="Nachname' + x + '"required/>' +
+                        '<div><input type="text" name="participantFirstname['+x+']" placeholder="Vorname'+x+'" required/>' +
+                        '<input type="text" name="participantLastname['+x+']"placeholder="Nachname'+x+'"required/>' +
                         '</br>' +
                         '<fieldset>' +
-                        '<input type="radio" name="participantAbo' + f + '[]" value="1" >GA' + x + '</input>' +
-                        '<input type="radio" name="participantAbo' + b + '[]" value="2" >HalbTax</input>' +
-                        '<input type="radio" name="participantAbo' + c + '[]" value="3" checked >NIX</input>' +
+                        '<input type="radio" name="participantAbo'+f+'[]" value="1" >GA'+x+'</input>' +
+                        '<input type="radio" name="participantAbo'+b+'[]" value="2" >HalbTax</input>' +
+                        '<input type="radio" name="participantAbo'+c+'[]" value="3" checked >NIX</input>' +
                         '</fieldset>' +
                         '</br>' +
                         '<a href="#" class="remove_field">Remove</a></div>'); //add input box
@@ -107,35 +149,26 @@ if (isset($_SESSION['tourId'])) {
                 x++; //text box increment
             });
 
-            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
-                e.preventDefault();
-                $(this).parent('div').remove();
-                nrInputs--;
+            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); nrInputs--;
             })
         });
-
-        function comments() {
-            <?php elementsController::comments(); ?>
-        }
-
-    </script>
-
+</script>
     <div class="main-1">
         <div class="container">
             <div class="register">
-
                 <img alt="Embedded Image"
                      src="data:<?php echo $image['mime'] ?>;base64,<?php echo base64_encode($image['data']); ?> "
                      style="margin-left: auto;margin-right: auto; display: block;width: 50%"/>
+                <h3>IHRE BEWERTUNG</h3>
                 <div class="rating">
-                    <span id="5" onclick="fill(this.id)">☆</span>
-                    <span id="4" onclick="fill(this.id)">☆</span>
-                    <span id="3" onclick="fill(this.id)">☆</span>
-                    <span id="2" onclick="fill(this.id)">☆</span>
-                    <span id="1" onclick="fill(this.id)" class="filled">☆</span>
-
-
+                    <span id="5" title="ausgezeichnet" onclick="fill(this.id)" >☆</span>
+                    <span id="4" title="sehr gut" onclick="fill(this.id)">☆</span>
+                    <span id="3" title="gut" onclick="fill(this.id)">☆</span>
+                    <span id="2" title="genügend" onclick="fill(this.id)">☆</span>
+                    <span id="selected1" title="schlecht" onclick="fill(this.id)" class="filled">☆</span>
                 </div>
+                <?php echo elementsController::avgRatings();?>
                 <div class="register-top-grid" style="padding-left: 70px">
                     </br>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -244,11 +277,11 @@ if (isset($_SESSION['tourId'])) {
                                 <?php echo $lang['HIKESHOW_JOIN']; ?>
                             </label>
                         </a>
-                        <psan><?php
+                        <label class="error"><?php
                             if (isset($_SESSION['error_account'])) {
                                 echo $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'];
                             }
-                            ?></psan>
+                            ?></label>
                         <div class="participants" style="width: 100%;">
 
                             <span><?php echo $lang['HIKESHOW_FRIENDS']; ?></span>
@@ -268,20 +301,35 @@ if (isset($_SESSION['tourId'])) {
             </div>
         </div>
     </div>
-<div class="container">
-    <div class="register">
-        <div class="wow fadeInLeft" data-wow-delay="0.4s">
-            <!-- gez rating comment -->
-            <textarea class="" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
-                      style="width: 400px;"></textarea>
-            <button onclick="validateRating()" class="add_comment_field">Rating veröffentlichen</button>
-            </br>
-            <a onclick="comments()">Alle Kommentare öffnen</a>
+    <div class="container">
+        <div class="register">
+            <div class="register-top-grid">
+                <h3>BEWERTUNGEN</h3>
+                <label class="error">
+                    <?php
+                    if (isset($_SESSION['error_account_rating'])) {
+                        echo $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'];
+                    }
+                    ?>
+                </label>
+                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <!-- gez rating comment -->
+                    <textarea id="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
+                              style="width: 400px;"></textarea>
+                    <button onclick="validateRating()" class="add_comment_field">Rating veröffentlichen</button>
+                    </br>
+                    </br>
+                    <div class="rating">
+                        <?php echo elementsController::comments();?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
 <?php
 unset($_SESSION['account_participant']);
 unset($_SESSION['error_account']);
-include_once ROOT_DIR . 'views/footer.inc'; ?>
+unset($_SESSION['error_account_rating']);
+include_once ROOT_DIR . 'views/footer.inc';
+?>

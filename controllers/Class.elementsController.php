@@ -15,15 +15,53 @@ class elementsController extends Controller
         include_once(ROOT_DIR.'views/lang/lang.de.php');
         include_once(ROOT_DIR.'views/lang/lang.fr.php');
 
-        $user = false;
-
-        if(!$user){
-            echo "<li><a href=\"login/register\">" . $lang['HEADER_REGISTER'] . "</a></li>";
-            echo "<li><a href=\"login/login\">" . $lang['HEADER_LOGIN'] . "</a></li>";
-        }else{
+        $user = self::checkActiveUser();
+        if(is_bool($user) === true && !$user){
+            echo "<li><a href=". URL_DIR."login/register>" . $lang['HEADER_REGISTER'] . "</a></li>";
+            echo "<li><a href=". URL_DIR."login/login>" . $lang['HEADER_LOGIN'] . "</a></li>";
+        } else {
             $name = $_SESSION["account"];
-            echo "<li><a href=\"login/register\">" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
-            echo "<li><a href=\"login/login\">" . $lang['HEADER_LOGOUT'] . "</a></li>";
+            echo "<li><a href=". URL_DIR."profile/showuser>" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
+            echo "<li><a href=". URL_DIR."login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
+        }
+    }
+
+    public static function showMenuForUser(){
+
+        $user = self::checkActiveUser();
+
+        // default header
+       /* echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  $lang['MENU_NEWS'] . "</a></li>";
+        echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". $lang['MENU_TOUR']."</a></li>";
+        if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
+            echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". $lang['MENU_ABOUT'] . "</a></li>";
+            echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". $lang['MENU_CONTACT'] . "</a></li>";
+        }
+        if(is_int($user) === true && $user == 1){
+            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
+            echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
+        } else if (is_int($user) === true && $user == 10){
+            echo "<li id='menu_hikemanage'><a href=".URL_DIR.'admin/hikemanage'.">". $lang['MENU_HIKEMGMT']. "</a></li>";
+            echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
+            echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
+            echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
+        }*/
+
+        // default header
+        echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  'Home' . "</a></li>";
+        echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". 'Wanderungen'."</a></li>";
+        if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
+            echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". '&Uuml;ber Uns' . "</a></li>";
+            echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". 'Kontakt' . "</a></li>";
+        }
+        if(is_int($user) === true && $user == 1){
+            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". 'Mein Profil'."</a></li>";
+            echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". 'Meine Anmeldungen' ."</a></li>";
+        } else if (is_int($user) === true && $user == 10){
+            echo "<li id='menu_hikemanage'><a href=".URL_DIR.'admin/hikemanage'.">". 'Tourverwaltung'. "</a></li>";
+            echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  'Benutzerverwaltung' . "</a></li>";
+            echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". 'Anmeldungen' . "</a></li>";
+            echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". 'Mein Profil' . "</a></li>";
         }
     }
 
@@ -32,8 +70,6 @@ class elementsController extends Controller
         // call db
         $answer = Tour::selectAllTours();
         self::drawSortList($answer, null);
-        echo "<input type='hidden' id='saver' name='showHike' value='0' />";
-
     }
 
     public static function getNext3Hikings(){
@@ -71,7 +107,6 @@ class elementsController extends Controller
 
     public static function getInscription()
     {
-
         for ($i = 0; $i < 8; $i++) {
             echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
@@ -79,28 +114,51 @@ class elementsController extends Controller
             echo "<input type='text' value='vorname$i'>";
             echo "<input type='text' value='Abo$i'>";
             echo "</div>";
-
         }
 
     }
+
+    public static function avgRatings(){
+        // get tour and get all ratings / all accs
+        $idTour = $_SESSION['tourId'];
+        $ratingsTour = Rating::selectRatingsFromTour($idTour);
+        $nrRatings = count($ratingsTour);
+        $sumRatings = Rating::getSumRatings($idTour);
+        $avgRatings = $sumRatings / $nrRatings;
+
+        echo "<label>Total Bewertungen : ". $nrRatings . "</label></br>";
+        echo "<label>" . $avgRatings . " von 5 Sternen</label>";
+    }
+
     public static function comments()
     {
+        // get all ratings from the current tour
+        $idTour = $_SESSION['tourId'];
 
-        for ($i = 0; $i < 8; $i++) {
+        $ratingsTour = Rating::selectRatingsFromTour($idTour);
+
+        foreach ($ratingsTour as $item){
+            // get account infos to display
+            $accountRated = Account::selectAccountById($item['Account_idAccount']);
+            echo "<label>" . "Von " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " am " . $item['Date_of_comment'] . "</label></br>";
+
+            $prepStars = array();
             for ($j = 1; $j <= 5; $j++) {
-                if(3 >= j){
-                    echo "<span class='filled'>☆</span>";
+                if($item['Rating'] >= $j){
+                    $prepStars[$j] = "<span class='filled'>☆</span>";
                 }
                 else{
-                    echo "<span>☆</span>";
+                    $prepStars[$j] = "<span class=''>☆</span>";
                 }
             }
-            echo "<label value='name$i date$i'></label>";
-            echo "<textarea type='text' value='text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i text$i '></textarea>";
+            echo $prepStars[1] . $prepStars[2] . $prepStars[3] . $prepStars[4] . $prepStars[5];
+            if ($item['Comment'] == null)
+                $inputComment = '-';
+            else
+                $inputComment = $item['Comment'];
 
-
+            echo "<textarea class='' style='width: 500px; height: 100px;' type='text' disabled>" . $inputComment . "</textarea>";
         }
-
     }
 
     public static function drawSortList($answer, $answerFavorites)
@@ -202,30 +260,32 @@ class elementsController extends Controller
                         //echo '</br>------> went through : ' . $idTours[$x] . ' and ' . $idFavorites[$y];
                         $favorite = "fav1";
                         $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
-                        echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
-                        echo "<div class='hovereffect'>";
+                        echo "<li class=$finalClass>";
+                        echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 20px;' /></button>";
+
+                        echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                         echo "<div class='overlay'>";
                         echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                         echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                         echo "</div>";
                         echo "</li>";
-                        echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star2.png' width='20' height='20' /></button>";
-                        break;
+                         break;
                     }
                 }
                 if (!$draw) {
                     $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
-                    echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
-                    echo "<div class='hovereffect'>";
+                    echo "<li class=$finalClass>";
+                    echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 20px;' /></button>";
+
+                    echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                     echo "<div class='overlay'>";
                     echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                     echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                     echo "</div>";
                     echo "</li>";
-                    echo "<button id='star' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img src='../images/star.png' width='20' height='20' /></button>";
-                }
+                                   }
             } else {
                 $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                 echo "<li onclick='showHike($idTours[$x])' class=$finalClass>";
@@ -236,8 +296,11 @@ class elementsController extends Controller
                 echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]h<br /></h6>";
                 echo "</div>";
                 echo "</li>";
+
+
             }
         }
+        echo "<input type='hidden' id='saver' name='showHike' value='0' />";
     }
 
     public static function nrParticipantInputs()
@@ -250,13 +313,22 @@ class elementsController extends Controller
 
     public static function favoritesSelect()
     {
-        // id current user
-        $currentUser = self::getActiveUserWithoutCookie();
-        $idAcc = $currentUser->getIdAccount();
 
-        // call db
+        // id current user
+        if(self::getActiveUserWithoutCookie()){
+            $currentUser = self::getActiveUserWithoutCookie();
+            $idAcc = $currentUser->getIdAccount();
+
+            // call db
+            $answerFavorites = Favorite::getAllFavorites($idAcc);
+        }
+        else{
+            $answerFavorites = false;
+        }
+
+        // get tours
         $answer = Tour::selectAllTours();
-        $answerFavorites = Favorite::getAllFavorites($idAcc);
+
         // lets draw
         self::drawSortList($answer, $answerFavorites);
     }
@@ -321,17 +393,17 @@ class elementsController extends Controller
 
         if (!(bool)$edit) {
             for ($i = 0; $i < $length; ++$i) {
-                echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                 echo "</br>";
             }
         } else {
             $idsTour = TypeTour::getTypeIdsFromTour($idTour);
             for ($i = 0; $i < $length; ++$i) {
                 if (self::checkTypeTourIds(($i + 1), $idsTour)) {
-                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
+                    echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
                     echo "</br>";
                 } else {
-                    echo "<input type='checkbox' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
+                    echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . ">" . $answer[$i][1];
                     echo "</br>";
                 }
             }

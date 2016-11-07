@@ -18,8 +18,8 @@ class Inscription
 
     /**
      * Inscription constructor.
-     * @param $idInscription
      * @param $tour_idTour
+     * @param $account_idAcoount
      * @param $max_inscriptions
      * @param $expiration_date
      * @param $status_idStatus
@@ -51,6 +51,8 @@ class Inscription
     {
         $this->idInscription = $idInscription;
     }
+
+
 
     /**
      * @return mixed
