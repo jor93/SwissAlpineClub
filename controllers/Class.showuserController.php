@@ -15,7 +15,6 @@ class showuserController extends Controller
         if(self::getActiveUserWithoutCookie())$this->account = $_SESSION['account'];
         else $this->redirect('login', 'login');
     }
-
     //Account::updateAccount(1, 'PeterNames', 'PeterLastname', 'Address Peter', '1', '5555555', 'SE', '2');
 
     function updateUserAccount(){
