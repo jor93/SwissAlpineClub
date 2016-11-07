@@ -22,7 +22,7 @@ class elementsController extends Controller
         } else {
             $name = $_SESSION["account"];
             echo "<li><a href=". URL_DIR."profile/showuser>" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
-            echo "<li><a href=". URL_DIR."home>" . $lang['HEADER_LOGOUT'] . "</a></li>";
+            echo "<li><a href=". URL_DIR."login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
         }
     }
 
