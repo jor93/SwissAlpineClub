@@ -9,6 +9,8 @@
 $header = Controller::checkHeader();
 include_once $header;
 ?>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
     $(document).ready(function () {
         $('#menu_contact').addClass('active');
@@ -35,22 +37,30 @@ include_once $header;
                 <p>Tel. +41 (0)27 / 327 35 80</p>
                 <p>Fax +41 (0)27 / 327 35 81</p>
                 <br />
-
             </div>
             <form class="right_form" action="<?php echo URL_DIR.'general/getRequestCustomer';?>" method="post">
                 <h2>Get In Touch</h2>
                 <div>
                     <span><label>NAME</label></span>
-                    <span><input name="userName" type="text" class="textbox"></span>
+                    <span><input name="userName" type="text" class="textbox" required></span>
                 </div>
                 <div>
                     <span><label>E-MAIL</label></span>
-                    <span><input name="userEmail" type="email" class="textbox"></span>
+                    <span><input name="userEmail" type="email" class="textbox" required></span>
                 </div>
                 <div>
                     <span><label><?php echo $lang['CONTACT_SUBJECT']; ?></label></span>
-                    <span><textarea name="userMsg"></textarea></span>
+                    <span><textarea name="userMsg" required></textarea></span>
                 </div>
+                <div class="g-recaptcha" data-sitekey="6LfhNQoUAAAAABf3Ia4vpBFtWclI7akUB7EH976f"></div>
+                <label class="error">
+                    <?php
+                    if (isset($_SESSION['error_send_mail']) && $_SESSION['error_send_mail'] == 1)
+                        echo $lang['CONTACT_SUCCESSFUL'];
+                    if (isset($_SESSION['error_send_mail']) && $_SESSION['error_send_mail'] == 2)
+                        echo $lang['CONTACT_ERROR_INPUTS'];
+                    ?>
+                </label>
                 <div>
                     <span><input type="submit" value="<?php echo $lang['CONTACT_SENDMAIL_BUTTON']; ?>" class="myButton"></span>
                     <span>
@@ -82,5 +92,6 @@ include_once $header;
 
 <?php
 unset($_SESSION['msg']);
+unset($_SESSION['error_send_mail']);
 include_once ROOT_DIR.'views/footer.inc';
 ?>

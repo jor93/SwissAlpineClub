@@ -183,6 +183,17 @@ class Inscription
         return new Inscription($row['idInscription'], $idTour, $row['Max_Inscriptions'], $row['Free_Space'], $row['Expiration_Date'], $row['Status_idStatus'], $row['Information']);
     }
 
+    // get single inscription by id inscription
+    public static function selectInscriptionByIdInscription($idInscription){
+        $query = "SELECT * FROM Inscription where Tour_idTour = '$idInscription'";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetch();
+
+        if(!$row) return false;
+
+        return new Inscription($idInscription, $row['Tour_idTour'], $row['Max_Inscriptions'], $row['Free_Space'], $row['Expiration_Date'], $row['Status_idStatus'], $row['Information']);
+    }
+
     // get single free_space by id
     public static function selectFreeSpaceByidTour($idTour){
         $query = "SELECT Free_Space FROM Inscription where Tour_idTour = '$idTour'";

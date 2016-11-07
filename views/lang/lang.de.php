@@ -20,6 +20,9 @@ $lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Die Anzahl möglicher Teilnehmer mus
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Sie müssen an der Tour selber Teilnehmen!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'] = 'Sie haben bereits eine Bewertung abgegeben!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'] = 'Sie dürfen sich nich mehrmals für eine Tour einschreiben!';
+$lang['SHOWHIKE_INSCRIPTION_NO_SPACE'] = 'Keine freien Plätze verfügbar!';
+$lang['SHOWHIKE_INSCRIPTION_BOOKED_OUT'] = 'Diese Tour ist ausgebucht!';
+$lang['SHOWHIKE_INSCRIPTION_CANCELED'] = 'Die Tour wurde storniert!';
 
 /* #################### mail confirmation ####################  */
 /* confirm */
@@ -46,6 +49,11 @@ $lang['CONTACT_OPENING_HOURS'] = 'Öffnungszeiten';
 $lang['CONTACT_OPENING_TIME'] = 'Montage-Freitag von 8h00 bis 12h00 und von 14h00 bis 17h00';
 $lang['CONTACT_ASSOCIATION_NAME'] = 'Vereinigung Walliser Wanderwege';
 $lang['CONTACT_SUCCESSFUL'] = 'Die Anfrage wurde erfolgreich verschickt.';
+/* errors */
+$lang['CONTACT_ERROR_CAPTCHA_ERROR'] = 'Das Captcha wurde nicht selektiert.';
+$lang['CONTACT_ERROR_INPUTS'] = 'Es wurden nicht alle Pflichtfelder ausgefüllt!';
+
+
 
 /* #################### forgotpw ####################  */
 /* forgot pw page */
@@ -159,6 +167,7 @@ $lang['REGISTER_ERROR_4'] = 'Passwörter sind nicht identisch!';
 $lang['REGISTER_ERROR_5'] = 'Passwörter sind zu schwach';
 $lang['REGISTER_ERROR_6'] = 'Bitte geben Sie einen gültigen Vornamen ein!';
 $lang['REGISTER_ERROR_7'] = 'Bitte geben Sie einen gültigen Nachnamen ein!';
+$lang['REGISTER_ERROR_8'] = 'Bot! GEH WEG!';
 
 
 /* #################### global errors ####################  */

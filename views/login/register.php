@@ -88,6 +88,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                             <?php
                             if(errorController::showErrorFromSession(1) === true) echo $lang['REGISTER_ERROR_1'];
                             if(errorController::showErrorFromSession(3) === true) echo $lang['REGISTER_ERROR_3'] . "<a href='forgotpw'>" . $lang['REGISTER_FORGOT_PW'] . "</a>";
+                            if(errorController::showErrorFromSession(8) === true) echo $lang['REGISTER_ERROR_8'];
                             ?> </label>
 
                         <h3><?php echo $lang['REGISTER_TITLE'];?></h3>

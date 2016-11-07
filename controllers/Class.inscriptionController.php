@@ -35,51 +35,83 @@ class inscriptionController extends Controller
         $countParticipants = 0;
 
         //$account = self::getActiveUserWithoutCookie()->getIdAccount();
-        $account = 1;
+        $account = 2;
         // check if account is already inserted for this tour!
         $checkAccForTour = Inscription::checkAccForTour($account);
-            // myself and update acc + inscription
-            if (isset($_SESSION['account_participant'])) {
-                if ($checkAccForTour){
-                    $_SESSION['error_account_inserted'] = 1;
+        // check status
+        $checkStatus = Inscription::selectInscriptionByIdInscription($idInscription);
 
-                }else{
-                    $countParticipants++;
-                    // update account_inscription table
-                    Inscription::insertInscriptionAccount($account, $idInscription);
-                }
-            }else {
-                // if not selected -> he has to be already inscripted!
-                $result = Inscription::selectAccountInscripted($account, $idInscription);
-                if ($result == null) {
-                    $_SESSION['error_account'] = 1;
-                    return $this->redirect('tour', 'hikeShow');
-                }
-            }
-            for ($i = 1; $i <= $maxPart; $i++) {
-                if (isset($_POST['participantFirstname'][$i])) {
-                    // get value from inputs
-                    $firstname = $this->badassSafer($_POST['participantFirstname'][$i]);
-                    $lastname = $this->badassSafer($_POST['participantLastname'][$i]);
+        // 1 = open
+        if ($checkStatus['Status_idStatus'] == 1){
+            // check if space is available
+            $free_space = $checkStatus['Free_Space'];
+            if ($free_space > 0){
+                // insert into db + myself and update acc + inscription
+                if (isset($_SESSION['account_participant'])) {
+                    if ($checkAccForTour){
+                        $_SESSION['error_msg'] = 1;
 
-                    // get the selected abo from radios
-                    $key = $i . '' . 1;
-                    $temp = (int)$key;
-                    if (isset($_POST['participantAbo' . $temp])) {
-                        $abo = $this->badassSafer($_POST['participantAbo' . $temp][0]);
+                        $_SESSION['error_account_inserted'] = 1;
+                    }else{
+                        $countParticipants++;
+                        // update account_inscription table
+                        Inscription::insertInscriptionAccount($account, $idInscription);
                     }
+                }else {
+                    // if not selected -> he has to be already inscripted!
+                    $result = Inscription::selectAccountInscripted($account, $idInscription);
+                    if ($result == null) {
+                        $_SESSION['error_msg'] = 2;
 
-                    // prepare and insert into participant
-                    $participant = new Participant(null, $firstname, $lastname, $abo, $idInscription);
-                    Participant::insertParticipant($participant);
-
-                    // count to modify the available places
-                    $countParticipants++;
+                        $_SESSION['error_account'] = 1;
+                        return $this->redirect('tour', 'hikeShow');
+                    }
                 }
+                for ($i = 1; $i <= $maxPart; $i++) {
+                    if (isset($_POST['participantFirstname'][$i])) {
+                        // get value from inputs
+                        $firstname = $this->badassSafer($_POST['participantFirstname'][$i]);
+                        $lastname = $this->badassSafer($_POST['participantLastname'][$i]);
+
+                        // get the selected abo from radios
+                        $key = $i . '' . 1;
+                        $temp = (int)$key;
+                        if (isset($_POST['participantAbo' . $temp])) {
+                            $abo = $this->badassSafer($_POST['participantAbo' . $temp][0]);
+                        }
+
+                        // prepare and insert into participant
+                        $participant = new Participant(null, $firstname, $lastname, $abo, $idInscription);
+                        Participant::insertParticipant($participant);
+
+                        // count to modify the available places
+                        $countParticipants++;
+                    }
+                }
+                // check if free space is greater than new participants
+                if ($free_space >= $countParticipants) {
+                    // update free space in db
+                    Inscription::updateFreeSpace($idInscription, $countParticipants);
+                }else{
+                    $_SESSION['error_msg'] = 3;
+                }
+            }else{
+                $_SESSION['error_msg'] = 4;
+
+                $_SESSION['error_no_space'] = 1;
             }
-            // update free space in db
-            Inscription::updateFreeSpace($idInscription, $countParticipants);
-            $this->redirect('tour', 'hikeshow');
+            // 2 = booked out/already executed
+        }else if ($checkStatus['Status_idStatus'] == 2){
+            $_SESSION['error_msg'] = 5;
+
+            $_SESSION['error_booked_out'] = 1;
+            // 3 = canceled
+        }else if ($checkStatus['Status_idStatus'] == 3){
+            $_SESSION['error_msg'] = 6;
+
+            $_SESSION['error_canceled'] = 1;
+        }
+        $this->redirect('tour', 'hikeshow');
     }
 
     function validateRating(){
