@@ -213,7 +213,7 @@ $lang['HIKING_CLOSE'] = 'Schliessen';
 $lang['HIKING_FILTER'] = 'Filter';
 $lang['HIKING_DATE'] = 'Datum';
 
-/* #################### HIKESHOW ######################*/
+/* #################### HIKESHOW/SHOWOFF ######################*/
 $lang['HIKESHOW_TOUR'] = 'Wanderung';
 $lang['HIKESHOW_DESC_DE'] = 'Beschreibung DE';
 $lang['HIKESHOW_DESC_FR'] = 'Beschreibung FR';

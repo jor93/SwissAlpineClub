@@ -304,7 +304,7 @@ if (isset($_SESSION['tourId'])) {
     <div class="container">
         <div class="register">
             <div class="register-top-grid">
-                <h3><?php echo $lang['HIKESHOW_RATING']; ?>BEWERTUNGEN</h3>
+                <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
                 <label class="error">
                     <?php
                     if (isset($_SESSION['error_account_rating'])) {
@@ -316,7 +316,7 @@ if (isset($_SESSION['tourId'])) {
                     <!-- gez rating comment -->
                     <textarea id="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
                               style="width: 400px;"></textarea>
-                    <button onclick="validateRating()" class="add_comment_field"><?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?>Rating veröffentlichen</button>
+                    <button onclick="validateRating()" class="add_comment_field"><?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></button>
                     </br>
                     </br>
                     <div class="rating">

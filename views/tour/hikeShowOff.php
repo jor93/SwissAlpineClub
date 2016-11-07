@@ -28,7 +28,7 @@ if (isset($_SESSION['tourId'])) {
             <div class="register-top-grid" style="padding-left: 70px">
                 </br>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Tour</span>
+                    <span><?php echo $lang['HIKESHOW_TOUR']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -36,7 +36,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Description DE</span>
+                    <span><?php echo $lang['HIKESHOW_DESC_DE']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -44,7 +44,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Description FR</span>
+                    <span><?php echo $lang['HIKESHOW_DESC_FR']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -52,7 +52,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Difficulty</span>
+                    <span><?php echo $lang['HIKESHOW_DIFF']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -63,7 +63,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Location Departure / Arrival</span>
+                    <span><?php echo $lang['HIKESHOW_LOCATION']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -73,7 +73,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Date Departure / Arrival</span>
+                    <span><?php echo $lang['HIKESHOW_DATE']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -82,7 +82,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Status</span>
+                    <span><?php echo $lang['HIKESHOW_STATUS']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -91,7 +91,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Price per Person</span>
+                    <span><?php echo $lang['HIKESHOW_PRICE']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -99,7 +99,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Freie Plätze</span>
+                    <span><?php echo $lang['HIKESHOW_PLACE']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -107,7 +107,7 @@ if (isset($_SESSION['tourId'])) {
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Anmeldeschluss</span>
+                    <span><?php echo $lang['HIKESHOW_ANMELDESCHLUSS']; ?></span>
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -121,7 +121,7 @@ if (isset($_SESSION['tourId'])) {
 <div class="container">
     <div class="register">
         <div class="register-top-grid">
-            <h3>BEWERTUNGEN</h3>
+            <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
             <div class="wow fadeInLeft" data-wow-delay="0.4s">
                 <div class="rating">
                     <?php echo elementsController::comments();?>
