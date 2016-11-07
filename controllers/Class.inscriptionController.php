@@ -103,7 +103,7 @@ class inscriptionController extends Controller
         }else if ($checkStatus['Status_idStatus'] == 3){
             $_SESSION['error_msg'] = 6;
         }
-        //$this->redirect('tour', 'hikeshow');
+        $this->redirect('tour', 'hikeshow');
     }
 
     function validateRating(){
