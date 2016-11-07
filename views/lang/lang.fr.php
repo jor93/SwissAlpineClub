@@ -22,6 +22,9 @@ $lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Le nombre de participants possibles 
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Vous devez à la visite elle-même participer!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'] = 'Vous avez déjà écrit un commentaire!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'] = 'Vous ne pouvez pas être inscrire à plusieurs reprises pour un tour!';
+$lang['SHOWHIKE_INSCRIPTION_NO_SPACE'] = 'Pas de parking disponible gratuitement!';
+$lang['SHOWHIKE_INSCRIPTION_BOOKED_OUT'] = 'Ce circuit est complet!';
+$lang['SHOWHIKE_INSCRIPTION_CANCELED'] = 'La randonnée a été annulée!';
 
 /* #################### mail confirmation ####################  */
 /* confirm */
@@ -48,6 +51,10 @@ $lang['CONTACT_OPENING_HOURS'] = 'Heures d\'ouverture';
 $lang['CONTACT_OPENING_TIME'] = 'Lundi-Vendredi de 8h00 à 12h00 et de 14h00 à 17h00';
 $lang['CONTACT_ASSOCIATION_NAME'] = 'Association Valaisanne de la Randonnée';
 $lang['CONTACT_SUCCESSFUL'] = 'L\'enquête a été soumis avec succès.';
+/* errors */
+$lang['CONTACT_ERROR_CAPTCHA_ERROR'] = 'Le Captcha n\'a pas été sélectionné.';
+$lang['CONTACT_ERROR_INPUTS'] = 'Il n\'y avait pas tous remplis obligatoirement!';
+
 
 /* #################### forgotpw ####################  */
 /* forgot pw page */

@@ -330,6 +330,7 @@ if (isset($_SESSION['tourId'])) {
     </div>
 
 <?php
+unset($_SESSION['error_msg']);
 unset($_SESSION['account_participant']);
 unset($_SESSION['error_account']);
 unset($_SESSION['error_account_rating']);

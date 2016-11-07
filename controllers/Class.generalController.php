@@ -15,10 +15,10 @@ class generalController extends Controller
 
     function getRequestCustomer(){
         // get the values from contact forms
-        $email_name = $_POST['userName'];
-        $email_address = $_POST['userEmail'];
-        $email_msg = $_POST['userMsg'];
-        $captcha = $_POST['g-recaptcha-response'];
+        $email_name = $this->badassSafer($_POST['userName']);
+        $email_address = $this->badassSafer($_POST['userEmail']);
+        $email_msg = $this->badassSafer($_POST['userMsg']);
+        $captcha = $this->badassSafer($_POST['g-recaptcha-response']);
 
         // check captcha
         $secretKey = "6LfhNQoUAAAAAOOKEW62RA5s6dZwL54lXO-OGWmy";
@@ -27,21 +27,25 @@ class generalController extends Controller
         $responseKeys = json_decode($response,true);
         if(intval($responseKeys["success"]) !== 1) {
             // do here when captcha was error
+            $_SESSION['error_send_mail'] = 1;
         } else{
-            // create object to transmit
-            $temp = array();
-            $temp[0] = $email_name;
-            $temp[1] = $email_address;
-            $temp[2] = $email_msg;
+            if ($email_name != null && $email_address != null && $email_msg != null){
+                // create object to transmit
+                $temp = array();
+                $temp[0] = $email_name;
+                $temp[1] = $email_address;
+                $temp[2] = $email_msg;
 
-            // call method to send mail
-            forgotpwController::sendMail($temp, false);
+                // call method to send mail
+                forgotpwController::sendMail($temp, 2);
 
-            // make visible that the demand was send to the company
-            $_SESSION['msg'] = true;
-
-            $this->redirect('general', 'contact');
+                // make visible that the demand was send to the company
+                $_SESSION['msg'] = true;
+            }else{
+                $_SESSION['error_send_mail'] = 2;
+            }
         }
+        $this->redirect('general', 'contact');
     }
 
     function about(){
