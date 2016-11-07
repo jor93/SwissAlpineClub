@@ -84,11 +84,11 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         document.getElementById("fname").removeAttribute("disabled");
         document.getElementById("lname").removeAttribute("disabled");
         document.getElementById("address").removeAttribute("disabled");
-        document.getElementById("loc").removeAttribute("disabled");
         document.getElementById("phone").removeAttribute("disabled");
         document.getElementById("lang").removeAttribute("disabled");
         document.getElementById("country").removeAttribute("disabled");
         document.getElementById("plz").removeAttribute("disabled");
+        document.getElementById("loc").removeAttribute("disabled");
 
         document.getElementById("btn-save").style.display = "inline"
         document.getElementById("btn-edit").style.display = "none";
@@ -137,19 +137,21 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                         <input class="proedit" type="text" id="address" name="address" required disabled
                                value="<?php echo $account->getAddress(); ?>">
                     </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Ort</span>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <input class="proedit" type="text" id="loc" name="loc" required disabled
-                               value="<?php echo $account->getLocation()->getLocationName(); ?>">
-                    </div>
+
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>PLZ</span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <input class="proedit" type="text" id="plz" name="plz" required disabled
                                value="<?php echo $account->getLocation()->getPostcode(); ?>">
+                    </div>
+
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <span>Ort</span>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <input class="proedit" type="text" id="loc" name="loc" required disabled
+                               value="<?php echo $account->getLocation()->getLocationName(); ?>">
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">

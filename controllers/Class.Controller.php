@@ -52,7 +52,7 @@
      //check if user is active and get back which runlevel has account
      public static function checkActiveUser()
      {
-         if(self::getActiveUserWithoutCookie())return 1;
+         if(self::getNormalUserWithoutCookie())return 1;
          if(self::getAdminUserWithoutCookie())return 10;
          else return false;
      }
@@ -107,6 +107,13 @@
              return false;
      }
 
+     static function getNormalUserWithoutCookie(){
+         if(isset($_SESSION['account']) && $_SESSION['account']->getRunlevel() == 1){
+             return $_SESSION['account'];
+         }
+         else
+             return false;
+     }
 
      /**
       * Make a string safe
