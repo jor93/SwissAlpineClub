@@ -94,8 +94,8 @@ class Status
     }
 
     static function selectStatus($idStatus){
-        $query = "SELECT Status.*, Language.*
-                  FROM Status, Language WHERE idStatus = '$idStatus' and Status.Language_idLanguage = Language.idLanguage";
+        $query = "SELECT status.*, language.*
+                  FROM status, language WHERE idStatus = '$idStatus' and status.Language_idLanguage = language.idLanguage";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
@@ -104,7 +104,7 @@ class Status
     }
 
     public static function getStatusByLanguage($language){
-        $query = "SELECT idStatus, $language FROM grp1.status, language WHERE grp1.status.Language_idLanguage =  language.idLanguage;";
+        $query = "SELECT idStatus, $language FROM status, language WHERE status.Language_idLanguage =  language.idLanguage;";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 

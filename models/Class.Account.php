@@ -275,8 +275,7 @@ class Account{
 
     // connect a user with username and pw
     public static function connect($email, $password){
-        $query = "SELECT *
-                  FROM Account WHERE Account.Email='$email' AND Account.Password='$password'";
+        $query = "SELECT * FROM Account WHERE Account.Email=$email AND Account.Password=$password";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
