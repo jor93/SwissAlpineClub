@@ -13,6 +13,7 @@ class Participant
     private $lastname;
     private $abonnement;
     private $inscription;
+    private $account;
 
     /**
      * Participant constructor.
@@ -22,13 +23,14 @@ class Participant
      * @param $abonnement
      * @param $inscription
      */
-    public function __construct($idParticipant, $firstname, $lastname, $abonnement, $inscription)
+    public function __construct($idParticipant, $firstname, $lastname, $abonnement, $inscription, $account)
     {
         $this->idParticipant = $idParticipant;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->abonnement = $abonnement;
         $this->inscription = $inscription;
+        $this->account = $account;
     }
 
     /**
@@ -111,9 +113,25 @@ class Participant
         $this->inscription = $inscription;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * @param mixed $account
+     */
+    public function setAccount($account)
+    {
+        $this->account = $account;
+    }
+
     public static function insertParticipant($obj){
-        $query = "INSERT INTO `grp1`.`participant` (`Firstname`, `Lastname`, `Abonnement_idAbonnement`, `Inscription_idInscription`)
-                    VALUES ('$obj->firstname','$obj->lastname', $obj->abonnement, $obj->inscription);";
+        $query = "INSERT INTO `grp1`.`participant` (`Firstname`, `Lastname`, `Abonnement_idAbonnement`, `Inscription_idInscription`, `Account_idAccount`)
+                    VALUES ('$obj->firstname','$obj->lastname', $obj->abonnement, $obj->inscription, $obj->account);";
         return  SQL::getInstance()->executeQuery($query);
     }
 
@@ -127,8 +145,16 @@ class Participant
         return $row['NP'];
     }
 
-    public static function deleteParticipant(){
+    public static function getParticipantFromInscription($idInscription, $idaccount){
+        $query = "SELECT idParticipant, Firstname, Lastname, l.de, l.fr, p.Account_idAccount
+                  FROM participant AS p, abonnement AS a, language AS l 
+                  WHERE p.Abonnement_idAbonnement = a.idAbonnement AND l.idLanguage = a.Language_idLanguage 
+                  AND Inscription_idInscription = $idInscription AND p.Account_idAccount = $idaccount";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetchAll();
 
+        if(!$row) return false;
+
+        return $row;
     }
-
 }

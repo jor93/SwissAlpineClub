@@ -12,7 +12,6 @@ include_once $header;
         $(document).ready(function () {
             $('#menu_registration').addClass('active');
         });
-
     </script>
 
     <br />
@@ -22,12 +21,9 @@ include_once $header;
             <div class="register">
                 <h3 style="color: red"><?php echo $lang['SHOWINSCRIPTION_TITLE']; ?></h3>
                 <form method="post" action="<?php echo URL_DIR.'admin/showInscription';?>">
-
                     <div class="register-top-grid">
-
-                            <?php elementsController::getInscription(); ?>
+                        <?php elementsController::getInscription(); ?>
                     <br>
-
                 </form>
             </div>
         </div>

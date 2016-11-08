@@ -400,4 +400,11 @@ class Account{
         SQL::getInstance()->executeQuery($update);
         return;
     }
+
+    // returns lang of admin
+    public static function getLangAcc($idAcc){
+        $query = "SELECT language FROM account WHERE idaccount = $idAcc;";
+        return SQL::getInstance()->select($query);
+    }
+
 }

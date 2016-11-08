@@ -19,8 +19,9 @@ $lang['WELCOME_TITLE'] = 'Willkommen';
 $lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Die Anzahl möglicher Teilnehmer muss grösser als die bereits gebuchten Teilnehmer sein!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Sie müssen an der Tour selber Teilnehmen!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'] = 'Sie haben bereits eine Bewertung abgegeben!';
-$lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'] = 'Sie dürfen sich nich mehrmals für eine Tour einschreiben!';
+$lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'] = 'Sie dürfen sich nicht mehrmals für eine Tour einschreiben!';
 $lang['SHOWHIKE_INSCRIPTION_NO_SPACE'] = 'Keine freien Plätze verfügbar!';
+$lang['SHOWHIKE_INSCRIPTION_NO_SPACE_PART'] = 'Sie haben zu viele Teilnehmer angemeldet - zu wenig freie Plätze sind verfügbar!';
 $lang['SHOWHIKE_INSCRIPTION_BOOKED_OUT'] = 'Diese Tour ist ausgebucht!';
 $lang['SHOWHIKE_INSCRIPTION_CANCELED'] = 'Die Tour wurde storniert!';
 

@@ -9,9 +9,10 @@ $header = Controller::checkHeader();
 include_once $header;
 
 if (isset($_SESSION['tourId'])) {
+    echo "Tour-ID: " . $_SESSION['tourId'] . "!";
     $tour = Tour::selectTour($_SESSION['tourId']);
     $image = Tour::selectTourImage($_SESSION['tourId']);
-    $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
+    $inscription = Inscription::selectInscriptionByIdTour($_SESSION['tourId']);
     $_SESSION['idInscription'] = $inscription->getIdInscription();
 }
 ?>
@@ -56,7 +57,6 @@ if (isset($_SESSION['tourId'])) {
                     break;
                 }
             }
-
             // get the comment
             var valueComment = document.getElementById('input_comment').value;
 
@@ -149,7 +149,6 @@ if (isset($_SESSION['tourId'])) {
                 }
                 x++; //text box increment
             });
-
             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
                 e.preventDefault(); $(this).parent('div').remove(); nrInputs--;
             })
@@ -204,7 +203,8 @@ if (isset($_SESSION['tourId'])) {
                         <label id="dif"><?php $length = $tour->getDifficulty();
                             for ($i = 0; $i < $length; $i++) {
                                 echo "*";
-                            } ?></label>
+                            } ?>
+                        </label>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -258,7 +258,6 @@ if (isset($_SESSION['tourId'])) {
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <label id="expiration"><?php echo $inscription->getExpirationDate(); ?></label>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -279,11 +278,22 @@ if (isset($_SESSION['tourId'])) {
                             </label>
                         </a>
                         <label class="error"><?php
-                            if (isset($_SESSION['error_account']))
-                                echo $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'];
-                            if (isset($_SESSION['error_account_inserted']))
-                                echo $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'];
-                            ?></label>
+                            if (isset($_SESSION['error_msg'])){
+                                if ($_SESSION['error_msg'] == 1)
+                                    echo $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTED'];
+                                if ($_SESSION['error_msg'] == 2)
+                                    echo $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'];
+                                if ($_SESSION['error_msg'] == 3)
+                                    echo $lang['SHOWHIKE_INSCRIPTION_NO_SPACE_PART'];
+                                if ($_SESSION['error_msg'] == 4)
+                                    echo $lang['SHOWHIKE_INSCRIPTION_NO_SPACE'];
+                                if ($_SESSION['error_msg'] == 5)
+                                    echo $lang['SHOWHIKE_INSCRIPTION_BOOKED_OUT'];
+                                if ($_SESSION['error_msg'] == 6)
+                                    echo $lang['SHOWHIKE_INSCRIPTION_CANCELED'];
+                            }
+                            ?>
+                        </label>
                         <div class="participants" style="width: 100%;">
 
                             <span><?php echo $lang['HIKESHOW_FRIENDS']; ?></span>
@@ -332,8 +342,6 @@ if (isset($_SESSION['tourId'])) {
 <?php
 unset($_SESSION['error_msg']);
 unset($_SESSION['account_participant']);
-unset($_SESSION['error_account']);
 unset($_SESSION['error_account_rating']);
-unset($_SESSION['error_account_inserted']);
 include_once ROOT_DIR . 'views/footer.inc';
 ?>

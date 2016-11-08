@@ -11,6 +11,73 @@
 class elementsController extends Controller
 {
 
+    public static function getInscription()
+    {
+        // get all inscripted accs and related participants
+        $id = $_SESSION['idInscription'];
+        $accounts_inscripted = Inscription::getAccsInscriptedByIdInscription($id);
+        $length_accs = count($accounts_inscripted);
+
+        // check out lang
+        $accLang = self::getAdminUserWithoutCookie()->getLanguage();
+
+        // draw accs
+        for ($i = 0; $i < $length_accs; $i++) {
+            if ($accLang == 'de')
+                $abo_acc = $accounts_inscripted[$i][5];
+            if ($accLang == 'fr')
+                $abo_acc = $accounts_inscripted[$i][6];
+            echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
+
+            echo "<input type='text' value='" . $accounts_inscripted[$i][1] . ' ' . $accounts_inscripted[$i][2] . "'>";
+            echo "<input type='text' value='" . $accounts_inscripted[$i][3] . "'>";
+            echo "<input type='text' value='" . $abo_acc . "'>";
+            echo "</div>";
+
+            $participants = Participant::getParticipantFromInscription($id, $accounts_inscripted[$i][0]);
+            $length_parts = count($participants);
+
+            // draw participants related to accs
+            for ($j = 0; $j < $length_parts; $j++) {
+                if ($accLang == 'de')
+                    $abo = $participants[$j][3];
+                if ($accLang == 'fr')
+                    $abo = $participants[$j][4];
+                echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
+
+                echo "<input type='text' value='" . $participants[$j][1] . ' ' . $participants[$j][2] ."'>";
+                echo "<input type='text' value='" . $abo . "'>";
+                echo "</div>";
+            }
+        }
+    }
+
+    public static function getInscriptions()
+    {
+        $answer = Inscription::selectAllInscriptions();
+        $accLang = self::getAdminUserWithoutCookie()->getLanguage();
+        $length = count($answer);
+        $img = '/' . SITE_NAME . '/images/img-6.jpg';
+
+        for ($i = 0; $i < $length; $i++) {
+            $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1] . ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4] . ' ' . $answer[$i][5] . ' ' . $answer[$i][6] . ' ' . $answer[$i][7] .' ' . $answer[$i][8] .' ' . $answer[$i][9] ."'";
+            $id = $answer[$i][0];
+            if ($accLang == 'de')
+                $status = $answer[$i][7];
+            if ($accLang == 'fr')
+                $status = $answer[$i][8];
+            echo "<li class=$finalClass onclick='showInscription($id)'>";
+            echo "<div class='hovereffect'>";
+            echo "<img alt='No image found' src='$img' />";
+            echo "<div class='overlay'>";
+            echo "<h5>" .$answer[$i][5] .' ' . $answer[$i][6] . ', ' . $answer[$i][9] . "<br /></h5>";
+            echo "<h6>" . $answer[$i][3]."<br />".$answer[$i][4]."<br />". $status. "<br /></h6>";
+            echo "</div>";
+            echo "</li>";
+        }
+        echo "<input type='hidden' id='saver' name='showInscription' value='0' />";
+    }
+
     public static function showLoggedInUser(){
         include_once(ROOT_DIR.'views/lang/lang.de.php');
         include_once(ROOT_DIR.'views/lang/lang.fr.php');
@@ -103,19 +170,6 @@ class elementsController extends Controller
             echo "</li>";
         }
         echo "<input type='hidden' id='saver' name='showUser' value='0' />";
-    }
-
-    public static function getInscription()
-    {
-        for ($i = 0; $i < 8; $i++) {
-            echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
-
-            echo "<input type='text' value='name$i'>";
-            echo "<input type='text' value='vorname$i'>";
-            echo "<input type='text' value='Abo$i'>";
-            echo "</div>";
-        }
-
     }
 
     public static function avgRatings(){
@@ -224,23 +278,17 @@ class elementsController extends Controller
             $date = "datepick" . $datePick[$x];
             $diff = "diff" . $difficulty[$x];
             $tourType = "tourtype";
-
             $diffString = "";
 
             for ($d = 0; $d < $difficulty[$x]; $d++) {
                 $diffString = $diffString . "*";
             }
-
-
             $tourTypeTemp = Tour::selectTourTypes($idTours[$x]);
-
-
             $k = 0;
             while ($test = $tourTypeTemp->fetch(PDO::FETCH_ASSOC)) {
                 $tourTypes[$k] = $test['TypeTour_idTypeTour'];
                 $k++;
             }
-
 
             for ($i = 0; $i < count($tourTypes); $i++) {
                 if ($i < 1) {
@@ -249,9 +297,7 @@ class elementsController extends Controller
                     $tourType = $tourType . " tourtype" . $tourTypes[$i];
                 }
             }
-
             $newDate = date("d.m.Y", strtotime($datePick[$x]));
-
             // offline so favorite does not exist! --> != -1(online)
             if ($gelaber != null && self::getActiveUserWithoutCookie() != null) {
                 $draw = false;
@@ -316,22 +362,18 @@ class elementsController extends Controller
 
     public static function favoritesSelect()
     {
-
         // id current user
         if(self::getActiveUserWithoutCookie()){
             $currentUser = self::getActiveUserWithoutCookie();
             $idAcc = $currentUser->getIdAccount();
-
             // call db
             $answerFavorites = Favorite::getAllFavorites($idAcc);
         }
         else{
             $answerFavorites = false;
         }
-
         // get tours
         $answer = Tour::selectAllTours();
-
         // lets draw
         self::drawSortList($answer, $answerFavorites);
     }
@@ -391,7 +433,11 @@ class elementsController extends Controller
 
     public static function typeTourCheckbox($edit, $idTour)
     {
-        $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
+        if($_SESSION['lang'])
+            $answer = TypeTour::getTypeTourByLanguage($_SESSION['lang']);
+        else
+            $answer = TypeTour::getTypeTourByLanguage('de');
+
         $length = count($answer);
 
         if (!(bool)$edit) {
