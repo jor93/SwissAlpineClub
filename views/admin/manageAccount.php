@@ -11,7 +11,7 @@ include_once $header;
 ?>
 <script>
     $(document).ready(function () {
-        $('#menu_manageHike').addClass('active');
+        $('#menu_accmanage').addClass('active');
     });
 
      function showUser($idAccount){
