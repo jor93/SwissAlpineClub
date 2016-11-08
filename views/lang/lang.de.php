@@ -298,13 +298,15 @@ $lang['SHOWHIKEADMIN_DESCDE'] = 'Beschreibung Deutsch';
 $lang['SHOWHIKEADMIN_DESCFR'] = 'Beschreibung Franzoesisch';
 $lang['SHOWHIKEADMIN_STARTDATE'] = 'Startdatum';
 $lang['SHOWHIKEADMIN_ENDDATE'] = 'Enddatum';
-$lang['SHOWHIKEADMIN_DEPTIME'] = 'Abfahrtszeit';
-$lang['SHOWHIKEADMIN_ARRTIME'] = 'Ankunftszeit';
+$lang['SHOWHIKEADMIN_DEPTIME'] = 'Abfahrtszeit (z.B. 08:00)';
+$lang['SHOWHIKEADMIN_ARRTIME'] = 'Ankunftszeit (z.B. 14:00)';
+$lang['SHOWHIKEADMIN_ERRORTIME'] = 'Invalides Zeitformat';
 $lang['SHOWHIKEADMIN_STATUS'] = 'Status';
 $lang['SHOWHIKEADMIN_TRANSPORT'] = 'Transport';
 $lang['SHOWHIKEADMIN_TYPE'] = 'Tour Typ';
-$lang['SHOWHIKEADMIN_TYPE_DESC'] = 'Wählen Sie mindestens eines aus';
-$lang['SHOWHIKEADMIN_IMG'] = 'Bild';
+$lang['SHOWHIKEADMIN_TYPE_DESC'] = 'Wählen Sie mindestens eines aus.';
+$lang['SHOWHIKEADMIN_IMG'] = 'Bild (max: 0.5 MB)';
+$lang['SHOWHIKEADMIN_IMGERROR'] = 'File-Grösse darf nicht 0.5 MB überschreiten';
 $lang['SHOWHIKEADMIN_EXPDATE'] = 'Auslaufdatum';
 $lang['SHOWHIKEADMIN_AVPLACE'] = 'Freie Plätze';
 $lang['SHOWHIKEADMIN_NOTES'] = 'Notizen für Guide';
@@ -332,4 +334,7 @@ $lang['SHOWADMIN_CANCEL'] = 'Abbrechen';
 
 /* #################### MANAGEINSCRIPTIONS ######################*/
 $lang['MANAGEINSCRIPTION_TITLE']='EINSCHREIBUNGEN VERWALTEN';
+
+$lang['JANUARY'] = 'Jannuaaar';
+
 ?>

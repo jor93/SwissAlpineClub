@@ -238,7 +238,6 @@ var buttonFilter = {
 				} else if ($this.is('input[type="checkbox"]')){
 					if($this.is(':checked') ) {
 						checkBoxes.push($this.attr('data-filter'));
-						alert(checkBoxes.length);
 					}
 				}
 				else if($this.is('select')){

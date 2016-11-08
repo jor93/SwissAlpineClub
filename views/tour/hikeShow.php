@@ -67,7 +67,7 @@ if (isset($_SESSION['tourId'])) {
                 data:{ selectedStar : valueSelected,
                     givenComment: valueComment},
                 success: function(response) {
-                    //alert(response);
+                    alert(response);
                 }
             });
             location.reload();
