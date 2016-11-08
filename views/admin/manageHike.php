@@ -8,14 +8,17 @@
 $header = Controller::checkHeader();
 include_once $header;
 
-$tour = Tour::selectTour(1);
-$manageTourInfos = array();
-$manageTourInfos['idTour'] = $tour->getIdTour();
-$manageTourInfos['idTourDesc'] = $tour->getIdLanguageDescription();
-$_SESSION['manageTour'] = $manageTourInfos;
+if (isset($_SESSION['tourId'])) {
+    $tour = Tour::selectTour($_SESSION['tourId']);
+    $manageTourInfos = array();
+    $manageTourInfos['idTour'] = $tour->getIdTour();
+    $manageTourInfos['idTourDesc'] = $tour->getIdLanguageDescription();
+    $_SESSION['manageTour'] = $manageTourInfos;
 
-// gez: get the inscription object
-$inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
+    // gez: get the inscription object
+    $inscription = Inscription::selectInscriptionByIdTour($tour->getIdTour());
+
+}
 
 //http://www.the-art-of-web.com/javascript/validate-date/
 ?>
@@ -294,15 +297,19 @@ echo '<script>var myarray = ' . json_encode($data2) . ';</script>';
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWHIKEADMIN_DEPTIME']; ?></span>
-                        <input type="text" id="deptime" name="deptime" value="<?php echo substr($tour->getDepartTime(), 0, -3); ?>"
+                        <input type="text" id="deptime" name="deptime"
+                               value="<?php echo substr($tour->getDepartTime(), 0, -3); ?>"
                                disabled required>
-                        <label id="selectCheckTimeDep" class="error" style="display:none"><?php echo $lang['SHOWHIKEADMIN_ERRORTIME']; ?></label>
+                        <label id="selectCheckTimeDep" class="error"
+                               style="display:none"><?php echo $lang['SHOWHIKEADMIN_ERRORTIME']; ?></label>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWHIKEADMIN_ARRTIME']; ?></span>
-                        <input type="text" id="artime" name="artime" value="<?php echo substr($tour->getArrivalTime(), 0, -3); ?>"
+                        <input type="text" id="artime" name="artime"
+                               value="<?php echo substr($tour->getArrivalTime(), 0, -3); ?>"
                                disabled required>
-                        <label id="selectCheckTimeAr" class="error" style="display:none"><?php echo $lang['SHOWHIKEADMIN_ERRORTIME']; ?></label>
+                        <label id="selectCheckTimeAr" class="error"
+                               style="display:none"><?php echo $lang['SHOWHIKEADMIN_ERRORTIME']; ?></label>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
@@ -323,14 +330,16 @@ echo '<script>var myarray = ' . json_encode($data2) . ';</script>';
                         <span><?php echo $lang['SHOWHIKEADMIN_TYPE']; ?></span>
                         <fieldset id="fieldtour" name="fieldtour" disabled>
                             <?php elementsController::typeTourCheckbox(true, $tour->getIdTour()); ?>
-                            <label id="selectCheck" class="error" style="display:none"><?php echo $lang['SHOWHIKEADMIN_TYPE_DESC']; ?></label>
+                            <label id="selectCheck" class="error"
+                                   style="display:none"><?php echo $lang['SHOWHIKEADMIN_TYPE_DESC']; ?></label>
                         </fieldset>
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWHIKEADMIN_IMG']; ?></span>
                         <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" disabled>
-                        <label id="selectImageCheck" class="error" style="display:none"><?php echo $lang['SHOWHIKEADMIN_IMGERROR']; ?></label>
+                        <label id="selectImageCheck" class="error"
+                               style="display:none"><?php echo $lang['SHOWHIKEADMIN_IMGERROR']; ?></label>
                     </div>
 
                     <!-- gez: for inscription necessary infos! -->
@@ -349,7 +358,6 @@ echo '<script>var myarray = ' . json_encode($data2) . ';</script>';
                         <input type="text" id="notes_guide" name="notes_guide" disabled
                                value="<?php echo $inscription->getInformation(); ?>">
                     </div>
-
                 </div>
 
                 <div class="register-but">

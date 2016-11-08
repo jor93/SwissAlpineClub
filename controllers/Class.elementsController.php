@@ -544,6 +544,25 @@ class elementsController extends Controller
         }
     }
 
+    public static function getTypeTourForHikeShow($idTour){
+        if($_SESSION['lang'])
+            $answer = TypeTour::getTypeTourByLanguageOfTour($idTour, $_SESSION['lang']);
+        else
+            $answer = TypeTour::getTypeTourByLanguageOfTour($idTour, 'de');
+
+        $length = count($answer);
+        $types = "";
+
+        for ($i = 0; $i < $length; ++$i) {
+            if(($i+1) === $length){
+                $types .= $answer[$i][2];
+            }
+            else $types .= $answer[$i][2] . "/ ";
+        }
+
+        return $types;
+    }
+
     private static function checkTypeTourIds($id, $idsTour)
     {
         for ($i = 0; $i < count($idsTour); ++$i) {
