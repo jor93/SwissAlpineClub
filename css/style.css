@@ -2220,6 +2220,20 @@ i.rss:hover{
 	font-size: 2em;
 	color: #ff0000;
 }
+
+.about span{
+	color: #999;
+	font-size: 0.85em;
+	padding-bottom: 0.2em;
+	display: block;
+	text-transform: uppercase;
+	text-align: left;
+}
+
+.about li, p {
+	text-align: left;
+}
+
 .about-grid h6 {
 	font-size: 1.2em;
 	line-height: 1.8em;
@@ -2641,6 +2655,17 @@ div#portfoliolist {
 .register{
 	padding:4em 0 5em 0;
 }
+
+
+
+.register span{
+	color: #999;
+	font-size: 0.85em;
+	padding-bottom: 0.2em;
+	display: block;
+	text-transform: uppercase;
+	text-align: left;
+}
 .register-top-grid h3, .register-bottom-grid h3 {
 	color:#ff0000;
 	font-size: 1.2em;
@@ -2655,11 +2680,7 @@ div#portfoliolist {
 	margin: 10px 0;
 }
 .register-top-grid span, .register-bottom-grid span {
-	color:#999;
-	font-size: 0.85em;
-	padding-bottom: 0.2em;
-	display: block;
-	text-transform: uppercase;
+
 }
 span.error{
 	visibility: visible;
@@ -3064,7 +3085,7 @@ div.register-bottom-grid {
 	}
 	.main {
 		padding: 2em 0 2em;
-		text-align:center;
+		text-align:left;
 	}
 	.blue {
 		margin:0 0 0 2em;

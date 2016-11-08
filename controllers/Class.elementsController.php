@@ -237,7 +237,7 @@ class elementsController extends Controller
             $tourImage = Tour::selectTourImage($id);
             $temp = "data:" . $tourImage['mime'] . ";base64," . base64_encode($tourImage['data']);
             echo "<div class='col-md-4 events-top'>";
-            echo "<img onclick='showHike($id)' alt='No image found' class='img-responsive' src='$temp' />";
+            echo "<img onmouseover='' style='cursor: pointer;' onclick='showHike1($id)' alt='No image found' class='img-responsive' src='$temp' />";
             echo "<div class='events-bottom'>";
             echo "<div class='events-left'>";
             echo "<h5>$day</h5>";
@@ -282,7 +282,7 @@ class elementsController extends Controller
         $nrRatings = count($ratingsTour);
         $sumRatings = Rating::getSumRatings($idTour);
 
-        echo "<label>Total Bewertungen : ". $nrRatings . "</label></br>";
+        echo "<div class='col-md-12'><span>Total Bewertungen : ". $nrRatings . "</span></div></br>";
 
         if ($nrRatings != 0){
             $avgRatings = $sumRatings / $nrRatings;
@@ -567,6 +567,25 @@ class elementsController extends Controller
                 }
             }
         }
+    }
+
+    public static function getTypeTourForHikeShow($idTour){
+        if($_SESSION['lang'])
+            $answer = TypeTour::getTypeTourByLanguageOfTour($idTour, $_SESSION['lang']);
+        else
+            $answer = TypeTour::getTypeTourByLanguageOfTour($idTour, 'de');
+
+        $length = count($answer);
+        $types = "";
+
+        for ($i = 0; $i < $length; ++$i) {
+            if(($i+1) === $length){
+                $types .= $answer[$i][2];
+            }
+            else $types .= $answer[$i][2] . "/ ";
+        }
+
+        return $types;
     }
 
     private static function checkTypeTourIds($id, $idsTour)

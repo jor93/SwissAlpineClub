@@ -214,7 +214,7 @@ class tourController extends Controller
                 $_SESSION['available'] = 'Die Anzahl möglicher Teilnehmer muss grösser als die bereits gebuchten Teilnehmer sein!';
             }
 
-            $this->redirect('admin', 'manageHike');
+            $this->redirect('tour', 'hikeShow');
         }
         else $this->redirect('admin', 'manageHike');
     }
