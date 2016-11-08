@@ -113,8 +113,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
     function forgot(){
         document.getElementById("decider").value = 2;
         document.getElementById("editForm").submit();
-
-
     }
 </script>
 
@@ -123,6 +121,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 <div class="main">
     <div class="container">
         <div class="about">
+            <?php if(isset($_SESSION['changed'])){ echo $lang['RESETPW_SUCCESS'] . '</br></br>'; $_SESSION['changed'] = null;} ?>
             <h4 style="padding-left: 6%"><?php echo $lang['SHOWADMIN_TITLE']; ?></h4>
             <div class="register-top-grid" style="padding-left: 70px">
                 </br>

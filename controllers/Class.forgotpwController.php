@@ -36,48 +36,65 @@ class forgotpwController extends Controller
 
     function resetpassword()
     {
-        $pw_new = $this->badassSafer($_POST['pw']);
-        $cpw = $this->badassSafer($_POST['cpw']);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $pw_new = $this->badassSafer($_POST['pw']);
+            $cpw = $this->badassSafer($_POST['cpw']);
 
-        $checkpwd = $this->validatePWs($pw_new, $cpw);
+            $checkpwd = $this->validatePWs($pw_new, $cpw);
 
-        // get the current user if he is logged in!
-        $currentUser = $this->getActiveUserWithoutCookie();
+            // get the current user if he is logged in!
+            $currentUser = $_SESSION['account'];
 
-        if ($checkpwd) {
-            if (isset($_SESSION['action_url']) && isset($_SESSION['encrypt_url']) && !$currentUser){
-                // get the values from the mail
-                $action_url = $_SESSION['action_url'];
-                $encrypt_url = $_SESSION['encrypt_url'];
-
-                $idAcc = Encryption::decode($encrypt_url);
-
-                echo '</br>------------';
-                echo '</br> id : ' . $idAcc;
-
+            if(isset($_SESSION['changeMyFuckingPassword'])) {
+                // if he is logged in!
+                $idAcc = $_SESSION['account']->getIdAccount();
                 $pw_encode = sha1($pw_new);
                 Account::resetpwDB($pw_encode, $idAcc);
-
-                // unset the session for other use
-                unset($_SESSION['action_url']);
-                unset($_SESSION['encrypt_url']);
-                echo '</br>SESSION UNSETS!!';
-            }else if (isset($_SESSION['accountToChange'])){
+                $_SESSION['changeMyFuckingPassword'] = null;
+                $_SESSION['changed'] = 1;
+                return $this->redirect('profile', 'showuser');
+            }
+            if (isset($_SESSION['accountToChange'])) {
                 // if he is logged in!
                 $idAcc = $_SESSION['accountToChange']->getIdAccount();
                 $pw_encode = sha1($pw_new);
                 Account::resetpwDB($pw_encode, $idAcc);
                 return $this->redirect('admin', 'showAccount');
             }
-            else {
-                // if he is logged in!
-                $idAcc = $currentUser->getIdAccount();
-                $pw_encode = sha1($pw_new);
-                Account::resetpwDB($pw_encode, $idAcc);
-                $this->redirect('profile', 'showuser');
+
+            if ($checkpwd) {
+                if (isset($_SESSION['action_url']) && isset($_SESSION['encrypt_url']) && !$currentUser) {
+                    // get the values from the mail
+                    $action_url = $_SESSION['action_url'];
+                    $encrypt_url = $_SESSION['encrypt_url'];
+
+                    $idAcc = Encryption::decode($encrypt_url);
+
+                    echo '</br>------------';
+                    echo '</br> id : ' . $idAcc;
+
+                    $pw_encode = sha1($pw_new);
+                    Account::resetpwDB($pw_encode, $idAcc);
+
+                    // unset the session for other use
+                    unset($_SESSION['action_url']);
+                    unset($_SESSION['encrypt_url']);
+                    echo '</br>SESSION UNSETS!!';
+                } else if (isset($_SESSION['accountToChange'])) {
+                    // if he is logged in!
+                    $idAcc = $_SESSION['accountToChange']->getIdAccount();
+                    $pw_encode = sha1($pw_new);
+                    Account::resetpwDB($pw_encode, $idAcc);
+                    return $this->redirect('admin', 'showAccount');
+                } else{
+                    // if he is logged in!
+                    $idAcc = $_SESSION['account']->getIdAccount();
+                    $pw_encode = sha1($pw_new);
+                    Account::resetpwDB($pw_encode, $idAcc);
+                    return $this->redirect('profile', 'showuser');
+                }
             }
         }
-        // if password convention is false!!
         $this->redirect('login', 'resetpw');
     }
 

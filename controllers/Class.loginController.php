@@ -70,11 +70,6 @@ class loginController extends Controller {
             $_SESSION['encrypt_url'] = $_GET['encrypt'];
         }
 
-        //if a user is active he cannot re-login
-        if ($this->getActiveUser()) {
-            $this->redirect('forgotpw', 'resetpw');
-            exit;
-        }
     }
 
     /**
