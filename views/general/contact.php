@@ -38,7 +38,7 @@ include_once $header;
                 <p>Fax +41 (0)27 / 327 35 81</p>
                 <br />
             </div>
-            <form class="right_form" action="<?php echo URL_DIR.'general/getRequestCustomer';?>" method="post">
+            <form class="right_form" action="<?php echo URL_DIR.'general/getrequestcustomer';?>" method="post">
                 <h2>Get In Touch</h2>
                 <div>
                     <span><label>NAME</label></span>

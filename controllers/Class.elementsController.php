@@ -176,7 +176,7 @@ class elementsController extends Controller
                 echo "<li id='menu_showHike'><a href=".URL_DIR.'admin/showHike'.">".  $lang['MENU_SHOWHIKE'] . "</a></li>";
                 echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
                 echo "<li id='menu_insmanage'><a href=".URL_DIR.'admin/manageInscription'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
-                echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
+                echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL'] . "</a></li>";
             }
         }
     }

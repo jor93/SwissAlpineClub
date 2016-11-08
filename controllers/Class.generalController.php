@@ -13,7 +13,7 @@ class generalController extends Controller
 
     }
 
-    function getRequestCustomer(){
+    function getrequestcustomer(){
         // get the values from contact forms
         $email_name = $this->badassSafer($_POST['userName']);
         $email_address = $this->badassSafer($_POST['userEmail']);

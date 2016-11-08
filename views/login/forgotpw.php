@@ -29,7 +29,7 @@ include_once $header;
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form action="<?php echo URL_DIR.'forgotpw/checkMailControl';?>" method="post">
+            <form action="<?php echo URL_DIR.'forgotpw/checkmailcontrol';?>" method="post">
                 <div class="register-top-grid">
                     <h3><?php echo $lang['FORGOTPW_TAG']; ?></h3>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">

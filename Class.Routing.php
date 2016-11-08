@@ -51,11 +51,9 @@ class Routing {
 		if (! file_exists ( ROOT_DIR . "controllers/Class.{$controller}Controller.php" )) {
 			$controller = "error";
 			$method = "error404";
-            echo 'controller doesnt exists';
 		} elseif (! method_exists ( "{$controller}Controller", "{$method}" )) {
 			$controller = "error";
 			$method = "error404";
-            echo 'method doesnt exists';
 		}
 		
 		// Instantiate controller class

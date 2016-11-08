@@ -48,7 +48,7 @@ class tourController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $this->badassSafer($_POST['showTour']);
             $_SESSION['tourId'] = $id;
-            $this->redirect('tour', 'hikeShow');
+            $this->redirect('tour', 'hikeshow');
         }
 
     }
@@ -56,9 +56,9 @@ class tourController extends Controller
     function hikingFromHome(){
         if(isset($_SESSION['tourId'])){
             if (!self::checkActiveUser())
-                $this->redirect('tour', 'hikeShowOff');
+                $this->redirect('tour', 'hikeshowoff');
             else
-                $this->redirect('tour', 'hikeShow');
+                $this->redirect('tour', 'hikeshow');
         }
     }
 
@@ -91,7 +91,7 @@ class tourController extends Controller
         return $typetourIds;
     }
 
-    function insertTour()
+    function inserttour()
     {
         /*
         Tour::updateTourImage(1, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
@@ -152,7 +152,7 @@ class tourController extends Controller
         else $this->redirect('admin', 'showHike');
     }
 
-    function updateTour(){
+    function updatetour(){
 
         if (isset($_POST['hikeName']) && isset($_POST['difficulty']) && isset($_POST['subtitle'])
             && isset($_POST['duration']) && isset($_POST['locationDep']) && isset($_POST['postcodeDep'])

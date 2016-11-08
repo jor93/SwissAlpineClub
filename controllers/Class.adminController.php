@@ -16,15 +16,11 @@ class adminController extends Controller
             $this->redirect('profile', 'showuser');
     }
 
-    function showHike(){
+    function showhike(){
         $this->checkRights();
     }
 
-    function manageHike(){
-        $this->checkRights();
-    }
-
-    function hikeImageTest(){
+    function managehike(){
         $this->checkRights();
     }
 
@@ -36,25 +32,25 @@ class adminController extends Controller
          $this->checkRights();
      }
 
-     function manageAccount(){
+     function manageaccount(){
          $this->checkRights();
          if ($_SERVER["REQUEST_METHOD"] == "POST") {
              $id = $this->badassSafer($_POST['showUser']);
             $_SESSION['accountId'] = $id;
-             $this->redirect('admin','showAccount');
+             $this->redirect('admin','showaccount');
          }
      }
 
-    function manageInscription(){
+    function manageinscription(){
         $this->checkRights();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $this->badassSafer($_POST['showInscription']);
             $_SESSION['idInscription'] = $id;
-            $this->redirect('admin','showInscription');
+            $this->redirect('admin','showinscription');
         }
     }
 
-    function showInscription(){
+    function showinscription(){
         $this->checkRights();
         if(isset($_SESSION['idInscription'])) {
             $id = $this->badassSafer($_SESSION['idInscription']);
@@ -114,7 +110,7 @@ class adminController extends Controller
         }
     }
 
-    function showAccount(){
+    function showaccount(){
         $this->checkRights();
         if(isset($_SESSION['accountId'])) {
             $id = $this->badassSafer($_SESSION['accountId']);
@@ -136,7 +132,7 @@ class adminController extends Controller
                 Account::deleteAccount($_SESSION['accountToChange']->getIdAccount());
                 $_SESSION['country'] = null;
                 $_SESSION['accountToChange'] = null;
-                $this->redirect('admin','manageAccount');
+                $this->redirect('admin','manageaccount');
             }else if($operation == 0){
                 // get form
                 $firstName = $this->badassSafer($_POST['firstname']);
