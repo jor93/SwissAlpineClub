@@ -17,6 +17,10 @@ $lang = array();
 
 $lang['WELCOME_TITLE'] = 'Bienvenue';
 
+/* #################### inscription ####################  */
+$lang['MANAGEINSCRIPTION_NO_PARTICIPANT'] = 'Il n\'y a pas les participants inscrits!';
+$lang['MANAGEINSCRIPTION_NO_ACCS'] = 'Il n\'y a pas de comptes enregistrés!';
+
 /* #################### showhike ####################  */
 $lang['SHOWHIKE_AVAILABLE_PLACES_ERROR'] = 'Le nombre de participants possibles doit être plus grande que les abonnés déjà réservé!';
 $lang['SHOWHIKE_ACCOUNT_ALREADY_INSCRIPTION'] = 'Vous devez à la visite elle-même participer!';

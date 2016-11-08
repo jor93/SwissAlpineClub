@@ -123,12 +123,12 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 <div class="main">
     <div class="container">
         <div class="about">
-            <h4 style="padding-left: 6%">Welcome</h4>
+            <h4 style="padding-left: 6%"><?php echo $lang['SHOWADMIN_TITLE']; ?></h4>
             <div class="register-top-grid" style="padding-left: 70px">
                 </br>
                 <form id="editForm" action="<?php echo URL_DIR.'admin/showAccount';?>" method="post">
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>E-Mail</span>
+                    <span><?php echo $lang['SHOWADMIN_EMAIL']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <input class="proedit" type="text" id="mail" name="email" required disabled
@@ -136,28 +136,28 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                 </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Vorname</span>
+                    <span><?php echo $lang['SHOWADMIN_FN']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <input class="proedit" type="text" id="fname" name="firstname" required disabled
                            value="<?php echo $account->getFirstname(); ?>">
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Nachname</span>
+                    <span><?php echo $lang['SHOWADMIN_LN']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <input class="proedit" type="text" id="lname" name="lastname" required disabled
                            value="<?php echo $account->getLastname(); ?>">
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Adresse</span>
+                    <span><?php echo $lang['SHOWADMIN_ADDRESS']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <input class="proedit" type="text" id="address" name="address" required disabled
                            value="<?php echo $account->getAddress(); ?>">
                 </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>PLZ</span>
+                        <span><?php echo $lang['SHOWADMIN_ZIP']; ?></span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <input class="proedit" type="text" id="plz" name="zip" required disabled
@@ -165,21 +165,21 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Ort</span>
+                    <span><?php echo $lang['SHOWADMIN_LOC']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <input class="proedit" type="text" id="loc" name="location" required disabled
                            value="<?php echo $loc->getLocationName(); ?>">
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Telefonnummer</span>
+                    <span><?php echo $lang['SHOWADMIN_PHONE']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <input class="proedit" type="text" id="phone" name="phone" required disabled
                            value="<?php echo $account->getPhone(); ?>">
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Sprache</span>
+                    <span><?php echo $lang['SHOWADMIN_LANG']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <select class="proedit" name="lang" id="lang" name="lang" disabled>
@@ -187,7 +187,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </select>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <span>Land</span>
+                    <span><?php echo $lang['SHOWADMIN_COUNTRY']; ?></span>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <select  class="proedit" id="country" name="country" disabled>
@@ -201,7 +201,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </select>
                 </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Abo</span>
+                        <span><?php echo $lang['SHOWADMIN_ABO']; ?></span>
             </div>
             <div class="wow fadeInLeft" data-wow-delay="0.4s">
                 <select class="proedit" id="abo" name="abo" disabled>
@@ -210,7 +210,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
             </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Activated</span>
+                        <span><?php echo $lang['SHOWADMIN_ACTIVE']; ?></span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <input class="proedit " type="text" id="active" name="active" required disabled
@@ -218,7 +218,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Last Login</span>
+                        <span><?php echo $lang['SHOWADMIN_LASTLOGIN']; ?></span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <input class="proedit" type="text" id="lastlog" name="lastlog" required disabled
@@ -226,7 +226,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
 
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <span>Runlevel</span>
+                        <span><?php echo $lang['SHOWADMIN_RUNLEVEL']; ?></span>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <select  class="proedit" id="runlevel" name="runlevel" disabled>
@@ -240,15 +240,15 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
-                        <input type="button" id="btn-forgot" onclick="forgot()" value="Change PW">
+                        <input type="button" id="btn-forgot" onclick="forgot()" value="<?php echo $lang['SHOWADMIN_CHANGEPW']; ?>">
                     </div>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <div class="register-but">
-                        <input onclick="edit()" id="btn-edit" type="button" value="Edit">
-                        <input onclick="save()" id="btn-save" type="button" value="Save" style="display: none">
-                        <input onclick="del()" id="btn-delete" type="button" value="Delete" >
-                        <input onclick="canc()" id="btn-cancel" type="button" value="Cancel"  style="display: none">
+                        <input onclick="edit()" id="btn-edit" type="button" value="<?php echo $lang['SHOWADMIN_EDIT']; ?>">
+                        <input onclick="save()" id="btn-save" type="button" value="<?php echo $lang['SHOWADMIN_SAVE']; ?>" style="display: none">
+                        <input onclick="del()" id="btn-delete" type="button" value="<?php echo $lang['SHOWADMIN_DELETE']; ?>" >
+                        <input onclick="canc()" id="btn-cancel" type="button" value="<?php echo $lang['SHOWADMIN_CANCEL']; ?>"  style="display: none">
                     </div>
                 </div>
                    <input type='hidden' id='decider' name='operation' value='0' />

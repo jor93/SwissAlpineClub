@@ -15,7 +15,7 @@ include_once $header;
 			<div class="error-page">
 				<p>Page Not Found!</p>
 				<h3>404</h3>
-				<a href="<?php echo URL_DIR.'home/home';?>" class="go">Go home</a>
+				<a href="<?php echo URL_DIR.'home';?>" class="go">Go home</a>
 			</div>
 			<!--End-plans-404page---->	
 		</div>
