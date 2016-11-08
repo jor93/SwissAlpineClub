@@ -172,7 +172,7 @@ class Inscription
 
     // update inscription
     public static function updateInscription($inscription){
-        $query = "UPDATE Inscription SET Max_Inscriptions='$inscription->max_inscriptions', Free_Space='$inscription->free_space', Expiration_Date='$inscription->expiration_date', Status_idStatus='$inscription->status_idStatus', 
+        $query = "UPDATE inscription SET Max_Inscriptions='$inscription->max_inscriptions', Free_Space='$inscription->free_space', Expiration_Date='$inscription->expiration_date', Status_idStatus='$inscription->status_idStatus', 
                 Information='$inscription->information' where Tour_idTour='$inscription->tour_idTour'";
         return SQL::getInstance()->executeQuery($query);
     }
@@ -186,7 +186,7 @@ class Inscription
 
     // get single inscription by id
     public static function selectInscriptionByIdTour($idTour){
-        $query = "SELECT * FROM Inscription where Tour_idTour = '$idTour'";
+        $query = "SELECT * FROM inscription where Tour_idTour = '$idTour'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
 
@@ -197,7 +197,7 @@ class Inscription
 
     // get single inscription by id inscription
     public static function selectInscriptionByIdInscription($idInscription){
-        $query = "SELECT * FROM Inscription where Tour_idTour = $idInscription";
+        $query = "SELECT * FROM inscription where Tour_idTour = $idInscription";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
 
@@ -208,7 +208,7 @@ class Inscription
 
     // get single free_space by id
     public static function selectFreeSpaceByidTour($idTour){
-        $query = "SELECT Free_Space FROM Inscription where Tour_idTour = '$idTour'";
+        $query = "SELECT Free_Space FROM inscription where Tour_idTour = '$idTour'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
 
