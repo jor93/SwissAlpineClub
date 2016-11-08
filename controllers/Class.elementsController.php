@@ -46,7 +46,7 @@ class elementsController extends Controller
                 echo "<input type='text' id='aboAcc" . $x . "' disabled value='" . $abo_acc . "'>";
                 echo "</div>";
 
-                $participants = Participant::getParticipantFromInscription($id, $accounts_inscripted[$i][0]);
+                $participants = Participant::getParticipantFromInscriptionAccount($id, $accounts_inscripted[$i][0]);
                 $length_parts = count($participants);
 
                 if ($length_parts != 0){
@@ -63,7 +63,9 @@ class elementsController extends Controller
 
                         echo "<input type='text' id='firstname" . $x . "' disabled value='" . $participants[$j][1] ."'>";
                         echo "<input type='text' id='lastname" . $x . "' disabled value='" . $participants[$j][2] ."'>";
-                        echo "<input type='text' id='aboPart" . $x . "' disabled value='" . $abo . "'>";
+                        echo "<select id='aboPart" . $x . "' name=abo' disabled>";
+                            elementsController::aboSelect($participants[$j][6]-1);
+                        echo "</select>";
                         echo "</div>";
                     }
                 }else{

@@ -8,7 +8,6 @@
  */
 class adminController extends Controller
 {
-
     function checkRights(){
         $user = Controller::checkActiveUser();
         if(is_bool($user) === true && !$user)
@@ -61,6 +60,8 @@ class adminController extends Controller
             $id = $this->badassSafer($_SESSION['idInscription']);
             $result = Inscription::selectInscriptionByIdInscription($id);
             $_SESSION['inscriptionToChange'] = $result;
+            $result_part = Participant::getParticipantFromInscription($id);
+            $_SESSION['participants_Inscription'] = $result_part;
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -79,6 +80,9 @@ class adminController extends Controller
             } else if ($operation == 0) {
                 // save
                 // get from form
+
+
+
                 /*
                 $firstName = $this->badassSafer($_POST['firstname']);
                 $lastName = $this->badassSafer($_POST['lastname']);
