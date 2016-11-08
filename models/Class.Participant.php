@@ -157,4 +157,11 @@ class Participant
 
         return $row;
     }
+
+    // delete participant
+    public static function deleteParticipant($idpart){
+        $update = "DELETE FROM participant WHERE idParticipant = $idpart;";
+        SQL::getInstance()->executeQuery($update);
+        return;
+    }
 }

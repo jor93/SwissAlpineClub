@@ -36,6 +36,18 @@ class Inscription
         $this->information = $information;
     }
 
+    public static function createInscription($idInscription, $tour_idTour, $max_inscriptions, $free_space, $expiration_date, $status_idStatus, $information){
+        $inscription = new Inscription();
+        $inscription->idInscription = $idInscription;
+        $inscription->tour_idTour = $tour_idTour;
+        $inscription->max_inscriptions= $max_inscriptions;
+        $inscription->free_space = $free_space;
+        $inscription->expiration_date = $expiration_date;
+        $inscription->status_idStatus = $status_idStatus;
+        $inscription->information = $information;
+        return $inscription;
+    }
+
     /**
      * @return mixed
      */
@@ -185,7 +197,7 @@ class Inscription
 
     // get single inscription by id inscription
     public static function selectInscriptionByIdInscription($idInscription){
-        $query = "SELECT * FROM Inscription where Tour_idTour = '$idInscription'";
+        $query = "SELECT * FROM Inscription where Tour_idTour = $idInscription";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
 
@@ -265,7 +277,7 @@ class Inscription
         $result = SQL::getInstance()->select($query);
         $row = $result->fetchAll();
 
-        if(!$row) return false;
+        if(!$row) return null;
 
         return $row;
     }
