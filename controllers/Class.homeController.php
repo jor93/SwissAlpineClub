@@ -16,7 +16,7 @@ class homeController extends Controller {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $this->badassSafer($_POST['showHike']);
             $_SESSION['tourId'] = $id;
-            $this->redirect('tour','hiking');
+            $this->redirect('tour','hikingFromHome');
         }
     }
 
