@@ -36,7 +36,7 @@ class inscriptionController extends Controller
 
         $account = $_SESSION['account']->getIdAccount();
         // check if account is already inserted for this tour!
-        $checkAccForTour = Inscription::checkAccForTour($account);
+        $checkAccForTour = Inscription::checkAccForTour($account, $idInscription);
         // check status
         $checkStatus = Inscription::selectInscriptionByIdInscription($idInscription);
 

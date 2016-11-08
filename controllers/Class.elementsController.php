@@ -72,6 +72,8 @@ class elementsController extends Controller
                     $x++;
                     $_SESSION['msg_no_part'] = 1;
                 }
+
+
             }
         }else{
             $_SESSION['msg_no_part'] = 2;
@@ -111,12 +113,14 @@ class elementsController extends Controller
 
         for ($i = 0; $i < $length; $i++) {
             $id = $answer[$i][1];
-            echo "<div class='col-md-4'><li>" . $answer[$i][3] . "</li></div>";
-            echo "<div class='col-md-8'><li onclick='showTour($id)'>" . $answer[$i][2] . "</li></div>";
-            echo "<div class='col-md-4'><li>" . "Tour start: " . "</li></div>";
-            echo "<div class='col-md-8'><li>" . $answer[$i][3] . "</li></div>";
-            echo "<div class='col-md-4'><li>" . "Tour ende: " . "</li></div>";
-            echo "<div class='col-md-8'><li>" . $answer[$i][4] . "</li></div>";
+            echo "<div class='about'>";
+            echo "<div class='col-md-4'><span>" . $answer[$i][3] . "</span></div>";
+            echo "<div class='col-md-8'><p onclick='showTour($id)'>" . $answer[$i][2] . "</p></div>";
+            echo "<div class='col-md-4'><span>" . "Tour start: " . "</span></div>";
+            echo "<div class='col-md-8'><p>" . $answer[$i][3] . "</p></div>";
+            echo "<div class='col-md-4'><span>" . "Tour ende: " . "</span></div>";
+            echo "<div class='col-md-8'><p>" . $answer[$i][4] . "</p></div>";
+            echo "</div>";
         }
         echo "<input type='hidden' id='saver' name='showTour' value='0' />";
 

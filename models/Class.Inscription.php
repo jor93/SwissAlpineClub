@@ -225,8 +225,8 @@ class Inscription
     }
 
     // check if acc for tour already in db
-    public static function checkAccForTour($idAcc){
-        $query = "SELECT * FROM account_inscription WHERE Account_idAccount = $idAcc;";
+    public static function checkAccForTour($idAcc, $idinscription){
+        $query = "SELECT * FROM account_inscription WHERE Account_idAccount = $idAcc AND Inscription_idInscription = $idinscription;";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
 
