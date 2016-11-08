@@ -61,7 +61,7 @@ class forgotpwController extends Controller
                 $idAcc = $_SESSION['accountToChange']->getIdAccount();
                 $pw_encode = sha1($pw_new);
                 Account::resetpwDB($pw_encode, $idAcc);
-                return $this->redirect('admin', 'showAccount');
+                return $this->redirect('admin', 'showaccount');
             }
 
             if ($checkpwd) {
