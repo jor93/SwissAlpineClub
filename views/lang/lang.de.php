@@ -334,4 +334,7 @@ $lang['SHOWADMIN_CANCEL'] = 'Abbrechen';
 
 /* #################### MANAGEINSCRIPTIONS ######################*/
 $lang['MANAGEINSCRIPTION_TITLE']='EINSCHREIBUNGEN VERWALTEN';
+
+$lang['JANUARY'] = 'Jannuaaar';
+
 ?>

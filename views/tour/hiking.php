@@ -27,7 +27,6 @@ include_once $header;
     }
 
     function resetDate(){
-        alert("HELP");
         $( "#datepicker" ).val('');
     }
 
