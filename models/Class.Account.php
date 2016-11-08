@@ -275,8 +275,7 @@ class Account{
 
     // connect a user with username and pw
     public static function connect($email, $password){
-        $query = "SELECT *
-                  FROM Account WHERE Account.Email='$email' AND Account.Password='$password'";
+        $query = "SELECT * FROM account WHERE account.Email='$email' AND account.password='$password'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
@@ -292,13 +291,13 @@ class Account{
     // update last login in db
     public static function updateLastLogin($accountId){
         $currentDate = date("Y-m-d");
-        $query = "UPDATE Account SET Lastlogin_Date = '$currentDate' WHERE idAccount=$accountId";
+        $query = "UPDATE account SET Lastlogin_Date = '$currentDate' WHERE idAccount=$accountId";
         return  SQL::getInstance()->executeQuery($query);
     }
 
     // update account
     public static function updateAccount($accountid, $firstname, $lastname, $address, $locationid, $phone, $language, $countryId){
-        $query = "UPDATE Account SET Firstname = '$firstname', Lastname = '$lastname',
+        $query = "UPDATE account SET Firstname = '$firstname', Lastname = '$lastname',
                   Address = '$address', Location_idLocation = '$locationid',
                   Phone = '$phone', Language = '$language',
                   Country_idCountry = '$countryId'
@@ -308,7 +307,7 @@ class Account{
 
     // activate account in db
     public static function activate($accountId){
-        $query = "UPDATE Account SET Activated = 1 WHERE idAccount=$accountId";
+        $query = "UPDATE account SET Activated = 1 WHERE idAccount=$accountId";
         return  SQL::getInstance()->executeQuery($query);
     }
 
@@ -351,20 +350,20 @@ class Account{
 
     // get single account by id
     public static function selectAccountById($accountId){
-        $query = "SELECT * FROM Account where Account.idAccount = '$accountId';";
+        $query = "SELECT * FROM account where account.idAccount = '$accountId';";
         return $result = SQL::getInstance()->select($query)->fetch();
     }
 
     // get single account id by email
     public static function selectAccountByEmail($accountEmail){
-        $query = "SELECT idAccount FROM Account where Account.Email = '$accountEmail'";
-        return $result = SQL::getInstance()->select($query)->fetch();
+        $query = "SELECT idAccount FROM account where account.Email = '$accountEmail'";
+        return $result = SQL::getInstance()->select($query)->fetchAll();
     }
 
     // get id account per encrypted mda value
     public static function selectAccountIdByMDA($encrypted){
         //$query = "SELECT idAccount FROM Account where md5(90*13+idAccount) = '$encrypted'";
-        $query = "SELECT idAccount FROM Account where md5(90*13+idAccount) = '$encrypted'";
+        $query = "SELECT idAccount FROM account where md5(90*13+idAccount) = '$encrypted'";
         return $result = SQL::getInstance()->select($query)->fetch();
     }
 

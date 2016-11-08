@@ -420,7 +420,7 @@ class Tour
     }
 
     static function insertTour($tour, &$lastInsertId){
-        $query = "INSERT INTO Tour (Start_date, End_date, Duration, Title, Subtitle, Depart_time, Arrival_time,
+        $query = "INSERT INTO tour (Start_date, End_date, Duration, Title, Subtitle, Depart_time, Arrival_time,
                                   Price, Difficulty, Status_idStatus, Language_idLanguage, Location_idLocation,
                                   Location_idLocation1)
                   VALUES ('$tour->startDate', '$tour->endDate', '$tour->duration', '$tour->title', '$tour->subtitle',
@@ -432,7 +432,7 @@ class Tour
     }
 
     static function insertTourDescription($descDE, $descFR, &$lastInsertId){
-        $query = "INSERT INTO Language(de, fr)
+        $query = "INSERT INTO language(de, fr)
                   VALUES ('$descDE', '$descFR')";
         $result = SQL::getInstance()->executeQuery($query);
         $lastInsertId = SQL::getInstance()->getLastInsertedId();
@@ -443,10 +443,10 @@ class Tour
 
 
     static function selectTour($tourId){
-        $query = "SELECT Tour.*, LanguageDesc.*
-                  FROM Tour as Tour, Language as LanguageDesc
-                 where Tour.idTour = '$tourId'
-                 and Tour.Language_idLanguage = LanguageDesc.idLanguage";
+        $query = "SELECT tour.*, language.*
+                  FROM tour , language
+                 where tour.idTour = '$tourId'
+                 and tour.Language_idLanguage = language.idLanguage";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
 
@@ -470,11 +470,11 @@ class Tour
 
     static function updateTour($tour){
         $result = false;
-        $query = "UPDATE Tour SET Start_date='$tour->startDate', End_date='$tour->endDate', Duration='$tour->duration', Title='$tour->title', 
+        $query = "UPDATE tour SET Start_date='$tour->startDate', End_date='$tour->endDate', Duration='$tour->duration', Title='$tour->title', 
                 Subtitle='$tour->subtitle', Depart_time='$tour->depart_time', Arrival_time='$tour->arrival_time', Price='$tour->price', Difficulty='$tour->difficulty', 
                 Status_idStatus='$tour->status', Location_idLocation='$tour->locationDep', Location_idLocation1='$tour->locationArriv' where idTour='$tour->idTour'";
 
-        $queryLanguage = "UPDATE Language SET de='$tour->languageDescriptionDE', fr='$tour->languageDescriptionFR'
+        $queryLanguage = "UPDATE language SET de='$tour->languageDescriptionDE', fr='$tour->languageDescriptionFR'
         where idLanguage='$tour->idLanguageDescription'";
 
         SQL::getInstance()->executeQuery($query);
@@ -483,12 +483,12 @@ class Tour
     }
 
     static function updateTourImage($tourid, $path, $mime){
-        $query = "UPDATE Tour SET Picture = :data, Mime = :mime WHERE Tour.idTour = :id";
+        $query = "UPDATE tour SET Picture = :data, Mime = :mime WHERE tour.idTour = :id";
         return  SQL::getInstance()->executeBLOBQuery($query, $tourid, $path, $mime);
     }
 
     static function selectTourImage($tourid){
-        $query = "SELECT Picture, Mime from Tour where idTour = :id";
+        $query = "SELECT Picture, Mime from tour where idTour = :id";
         $result = SQL::getInstance()->selectBLOB($query, $tourid);
 
         if(!$result) return false;

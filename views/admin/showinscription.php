@@ -89,7 +89,7 @@ include_once $header;
     <div class="container">
         <div class="register">
             <h3 style="color: red"><?php echo $lang['SHOWINSCRIPTION_TITLE']; ?></h3>
-            <form id="editForm" method="post" action="<?php echo URL_DIR.'admin/showInscription';?>">
+            <form id="editForm" method="post" action="<?php echo URL_DIR.'admin/showinscription';?>">
                 <div class="register-top-grid">
                     <?php elementsController::getInscription(); ?>
                     <br>

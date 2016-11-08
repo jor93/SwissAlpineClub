@@ -117,7 +117,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
             <h4 style="padding-left: 6%"><?php echo $lang['SHOWUSER_WELCOME']; ?></h4>
             <div class="register-top-grid" style="padding-left: 70px">
                 </br>
-                <form id="editForm" action="<?php echo URL_DIR.'showuser/updateUserAccount';?>" method="post">
+                <form id="editForm" action="<?php echo URL_DIR.'showuser/updateuseraccount';?>" method="post">
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWUSER_EMAIL']; ?></span>
                     </div>

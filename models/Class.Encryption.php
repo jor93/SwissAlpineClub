@@ -10,13 +10,13 @@ class Encryption
 {
     const SKEY = "NickelbackRocks"; // you can change it
 
-    public function safe_b64encode($string) {
+    public static function safe_b64encode($string) {
         $data = base64_encode($string);
         $data = str_replace(array('+','/','='),array('-','_',''),$data);
         return $data;
     }
 
-    public function safe_b64decode($string) {
+    public static function safe_b64decode($string) {
         $data = str_replace(array('-','_'),array('+','/'),$string);
         $mod4 = strlen($data) % 4;
         if ($mod4) {
@@ -28,7 +28,9 @@ class Encryption
     public static function encode($value){
         if(!$value){return false;}
         $text = $value;
+        echo 'Halleluja';
         $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
+        echo 'fertig Halleluja';
         $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
         $crypttext = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, self::SKEY, $text, MCRYPT_MODE_ECB, $iv);
         return trim(self::safe_b64encode($crypttext));

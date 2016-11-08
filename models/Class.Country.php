@@ -57,7 +57,7 @@ class Country
 
     static function selectCountry($idCountry){
         $query = "SELECT *
-                  FROM Country WHERE idCountry = '$idCountry'";
+                  FROM country WHERE idCountry = '$idCountry'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;

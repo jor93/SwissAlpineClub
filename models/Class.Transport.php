@@ -94,8 +94,8 @@ class Transport
     }
 
     static function selectTransport($idTransport){
-        $query = "SELECT Transport.*, Language.*
-                  FROM Transport, Language WHERE idTransport = '$idTransport' and Transport.Language_idLanguage = Language.idLanguage";
+        $query = "SELECT transport.*, language.*
+                  FROM transport, language WHERE idTransport = '$idTransport' and transport.Language_idLanguage = language.idLanguage";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
@@ -112,13 +112,13 @@ class Transport
             if($lastElement === $transportArray[$i])break;
             $valueQuery .= " ,";
         }
-        $query = "INSERT INTO Transport_tour(Tour_idTour, Transport_idTransport)
+        $query = "INSERT INTO transport_tour(Tour_idTour, Transport_idTransport)
                   VALUES " . $valueQuery;
         return  SQL::getInstance()->executeQuery($query);
     }
 
     static function insertTourTransport($idTour, $idTransport){
-        $query = "INSERT INTO Transport_tour(Tour_idTour, Transport_idTransport) VALUES ('$idTour','$idTransport')";
+        $query = "INSERT INTO transport_tour(Tour_idTour, Transport_idTransport) VALUES ('$idTour','$idTransport')";
         return  SQL::getInstance()->executeQuery($query);
     }
 
@@ -134,7 +134,7 @@ class Transport
     }
 
     static function selectTransportLength(){
-        $query = "SELECT count(*) as ResultTransport FROM Transport";
+        $query = "SELECT count(*) as ResultTransport FROM transport;";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
@@ -142,7 +142,7 @@ class Transport
     }
 
     static function removeTransportsFromTour($idTour){
-        $query = "DELETE FROM Transport_tour where Tour_idTour = '$idTour'";
+        $query = "DELETE FROM transport_tour where Tour_idTour = '$idTour'";
         return SQL::getInstance()->executeQuery($query);
     }
 

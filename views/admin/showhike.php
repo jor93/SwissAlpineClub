@@ -173,7 +173,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form id="editForm" action="<?php echo URL_DIR.'tour/insertTour';?>" method="post" enctype="multipart/form-data">
+            <form id="editForm" action="<?php echo URL_DIR.'tour/inserttour';?>" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
                     <h3><?php echo $lang['SHOWHIKEADMIN_TITLE']; ?></h3>
 

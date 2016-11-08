@@ -93,8 +93,8 @@ class Region
     }
 
     static function selectRegion($idRegion){
-        $query = "SELECT Region.*, Language.*
-                  FROM Region, Language WHERE idRegion = '$idRegion' and Region.Language_idLanguage = Language.idLanguage";
+        $query = "SELECT region.*, language.*
+                  FROM region, Language WHERE idRegion = '$idRegion' and region.Language_idLanguage = language.idLanguage";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
