@@ -10,7 +10,7 @@
 
 class elementsController extends Controller
 {
-
+    
     public static function getInscription()
     {
         // get all inscripted accs and related participants
@@ -87,55 +87,46 @@ class elementsController extends Controller
         echo "<input type='hidden' id='saver' name='showInscription' value='0' />";
     }
 
-    public static function showLoggedInUser(){
-        include_once(ROOT_DIR.'views/lang/lang.de.php');
-        include_once(ROOT_DIR.'views/lang/lang.fr.php');
+    public static function showMenu($showMenu){
+        $de = ROOT_DIR . 'views/lang/lang.de.php';
+        $fr = ROOT_DIR . 'views/lang/lang.fr.php';
+        $alreadyIncluded = false;
+        $included_files = get_included_files();
+        foreach ($included_files as $filename) {
+            if(strcmp($filename,$de) == 0 && strcmp($filename,$fr) == 0) $alreadyIncluded = true;
+        }
+        if(!$alreadyIncluded) {
+            if(isset($_SESSION['lang'])){
+                if(strcmp($_SESSION['lang'],'de')==0) include $de;
+                else include $fr;
+            }
+        }
 
         $user = self::checkActiveUser();
-        if(is_bool($user) === true && !$user){
-            echo "<li><a href=". URL_DIR."login/register>" . $lang['HEADER_REGISTER'] . "</a></li>";
-            echo "<li><a href=". URL_DIR."login/login>" . $lang['HEADER_LOGIN'] . "</a></li>";
-        } else {
-            $name = $_SESSION["account"];
-            echo "<li><a href=". URL_DIR."profile/showuser>" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
-            echo "<li><a href=". URL_DIR."login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
-        }
-
-    }
-
-    public static function showMenuForUser(){
-        $user = self::checkActiveUser();
-
-        // default header
-        /*echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  $lang['MENU_NEWS'] . "</a></li>";
-        echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". $lang['MENU_TOUR']."</a></li>";
-        if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
-            echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". $lang['MENU_ABOUT'] . "</a></li>";
-            echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". $lang['MENU_CONTACT'] . "</a></li>";
-        }
-        if(is_int($user) === true && $user == 1){
-            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
-            echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
-        } else if (is_int($user) === true && $user == 10){
-            echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
-            echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
-            echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
-        }*/
-
-        // default header
-        echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  'Home' . "</a></li>";
-        echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". 'Wanderungen'."</a></li>";
-        if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
-            echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". '&Uuml;ber Uns' . "</a></li>";
-            echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". 'Kontakt' . "</a></li>";
-        }
-        if(is_int($user) === true && $user == 1){
-            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". 'Mein Profil'."</a></li>";
-            echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". 'Meine Anmeldungen' ."</a></li>";
-        } else if (is_int($user) === true && $user == 10){
-            echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  'Benutzerverwaltung' . "</a></li>";
-            echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". 'Anmeldungen' . "</a></li>";
-            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". 'Mein Profil' . "</a></li>";
+        if(!$showMenu) {
+            if (is_bool($user) === true && !$user) {
+                echo "<li><a href=" . URL_DIR . "login/register>" . $lang['HEADER_REGISTER'] . "</a></li>";
+                echo "<li><a href=" . URL_DIR . "login/login>" . $lang['HEADER_LOGIN'] . "</a></li>";
+            } else {
+                $name = $_SESSION["account"];
+                echo "<li><a href=" . URL_DIR . "profile/showuser>" . $lang['HEADER_LOGGED'] . ' ' . $name->getFullName() . "</a></li>";
+                echo "<li><a href=" . URL_DIR . "login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
+            }
+        }else if($showMenu){
+            echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  $lang['MENU_NEWS'] . "</a></li>";
+            echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". $lang['MENU_TOUR']."</a></li>";
+            if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
+                echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". $lang['MENU_ABOUT'] . "</a></li>";
+                echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". $lang['MENU_CONTACT'] . "</a></li>";
+            }
+            if(is_int($user) === true && $user == 1){
+                echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
+                echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
+            } else if (is_int($user) === true && $user == 10){
+                echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
+                echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
+                echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
+            }
         }
     }
 
