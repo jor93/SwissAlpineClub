@@ -105,10 +105,11 @@ class inscriptionController extends Controller
         $this->redirect('tour', 'hikeshow');
     }
 
-    function validateRating(){
+    function validaterating(){
         // get the rating from view, user and the tour
         $selectedRating = $this->badassSafer($_POST['selectedStar']);
         $givenComment = $this->badassSafer($_POST['givenComment']);
+
 
         // get the current user
         $idAcc = $_SESSION['account']->getIdAccount();

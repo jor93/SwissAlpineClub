@@ -14,7 +14,7 @@ class SQL {
 	const HOST = "127.0.0.1";
 	const PORT = "3306";
 	const DATABASE = "grp1";
-	const USER = "grp1";
+	const USER = "usergrp1";
 	const PWD = "Finlande2018";
 
 	private static $instance;
