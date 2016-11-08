@@ -398,6 +398,8 @@ class Account{
         SQL::getInstance()->executeQuery($update);
         $update = "DELETE FROM account WHERE idAccount = $idAcc;";
         SQL::getInstance()->executeQuery($update);
+        $update = "DELETE FROM participant WHERE Account_idAccount = $idAcc;";
+        SQL::getInstance()->executeQuery($update);
         return;
     }
 

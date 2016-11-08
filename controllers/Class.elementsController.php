@@ -10,54 +10,73 @@
 
 class elementsController extends Controller
 {
+    static function getXForView(){
+        if (isset($_SESSION['x'])) {
+            $x = $_SESSION['x'];
+            echo $x;
+        }
+        else
+            var_dump($_SESSION['x']);
+    }
+
     public static function getInscription()
     {
         // get all inscripted accs and related participants
         $id = $_SESSION['idInscription'];
         $accounts_inscripted = Inscription::getAccsInscriptedByIdInscription($id);
         $length_accs = count($accounts_inscripted);
+        $x = 0;
+        $a = null;
 
         // check out lang
         $accLang = self::getAdminUserWithoutCookie()->getLanguage();
 
-        if ($length_accs != 0){
+        if ($length_accs != null){
             // draw accs
             for ($i = 0; $i < $length_accs; $i++) {
+                $x++;
                 if ($accLang == 'de')
                     $abo_acc = $accounts_inscripted[$i][5];
                 if ($accLang == 'fr')
                     $abo_acc = $accounts_inscripted[$i][6];
                 echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
-                echo "<input type='text' value='" . $accounts_inscripted[$i][1] . ' ' . $accounts_inscripted[$i][2] . "'>";
-                echo "<input type='text' value='" . $accounts_inscripted[$i][3] . "'>";
-                echo "<input type='text' value='" . $abo_acc . "'>";
+                echo "<input type='text' id='nameAcc" . $x . "' disabled value='" . $accounts_inscripted[$i][1] . ' ' . $accounts_inscripted[$i][2] . "'>";
+                echo "<input type='text' id='email" . $x . "' disabled value='" . $accounts_inscripted[$i][3] . "'>";
+                echo "<input type='text' id='aboAcc" . $x . "' disabled value='" . $abo_acc . "'>";
                 echo "</div>";
 
-                $participants = Participant::getParticipantFromInscription($id, $accounts_inscripted[$i][0]);
+                $participants = Participant::getParticipantFromInscriptionAccount($id, $accounts_inscripted[$i][0]);
                 $length_parts = count($participants);
 
                 if ($length_parts != 0){
                     // draw participants related to accs
                     for ($j = 0; $j < $length_parts; $j++) {
+                        $x++;
+                        $a .= ',' . $x;
+
                         if ($accLang == 'de')
                             $abo = $participants[$j][3];
                         if ($accLang == 'fr')
                             $abo = $participants[$j][4];
                         echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
-                        echo "<input type='text' value='" . $participants[$j][1] . ' ' . $participants[$j][2] ."'>";
-                        echo "<input type='text' value='" . $abo . "'>";
+                        echo "<input type='text' id='firstname" . $x . "' disabled value='" . $participants[$j][1] ."'>";
+                        echo "<input type='text' id='lastname" . $x . "' disabled value='" . $participants[$j][2] ."'>";
+                        echo "<select id='aboPart" . $x . "' name=abo' disabled>";
+                            elementsController::aboSelect($participants[$j][6]-1);
+                        echo "</select>";
                         echo "</div>";
                     }
                 }else{
+                    $x++;
                     $_SESSION['msg_no_part'] = 1;
                 }
             }
         }else{
             $_SESSION['msg_no_part'] = 2;
         }
-
+        $_SESSION['x'] = $a;
     }
 
     public static function getInscriptions()

@@ -145,8 +145,8 @@ class Participant
         return $row['NP'];
     }
 
-    public static function getParticipantFromInscription($idInscription, $idaccount){
-        $query = "SELECT idParticipant, Firstname, Lastname, l.de, l.fr, p.Account_idAccount
+    public static function getParticipantFromInscriptionAccount($idInscription, $idaccount){
+        $query = "SELECT idParticipant, Firstname, Lastname, l.de, l.fr, p.Account_idAccount, p.Abonnement_idAbonnement
                   FROM participant AS p, abonnement AS a, language AS l 
                   WHERE p.Abonnement_idAbonnement = a.idAbonnement AND l.idLanguage = a.Language_idLanguage 
                   AND Inscription_idInscription = $idInscription AND p.Account_idAccount = $idaccount";
@@ -156,5 +156,25 @@ class Participant
         if(!$row) return false;
 
         return $row;
+    }
+
+    public static function getParticipantFromInscription($idInscription){
+        $query = "SELECT idParticipant, Firstname, Lastname, l.de, l.fr, p.Account_idAccount, p.Abonnement_idAbonnement
+                  FROM participant AS p, abonnement AS a, language AS l 
+                  WHERE p.Abonnement_idAbonnement = a.idAbonnement AND l.idLanguage = a.Language_idLanguage 
+                  AND Inscription_idInscription = $idInscription";
+        $result = SQL::getInstance()->select($query);
+        $row = $result->fetchAll();
+
+        if(!$row) return false;
+
+        return $row;
+    }
+
+    // delete participant
+    public static function deleteParticipant($idpart){
+        $update = "DELETE FROM participant WHERE idParticipant = $idpart;";
+        SQL::getInstance()->executeQuery($update);
+        return;
     }
 }

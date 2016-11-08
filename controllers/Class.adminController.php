@@ -8,7 +8,6 @@
  */
 class adminController extends Controller
 {
-
     function checkRights(){
         $user = Controller::checkActiveUser();
         if(is_bool($user) === true && !$user)
@@ -57,6 +56,62 @@ class adminController extends Controller
 
     function showInscription(){
         $this->checkRights();
+        if(isset($_SESSION['idInscription'])) {
+            $id = $this->badassSafer($_SESSION['idInscription']);
+            $result = Inscription::selectInscriptionByIdInscription($id);
+            $_SESSION['inscriptionToChange'] = $result;
+            $result_part = Participant::getParticipantFromInscription($id);
+            $_SESSION['participants_Inscription'] = $result_part;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $operation = $this->badassSafer($_POST['operation']);
+            if ($operation == 1) {
+                // delete
+
+
+/*
+                Account::deleteAccount($_SESSION['accountToChange']->getIdAccount());
+                $_SESSION['country'] = null;
+                $_SESSION['accountToChange'] = null;
+                $this->redirect('admin','manageAccount');
+*/
+
+            } else if ($operation == 0) {
+                // save
+                // get from form
+
+
+
+                /*
+                $firstName = $this->badassSafer($_POST['firstname']);
+                $lastName = $this->badassSafer($_POST['lastname']);
+                $abo = $this->badassSafer($_POST['aboPart']);
+
+                // create new account and fill with data
+                $user = new Account();
+                $user->setIdAccount($_SESSION['accountToChange']->getIdAccount());
+                $user->setFirstname(ucwords($firstName));
+                $user->setLastname(ucwords($lastName));
+                $user->setPassword($_SESSION['accountToChange']->getPassword());
+                $user->setEmail($_SESSION['accountToChange']->getEmail());
+                $user->setAddress(ucwords($address));
+                $user->setPhone($phone);
+                $user->setLanguage($language);
+                $user->setAbonnement($abo);
+                $locationId = loginController::getIdLocationFromZipAndLocationName($location, $zip);
+                $user->setLocation($locationId);
+                $user->setCountry($country);
+                $user->setRunlevel($run);
+                $user->setLastlogin($_SESSION['accountToChange']->getLastlogin());
+                $user->setActivated($_SESSION['accountToChange']->getActivated());
+
+                // update account
+                Account::updateAccountAdmin($user);
+                $_SESSION['accountToChange'] = $user;
+                */
+            }
+        }
     }
 
     function showAccount(){
