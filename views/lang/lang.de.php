@@ -342,4 +342,6 @@ $lang['MANAGEINSCRIPTION_TITLE']='EINSCHREIBUNGEN VERWALTEN';
 $lang['INS_TITLE']='MEINE EINSCHREIBUNGEN';
 $lang['INS_ERROR']='Sie haben momementan keine Einschreibungen!';
 
+$lang['MENU_SHOWHIKE'] = 'Tour hinzufügen'
+
 ?>

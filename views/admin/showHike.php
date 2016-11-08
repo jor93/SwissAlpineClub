@@ -29,7 +29,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
 <script>
     $(document).ready(function () {
-        $('#menu_showhike').addClass('active');
+        $('#menu_showHike').addClass('active');
 
     });
 
