@@ -43,7 +43,8 @@ if (isset($_SESSION['tourId'])) {
 
         }
 
-        function validateRating() {
+        function validaterating() {
+            alert('sdlfkbasjlödfsdf');
             // first get ratingstars
             var valueSelected = 0;
             for(i=1;i<6;i++){
@@ -58,11 +59,10 @@ if (isset($_SESSION['tourId'])) {
             }
             // get the comment
             var valueComment = document.getElementById('input_comment').value;
-
             // save into db - call controllers
             $.ajax({
                 type: 'post',
-                url: '<?php echo URL_DIR.'inscription/validateRating';?>',
+                url: '<?php echo URL_DIR.'inscription/validaterating';?>',
                 data:{ selectedStar : valueSelected,
                     givenComment: valueComment},
                 success: function(response) {
@@ -339,7 +339,7 @@ if (isset($_SESSION['tourId'])) {
                     <!-- gez rating comment -->
                     <textarea id="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
                               style="width: 400px;"></textarea>
-                    <button onclick="validateRating()" class="add_comment_field"><?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></button>
+                    <button onclick="validaterating()" class="add_comment_field"><?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></button>
                     </br>
                     </br>
                     <div class="rating">
