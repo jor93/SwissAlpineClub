@@ -15,7 +15,7 @@ include_once $header;
         $('#menu_home').addClass('active');
     });
 
-    function showHike($idHike){
+    function showHike1($idHike){
         document.getElementById("saver").value = $idHike;
         document.getElementById("manage3Hikings").submit();
     }
@@ -103,7 +103,7 @@ include_once $header;
 <!-- events -->
 <div class="events">
     <div class="container">
-        <h2>Upcoming Events</h2>
+        <h2><?php echo $lang['HOME_NEXT_EVENTS']; ?></h2>
         <form id="manage3Hikings" action="<?php echo URL_DIR.'home/showHike';?>" method="post" enctype="multipart/form-data">
             <?php echo elementsController::getNext3Hikings();?>
         </form>

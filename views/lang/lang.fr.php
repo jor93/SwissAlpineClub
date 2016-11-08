@@ -329,4 +329,7 @@ $lang['SHOWADMIN_CANCEL'] = 'Avorter';
 
 /* #################### MANAGEINSCRIPTIONS ######################*/
 $lang['MANAGEINSCRIPTION_TITLE']="GÉRER L'INSCRIPTIONS";
+
+
+$lang['HOME_NEXT_EVENTS'] = 'Nos prochains tours';
 ?>

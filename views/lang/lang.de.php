@@ -199,6 +199,7 @@ $lang['HOME_VIDEO_TITLE'] = 'Wanderungen';
 $lang['HOME_VIDEO_SUBTITLE'] = 'In der ganzen Schweiz';
 $lang['HOME_VIDEO_DESC'] = "Entdecken Sie die Wunder der Natur. Mit einer geeigneten Ausrüstung und unseren Freundlichen Guides werden Sie sich bestimmt noch lange an diesen Tag erinnern. 
 Ob alleine, mit Familie oder mit Freunden, nehmen Sie an unseren Wanderungen Teil!";
+$lang['HOME_NEXT_EVENTS'] = 'N&auml;chste Touren';
 
 /* #################### Tour ######################*/
 $lang['TOUR_TITLE'] = 'Wanderung';
@@ -336,6 +337,6 @@ $lang['SHOWADMIN_CANCEL'] = 'Abbrechen';
 /* #################### MANAGEINSCRIPTIONS ######################*/
 $lang['MANAGEINSCRIPTION_TITLE']='EINSCHREIBUNGEN VERWALTEN';
 
-$lang['JANUARY'] = 'Jannuaaar';
+
 
 ?>

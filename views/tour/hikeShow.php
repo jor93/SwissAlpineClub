@@ -9,7 +9,6 @@ $header = Controller::checkHeader();
 include_once $header;
 
 if (isset($_SESSION['tourId'])) {
-    echo "Tour-ID: " . $_SESSION['tourId'] . "!";
     $tour = Tour::selectTour($_SESSION['tourId']);
     $image = Tour::selectTourImage($_SESSION['tourId']);
     $inscription = Inscription::selectInscriptionByIdTour($_SESSION['tourId']);
@@ -169,17 +168,16 @@ if (isset($_SESSION['tourId'])) {
                     <span id="selected1" title="schlecht" onclick="fill(this.id)" class="filled">☆</span>
                 </div>
                 <?php echo elementsController::avgRatings();?>
-                <div class="register-top-grid" style="padding-left: 70px">
                     </br>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="col-md-3">
                         <span><?php echo $lang['HIKESHOW_TOUR']; ?></span>
                     </div>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="col-md-9">
                         <label id="tour"><?php echo $tour->getTitle(); ?></label>
                     </div>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="col-md-3">
                         <span><?php echo $lang['HIKESHOW_DESC_DE']; ?></span>
                     </div>
 
@@ -187,7 +185,7 @@ if (isset($_SESSION['tourId'])) {
                         <label id="descDE"><?php echo $tour->getLanguageDescriptionDE(); ?></label>
                     </div>
 
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="col-md-3">
                         <span><?php echo $lang['HIKESHOW_DESC_FR']; ?></span>
                     </div>
 
