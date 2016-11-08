@@ -90,6 +90,14 @@ class elementsController extends Controller
         $answer = Inscription::getAllInsByAccount($accountId);
         $length = count($answer);
 
+        if($length == 0){
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . 'Sie haben keine Einschreibungen' . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . 'Pas de inscription!' . "</li></div>";
+            return;
+        }
+
         for ($i = 0; $i < $length; $i++) {
             $id = $answer[$i][1];
             echo "<div class='col-md-4'><li>" . $answer[$i][3] . "</li></div>";
