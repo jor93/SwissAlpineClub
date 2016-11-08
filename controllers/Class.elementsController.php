@@ -395,7 +395,7 @@ class elementsController extends Controller
                         $favorite = "fav1";
                         $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                         echo "<li class=$finalClass>";
-                        echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 20px;' /></button>";
+                        echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 15px;' /></button>";
 
                         echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
@@ -410,7 +410,7 @@ class elementsController extends Controller
                 if (!$draw) {
                     $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                     echo "<li class=$finalClass>";
-                    echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 20px;' /></button>";
+                    echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 15px;' /></button>";
 
                     echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
@@ -442,6 +442,13 @@ class elementsController extends Controller
         $number = $_SESSION['msg'];
         for ($i = 0; $i < $number; ++$i) {
             echo "<input type='text' required>";
+        }
+    }
+
+    public static function favoritesWhenLoggedIn(){
+        if(self::getActiveUserWithoutCookie()){
+            echo "<li class='filter'><a class='selected' href='#0' data-type='all'>Alle</a></li>";
+            echo "<li class='filter' data-filter='.fav1'><a href='#0' data-type='fav1'>Favoriten</a></li>";
         }
     }
 
