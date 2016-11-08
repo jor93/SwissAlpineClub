@@ -63,6 +63,7 @@ class forgotpwController extends Controller
                 Account::resetpwDB($pw_encode, $idAcc);
                 $_SESSION['changed'] = 1;
                 return $this->redirect('admin', 'showaccount');
+
             }
 
             if ($checkpwd) {
