@@ -21,35 +21,44 @@ class elementsController extends Controller
         // check out lang
         $accLang = self::getAdminUserWithoutCookie()->getLanguage();
 
-        // draw accs
-        for ($i = 0; $i < $length_accs; $i++) {
-            if ($accLang == 'de')
-                $abo_acc = $accounts_inscripted[$i][5];
-            if ($accLang == 'fr')
-                $abo_acc = $accounts_inscripted[$i][6];
-            echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
-
-            echo "<input type='text' value='" . $accounts_inscripted[$i][1] . ' ' . $accounts_inscripted[$i][2] . "'>";
-            echo "<input type='text' value='" . $accounts_inscripted[$i][3] . "'>";
-            echo "<input type='text' value='" . $abo_acc . "'>";
-            echo "</div>";
-
-            $participants = Participant::getParticipantFromInscription($id, $accounts_inscripted[$i][0]);
-            $length_parts = count($participants);
-
-            // draw participants related to accs
-            for ($j = 0; $j < $length_parts; $j++) {
+        if ($length_accs != 0){
+            // draw accs
+            for ($i = 0; $i < $length_accs; $i++) {
                 if ($accLang == 'de')
-                    $abo = $participants[$j][3];
+                    $abo_acc = $accounts_inscripted[$i][5];
                 if ($accLang == 'fr')
-                    $abo = $participants[$j][4];
+                    $abo_acc = $accounts_inscripted[$i][6];
                 echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
-                echo "<input type='text' value='" . $participants[$j][1] . ' ' . $participants[$j][2] ."'>";
-                echo "<input type='text' value='" . $abo . "'>";
+                echo "<input type='text' value='" . $accounts_inscripted[$i][1] . ' ' . $accounts_inscripted[$i][2] . "'>";
+                echo "<input type='text' value='" . $accounts_inscripted[$i][3] . "'>";
+                echo "<input type='text' value='" . $abo_acc . "'>";
                 echo "</div>";
+
+                $participants = Participant::getParticipantFromInscription($id, $accounts_inscripted[$i][0]);
+                $length_parts = count($participants);
+
+                if ($length_parts != 0){
+                    // draw participants related to accs
+                    for ($j = 0; $j < $length_parts; $j++) {
+                        if ($accLang == 'de')
+                            $abo = $participants[$j][3];
+                        if ($accLang == 'fr')
+                            $abo = $participants[$j][4];
+                        echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
+
+                        echo "<input type='text' value='" . $participants[$j][1] . ' ' . $participants[$j][2] ."'>";
+                        echo "<input type='text' value='" . $abo . "'>";
+                        echo "</div>";
+                    }
+                }else{
+                    $_SESSION['msg_no_part'] = 1;
+                }
             }
+        }else{
+            $_SESSION['msg_no_part'] = 2;
         }
+
     }
 
     public static function getInscriptions()

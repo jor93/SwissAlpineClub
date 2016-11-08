@@ -241,12 +241,12 @@ class loginController extends Controller {
             forgotpwController::sendMail($user, 3);
 
             // redirect to other page
-            //$this->redirect('profile', 'showuser');
+            $this->redirect('login', 'login');
 
                 // registration successfull --> reset everything
-                $_SESSION['country'] = null;
-                $_SESSION['errors'] = null;
-                $_SESSION['saved'] = null;
+            $_SESSION['country'] = null;
+            $_SESSION['errors'] = null;
+            $_SESSION['saved'] = null;
         }
     }
 

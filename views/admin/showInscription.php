@@ -24,6 +24,14 @@ include_once $header;
                     <div class="register-top-grid">
                         <?php elementsController::getInscription(); ?>
                     <br>
+                        <?php
+                            if (isset($_SESSION['msg_no_part'])) {
+                                if ($_SESSION['msg_no_part'] = 1)
+                                    echo $lang['MANAGEINSCRIPTION_NO_PARTICIPANT'];
+                                if ($_SESSION['msg_no_part'] = 2)
+                                    echo $lang[''];
+                            }
+                        ?>
                 </form>
             </div>
         </div>
