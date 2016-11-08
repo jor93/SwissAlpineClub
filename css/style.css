@@ -234,7 +234,7 @@ body a{
 	text-align:right;
 }
 span {
-	color: #ff7200;
+	color: white;
 }
 .banner-info p {
 	font-size: 1.2em;
@@ -659,8 +659,8 @@ Main Components
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { background:none !important; border:none !important;}
 
-.ui-widget-header{ background:#2b2627 !important;}
-.ui-widget-content{ background:#d7dde2 !important;}
+.ui-widget-header{ background:#ff0000 !important;}
+.ui-widget-content{ background:#6a737b !important;}
 
 .ui-slider-vertical.ui-slider-float .ui-slider-tip::before, .ui-slider-vertical.ui-slider-float .ui-slider-pip .ui-slider-tip-label::before{ border:0 !important;}
 
