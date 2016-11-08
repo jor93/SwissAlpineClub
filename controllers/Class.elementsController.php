@@ -72,8 +72,6 @@ class elementsController extends Controller
                     $x++;
                     $_SESSION['msg_no_part'] = 1;
                 }
-
-
             }
         }else{
             $_SESSION['msg_no_part'] = 2;
@@ -111,16 +109,28 @@ class elementsController extends Controller
         $answer = Inscription::getAllInsByAccount($accountId);
         $length = count($answer);
 
+        if($length == 0){
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . 'Sie haben keine Einschreibungen' . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . 'Pas de inscription!' . "</li></div>";
+            return;
+        }
+
         for ($i = 0; $i < $length; $i++) {
             $id = $answer[$i][1];
-            echo "<div class='about'>";
-            echo "<div class='col-md-4'><span>" . $answer[$i][3] . "</span></div>";
-            echo "<div class='col-md-8'><p onclick='showTour($id)'>" . $answer[$i][2] . "</p></div>";
-            echo "<div class='col-md-4'><span>" . "Tour start: " . "</span></div>";
-            echo "<div class='col-md-8'><p>" . $answer[$i][3] . "</p></div>";
-            echo "<div class='col-md-4'><span>" . "Tour ende: " . "</span></div>";
-            echo "<div class='col-md-8'><p>" . $answer[$i][4] . "</p></div>";
-            echo "</div>";
+            echo "<div class='col-md-4'><li>" . $answer[$i][3] . "</li></div>";
+            echo "<div class='col-md-8'><li onclick='showTour($id)'>" . $answer[$i][2] . "</li></div>";
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . "Startdatum: " . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . "Date de début: " . "</li></div>";
+            echo "<div class='col-md-8'><li>" . $answer[$i][3] . "</li></div>";
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . "Enddatum: " . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . "Date de fin: " . "</li></div>";
+            echo "<div class='col-md-8'><li>" . $answer[$i][4] . "</li></div>";
         }
         echo "<input type='hidden' id='saver' name='showTour' value='0' />";
 
@@ -163,6 +173,7 @@ class elementsController extends Controller
                 echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
                 echo "<li id='menu_inscription'><a href=".URL_DIR.'tour/showIns'.">". $lang['MENU_INSCRIPTION']."</a></li>";
             } else if (is_int($user) === true && $user == 10){
+                echo "<li id='menu_showHike'><a href=".URL_DIR.'admin/showHike'.">".  $lang['MENU_SHOWHIKE'] . "</a></li>";
                 echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
                 echo "<li id='menu_insmanage'><a href=".URL_DIR.'admin/manageInscription'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
                 echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";

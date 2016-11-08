@@ -171,8 +171,6 @@ if (isset($_SESSION['tourId'])) {
                     </div>
                 </div>
                 <div class="col-md-8">
-
-                    </br>
                     <div class="col-md-6">
                         <span><?php echo $lang['HIKESHOW_TOUR']; ?></span>
                     </div>
@@ -266,6 +264,10 @@ if (isset($_SESSION['tourId'])) {
 
                     <div class="col-md-6">
                         <label id="tourtypes"><?php echo elementsController::getTypeTourForHikeShow($_SESSION['tourId']); ?></label>
+                    </div>
+
+                    <div class="register-but">
+                        <a href="<?php echo URL_DIR. "admin/manageHike"?>"><button type="submit"><?php echo $lang['SHOWADMIN_EDIT']; ?></button></a>
                     </div>
                 </div>
             </div>
