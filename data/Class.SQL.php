@@ -74,7 +74,6 @@ class SQL {
 
 	// function for select query
 	public function select($query){
-	    echo "sql: " . $query;
         // prepare query (sql injection)
         $stmt = $this->_conn->prepare($query);
         // execute query or show error

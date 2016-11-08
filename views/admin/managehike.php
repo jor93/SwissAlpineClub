@@ -217,7 +217,7 @@ echo '<script>var myarray = ' . json_encode($data2) . ';</script>';
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form action="<?php echo URL_DIR . 'tour/updateTour'; ?>" id="manageTour" method="post"
+            <form action="<?php echo URL_DIR . 'tour/updatetour'; ?>" id="manageTour" method="post"
                   enctype="multipart/form-data">
                 <div class="register-top-grid">
                     <h3><?php echo $lang['SHOWHIKEADMIN_TITLE']; ?></h3>

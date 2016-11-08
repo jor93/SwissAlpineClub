@@ -16,7 +16,7 @@ class showuserController extends Controller
         else $this->redirect('login', 'login');
     }
 
-    function updateUserAccount(){
+    function updateuseraccount(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $operation = $this->badassSafer($_POST['operation']);
             if($operation == 2){
