@@ -239,6 +239,7 @@ $lang['HIKESHOW_STATUS'] = 'Status';
 $lang['HIKESHOW_PRICE'] = 'Preis pro Person';
 $lang['HIKESHOW_PLACE'] = 'Freie Plätze';
 $lang['HIKESHOW_ANMELDESCHLUSS'] = 'Anmeldeschluss';
+$lang['HIKESHOW_TOURTYPES'] = 'Tourtypen';
 $lang['HIKESHOW_INSCRIPTION'] = 'FÜR EINE TOUR EINSCHREIBEN';
 $lang['HIKESHOW_JOIN'] = 'Nehme ich auch teil?';
 $lang['HIKESHOW_FRIENDS'] = 'Meine Freunde:';

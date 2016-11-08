@@ -115,6 +115,14 @@ if (isset($_SESSION['tourId'])) {
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
                     <label id="expiration"><?php echo $inscription->getExpirationDate(); ?></label>
                 </div>
+
+                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <span><?php echo $lang['HIKESHOW_TOURTYPES']; ?></span>
+                </div>
+
+                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <label id="tourtypes"><?php echo elementsController::getTypeTourForHikeShow($_SESSION['tourId']); ?></label>
+                </div>
             </div>
         </div>
     </div>
