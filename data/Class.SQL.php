@@ -14,8 +14,8 @@ class SQL {
 	const HOST = "127.0.0.1";
 	const PORT = "3306";
 	const DATABASE = "grp1";
-	const USER = "root";
-	const PWD = "";
+	const USER = "grp1";
+	const PWD = "Finlande2018";
 
 	private static $instance;
 	private $_conn;
@@ -74,6 +74,7 @@ class SQL {
 
 	// function for select query
 	public function select($query){
+	    echo "sql: " . $query;
         // prepare query (sql injection)
         $stmt = $this->_conn->prepare($query);
         // execute query or show error

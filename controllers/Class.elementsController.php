@@ -453,7 +453,10 @@ class elementsController extends Controller
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                         echo "<div class='overlay'>";
                         echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
-                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                        if(strcmp($_SESSION['lang'],'fr')==0)
+                            echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                        else
+                            echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                         echo "</div>";
                         echo "</li>";
                          break;
@@ -468,7 +471,10 @@ class elementsController extends Controller
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                     echo "<div class='overlay'>";
                     echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
-                    echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                    if(strcmp($_SESSION['lang'],'fr')==0)
+                        echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                    else
+                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                     echo "</div>";
                     echo "</li>";
                                    }
@@ -479,7 +485,10 @@ class elementsController extends Controller
                 echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                 echo "<div class='overlay'>";
                 echo "<h5>$title[$x]<br />$location[$x], $newDate</h5>";
-                echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]h<br /></h6>";
+                if(strcmp($_SESSION['lang'],'fr')==0)
+                    echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                else
+                    echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                 echo "</div>";
                 echo "</li>";
 
@@ -499,8 +508,13 @@ class elementsController extends Controller
 
     public static function favoritesWhenLoggedIn(){
         if(self::getActiveUserWithoutCookie()){
-            echo "<li class='filter'><a class='selected' href='#0' data-type='all'>Alle</a></li>";
-            echo "<li class='filter' data-filter='.fav1'><a href='#0' data-type='fav1'>Favoriten</a></li>";
+            if(strcmp($_SESSION['lang'],'fr')==0) {
+                echo "<li class='filter'><a class='selected' href='#0' data-type='all'>Tous</a></li>";
+                echo "<li class='filter' data-filter='.fav1'><a href='#0' data-type='fav1'>Favoris</a></li>";
+            } else {
+                echo "<li class='filter'><a class='selected' href='#0' data-type='all'>Alle</a></li>";
+                echo "<li class='filter' data-filter='.fav1'><a href='#0' data-type='fav1'>Favoriten</a></li>";
+            }
         }
     }
 

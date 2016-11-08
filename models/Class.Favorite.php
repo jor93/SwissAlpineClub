@@ -84,7 +84,7 @@ class Favorite
     }
 
     static function removeFavorite($idAcc, $inputFavorite){
-        $query = "DELETE FROM Favorites WHERE Tour_idTour = '$inputFavorite' AND Account_idAccount = '$idAcc'";
+        $query = "DELETE FROM favorites WHERE Tour_idTour = '$inputFavorite' AND Account_idAccount = '$idAcc'";
         return  SQL::getInstance()->executeQuery($query);
     }
 }
