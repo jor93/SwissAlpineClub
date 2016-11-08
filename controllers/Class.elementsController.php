@@ -103,56 +103,46 @@ class elementsController extends Controller
         echo "<input type='hidden' id='saver' name='showInscription' value='0' />";
     }
 
-    public static function showLoggedInUser(){
-        include_once(ROOT_DIR.'views/lang/lang.de.php');
-        include_once(ROOT_DIR.'views/lang/lang.fr.php');
+    public static function showMenu($showMenu){
+        $de = ROOT_DIR . 'views/lang/lang.de.php';
+        $fr = ROOT_DIR . 'views/lang/lang.fr.php';
+        $alreadyIncluded = false;
+        $included_files = get_included_files();
+        foreach ($included_files as $filename) {
+            if(strcmp($filename,$de) == 0 && strcmp($filename,$fr) == 0) $alreadyIncluded = true;
+        }
+        if(!$alreadyIncluded) {
+            if(isset($_SESSION['lang'])){
+                if(strcmp($_SESSION['lang'],'de')==0) include $de;
+                else include $fr;
+            }
+        }
 
         $user = self::checkActiveUser();
-        if(is_bool($user) === true && !$user){
-            echo "<li><a href=". URL_DIR."login/register>" . $lang['HEADER_REGISTER'] . "</a></li>";
-            echo "<li><a href=". URL_DIR."login/login>" . $lang['HEADER_LOGIN'] . "</a></li>";
-        } else {
-            $name = $_SESSION["account"];
-            echo "<li><a href=". URL_DIR."profile/showuser>" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
-            echo "<li><a href=". URL_DIR."login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
-        }
-    }
-
-    public static function showMenuForUser(){
-
-        $user = self::checkActiveUser();
-
-        // default header
-       /* echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  $lang['MENU_NEWS'] . "</a></li>";
-        echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". $lang['MENU_TOUR']."</a></li>";
-        if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
-            echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". $lang['MENU_ABOUT'] . "</a></li>";
-            echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". $lang['MENU_CONTACT'] . "</a></li>";
-        }
-        if(is_int($user) === true && $user == 1){
-            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
-            echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
-        } else if (is_int($user) === true && $user == 10){
-            echo "<li id='menu_hikemanage'><a href=".URL_DIR.'admin/hikemanage'.">". $lang['MENU_HIKEMGMT']. "</a></li>";
-            echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
-            echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
-            echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
-        }*/
-
-        // default header
-        echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  'Home' . "</a></li>";
-        echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". 'Wanderungen'."</a></li>";
-        if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
-            echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". '&Uuml;ber Uns' . "</a></li>";
-            echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". 'Kontakt' . "</a></li>";
-        }
-        if(is_int($user) === true && $user == 1){
-            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". 'Mein Profil'."</a></li>";
-            echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". 'Meine Anmeldungen' ."</a></li>";
-        } else if (is_int($user) === true && $user == 10){
-            echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  'Benutzerverwaltung' . "</a></li>";
-            echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". 'Anmeldungen' . "</a></li>";
-            echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". 'Mein Profil' . "</a></li>";
+        if(!$showMenu) {
+            if (is_bool($user) === true && !$user) {
+                echo "<li><a href=" . URL_DIR . "login/register>" . $lang['HEADER_REGISTER'] . "</a></li>";
+                echo "<li><a href=" . URL_DIR . "login/login>" . $lang['HEADER_LOGIN'] . "</a></li>";
+            } else {
+                $name = $_SESSION["account"];
+                echo "<li><a href=" . URL_DIR . "profile/showuser>" . $lang['HEADER_LOGGED'] . ' ' . $name->getFullName() . "</a></li>";
+                echo "<li><a href=" . URL_DIR . "login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
+            }
+        }else if($showMenu){
+            echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  $lang['MENU_NEWS'] . "</a></li>";
+            echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". $lang['MENU_TOUR']."</a></li>";
+            if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
+                echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". $lang['MENU_ABOUT'] . "</a></li>";
+                echo "<li id='menu_contact'><a href=" .URL_DIR.'general/contact'.">". $lang['MENU_CONTACT'] . "</a></li>";
+            }
+            if(is_int($user) === true && $user == 1){
+                echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
+                echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
+            } else if (is_int($user) === true && $user == 10){
+                echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
+                echo "<li id='menu_insmanage'><a href=".URL_DIR.'admin/manageInscription'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
+                echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
+            }
         }
     }
 
@@ -166,11 +156,99 @@ class elementsController extends Controller
     public static function getNext3Hikings(){
         $answer = Tour::getNext3Hikings();
         $length = count($answer);
-        $img = '/' . SITE_NAME . '/images/img-6.jpg';
 
         for ($i = 0; $i < $length; $i++) {
             $id = $answer[$i][0];
-            echo "<li class='' onclick='showHike($id)'><img alt='No image found' src='$img' /></li>";
+            $date = $answer[$i][1];
+            $title = $answer[$i][4];
+            $subtitle = $answer[$i][5];
+            $timefrom = substr($answer[$i][6], 0, -3);
+            $timeto = substr($answer[$i][7], 0, -3);
+            $day = substr($date, -2);
+            $m = substr($date, 5, -3);
+            //month
+            switch ($m) {
+                case 1:
+                    $month = "jan";
+                    break;
+                case 2:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "fev";
+                    else
+                        $month = "feb";
+                    break;
+                case 3:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "mar";
+                    else
+                        $month = "m&auml;r";
+                    break;
+                case 4:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "avr";
+                    else
+                        $month = "apr";
+                    break;
+                case 5:
+                    $month = "mai";
+                    break;
+                case 6:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "juin";
+                    else
+                        $month = "jun";
+                    break;
+                case 7:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "juil";
+                    else
+                        $month = "jul";
+                    break;
+                case 8:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "aou";
+                    else
+                        $month = "aug";
+                    break;
+                case 9:
+                    $month = "sep";
+                    break;
+                case 10:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "oct";
+                    else
+                        $month = "okt";
+                    break;
+                case 11:
+                    $month = "nov";
+                    break;
+                case 12:
+                    if($_SESSION['lang'] == 'fr')
+                        $month = "dec";
+                    else
+                        $month = "dez";
+                    break;
+                default:
+                    $month = $m;
+                    break;
+            }
+            // get tour image from db
+            $tourImage = Tour::selectTourImage($id);
+            $temp = "data:" . $tourImage['mime'] . ";base64," . base64_encode($tourImage['data']);
+            echo "<div class='col-md-4 events-top'>";
+            echo "<img onclick='showHike($id)' alt='No image found' class='img-responsive' src='$temp' />";
+            echo "<div class='events-bottom'>";
+            echo "<div class='events-left'>";
+            echo "<h5>$day</h5>";
+            echo "<span>$month</span>";
+            echo "</div>";
+            echo "<div class='events-right'>";
+            echo "<h6>$title</h6>";
+            echo "<p>$subtitle<br />$timefrom - $timeto</p>";
+            echo "</div>";
+            echo "<div class='clearfix'> </div>";
+            echo "</div>";
+            echo "</div>";
         }
         echo "<input type='hidden' id='saver' name='showHike' value='0' />";
     }
@@ -179,7 +257,7 @@ class elementsController extends Controller
     {
         $answer = Account::selectAllAccounts();
         $length = count($answer);
-        $img = '/' . SITE_NAME . '/images/img-6.jpg';
+        $img = '/' . SITE_NAME . '/images/profile_pic.png';
 
         for ($i = 0; $i < $length; $i++) {
             $finalClass = "'mix " . $answer[$i][0] . ' ' . $answer[$i][1] . ' ' . $answer[$i][2] . ' ' . $answer[$i][3] . ' ' . $answer[$i][4] . ' ' . $answer[$i][5] . ' ' . $answer[$i][6] . ' ' . $answer[$i][7] . ' ' . substr($answer[$i][8], 0, -1) . ' ' . $answer[$i][9] . "'";
@@ -290,10 +368,10 @@ class elementsController extends Controller
         $countTours = count($idTours);
         $countFavorites = count($idFavorites);
         for ($x = 0; $x < $countTours; $x++) {
+            // get tour image from db
             $tourImage = Tour::selectTourImage($idTours[$x]);
-
-
             $temp = "data:" . $tourImage['mime'] . ";base64," . base64_encode($tourImage['data']);
+
             // set strings for filters
 
             $tourTypes = array();
@@ -334,7 +412,7 @@ class elementsController extends Controller
                         $favorite = "fav1";
                         $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                         echo "<li class=$finalClass>";
-                        echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 20px;' /></button>";
+                        echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 15px;' /></button>";
 
                         echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
@@ -349,7 +427,7 @@ class elementsController extends Controller
                 if (!$draw) {
                     $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                     echo "<li class=$finalClass>";
-                    echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 20px;' /></button>";
+                    echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 15px;' /></button>";
 
                     echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
@@ -381,6 +459,13 @@ class elementsController extends Controller
         $number = $_SESSION['msg'];
         for ($i = 0; $i < $number; ++$i) {
             echo "<input type='text' required>";
+        }
+    }
+
+    public static function favoritesWhenLoggedIn(){
+        if(self::getActiveUserWithoutCookie()){
+            echo "<li class='filter'><a class='selected' href='#0' data-type='all'>Alle</a></li>";
+            echo "<li class='filter' data-filter='.fav1'><a href='#0' data-type='fav1'>Favoriten</a></li>";
         }
     }
 

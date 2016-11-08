@@ -12,4 +12,12 @@ class homeController extends Controller {
     public function home(){
     }
 
+    public function showHike(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = $this->badassSafer($_POST['showHike']);
+            $_SESSION['tourId'] = $id;
+            $this->redirect('tour','hikingFromHome');
+        }
+    }
+
 }

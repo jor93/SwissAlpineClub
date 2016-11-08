@@ -42,9 +42,17 @@ class tourController extends Controller
                     $this->redirect('tour', 'hikeShow');
             }
         }
-
-
     }
+
+    function hikingFromHome(){
+        if(isset($_SESSION['tourId'])){
+            if (!self::checkActiveUser())
+                $this->redirect('tour', 'hikeShowOff');
+            else
+                $this->redirect('tour', 'hikeShow');
+        }
+    }
+
 
     function hikeShow(){
 
@@ -113,7 +121,7 @@ class tourController extends Controller
                 if(Tour::insertTour($tour, $insertedTourId)){
                     if((count($typetourIds) != 0))TypeTour::insertTypeTour($insertedTourId, $typetourIds);
                     if((count($transportIds) != 0))Transport::insertTransportTour($insertedTourId, $transportIds);
-                    Tour::updateTourImage($insertedTourId, $_FILES['img']['tmp_name'], $_FILES['img']['type']);
+                    if(!Tour::updateTourImage($insertedTourId, $_FILES['img']['tmp_name'], $_FILES['img']['type']))$this->redirect('admin', 'showHike');
 
                     // gez: get expiration date and available places
                     $edate = $this->badassSafer($_POST['exdate']);

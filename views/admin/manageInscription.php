@@ -11,7 +11,7 @@ include_once $header;
 ?>
 <script>
     $(document).ready(function () {
-        $('#menu_manageInscription').addClass('active');
+        $('#menu_insmanage').addClass('active');
     });
 
     function showInscription($idInscription){

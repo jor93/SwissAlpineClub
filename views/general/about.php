@@ -96,7 +96,7 @@ include_once $header;
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <label id="expiration">
 
-                            <ul style="list-style-type: disc">
+                            <ul style="list-style-type: none">
                                 <li>
                                     <p style="width: 539px;"><?php echo $lang['ABOUT_MEMBER_ADVANTAGE_1']; ?></p>
                                 </li>
