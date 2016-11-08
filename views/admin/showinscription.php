@@ -89,7 +89,7 @@ include_once $header;
     <div class="container">
         <div class="register">
             <h3 style="color: red"><?php echo $lang['SHOWINSCRIPTION_TITLE']; ?></h3>
-            <form id="editForm" method="post" action="<?php echo URL_DIR.'admin/showInscription';?>">
+            <form id="editForm" method="post" action="<?php echo URL_DIR.'admin/showinscription';?>">
                 <div class="register-top-grid">
                     <?php elementsController::getInscription(); ?>
                     <br>
@@ -104,15 +104,6 @@ include_once $header;
                         ?>
                     </label>
                 </div>
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <div class="register-but">
-                        <input onclick="edit()" id="btn-edit" type="button" value="<?php echo $lang['SHOWADMIN_EDIT']; ?>">
-                        <input onclick="save()" id="btn-save" type="button" value="<?php echo $lang['SHOWADMIN_SAVE']; ?>" style="display: none">
-                        <input onclick="del()" id="btn-delete" type="button" value="<?php echo $lang['SHOWADMIN_DELETE']; ?>" >
-                        <input onclick="canc()" id="btn-cancel" type="button" value="<?php echo $lang['SHOWADMIN_CANCEL']; ?>"  style="display: none">
-                    </div>
-                </div>
-                <input type='hidden' id='decider' name='operation' value='0' />
             </form>
         </div>
     </div>

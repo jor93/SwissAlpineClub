@@ -93,8 +93,8 @@ class TypeTour
     }
 
     static function selectTypeTour($idTypeTour){
-        $query = "SELECT TypeTour.*, Language.*
-                  FROM TypeTour, Language WHERE idTypeTour = '$idTypeTour' and TypeTour.Language_idLanguage = Language.idLanguage";
+        $query = "SELECT typeTour.*, language.*
+                  FROM typeTour, language WHERE idTypeTour = '$idTypeTour' and typeTour.Language_idLanguage = language.idLanguage";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
@@ -111,8 +111,8 @@ class TypeTour
             if($lastElement == $typeId)break;
             $whereClause += " and ";
         }
-        $query = "SELECT TypeTour.*
-                  FROM TypeTour, Language where '$whereClause' and TypeTour.Language_idLanguage = Language.idLanguage";
+        $query = "SELECT typeTour.*
+                  FROM typeTour, language where '$whereClause' and typeTour.Language_idLanguage = language.idLanguage";
         $result = SQL::getInstance()->select($query);
 
         $typeTours = array();
@@ -127,8 +127,8 @@ class TypeTour
 
     //Getting all types id's of a specific tour
     static function selectAllTypesTour($idTour){
-        $query = "SELECT TypeTour_Tour.*
-                  FROM TypeTour_Tour where Tour_idTour = '$idTour'";
+        $query = "SELECT typeTour_Tour.*
+                  FROM typeTour_Tour where Tour_idTour = '$idTour'";
         $result = SQL::getInstance()->select($query);
         $typesOfTour = array();
         while ($row = mysqli_fetch_row($result)) {
@@ -169,7 +169,7 @@ class TypeTour
     }
 
     static function selectTypeTourLength(){
-        $query = "SELECT count(*) as ResultTypeTour FROM TypeTour";
+        $query = "SELECT count(*) as ResultTypeTour FROM typeTour";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;

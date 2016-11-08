@@ -11,12 +11,12 @@ include_once $header;
 ?>
 <script>
     $(document).ready(function () {
-        $('#menu_insmanage').addClass('active');
+        $('#menu_accmanage').addClass('active');
     });
 
-    function showInscription($idInscription){
-        document.getElementById("saver").value = $idInscription;
-        document.getElementById("manageinscription").submit();
+     function showUser($idAccount){
+         document.getElementById("saver").value = $idAccount;
+         document.getElementById("manageUser").submit();
     }
 </script>
 
@@ -25,9 +25,9 @@ include_once $header;
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form id="manageinscription" action="<?php echo URL_DIR.'admin/manageInscription';?>" method="post" enctype="multipart/form-data">
+            <form id="manageUser" action="<?php echo URL_DIR.'admin/manageaccount';?>" method="post" enctype="multipart/form-data">
                 <div class="register-top-grid">
-                    <h3><?php echo $lang['MANAGEINSCRIPTION_TITLE']; ?></h3>
+                    <h3><?php echo $lang['SHOWHIKEADMIN_TITLE3']; ?>MANAGE ACCOUNTS</h3>
                 </div>
 
                 <main class="cd-main-content">
@@ -43,7 +43,7 @@ include_once $header;
 
                     <section class="cd-gallery">
                         <ul>
-                            <?php elementsController::getInscriptions(); ?>
+                            <?php elementsController::getAccounts(); ?>
                             <li class="gap"></li>
                             <li class="gap"></li>
                             <li class="gap"></li>
@@ -56,9 +56,11 @@ include_once $header;
     </div>
 </div>
 
+
 <script src="/<?php echo SITE_NAME; ?>/js/main.js"></script> <!-- Resource jQuery -->
 <script src="/<?php echo SITE_NAME; ?>/js/jquery.mixitup.min.js"></script>
 <script src="/<?php echo SITE_NAME; ?>/js/jquery-ui.js"></script>
+
 
 <?php
 include_once ROOT_DIR . '/views/footer.inc';

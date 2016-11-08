@@ -21,9 +21,9 @@ include_once $header;
     </script>
     <div class="main-1">
         <div class="container">
-            <div class="register">
+            <div class="contact-data">
                 <form id="manageIns" method="post" action="<?php echo URL_DIR.'tour/showIns';?>">
-                <h3><?php echo $lang['MENU_INSCRIPTION'];?></h3>
+                <h2><?php echo $lang['MENU_INSCRIPTION'];?></h2>
                 <ul>
                     <?php elementsController::showInscriptionPerUser($_SESSION['account']->getIdAccount())?>
                 </ul>

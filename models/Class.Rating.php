@@ -132,7 +132,7 @@ class Rating
 
     static function selectRating($idRating){
         $query = "SELECT *
-                  FROM Rating WHERE idRating = '$idRating'";
+                  FROM rating WHERE idRating = '$idRating'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
@@ -143,13 +143,13 @@ class Rating
     // get all ratings for one tour
     static function selectRatingsFromTour($idtour){
         $query = "SELECT *
-                  FROM Rating WHERE Tour_idTour = '$idtour'";
+                  FROM rating WHERE Tour_idTour = '$idtour'";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 
     // get sum of ratings
     static function getSumRatings($idtour){
-        $query = "SELECT SUM(Rating) FROM Rating WHERE Tour_idTour = $idtour";
+        $query = "SELECT SUM(Rating) FROM rating WHERE Tour_idTour = $idtour";
         $temp = SQL::getInstance()->select($query)->fetch();
         $result = $temp[0];
         return $result;
@@ -172,7 +172,7 @@ class Rating
     }
 
     static function updateRating($idRating, $rate, $comment){
-        $query = "UPDATE Rating
+        $query = "UPDATE rating
         SET Rating='$rate',Comment='$comment'
         WHERE idRating = '$idRating'";
         return  SQL::getInstance()->executeQuery($query);

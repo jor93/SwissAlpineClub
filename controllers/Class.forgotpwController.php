@@ -61,6 +61,7 @@ class forgotpwController extends Controller
                 $idAcc = $_SESSION['accountToChange']->getIdAccount();
                 $pw_encode = sha1($pw_new);
                 Account::resetpwDB($pw_encode, $idAcc);
+                $_SESSION['changed'] = 1;
                 return $this->redirect('admin', 'showaccount');
             }
 
@@ -87,7 +88,7 @@ class forgotpwController extends Controller
                     $idAcc = $_SESSION['accountToChange']->getIdAccount();
                     $pw_encode = sha1($pw_new);
                     Account::resetpwDB($pw_encode, $idAcc);
-                    return $this->redirect('admin', 'showAccount');
+                    return $this->redirect('admin', 'showaccount');
                 } else{
                     // if he is logged in!
                     $idAcc = $_SESSION['account']->getIdAccount();
@@ -120,7 +121,7 @@ class forgotpwController extends Controller
         return true;
     }
 
-    function checkMailControl(){
+    function checkmailcontrol(){
         // call controller login and read result
         $email_input = $this->badassSafer($_POST['mail']);
         $result = $this->checkMail($email_input);

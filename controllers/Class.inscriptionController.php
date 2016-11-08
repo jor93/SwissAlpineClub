@@ -26,7 +26,7 @@ class inscriptionController extends Controller
         $_SESSION['account_participant'] = $this->badassSafer($_POST['acc_part']);
     }
 
-    function validateParticipants_Inscription(){
+    function validateparticipants_inscription(){
         // get index of participants
         $maxPart = $_SESSION['index'];
 
@@ -36,7 +36,7 @@ class inscriptionController extends Controller
 
         $account = $_SESSION['account']->getIdAccount();
         // check if account is already inserted for this tour!
-        $checkAccForTour = Inscription::checkAccForTour($account);
+        $checkAccForTour = Inscription::checkAccForTour($account, $idInscription);
         // check status
         $checkStatus = Inscription::selectInscriptionByIdInscription($idInscription);
 
@@ -59,7 +59,7 @@ class inscriptionController extends Controller
                     $result = Inscription::selectAccountInscripted($account, $idInscription);
                     if ($result == null) {
                         $_SESSION['error_msg'] = 2;
-                        return $this->redirect('tour', 'hikeShow');
+                        return $this->redirect('tour', 'hikeshow');
                     }
                 }
                 for ($i = 1; $i <= $maxPart; $i++) {

@@ -91,7 +91,7 @@ class Location
 
     static function selectLocation($idLocation){
         $query = "SELECT *
-                  FROM Location WHERE idLocation = '$idLocation'";
+                  FROM location WHERE idLocation = '$idLocation'";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
