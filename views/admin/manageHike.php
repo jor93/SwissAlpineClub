@@ -80,7 +80,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
     var readySubmit = false;
 
     $(document).ready(function () {
-        $('#menu_hiking').addClass('active');
+        $('#menu_hikemanage').addClass('active');
     });
 
     $( function() {
