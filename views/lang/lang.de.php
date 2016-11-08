@@ -174,6 +174,8 @@ $lang['REGISTER_ERROR_6'] = 'Bitte geben Sie einen gültigen Vornamen ein!';
 $lang['REGISTER_ERROR_7'] = 'Bitte geben Sie einen gültigen Nachnamen ein!';
 $lang['REGISTER_ERROR_8'] = 'Bot! GEH WEG!';
 
+/* #################### login errors ####################  */
+$lang['LOGIN_ERROR_1'] = 'Anmeldedaten sind nicht korrekt!';
 
 /* #################### global errors ####################  */
 $lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie es erneut!';
