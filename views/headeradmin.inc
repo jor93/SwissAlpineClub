@@ -47,7 +47,7 @@ include ROOT_DIR.'views/common.php';
                     </div>
                     <div class="header-left">
                         <ul>
-                            <?php elementsController::showLoggedInUser(); ?>
+                            <?php elementsController::showMenu(false); ?>
                             <a href="?lang=fr"><img src="/<?php echo SITE_NAME; ?>/images/french.png" width="20px" height="20px" /></a>
                             <a href="?lang=de"><img src="/<?php echo SITE_NAME; ?>/images/german.png" width="20px" height="20px" /></a>
                         </ul>
@@ -64,7 +64,7 @@ include ROOT_DIR.'views/common.php';
                 <div class="head-nav">
                     <span class="menu"> </span>
                     <ul>
-                        <?php elementsController::showMenuForUser(); ?>
+                        <?php elementsController::showMenu(true); ?>
                         <div class="clearfix"> </div>
                     </ul>
                 </div>

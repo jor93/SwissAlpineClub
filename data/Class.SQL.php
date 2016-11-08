@@ -143,18 +143,17 @@ class SQL {
             $stmt->bindParam(':id', $tourid);
             $stmt->bindParam(':mime', $mime);
             $stmt->bindParam(':data', $blob, PDO::PARAM_LOB);
+
             // execute query
             $result = $stmt->execute();
-            // get any error
-            $e = $this->_conn->errorInfo();
             // check error
-            if ($e[1] != null) {
+            if ($result) {
+                // commit if no erros
+                $this->_conn->commit();
+            } else{
                 // rollback if errors
                 $this->_conn->rollBack();
                 die(print_r($this->_conn->errorInfo(), true));
-            } else{
-                // commit if no erros
-                $this->_conn->commit();
             }
             // rollback if any exception thrown
         } catch (PDOException $e) {

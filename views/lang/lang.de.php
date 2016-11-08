@@ -182,10 +182,10 @@ $lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie
 $lang['NO_RESULTS'] = 'Keine Ergebnisse gefunden, die ihrer Auswahl entsprechen';
 
 /* #################### header ####################  */
-$lang['HEADER_REGISTER'] = 'Enregistrer';
+$lang['HEADER_REGISTER'] = 'Registrieren';
 $lang['HEADER_LOGIN'] = 'Login';
 $lang['HEADER_LOGOUT'] = 'Logout';
-$lang['HEADER_LOGGED'] = 'Bienvenue';
+$lang['HEADER_LOGGED'] = 'Willkommen';
 
 /* #################### Home ######################*/
 $lang['HOME_HIKE'] = 'Wanderungen';
@@ -195,12 +195,10 @@ $lang['HOME_ADVANTAGE_DESC'] = 'Wir bieten Ihnen verschiedene Wanderungen mit Fa
 $lang['HOME_RATING'] = 'Sehen Sie sich Bewertungen an';
 $lang['HOME_RATING_DESC'] ='Auf unserer Seite können Sie die Wanderungen genauenstens ansehen und sich die Bewertungen unserer Community ansehen.';
 $lang['HOME_BTN_MORE'] = 'Mehr';
-$lang['HOME_VIDEO_TITLE'] = 'Titel Video';
-$lang['HOME_VIDEO_SUBTITLE'] = 'Untertitel Video';
-$lang['HOME_VIDEO_DESC'] = "Maecenas finibus quis nulla id facilisis. Aenean dignissim magna et est elit porttitor
-                gravida lacinia. Fusce elementum massa at eros lacinia imperdiet. Aenean mollis ultricies
-                dictum.Praesent suscipit urna eget elit porttitor mollis. Quisque mollis rhoncus ante, eu
-                interdum quam vehicula cursus. Nam bibendum odio eu sem semper posuere.  ";
+$lang['HOME_VIDEO_TITLE'] = 'Wanderungen';
+$lang['HOME_VIDEO_SUBTITLE'] = 'In der ganzen Schweiz';
+$lang['HOME_VIDEO_DESC'] = "Entdecken Sie die Wunder der Natur. Mit einer geeigneten Ausrüstung und unseren Freundlichen Guides werden Sie sich bestimmt noch lange an diesen Tag erinnern. 
+Ob alleine, mit Familie oder mit Freunden, nehmen Sie an unseren Wanderungen Teil!";
 
 /* #################### Tour ######################*/
 $lang['TOUR_TITLE'] = 'Wanderung';
@@ -300,13 +298,15 @@ $lang['SHOWHIKEADMIN_DESCDE'] = 'Beschreibung Deutsch';
 $lang['SHOWHIKEADMIN_DESCFR'] = 'Beschreibung Franzoesisch';
 $lang['SHOWHIKEADMIN_STARTDATE'] = 'Startdatum';
 $lang['SHOWHIKEADMIN_ENDDATE'] = 'Enddatum';
-$lang['SHOWHIKEADMIN_DEPTIME'] = 'Abfahrtszeit';
-$lang['SHOWHIKEADMIN_ARRTIME'] = 'Ankunftszeit';
+$lang['SHOWHIKEADMIN_DEPTIME'] = 'Abfahrtszeit (z.B. 08:00)';
+$lang['SHOWHIKEADMIN_ARRTIME'] = 'Ankunftszeit (z.B. 14:00)';
+$lang['SHOWHIKEADMIN_ERRORTIME'] = 'Invalides Zeitformat';
 $lang['SHOWHIKEADMIN_STATUS'] = 'Status';
 $lang['SHOWHIKEADMIN_TRANSPORT'] = 'Transport';
 $lang['SHOWHIKEADMIN_TYPE'] = 'Tour Typ';
-$lang['SHOWHIKEADMIN_TYPE_DESC'] = 'Wählen Sie mindestens eines aus';
-$lang['SHOWHIKEADMIN_IMG'] = 'Bild';
+$lang['SHOWHIKEADMIN_TYPE_DESC'] = 'Wählen Sie mindestens eines aus.';
+$lang['SHOWHIKEADMIN_IMG'] = 'Bild (max: 0.5 MB)';
+$lang['SHOWHIKEADMIN_IMGERROR'] = 'File-Grösse darf nicht 0.5 MB überschreiten';
 $lang['SHOWHIKEADMIN_EXPDATE'] = 'Auslaufdatum';
 $lang['SHOWHIKEADMIN_AVPLACE'] = 'Freie Plätze';
 $lang['SHOWHIKEADMIN_NOTES'] = 'Notizen für Guide';

@@ -30,6 +30,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 <script>
     $(document).ready(function () {
         $('#menu_showhike').addClass('active');
+
     });
 
     var MIN_LENGTH = 2;
@@ -70,8 +71,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         });
     });
 
-
-
     var expanded = false;
     function showCheckboxes() {
         var checkboxes = document.getElementById("checkboxes");
@@ -108,6 +107,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         else return true;
     };
 
+
     $(document).ready(function () {
         $('#checkBtn').click(function() {
             checked = $("input[id=typetour]:checked").length;
@@ -119,6 +119,51 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
             else{
                 document.getElementById('selectCheck').style.display = 'none';
             }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            if (typeof FileReader !== "undefined") {
+                var size = document.getElementById('img').files[0].size;
+                if(500000 < size){
+                    document.getElementById('selectImageCheck').style.display = 'block';
+                    return false;
+                }
+                else{
+                    document.getElementById('selectImageCheck').style.display = 'none';
+                }
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            // regular expression to match required time format
+            var re = /^\d{1,2}:\d{2}([ap]m)?$/;
+
+            if(document.getElementById('deptime').value != '' && !document.getElementById('deptime').value.match(re)) {
+                document.getElementById('selectCheckTimeDep').style.display = 'block';
+                return false;
+            }
+
+            document.getElementById('selectCheckTimeDep').style.display = 'none';
+            return true;
+        });
+    });
+
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            // regular expression to match required time format
+            var re = /^\d{1,2}:\d{2}([ap]m)?$/;
+
+            if(document.getElementById('artime').value != '' && !document.getElementById('artime').value.match(re)) {
+                document.getElementById('selectCheckTimeAr').style.display = 'block';
+                return false;
+            }
+
+            document.getElementById('selectCheckTimeAr').style.display = 'none';
+            return true;
         });
     });
 
@@ -192,10 +237,12 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWHIKEADMIN_DEPTIME']; ?></span>
                         <input type="text" id="deptime" name="deptime" required>
+                        <label id="selectCheckTimeDep" class="error" style="display:none"><?php echo $lang['SHOWHIKEADMIN_ERRORTIME']; ?></label>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWHIKEADMIN_ARRTIME']; ?></span>
                         <input type="text" id="artime" name="artime" required>
+                        <label id="selectCheckTimeAr" class="error" style="display:none"><?php echo $lang['SHOWHIKEADMIN_ERRORTIME']; ?></label>
                     </div>
 
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
@@ -219,6 +266,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span><?php echo $lang['SHOWHIKEADMIN_IMG']; ?></span>
                         <input type="file" id="img" name="img" accept="image/gif, image/jpeg, image/png" required>
+                        <label id="selectImageCheck" class="error" style="display:none"><?php echo $lang['SHOWHIKEADMIN_IMGERROR']; ?></label>
                     </div>
 
                     <!-- gez: for inscription necessary infos! -->
