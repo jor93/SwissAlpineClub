@@ -28,19 +28,19 @@ include_once $header;
             <i class="tent"></i>
             <h4><?php echo $lang['HOME_HIKE']; ?></h4>
             <p><?php echo $lang['HOME_HIKE_DESC']; ?></p>
-            <a href="#" class="btn  btn-1c btn1 btn-1d"><?php echo $lang['HOME_BTN_MORE']; ?></a>
+
         </div>
         <div class="col-md-4 curabitur-top">
             <i class="hammer"></i>
             <h4><?php echo $lang['HOME_ADVANTAGE']; ?></h4>
             <p><?php echo $lang['HOME_ADVANTAGE_DESC']; ?></p>
-            <a href="#" class="btn  btn-1c btn1 btn-1d"><?php echo $lang['HOME_BTN_MORE']; ?></a>
+
         </div>
         <div class="col-md-4 curabitur-top">
             <i class="timer"></i>
             <h4><?php echo $lang['HOME_RATING']; ?></h4>
             <p><?php echo $lang['HOME_RATING_DESC']; ?></p>
-            <a href="#" class="btn  btn-1c btn1 btn-1d"><?php echo $lang['HOME_BTN_MORE']; ?></a>
+
         </div>
         <div class="clearfix"> </div>
     </div>
