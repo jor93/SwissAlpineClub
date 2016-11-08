@@ -91,14 +91,14 @@ class elementsController extends Controller
             echo "<li><a href=". URL_DIR."profile/showuser>" . $lang['HEADER_LOGGED'].  ' ' . $name->getFullName() . "</a></li>";
             echo "<li><a href=". URL_DIR."login/logout>" . $lang['HEADER_LOGOUT'] . "</a></li>";
         }
+
     }
 
     public static function showMenuForUser(){
-
         $user = self::checkActiveUser();
 
         // default header
-       /* echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  $lang['MENU_NEWS'] . "</a></li>";
+        /*echo "<li id='menu_home'><a href=".URL_DIR.'home'.">".  $lang['MENU_NEWS'] . "</a></li>";
         echo "<li id='menu_hiking'><a href=".URL_DIR.'tour/hiking'.">". $lang['MENU_TOUR']."</a></li>";
         if((is_bool($user) === true && !$user) || (is_int($user) === true && $user != 10)) {
             echo "<li id='menu_about'><a href=".URL_DIR.'general/about'.">". $lang['MENU_ABOUT'] . "</a></li>";
@@ -108,7 +108,6 @@ class elementsController extends Controller
             echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
             echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
         } else if (is_int($user) === true && $user == 10){
-            echo "<li id='menu_hikemanage'><a href=".URL_DIR.'admin/hikemanage'.">". $lang['MENU_HIKEMGMT']. "</a></li>";
             echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
             echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
             echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
