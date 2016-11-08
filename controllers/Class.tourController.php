@@ -42,9 +42,15 @@ class tourController extends Controller
                     $this->redirect('tour', 'hikeShow');
             }
         }
-
-
+        if(isset($_SESSION['tourId'])){
+            if (!self::checkActiveUser())
+                $this->redirect('tour', 'hikeShowOff');
+            else
+                $this->redirect('tour', 'hikeShow');
+        }
     }
+
+
 
     function hikeShow(){
 
