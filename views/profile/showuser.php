@@ -88,7 +88,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
     }
 
     function edit() {
-
         //document.getElementById("mail").removeAttribute("disabled");
         document.getElementById("fname").removeAttribute("disabled");
         document.getElementById("lname").removeAttribute("disabled");
@@ -98,10 +97,13 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
         document.getElementById("country").removeAttribute("disabled");
         document.getElementById("plz").removeAttribute("disabled");
         document.getElementById("loc").removeAttribute("disabled");
-
         document.getElementById("btn-save").style.display = "inline"
         document.getElementById("btn-edit").style.display = "none";
+    }
 
+    function forgot(){
+        document.getElementById("decider").value = 2;
+        document.getElementById("editForm").submit();
     }
 
 
@@ -111,10 +113,9 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 <div class="main">
     <div class="container">
         <div class="about">
+            <?php if(isset($_SESSION['changed'])){ echo $lang['RESETPW_SUCCESS'] . '</br></br>'; $_SESSION['changed'] = null;} ?>
             <h4 style="padding-left: 6%"><?php echo $lang['SHOWUSER_WELCOME']; ?></h4>
-
             <div class="register-top-grid" style="padding-left: 70px">
-
                 </br>
                 <form id="editForm" action="<?php echo URL_DIR.'showuser/updateUserAccount';?>" method="post">
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -192,7 +193,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <div class="register-but">
-                            <input type="submit" value="<?php echo $lang['SHOWUSER_CHANGEPW']; ?>">
+                            <input type="button" id="btn-forgot" onclick="forgot()" value="<?php echo $lang['SHOWUSER_CHANGEPW']; ?>">
                         </div>
                     </div>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -201,6 +202,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                             <input id="btn-save" type="submit" value="<?php echo $lang['SHOWUSER_SAVE']; ?>" style="display: none">
                         </div>
                     </div>
+                    <input type='hidden' id='decider' name='operation' value='0' />
                 </form>
             </div>
         </div>

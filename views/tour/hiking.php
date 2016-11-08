@@ -44,8 +44,7 @@ include_once $header;
                     <li class="placeholder">
                         <a data-type="all" href="#0"><?php echo $lang['HIKING_ALL']; ?> </a> <!-- selected option on mobile -->
                     </li>
-                    <li class="filter"><a class="selected" href="#0" data-type="all"><?php echo $lang['HIKING_ALL']; ?></a></li>
-                    <li class="filter" data-filter=".fav1"><a href="#0" data-type="color-1"><?php echo $lang['HIKING_FAVORITES']; ?></a></li>
+                    <?php echo elementsController::favoritesWhenLoggedIn();?>
                 </ul> <!-- cd-filters -->
             </div> <!-- cd-tab-filter -->
         </div> <!-- cd-tab-filter-wrapper -->

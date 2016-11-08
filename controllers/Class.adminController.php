@@ -82,7 +82,6 @@ class adminController extends Controller
                 $_SESSION['country'] = null;
                 $_SESSION['accountToChange'] = null;
                 $this->redirect('admin','manageAccount');
-
             }else if($operation == 0){
                 // get form
                 $firstName = $this->badassSafer($_POST['firstname']);
