@@ -105,7 +105,6 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
             document.getElementById("decider").value = 1;
             document.getElementById("editForm").submit();
         }
-
     }
     function canc() {
         controlGUI();

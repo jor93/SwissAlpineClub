@@ -34,8 +34,7 @@ class inscriptionController extends Controller
         $idInscription = $_SESSION['idInscription'];
         $countParticipants = 0;
 
-        //$account = self::getActiveUserWithoutCookie()->getIdAccount();
-        $account = 2;
+        $account = $_SESSION['account']->getIdAccount();
         // check if account is already inserted for this tour!
         $checkAccForTour = Inscription::checkAccForTour($account);
         // check status
@@ -112,10 +111,8 @@ class inscriptionController extends Controller
         $givenComment = $this->badassSafer($_POST['givenComment']);
 
         // get the current user
-        $idAcc = self::getActiveUserWithoutCookie()->getIdAccount();
+        $idAcc = $_SESSION['account']->getIdAccount();
         $idTour = $_SESSION['tourId'];
-
-        $idAcc = 1;
 
         // check if already rated - if no discard
         $checkAccount = Rating::selectRatingByidAccount($idAcc, $idTour);

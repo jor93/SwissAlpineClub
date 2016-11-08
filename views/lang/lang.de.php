@@ -338,5 +338,10 @@ $lang['SHOWADMIN_CANCEL'] = 'Abbrechen';
 $lang['MANAGEINSCRIPTION_TITLE']='EINSCHREIBUNGEN VERWALTEN';
 
 
+/* #################### SHOWINSCRIPTIONS ######################*/
+$lang['INS_TITLE']='MEINE EINSCHREIBUNGEN';
+$lang['INS_ERROR']='Sie haben momementan keine Einschreibungen!';
+
+$lang['MENU_SHOWHIKE'] = 'Tour hinzufügen'
 
 ?>

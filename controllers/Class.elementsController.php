@@ -10,54 +10,73 @@
 
 class elementsController extends Controller
 {
+    static function getXForView(){
+        if (isset($_SESSION['x'])) {
+            $x = $_SESSION['x'];
+            echo $x;
+        }
+        else
+            var_dump($_SESSION['x']);
+    }
+
     public static function getInscription()
     {
         // get all inscripted accs and related participants
         $id = $_SESSION['idInscription'];
         $accounts_inscripted = Inscription::getAccsInscriptedByIdInscription($id);
         $length_accs = count($accounts_inscripted);
+        $x = 0;
+        $a = null;
 
         // check out lang
         $accLang = self::getAdminUserWithoutCookie()->getLanguage();
 
-        if ($length_accs != 0){
+        if ($length_accs != null){
             // draw accs
             for ($i = 0; $i < $length_accs; $i++) {
+                $x++;
                 if ($accLang == 'de')
                     $abo_acc = $accounts_inscripted[$i][5];
                 if ($accLang == 'fr')
                     $abo_acc = $accounts_inscripted[$i][6];
                 echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
-                echo "<input type='text' value='" . $accounts_inscripted[$i][1] . ' ' . $accounts_inscripted[$i][2] . "'>";
-                echo "<input type='text' value='" . $accounts_inscripted[$i][3] . "'>";
-                echo "<input type='text' value='" . $abo_acc . "'>";
+                echo "<input type='text' id='nameAcc" . $x . "' disabled value='" . $accounts_inscripted[$i][1] . ' ' . $accounts_inscripted[$i][2] . "'>";
+                echo "<input type='text' id='email" . $x . "' disabled value='" . $accounts_inscripted[$i][3] . "'>";
+                echo "<input type='text' id='aboAcc" . $x . "' disabled value='" . $abo_acc . "'>";
                 echo "</div>";
 
-                $participants = Participant::getParticipantFromInscription($id, $accounts_inscripted[$i][0]);
+                $participants = Participant::getParticipantFromInscriptionAccount($id, $accounts_inscripted[$i][0]);
                 $length_parts = count($participants);
 
                 if ($length_parts != 0){
                     // draw participants related to accs
                     for ($j = 0; $j < $length_parts; $j++) {
+                        $x++;
+                        $a .= ',' . $x;
+
                         if ($accLang == 'de')
                             $abo = $participants[$j][3];
                         if ($accLang == 'fr')
                             $abo = $participants[$j][4];
                         echo "<div class=\"wow fadeInLeft\" data-wow-delay=\"0.4s\" >";
 
-                        echo "<input type='text' value='" . $participants[$j][1] . ' ' . $participants[$j][2] ."'>";
-                        echo "<input type='text' value='" . $abo . "'>";
+                        echo "<input type='text' id='firstname" . $x . "' disabled value='" . $participants[$j][1] ."'>";
+                        echo "<input type='text' id='lastname" . $x . "' disabled value='" . $participants[$j][2] ."'>";
+                        echo "<select id='aboPart" . $x . "' name=abo' disabled>";
+                            elementsController::aboSelect($participants[$j][6]-1);
+                        echo "</select>";
                         echo "</div>";
                     }
                 }else{
+                    $x++;
                     $_SESSION['msg_no_part'] = 1;
                 }
             }
         }else{
             $_SESSION['msg_no_part'] = 2;
         }
-
+        $_SESSION['x'] = $a;
     }
 
     public static function getInscriptions()
@@ -90,13 +109,27 @@ class elementsController extends Controller
         $answer = Inscription::getAllInsByAccount($accountId);
         $length = count($answer);
 
+        if($length == 0){
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . 'Sie haben keine Einschreibungen' . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . 'Pas de inscription!' . "</li></div>";
+            return;
+        }
+
         for ($i = 0; $i < $length; $i++) {
             $id = $answer[$i][1];
             echo "<div class='col-md-4'><li>" . $answer[$i][3] . "</li></div>";
             echo "<div class='col-md-8'><li onclick='showTour($id)'>" . $answer[$i][2] . "</li></div>";
-            echo "<div class='col-md-4'><li>" . "Tour start: " . "</li></div>";
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . "Startdatum: " . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . "Date de début: " . "</li></div>";
             echo "<div class='col-md-8'><li>" . $answer[$i][3] . "</li></div>";
-            echo "<div class='col-md-4'><li>" . "Tour ende: " . "</li></div>";
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . "Enddatum: " . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . "Date de fin: " . "</li></div>";
             echo "<div class='col-md-8'><li>" . $answer[$i][4] . "</li></div>";
         }
         echo "<input type='hidden' id='saver' name='showTour' value='0' />";
@@ -140,6 +173,7 @@ class elementsController extends Controller
                 echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
                 echo "<li id='menu_inscription'><a href=".URL_DIR.'tour/showIns'.">". $lang['MENU_INSCRIPTION']."</a></li>";
             } else if (is_int($user) === true && $user == 10){
+                echo "<li id='menu_showHike'><a href=".URL_DIR.'admin/showHike'.">".  $lang['MENU_SHOWHIKE'] . "</a></li>";
                 echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
                 echo "<li id='menu_insmanage'><a href=".URL_DIR.'admin/manageInscription'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
                 echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";

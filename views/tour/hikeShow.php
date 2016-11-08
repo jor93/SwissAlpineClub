@@ -171,8 +171,6 @@ if (isset($_SESSION['tourId'])) {
                     </div>
                 </div>
                 <div class="col-md-8">
-
-                    </br>
                     <div class="col-md-6">
                         <span><?php echo $lang['HIKESHOW_TOUR']; ?></span>
                     </div>

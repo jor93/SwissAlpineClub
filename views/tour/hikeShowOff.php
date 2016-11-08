@@ -28,8 +28,6 @@ if (isset($_SESSION['tourId'])) {
                 <?php echo elementsController::avgRatings();?>
             </div>
             <div class="col-md-8">
-
-                </br>
                 <div class="col-md-6">
                     <span><?php echo $lang['HIKESHOW_TOUR']; ?></span>
                 </div>
