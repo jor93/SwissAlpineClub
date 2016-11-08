@@ -45,6 +45,8 @@ class forgotpwController extends Controller
             // get the current user if he is logged in!
             $currentUser = $_SESSION['account'];
 
+            if(!$checkpwd) $this->redirect('login', 'resetpw');
+
             if(isset($_SESSION['changeMyFuckingPassword'])) {
                 // if he is logged in!
                 $idAcc = $_SESSION['account']->getIdAccount();
@@ -164,20 +166,24 @@ class forgotpwController extends Controller
         echo '</br>' . $temp->getLanguage();
 
         include_once(ROOT_DIR.'models/Class.PrepMail.php');
+
         $obj = new PrepMail($temp->getEmail(), $temp->getFirstname(), $temp->getLastname(), null, null, $temp->getLanguage());
 
         $_SESSION['lang'] = $obj->getLang();
         $language = $obj->getLang();
         include_once(ROOT_DIR.'views/common.php');
 
-        $Results = Account::selectAccountByEmail($temp->getEmail());
+        $results = Account::selectAccountByEmail($temp->getEmail());
+        if(count($results) >= 1) {
 
-        if(count($Results) >= 1) {
             //$encrypt = md5(1290*3+$Results['idAccount']);
             include_once(ROOT_DIR . 'models/Class.Encryption.php');
-            $encrypt = Encryption::encode($Results['idAccount']);
+            echo 'test1.1';
+            $encrypt = Encryption::encode($results['idAccount']);
+            echo 'test1.2';
 
             if ($origin == 1) {
+                echo 'test2';
                 $link_resetpw = URL_DIR . 'login/resetpw?' . 'encrypt=' . $encrypt . '&action=reset';
 
                 // set the email content - forgot pw
@@ -211,10 +217,13 @@ class forgotpwController extends Controller
                 }
             }
         }
+
+
         return $obj;
     }
 
     public static function sendMail($temp, $origin){
+
         $emailTo = null;
         $firstname = null;
         $lastname = null;
@@ -224,8 +233,13 @@ class forgotpwController extends Controller
         $msgMail = null;
 
         // initialize the phpmailer and the mail
-        require 'PHPMailerAutoload.php';
+        //require 'phpmailerautoload.php';
+        include_once (ROOT_DIR . 'phpmailer/phpmailerautoload.php');
+
+
         $mail = new PHPMailer;
+
+
 
         // 1 = forgotpw   3 = confirmation mail
         if($origin == 1 || $origin == 3){

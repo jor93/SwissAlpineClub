@@ -357,7 +357,7 @@ class Account{
     // get single account id by email
     public static function selectAccountByEmail($accountEmail){
         $query = "SELECT idAccount FROM account where account.Email = '$accountEmail'";
-        return $result = SQL::getInstance()->select($query)->fetch();
+        return $result = SQL::getInstance()->select($query)->fetchAll();
     }
 
     // get id account per encrypted mda value

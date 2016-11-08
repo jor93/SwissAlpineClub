@@ -169,11 +169,11 @@ class TypeTour
     }
 
     static function selectTypeTourLength(){
-        $query = "SELECT count(*) as ResultTypeTour FROM typeTour";
+        $query = "SELECT count(*) as result FROM typetour;";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return false;
-        return $row['ResultTypeTour'];
+        return $row['result'];
     }
 
     //get Tour ids used for a specific tour

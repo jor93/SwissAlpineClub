@@ -443,7 +443,7 @@ class Tour
 
 
     static function selectTour($tourId){
-        $query = "SELECT tour.*, languageDesc.*
+        $query = "SELECT tour.*, language.*
                   FROM tour , language
                  where tour.idTour = '$tourId'
                  and tour.Language_idLanguage = language.idLanguage";

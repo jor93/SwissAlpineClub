@@ -267,7 +267,7 @@ if (isset($_SESSION['tourId'])) {
                     </div>
 
                     <div class="register-but">
-                        <a href="<?php echo URL_DIR. "admin/manageHike"?>"><button type="submit"><?php echo $lang['SHOWADMIN_EDIT']; ?></button></a>
+                        <a href="<?php echo URL_DIR. "admin/manageHike"?>"><?php if(Controller::checkActiveUser() == 10) echo "<button type=\"submit\">" . $lang['SHOWADMIN_EDIT'] . "</button>" ?></a>
                     </div>
                 </div>
             </div>
