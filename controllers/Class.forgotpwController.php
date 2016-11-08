@@ -45,6 +45,8 @@ class forgotpwController extends Controller
             // get the current user if he is logged in!
             $currentUser = $_SESSION['account'];
 
+            if(!$checkpwd) $this->redirect('login', 'resetpw');
+
             if(isset($_SESSION['changeMyFuckingPassword'])) {
                 // if he is logged in!
                 $idAcc = $_SESSION['account']->getIdAccount();
