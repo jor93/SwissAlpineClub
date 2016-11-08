@@ -10,7 +10,7 @@
 
 class elementsController extends Controller
 {
-    
+
     public static function getInscription()
     {
         // get all inscripted accs and related participants

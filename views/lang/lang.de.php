@@ -195,12 +195,10 @@ $lang['HOME_ADVANTAGE_DESC'] = 'Wir bieten Ihnen verschiedene Wanderungen mit Fa
 $lang['HOME_RATING'] = 'Sehen Sie sich Bewertungen an';
 $lang['HOME_RATING_DESC'] ='Auf unserer Seite können Sie die Wanderungen genauenstens ansehen und sich die Bewertungen unserer Community ansehen.';
 $lang['HOME_BTN_MORE'] = 'Mehr';
-$lang['HOME_VIDEO_TITLE'] = 'Titel Video';
-$lang['HOME_VIDEO_SUBTITLE'] = 'Untertitel Video';
-$lang['HOME_VIDEO_DESC'] = "Maecenas finibus quis nulla id facilisis. Aenean dignissim magna et est elit porttitor
-                gravida lacinia. Fusce elementum massa at eros lacinia imperdiet. Aenean mollis ultricies
-                dictum.Praesent suscipit urna eget elit porttitor mollis. Quisque mollis rhoncus ante, eu
-                interdum quam vehicula cursus. Nam bibendum odio eu sem semper posuere.  ";
+$lang['HOME_VIDEO_TITLE'] = 'Wanderungen';
+$lang['HOME_VIDEO_SUBTITLE'] = 'In der ganzen Schweiz';
+$lang['HOME_VIDEO_DESC'] = "Entdecken Sie die Wunder der Natur. Mit einer geeigneten Ausrüstung und unseren Freundlichen Guides werden Sie sich bestimmt noch lange an diesen Tag erinnern. 
+Ob alleine, mit Familie oder mit Freunden, nehmen Sie an unseren Wanderungen Teil!";
 
 /* #################### Tour ######################*/
 $lang['TOUR_TITLE'] = 'Wanderung';
