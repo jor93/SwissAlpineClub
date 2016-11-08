@@ -104,7 +104,7 @@ include_once $header;
 <div class="events">
     <div class="container">
         <h2>Upcoming Events</h2>
-        <form id="manageHikings" action="<?php echo URL_DIR.'tour/hiking';?>" method="post" enctype="multipart/form-data">
+        <form id="manage3Hikings" action="<?php echo URL_DIR.'home/showHike';?>" method="post" enctype="multipart/form-data">
             <?php echo elementsController::getNext3Hikings();?>
         </form>
         <div class="clearfix"> </div>

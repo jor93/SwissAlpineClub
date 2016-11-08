@@ -150,9 +150,6 @@ class elementsController extends Controller
         $answer = Tour::getNext3Hikings();
         $length = count($answer);
 
-
-
-
         for ($i = 0; $i < $length; $i++) {
             $id = $answer[$i][0];
             $date = $answer[$i][1];
