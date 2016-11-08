@@ -123,7 +123,7 @@ class elementsController extends Controller
                 echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
             } else if (is_int($user) === true && $user == 10){
                 echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
-                echo "<li id='menu_insmanage'><a href=".URL_DIR.'home'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
+                echo "<li id='menu_insmanage'><a href=".URL_DIR.'admin/manageInscription'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
                 echo "<li id='menu_profil'><a href=".URL_DIR.'admin/showAccount'.">". $lang['MENU_PROFIL'] . "</a></li>";
             }
         }
