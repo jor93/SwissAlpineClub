@@ -91,7 +91,7 @@ class adminController extends Controller
                 // create new account and fill with data
                 $user = new Account();
                 $user->setIdAccount($_SESSION['accountToChange']->getIdAccount());
-                $user->setFirstname(ucwords($firstName));
+                $user->setFirstname(($firstName));
                 $user->setLastname(ucwords($lastName));
                 $user->setPassword($_SESSION['accountToChange']->getPassword());
                 $user->setEmail($_SESSION['accountToChange']->getEmail());
