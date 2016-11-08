@@ -121,9 +121,15 @@ class elementsController extends Controller
             $id = $answer[$i][1];
             echo "<div class='col-md-4'><li>" . $answer[$i][3] . "</li></div>";
             echo "<div class='col-md-8'><li onclick='showTour($id)'>" . $answer[$i][2] . "</li></div>";
-            echo "<div class='col-md-4'><li>" . "Tour start: " . "</li></div>";
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . "Startdatum: " . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . "Date de début: " . "</li></div>";
             echo "<div class='col-md-8'><li>" . $answer[$i][3] . "</li></div>";
-            echo "<div class='col-md-4'><li>" . "Tour ende: " . "</li></div>";
+            if(strcmp($_SESSION['lang'],'de')==0)
+                echo "<div class='col-md-4'><li>" . "Enddatum: " . "</li></div>";
+            else
+                echo "<div class='col-md-4'><li>" . "Date de fin: " . "</li></div>";
             echo "<div class='col-md-8'><li>" . $answer[$i][4] . "</li></div>";
         }
         echo "<input type='hidden' id='saver' name='showTour' value='0' />";
