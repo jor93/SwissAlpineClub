@@ -15,9 +15,15 @@ class showuserController extends Controller
         if(self::getActiveUserWithoutCookie())$this->account = $_SESSION['account'];
         else $this->redirect('login', 'login');
     }
-    //Account::updateAccount(1, 'PeterNames', 'PeterLastname', 'Address Peter', '1', '5555555', 'SE', '2');
 
     function updateUserAccount(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $operation = $this->badassSafer($_POST['operation']);
+            if($operation == 2){
+                $_SESSION['changeMyFuckingPassword'] = 1;
+                return $this->redirect('forgotpw','resetpassword');
+            }
+        }
 
         if(isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['address'])
         && isset($_POST['loc']) && isset($_POST['plz']) && isset($_POST['phone']) && isset($_POST['lang'])

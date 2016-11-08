@@ -281,4 +281,15 @@ class Inscription
 
         return $row;
     }
+
+    // get the next 3 hikings for home page
+    public static function getAllInsByAccount($accountId){
+        $query = "SELECT account.idAccount, tour.idTour,tour.Title, tour.Start_date, tour.End_date FROM inscription, account, account_inscription, tour
+                    WHERE inscription.idInscription = account_inscription.Inscription_idInscription
+                    AND account.idAccount = account_inscription.Account_idAccount
+                    AND inscription.Tour_idTour = tour.idTour
+                    AND account.idAccount = $accountId
+                    ORDER BY tour.Start_date ASC;";
+        return SQL::getInstance()->select($query)->fetchAll();
+    }
 }

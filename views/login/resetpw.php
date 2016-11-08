@@ -28,7 +28,7 @@ include_once $header;
                             <input type="password" id="cpw" name="cpw" required> </br>
                             <label class="error" style="display: inline-block"><?php
                                 if (isset($_SESSION['msg']) && $_SESSION['msg']==1){
-                                    echo $lang['RESETPW_SUCCESS'];
+                                    //echo $lang['RESETPW_SUCCESS'];
                                 }else if (isset($_SESSION['msg']) && $_SESSION['msg']==2){
                                     echo $lang['RESETPW_FAILED'];
                                 }else if (isset($_SESSION['msg']) && $_SESSION['msg']==3){

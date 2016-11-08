@@ -17,7 +17,7 @@ class loginController extends Controller {
             $password = $_POST['password'];
         }
         //Load account from DB if exists
-        $result = Account::connect($email, $password);
+        $result = Account::connect($email, ($password));
         //Put account in session if exists or return error msg
         if (!$result) {
             $_SESSION['wrongUserError'] = 1;
@@ -70,11 +70,6 @@ class loginController extends Controller {
             $_SESSION['encrypt_url'] = $_GET['encrypt'];
         }
 
-        //if a user is active he cannot re-login
-        if ($this->getActiveUser()) {
-            $this->redirect('forgotpw', 'resetpw');
-            exit;
-        }
     }
 
     /**
