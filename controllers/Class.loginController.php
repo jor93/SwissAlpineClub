@@ -17,10 +17,10 @@ class loginController extends Controller {
             $password = $_POST['password'];
         }
         //Load account from DB if exists
-        $result = Account::connect($email, $password);
+        $result = Account::connect($email, sha1($password));
         //Put account in session if exists or return error msg
         if (!$result) {
-            $_SESSION['wrongUserError'] = "Wrong Username or Password";
+            $_SESSION['wrongUserError'] = 1;
             $this->redirect('login', 'login');
         } else {
             //Check if Account can update Lastlogin
@@ -35,7 +35,8 @@ class loginController extends Controller {
                 setcookie("Rme", $rmbe, 0, "/");
             }
             $_SESSION['account'] = $result;
-
+            //
+            $_SESSION['wrongUserError'] = null;
             // set lang in the db!
             $_SESSION['lang'] = $result->getLanguage();
 
@@ -241,12 +242,12 @@ class loginController extends Controller {
             forgotpwController::sendMail($user, 3);
 
             // redirect to other page
-            //$this->redirect('profile', 'showuser');
+            $this->redirect('login', 'login');
 
                 // registration successfull --> reset everything
-                $_SESSION['country'] = null;
-                $_SESSION['errors'] = null;
-                $_SESSION['saved'] = null;
+            $_SESSION['country'] = null;
+            $_SESSION['errors'] = null;
+            $_SESSION['saved'] = null;
         }
     }
 
