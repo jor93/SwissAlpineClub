@@ -107,7 +107,7 @@ $lang['FORGOTPW_MAIL_BODY_P2'] = '
 /* #################### header ####################  */
 /* Menu */
 $lang['MENU_NEWS'] = 'Nouvelles';
-$lang['MENU_TOUR'] = 'Wanderung FR';
+$lang['MENU_TOUR'] = 'Randonnée';
 $lang['MENU_ABOUT'] = 'Nous';
 $lang['MENU_CONTACT'] = 'Contact';
 $lang['MENU_PROFIL'] = 'Mon profil';
@@ -184,4 +184,149 @@ $lang['HEADER_LOGIN'] = 'Login';
 $lang['HEADER_LOGOUT'] = 'Logout';
 $lang['HEADER_LOGGED'] = 'Bienvenue';
 
+/* #################### Home ######################*/
+$lang['HOME_HIKE'] = 'Randonnée';
+$lang['HOME_ADVANTAGE'] = 'vos avantages';
+$lang['HOME_HIKE_DESC'] = "Nous vous proposons plusieurs promenades. De l'escalade au ski sur multiday promenades guidées dans tout le Valais.";
+$lang['HOME_ADVANTAGE_DESC'] = 'Nous vous proposons plusieurs promenades en famille et entre amis. Avec nous, vous pouvez trouver des idées pour la randonnée pédestre ou une randonnée guidée de nous.';
+$lang['HOME_RATING'] = 'Voir nos commentaires';
+$lang['HOME_RATING_DESC'] ='Sur notre site vous pouvez voir les randonnées genauenstens et regarder les commentaires de notre communauté.';
+$lang['HOME_BTN_MORE'] = 'Plus';
+$lang['HOME_VIDEO_TITLE'] = 'Randonnée';
+$lang['HOME_VIDEO_SUBTITLE'] = 'Dans toute la Suisse';
+$lang['HOME_VIDEO_DESC'] = "Explorez les merveilles de la nature. Avec un équipement approprié et nos guides amicaux se souviendront sûrement ce jour depuis longtemps.
+Que ce soit seul, en famille ou entre amis, prendre notre part de randonnée!";
+
+/* #################### Tour ######################*/
+$lang['TOUR_TITLE'] = 'Randonnée';
+$lang['TOUR_TOUR'] = 'Tour';
+$lang['TOUR_INFO'] = 'Information';
+$lang['TOUR_STATUS'] = 'Status';
+$lang['TOUR_MEMBERS'] = 'Nombre des inscriptions';
+$lang['TOUR_GA'] = 'AG';
+$lang['TOUR_HT'] = 'Demi-Taxe';
+$lang['TOUR_NOTHING'] = "pas d'abo";
+$lang['TOUR_BTN'] = 'Afficher';
+
+/* #################### HIKING ######################*/
+$lang['HIKING_ALL'] = 'Tous';
+$lang['HIKING_FAVORITES'] = 'Favoris';
+$lang['HIKING_DURATION'] = 'Durée';
+$lang['HIKING_TYPE'] = 'Type de randonnée';
+$lang['HIKING_REGION'] = 'Région';
+$lang['HIKING_ALLREGIONS'] = 'Tous les Régions';
+$lang['HIKING_OW'] = 'Haut-Valais';
+$lang['HIKING_MW'] = 'Centre-Valais';
+$lang['HIKING_UW'] = 'Bas-Valais';
+$lang['HIKING_AK'] = 'Hors cantonal';
+$lang['HIKING_DIFF'] = 'Difficulté';
+$lang['HIKING_ALLDIFF'] = 'Tous les Difficulté';
+$lang['HIKING_CLOSE'] = 'Fermer';
+$lang['HIKING_FILTER'] = 'Filtre';
+$lang['HIKING_DATE'] = 'Date';
+
+/* #################### HIKESHOW/SHOWOFF ######################*/
+$lang['HIKESHOW_TOUR'] = 'Randonnée';
+$lang['HIKESHOW_DESC_DE'] = 'Description DE';
+$lang['HIKESHOW_DESC_FR'] = 'Description FR';
+$lang['HIKESHOW_DIFF'] = 'Difficulté';
+$lang['HIKESHOW_LOCATION'] = 'Lieu de départ/arrivée';
+$lang['HIKESHOW_DATE'] = 'Date de départ/arrivée';
+$lang['HIKESHOW_STATUS'] = 'Status';
+$lang['HIKESHOW_PRICE'] = 'Prix ​​par personne';
+$lang['HIKESHOW_PLACE'] = 'Place libre';
+$lang['HIKESHOW_ANMELDESCHLUSS'] = 'Date limite';
+$lang['HIKESHOW_INSCRIPTION'] = "S'INSCRITE POUR UNE RANDONNÉE";
+$lang['HIKESHOW_JOIN'] = 'Je participe aussi';
+$lang['HIKESHOW_FRIENDS'] = 'Mes amis:';
+$lang['HIKESHOW_MORE_FRIENDS'] = 'Ajouter un ami';
+$lang['HIKESHOW_SAVE'] = 'Sauvegarder';
+$lang['HIKESHOW_RATING'] = 'Évaluation';
+$lang['HIKESHOW_RATING_PUBLIC'] = "Publier l'Évaluation";
+
+/* #################### SHOWUSER ######################*/
+$lang['SHOWUSER_WELCOME'] = 'Welcome';
+$lang['SHOWUSER_EMAIL'] = 'Émail';
+$lang['SHOWUSER_FNAME'] = 'Prénom';
+$lang['SHOWUSER_NNAME'] = 'Nom';
+$lang['SHOWUSER_ADDRESS'] = 'Adresse';
+$lang['SHOWUSER_LOC'] = 'Lieu';
+$lang['SHOWUSER_ZIP'] = 'Code postal';
+$lang['SHOWUSER_PHONE'] = 'Numéro de téléphone';
+$lang['SHOWUSER_LANG'] = 'Langue';
+$lang['SHOWUSER_COUNTRY'] = 'Pays';
+$lang['SHOWUSER_CHANGEPW'] = 'Change votre mot de passe';
+$lang['SHOWUSER_EDIT'] = 'Éditer';
+$lang['SHOWUSER_SAVE'] = 'Sauvegarder';
+
+/* #################### THANK ######################*/
+$lang['THANK_TITLE']='merci beaucoup pour vorte registration';
+$lang['THANK_TEXT'] ='Vous obtenez mail de confirmation dans quelques minutes';
+$lang['THANK_BTN'] ='Avancer';
+
+/* #################### LOGIN ######################*/
+$lang['LOGIN_TITLE'] = 'NOUVEL ENREGSITREMENT';
+$lang['LOGIN_DESC'] = 'En vous inscrivant sur notre site, ils ont la possibilité de réserver nos randonnées guidées.';
+$lang['LOGIN_REG'] = 'Client enregistré';
+$lang['LOGIN_REG_DESC'] = 'Ii elles ont un compte, connectez-vous';
+$lang['LOGIN_MAIL'] = 'Émail';
+$lang['LOGIN_PW'] = 'Mot de passe';
+$lang['LOGIN_PW_FORGOT'] = 'oublier votre mot de passe';
+$lang['LOGIN_STAY'] = 'Séjour enregsitre';
+$lang['LOGIN_CREATEACC'] = 'Créer un nouveau compte';
+
+/* #################### SHOWINSCRIPTION ######################*/
+$lang['SHOWINSCRIPTION_TITLE'] ="AFFICHER L'INSCRIPTIONS";
+
+/* #################### SHOWHIKE ######################*/
+$lang['SHOWHIKEADMIN_TITLE'] = 'TOUR INFORMATION';
+$lang['SHOWHIKEADMIN_TITLE2'] = 'TOUR MANAGEMENT';
+$lang['SHOWHIKEADMIN_TITLE3'] ='ACCOUNT MANAGEMENT';
+$lang['SHOWHIKEADMIN_TOUR'] = 'TOUR';
+$lang['SHOWHIKEADMIN_DIFF'] = 'Difficulté';
+$lang['SHOWHIKEADMIN_SUBTITLE'] = 'Sous-Titre';
+$lang['SHOWHIKEADMIN_DURATION'] = 'Durée';
+$lang['SHOWHIKEADMIN_ZIPDEP'] = 'Code postal depart';
+$lang['SHOWHIKEADMIN_LOCDEP'] = 'lieu de départ';
+$lang['SHOWHIKEADMIN_ZIPARR'] = 'Code postale arrivée';
+$lang['SHOWHIKEADMIN_LOCARR'] = "lieu d'arrivée";
+$lang['SHOWHIKEADMIN_PRICE'] = 'Prix';
+$lang['SHOWHIKEADMIN_DESCDE'] = 'Description DE';
+$lang['SHOWHIKEADMIN_DESCFR'] = 'Description FR';
+$lang['SHOWHIKEADMIN_STARTDATE'] = 'date de début';
+$lang['SHOWHIKEADMIN_ENDDATE'] = 'date de fin';
+$lang['SHOWHIKEADMIN_DEPTIME'] = 'heure de départ';
+$lang['SHOWHIKEADMIN_ARRTIME'] = "heure d'arrive";
+$lang['SHOWHIKEADMIN_STATUS'] = 'Status';
+$lang['SHOWHIKEADMIN_TRANSPORT'] = 'Transport';
+$lang['SHOWHIKEADMIN_TYPE'] = 'Tour Typ';
+$lang['SHOWHIKEADMIN_TYPE_DESC'] = 'choisir au moins une ';
+$lang['SHOWHIKEADMIN_IMG'] = 'Image';
+$lang['SHOWHIKEADMIN_EXPDATE'] = "Date d'Expiration";
+$lang['SHOWHIKEADMIN_AVPLACE'] = 'Place libre';
+$lang['SHOWHIKEADMIN_NOTES'] = 'Notes pour le guide';
+
+/* #################### SHOWADMIN ######################*/
+$lang['SHOWADMIN_TITLE'] = 'bienvenue';
+$lang['SHOWADMIN_EMAIL'] = 'Émail';
+$lang['SHOWADMIN_FN'] = 'Prénom';
+$lang['SHOWADMIN_LN'] = 'Nom';
+$lang['SHOWADMIN_ADDRESS'] = 'Adresse';
+$lang['SHOWADMIN_LOC'] = 'Lieu';
+$lang['SHOWADMIN_ZIP'] = 'Code postale';
+$lang['SHOWADMIN_PHONE'] = 'Numéro de téléfon';
+$lang['SHOWADMIN_LANG'] = 'Langue';
+$lang['SHOWADMIN_COUNTRY'] = 'Pays';
+$lang['SHOWADMIN_SAVE'] = 'Sauvegarder';
+$lang['SHOWADMIN_EDIT'] = 'Éditer';
+$lang['SHOWADMIN_CHANGEPW'] = 'changer mot de passe';
+$lang['SHOWADMIN_ABO'] = 'Abo';
+$lang['SHOWADMIN_ACTIVE'] = 'activement';
+$lang['SHOWADMIN_LASTLOGIN'] = 'dernière connexion';
+$lang['SHOWADMIN_RUNLEVEL'] = "niveau d'autorisation";
+$lang['SHOWADMIN_DELETE'] = 'Effacer';
+$lang['SHOWADMIN_CANCEL'] = 'Avorter';
+
+/* #################### MANAGEINSCRIPTIONS ######################*/
+$lang['MANAGEINSCRIPTION_TITLE']="GÉRER L'INSCRIPTIONS";
 ?>
