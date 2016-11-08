@@ -267,6 +267,10 @@ if (isset($_SESSION['tourId'])) {
                     <div class="col-md-6">
                         <label id="tourtypes"><?php echo elementsController::getTypeTourForHikeShow($_SESSION['tourId']); ?></label>
                     </div>
+
+                    <div class="register-but">
+                        <a href="<?php echo URL_DIR. "admin/manageHike"?>"><button type="submit"><?php echo $lang['SHOWADMIN_EDIT']; ?></button></a>
+                    </div>
                 </div>
             </div>
         </div>
