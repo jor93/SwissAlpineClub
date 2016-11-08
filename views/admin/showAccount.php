@@ -244,7 +244,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
                     </div>
                 </div>
                 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <div class="register-but">
+                    <div class="register-but" style="width: 100%">
                         <input onclick="edit()" id="btn-edit" type="button" value="<?php echo $lang['SHOWADMIN_EDIT']; ?>">
                         <input onclick="save()" id="btn-save" type="button" value="<?php echo $lang['SHOWADMIN_SAVE']; ?>" style="display: none">
                         <input onclick="del()" id="btn-delete" type="button" value="<?php echo $lang['SHOWADMIN_DELETE']; ?>" >

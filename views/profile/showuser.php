@@ -33,7 +33,7 @@ echo '<script>var myarray = '.json_encode($data2) .';</script>';
 
 <script>
     $(document).ready(function () {
-        $('#menu_profile').addClass('active');
+        $('#menu_profil').addClass('active');
     });
 
 
