@@ -71,5 +71,6 @@ include_once $header;
 	</div>
 
 <?php
+unset($_SESSION['wrongUserError']);
 include_once ROOT_DIR.'views/footer.inc';
 ?>
