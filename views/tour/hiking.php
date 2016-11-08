@@ -21,7 +21,7 @@ include_once $header;
             url: '<?php echo URL_DIR.'favorite/handleFavorites';?>',
             data:{ selectedFav : $selectedFavorite},
             success: function(response) {
-                alert(response);
+                //alert(response);
             }
         });
     }

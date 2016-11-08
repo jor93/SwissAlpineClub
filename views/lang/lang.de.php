@@ -182,10 +182,10 @@ $lang['ERROR_X'] = 'Ein unerwarterer Fehler ist aufgetreten! Bitte versuchen Sie
 $lang['NO_RESULTS'] = 'Keine Ergebnisse gefunden, die ihrer Auswahl entsprechen';
 
 /* #################### header ####################  */
-$lang['HEADER_REGISTER'] = 'Enregistrer';
+$lang['HEADER_REGISTER'] = 'Registrieren';
 $lang['HEADER_LOGIN'] = 'Login';
 $lang['HEADER_LOGOUT'] = 'Logout';
-$lang['HEADER_LOGGED'] = 'Bienvenue';
+$lang['HEADER_LOGGED'] = 'Willkommen';
 
 /* #################### Home ######################*/
 $lang['HOME_HIKE'] = 'Wanderungen';
