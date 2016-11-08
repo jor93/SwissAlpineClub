@@ -44,6 +44,15 @@ class tourController extends Controller
         }
     }
 
+    function showIns(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = $this->badassSafer($_POST['showTour']);
+            $_SESSION['tourId'] = $id;
+            $this->redirect('tour', 'hikeShow');
+        }
+
+    }
+
     function hikingFromHome(){
         if(isset($_SESSION['tourId'])){
             if (!self::checkActiveUser())

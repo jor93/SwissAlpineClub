@@ -86,6 +86,24 @@ class elementsController extends Controller
         echo "<input type='hidden' id='saver' name='showInscription' value='0' />";
     }
 
+    public static function showInscriptionPerUser($accountId){
+        $answer = Inscription::getAllInsByAccount($accountId);
+        $length = count($answer);
+
+        for ($i = 0; $i < $length; $i++) {
+            $id = $answer[$i][1];
+            echo "<div class='col-md-4'><li>" . $answer[$i][3] . "</li></div>";
+            echo "<div class='col-md-8'><li onclick='showTour($id)'>" . $answer[$i][2] . "</li></div>";
+            echo "<div class='col-md-4'><li>" . "Tour start: " . "</li></div>";
+            echo "<div class='col-md-8'><li>" . $answer[$i][3] . "</li></div>";
+            echo "<div class='col-md-4'><li>" . "Tour ende: " . "</li></div>";
+            echo "<div class='col-md-8'><li>" . $answer[$i][4] . "</li></div>";
+        }
+        echo "<input type='hidden' id='saver' name='showTour' value='0' />";
+
+    }
+
+
     public static function showMenu($showMenu){
         $de = ROOT_DIR . 'views/lang/lang.de.php';
         $fr = ROOT_DIR . 'views/lang/lang.fr.php';
@@ -120,7 +138,7 @@ class elementsController extends Controller
             }
             if(is_int($user) === true && $user == 1){
                 echo "<li id='menu_profil'><a href=".URL_DIR.'profile/showuser'.">". $lang['MENU_PROFIL']."</a></li>";
-                echo "<li id='menu_inscription'><a href=".URL_DIR.'home/home'.">". $lang['MENU_INSCRIPTION']."</a></li>";
+                echo "<li id='menu_inscription'><a href=".URL_DIR.'tour/showIns'.">". $lang['MENU_INSCRIPTION']."</a></li>";
             } else if (is_int($user) === true && $user == 10){
                 echo "<li id='menu_accmanage'><a href=".URL_DIR.'admin/manageAccount'.">".  $lang['MENU_ACCMGMT'] . "</a></li>";
                 echo "<li id='menu_insmanage'><a href=".URL_DIR.'admin/manageInscription'.">". $lang['MENU_INSCRIPTIONMGMT'] . "</a></li>";
