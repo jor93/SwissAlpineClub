@@ -143,13 +143,13 @@ class Rating
     // get all ratings for one tour
     static function selectRatingsFromTour($idtour){
         $query = "SELECT *
-                  FROM rating WHERE Tour_idTour = '$idtour'";
+                  FROM rating WHERE tour_idTour = '$idtour'";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 
     // get sum of ratings
     static function getSumRatings($idtour){
-        $query = "SELECT SUM(Rating) FROM rating WHERE Tour_idTour = $idtour";
+        $query = "SELECT SUM(rating) FROM rating WHERE tour_idTour = $idtour";
         $temp = SQL::getInstance()->select($query)->fetch();
         $result = $temp[0];
         return $result;
@@ -157,7 +157,7 @@ class Rating
 
     // check if account has already rated a tour
     static function selectRatingByidAccount($idAcc, $idTour){
-        $query = "SELECT Account_idAccount FROM rating WHERE Account_idAccount = $idAcc AND Tour_idTour = $idTour;";
+        $query = "SELECT account_idAccount FROM rating WHERE account_idAccount = $idAcc AND tour_idTour = $idTour;";
         $result = SQL::getInstance()->select($query);
         $row = $result->fetch();
         if(!$row) return true;
@@ -166,14 +166,14 @@ class Rating
     }
 
     static function insertRating($obj){
-        $query = "INSERT INTO Rating(Account_idAccount, Tour_idTour, Rating, Comment, Date_of_comment) 
+        $query = "INSERT INTO rating(account_idAccount, tour_idTour, rating, comment, date_of_comment) 
                   VALUES ($obj->account_idAccount, $obj->tour_idTour, $obj->rating,'$obj->comment', '$obj->date_of_comment')";
         return  SQL::getInstance()->executeQuery($query);
     }
 
     static function updateRating($idRating, $rate, $comment){
         $query = "UPDATE rating
-        SET Rating='$rate',Comment='$comment'
+        SET rating='$rate',Comment='$comment'
         WHERE idRating = '$idRating'";
         return  SQL::getInstance()->executeQuery($query);
     }

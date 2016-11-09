@@ -217,8 +217,6 @@ class forgotpwController extends Controller
                 }
             }
         }
-
-
         return $obj;
     }
 
