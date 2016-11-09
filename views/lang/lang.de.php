@@ -51,12 +51,18 @@ $lang['RESETPW_WEAK'] = 'Das neue Passwort ist zu schwach! (Tipp: Nutzen Sie min
 $lang['CONTACT_SUBJECT'] = 'MITTEILUNG';
 $lang['CONTACT_SENDMAIL_BUTTON'] = 'Senden';
 $lang['CONTACT_OPENING_HOURS'] = 'Öffnungszeiten';
-$lang['CONTACT_OPENING_TIME'] = 'Montage-Freitag von 8h00 bis 12h00 und von 14h00 bis 17h00';
+$lang['CONTACT_OPENING_TIME'] = 'Montag-Freitag von 8h00 bis 12h00 und von 14h00 bis 17h00';
 $lang['CONTACT_ASSOCIATION_NAME'] = 'Vereinigung Walliser Wanderwege';
 $lang['CONTACT_SUCCESSFUL'] = 'Die Anfrage wurde erfolgreich verschickt.';
+$lang['CONTACT_TOUCH'] = 'Kontakt aufnehmen';
+$lang['CONTACT_LOCATION'] = 'Ort';
+$lang['CONTACT_NAME'] = 'NAME';
+$lang['CONTACT_EMAIL'] = 'E-MAIL';
+$lang['CONTACT_FIND'] = 'Hier finden Sie uns';
 /* errors */
 $lang['CONTACT_ERROR_CAPTCHA_ERROR'] = 'Das Captcha wurde nicht selektiert.';
 $lang['CONTACT_ERROR_INPUTS'] = 'Es wurden nicht alle Pflichtfelder ausgefüllt!';
+
 
 
 
