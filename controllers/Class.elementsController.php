@@ -341,7 +341,13 @@ class elementsController extends Controller
         foreach ($ratingsTour as $item){
             // get account infos to display
             $accountRated = Account::selectAccountById($item['Account_idAccount']);
-            echo "<label>" . "Von " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " am " . $item['Date_of_comment'] . "</label></br>";
+            if(strcmp($_SESSION['lang'],'fr')==0)
+                echo "<label>" . "Par " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " le " . $item['Date_of_comment'] . "</label></br>";
+
+            else
+                echo "<label>" . "Von " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " am " . $item['Date_of_comment'] . "</label></br>";
+
+
 
             $prepStars = array();
             for ($j = 1; $j <= 5; $j++) {
