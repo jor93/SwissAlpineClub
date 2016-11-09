@@ -364,7 +364,7 @@ class elementsController extends Controller
             else
                 $inputComment = $item['Comment'];
 
-            echo "<textarea class='' style='width: 500px; height: 100px;' type='text' disabled>" . $inputComment . "</textarea><br />";
+            echo "<textarea class='' style='width: 500px; height: 100px;' type='text' disabled>" . $inputComment . "</textarea><br /><br />";
         }
     }
 
