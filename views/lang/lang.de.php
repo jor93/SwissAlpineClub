@@ -234,6 +234,7 @@ $lang['HIKING_ALLDIFF'] = 'Alle Schwierigkeiten';
 $lang['HIKING_CLOSE'] = 'Schliessen';
 $lang['HIKING_FILTER'] = 'Filter';
 $lang['HIKING_DATE'] = 'Datum';
+$lang['HIKING_DELETE'] = 'Löschen';
 
 /* #################### HIKESHOW/SHOWOFF ######################*/
 $lang['HIKESHOW_TOUR'] = 'Wanderung';

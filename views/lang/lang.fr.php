@@ -229,6 +229,7 @@ $lang['HIKING_ALLDIFF'] = 'Tous les Difficulté';
 $lang['HIKING_CLOSE'] = 'Fermer';
 $lang['HIKING_FILTER'] = 'Filtre';
 $lang['HIKING_DATE'] = 'Date';
+$lang['HIKING_DELETE'] = 'Effacer';
 
 /* #################### HIKESHOW/SHOWOFF ######################*/
 $lang['HIKESHOW_TOUR'] = 'Randonnée';
@@ -275,7 +276,7 @@ $lang['THANK_BTN'] ='Avancer';
 $lang['LOGIN_TITLE'] = 'NOUVEL ENREGSITREMENT';
 $lang['LOGIN_DESC'] = 'En vous inscrivant sur notre site, ils ont la possibilité de réserver nos randonnées guidées.';
 $lang['LOGIN_REG'] = 'Client enregistré';
-$lang['LOGIN_REG_DESC'] = 'Ii elles ont un compte, connectez-vous';
+$lang['LOGIN_REG_DESC'] = 'Si vous avez un compte, connectez-vous';
 $lang['LOGIN_MAIL'] = 'Émail';
 $lang['LOGIN_PW'] = 'Mot de passe';
 $lang['LOGIN_PW_FORGOT'] = 'oublier votre mot de passe';

@@ -89,7 +89,7 @@ include_once $header;
                     <h4><?php echo $lang['HIKING_DATE']; ?></h4>
                     <div class="cd-filter-content cd-filters list">
                         <input type="text" id="datepicker" readonly style="background: url(/<?php echo SITE_NAME; ?>/images/calendar-128.png) no-repeat scroll center right; background-size: 2.5em; " size="25" width="80%">
-                        <a onclick="resetDate()">Delete</a>
+                        <a onclick="resetDate()"><?php echo $lang['HIKING_DELETE']; ?></a>
                     </div>
                 </div>
 
@@ -142,8 +142,6 @@ include_once $header;
                                 <option value=".diff1">*</option>
                                 <option value=".diff2">**</option>
                                 <option value=".diff3">***</option>
-                                <option value=".diff4">****</option>
-                                <option value=".diff5">*****</option>
                             </select>
                         </div> <!-- cd-select -->
                     </div> <!-- cd-filter-content -->
