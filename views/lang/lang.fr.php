@@ -195,7 +195,7 @@ $lang['HOME_ADVANTAGE'] = 'vos avantages';
 $lang['HOME_HIKE_DESC'] = "Nous vous proposons plusieurs promenades. De l'escalade au ski sur multiday promenades guidées dans tout le Valais.";
 $lang['HOME_ADVANTAGE_DESC'] = 'Nous vous proposons plusieurs promenades en famille et entre amis. Avec nous, vous pouvez trouver des idées pour la randonnée pédestre ou une randonnée guidée de nous.';
 $lang['HOME_RATING'] = 'Voir nos commentaires';
-$lang['HOME_RATING_DESC'] ='Sur notre site vous pouvez voir les randonnées genauenstens et regarder les commentaires de notre communauté.';
+$lang['HOME_RATING_DESC'] ='Sur notre site vous pouvez voir les randonnées en detail et regarder les commentaires de notre communauté.';
 $lang['HOME_BTN_MORE'] = 'Plus';
 $lang['HOME_VIDEO_TITLE'] = 'Randonnée';
 $lang['HOME_VIDEO_SUBTITLE'] = 'Dans toute la Suisse';
@@ -280,7 +280,7 @@ $lang['LOGIN_REG_DESC'] = 'Si vous avez un compte, connectez-vous';
 $lang['LOGIN_MAIL'] = 'Émail';
 $lang['LOGIN_PW'] = 'Mot de passe';
 $lang['LOGIN_PW_FORGOT'] = 'oublier votre mot de passe';
-$lang['LOGIN_STAY'] = 'Séjour enregsitre';
+$lang['LOGIN_STAY'] = 'Séjour enregistre';
 $lang['LOGIN_CREATEACC'] = 'Créer un nouveau compte';
 
 /* #################### SHOWINSCRIPTION ######################*/
