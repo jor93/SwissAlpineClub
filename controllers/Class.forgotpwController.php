@@ -180,7 +180,8 @@ class forgotpwController extends Controller
             //$encrypt = md5(1290*3+$Results['idAccount']);
             include_once(ROOT_DIR . 'models/Class.Encryption.php');
             echo 'test1.1';
-            $encrypt = Encryption::encode($results['idAccount']);
+            //$encrypt = Encryption::encode($results['idAccount']);
+            $encrypt = $results['idAccount'];
             echo 'test1.2';
 
             if ($origin == 1) {
@@ -201,8 +202,7 @@ class forgotpwController extends Controller
                     $obj->setMsgMail($lang['FORGOTPW_MAIL_BODY_P1'] . $body . $lang['FORGOTPW_MAIL_BODY_P2']);
                 }
             } else if ($origin == 3) {
-                //$link_activate = URL_DIR . 'login/activateAccount?' . 'encrypt=' . $encrypt . '&action=activate';
-                $link_activate = URL_DIR . 'login/activateAccount?' . 'encrypt=' . $results['idAccount'] . '&action=activate';
+                $link_activate = URL_DIR . 'login/activateAccount?' . 'encrypt=' . $encrypt . '&action=activate';
 
                 // set the email content - forgot pw
                 if ($language == 'de') {
