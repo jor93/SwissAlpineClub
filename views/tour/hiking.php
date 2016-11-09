@@ -13,17 +13,22 @@ include_once $header;
 <script>
     $('#menu_hiking').addClass('active');
 
-    function letsgo($selectedFavorite){
+    function letsgo(selectedFavorite){
         document.getElementById("saver").value = -1;
+        document.getElementById("favoritehike").value = selectedFavorite;
+        document.getElementById("performfavorite").submit();
+
         // transfer the id from favorite you wanna delete
+        /*
         $.ajax({
             type: 'post',
-            url: '<?php echo URL_DIR.'favorite/handleFavorites';?>',
+            url: '<--?php echo URL_DIR.'favorite/handleFavorites';?>',
             data:{ selectedFav : $selectedFavorite},
             success: function(response) {
                 //alert(response);
             }
         });
+        */
     }
 
     function resetDate(){
@@ -51,12 +56,24 @@ include_once $header;
 
 
         <form id="manageHikings" action="<?php echo URL_DIR.'tour/hiking';?>" method="post" enctype="multipart/form-data">
-        <section class="cd-gallery">
-            <ul>
-                <?php echo elementsController::favoritesSelect();?>
-            </ul>
-            <div class="cd-fail-message"><?php echo $lang['NO_RESULTS']; ?></div>
-        </section> <!-- cd-gallery -->
+                <section class="cd-gallery">
+                    <ul>
+                        <?php echo elementsController::favoritesSelect();?>
+                    </ul>
+                    <div class="cd-fail-message"><?php echo $lang['NO_RESULTS']; ?></div>
+                </section> <!-- cd-gallery -->
+        </form>
+
+
+
+
+
+
+
+
+
+        <form id="performfavorite" action="<?php echo URL_DIR.'favorite/handleFavorites';?>" method="post" enctype="multipart/form-data">
+            <input type='hidden' id='favoritehike' name='favoritehike'/>
         </form>
         <div class="cd-filter">
             <form>

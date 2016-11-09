@@ -107,9 +107,8 @@ class inscriptionController extends Controller
 
     function validaterating(){
         // get the rating from view, user and the tour
-        $selectedRating = $this->badassSafer($_POST['selectedStar']);
-        $givenComment = $this->badassSafer($_POST['givenComment']);
-
+        $selectedRating = $this->badassSafer($_POST['star']);
+        $givenComment = $this->badassSafer($_POST['input_comment']);
 
         // get the current user
         $idAcc = $_SESSION['account']->getIdAccount();
@@ -124,9 +123,10 @@ class inscriptionController extends Controller
             $currentDate = date("Y-m-d");
             $rating = new Rating(null, $idAcc, $idTour, $selectedRating, $givenComment, $currentDate);
             Rating::insertRating($rating);
+            return $this->redirect('tour', 'hikeshow');
         }else{
             $_SESSION['error_account_rating'] = 1;
-            return;
+            return $this->redirect('tour', 'hikeshow');
         }
     }
 

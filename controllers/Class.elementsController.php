@@ -448,7 +448,6 @@ class elementsController extends Controller
                         $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                         echo "<li class=$finalClass>";
                         echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 15px;' /></button>";
-
                         echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                         echo "<div class='overlay'>";
@@ -466,7 +465,6 @@ class elementsController extends Controller
                     $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                     echo "<li class=$finalClass>";
                     echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 15px;' /></button>";
-
                     echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                     echo "<div class='overlay'>";
@@ -491,8 +489,6 @@ class elementsController extends Controller
                     echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                 echo "</div>";
                 echo "</li>";
-
-
             }
         }
         echo "<input type='hidden' id='saver' name='showHike' value='0' />";

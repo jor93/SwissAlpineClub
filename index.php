@@ -7,7 +7,7 @@
  */
 
 // global constants
-define('SITE_NAME', 'grp1');
+define('SITE_NAME', 'SwissAlpineClub');
 define('ROOT_DIR', dirname(getcwd()) . '/' . SITE_NAME.'/');
 define('URL_DIR', $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT']
     . '/' . SITE_NAME.'/');
