@@ -90,7 +90,6 @@ include_once $header;
         </div>
         <div class="col-md-4 vide-right">
             <img src="images/img1.jpg" class="img-responsive" alt="" />
-            <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><span> </span></a>
             <div id="small-dialog" class="mfp-hide">
                 <iframe src="//player.vimeo.com/video/78016933" width="" height="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>

@@ -16,13 +16,12 @@ class favoriteController extends Controller
         }
     }
 
-    static function handleFavorites(){
+    function handlefavorites(){
         // check if already a favorite then add or rm
-        $inputFavorite = $_POST['selectedFav'];
+        $inputFavorite = $_POST['favoritehike'];
 
         // get all favorites from current user
-        $currentUser = self::getActiveUserWithoutCookie();
-        $idAcc = $currentUser->getIdAccount();
+        $idAcc = $_SESSION['account']->getIdAccount();
 
         // get the data
         $result = Favorite::getAllFavorites($idAcc);
@@ -54,11 +53,13 @@ class favoriteController extends Controller
 
     static function addFavorite($idAcc, $inputFavorite){
         Favorite::insertFavorite($idAcc, $inputFavorite);
+        self::redirect('tour', 'hiking');
+
     }
 
     static function removeFavorite($idAcc, $inputFavorite){
         Favorite::removeFavorite($idAcc, $inputFavorite);
-        self::redirect('favorite', 'favorite');
+        self::redirect('tour', 'hiking');
     }
 
     public static function getAllFavorites(){

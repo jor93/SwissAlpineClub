@@ -40,10 +40,10 @@ if (isset($_SESSION['tourId'])) {
             }
             // change the id tag to handle the value afterwards
             document.getElementById(valueSelected.toString()).setAttribute("id", "selected"+valueSelected);
-
+            document.getElementById("star").value = valueSelected;
         }
 
-        function validateRating() {
+        function validaterating() {
             // first get ratingstars
             var valueSelected = 0;
             for(i=1;i<6;i++){
@@ -58,18 +58,19 @@ if (isset($_SESSION['tourId'])) {
             }
             // get the comment
             var valueComment = document.getElementById('input_comment').value;
-
             // save into db - call controllers
+            /*
             $.ajax({
                 type: 'post',
-                url: '<?php echo URL_DIR.'inscription/validateRating';?>',
+                url: '<--?php echo URL_DIR.'inscription/validaterating';?>',
                 data:{ selectedStar : valueSelected,
                     givenComment: valueComment},
                 success: function(response) {
-                    alert(response);
+                    //alert(response);
                 }
             });
-            location.reload();
+            */
+            //location.reload();
         }
 
         function selectAccount() {
@@ -160,15 +161,6 @@ if (isset($_SESSION['tourId'])) {
                     <img alt="Embedded Image"
                          src="data:<?php echo $image['mime'] ?>;base64,<?php echo base64_encode($image['data']); ?> "
                          style="display: block; width: 100%;"/>
-                    <?php echo elementsController::avgRatings();?>
-                    <h3>IHRE BEWERTUNG</h3>
-                    <div class="rating">
-                        <span id="5" title="ausgezeichnet" onclick="fill(this.id)" >☆</span>
-                        <span id="4" title="sehr gut" onclick="fill(this.id)">☆</span>
-                        <span id="3" title="gut" onclick="fill(this.id)">☆</span>
-                        <span id="2" title="genügend" onclick="fill(this.id)">☆</span>
-                        <span id="selected1" title="schlecht" onclick="fill(this.id)" class="filled">☆</span>
-                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="col-md-6">
@@ -324,31 +316,47 @@ if (isset($_SESSION['tourId'])) {
             </div>
         </div>
     </div>
-    <div class="container">
+    <form method="post" action="<?php echo URL_DIR.'inscription/validaterating';?>" class="container">
         <div class="register">
-            <div class="register-top-grid">
-                <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
-                <label class="error">
-                    <?php
-                    if (isset($_SESSION['error_account_rating'])) {
-                        echo $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'];
-                    }
-                    ?>
-                </label>
-                <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                    <!-- gez rating comment -->
-                    <textarea id="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."
-                              style="width: 400px;"></textarea>
-                    <button onclick="validateRating()" class="add_comment_field"><?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></button>
-                    </br>
-                    </br>
-                    <div class="rating">
-                        <?php echo elementsController::comments();?>
+            <div class="col-md-4">
+                <?php echo elementsController::avgRatings();?>
+                <div class="rating">
+                    <span id="5" name="5" title="ausgezeichnet" onclick="fill(this.id)" >☆</span>
+                    <span id="4" name="4" title="sehr gut" onclick="fill(this.id)">☆</span>
+                    <span id="3" name="3" title="gut" onclick="fill(this.id)">☆</span>
+                    <span id="2" name="2" title="genügend" onclick="fill(this.id)">☆</span>
+                    <span id="selected1" name="selected1" title="schlecht" onclick="fill(this.id)" class="filled">☆</span>
+                    <input type='hidden' id='star' name='star' value='0' />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="register-top-grid">
+                    <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
+                    <label class="error">
+                        <?php
+                        if (isset($_SESSION['error_account_rating'])) {
+                            echo $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'];
+                        }
+                        ?>
+                    </label>
+                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                        <!-- gez rating comment -->
+                        <textarea id="input_comment" name="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."style="width: 400px;"></textarea>
+                        <!--<input type="button" onclick="validaterating()"><--?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></input>-->
+                        <div class="register-but">
+                            <input type="submit" value="<?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?>">
+                        </div>
+                        </br>
+                        </br>
+                        <div class="rating">
+                            <?php echo elementsController::comments();?>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
+    </form>
 
 <?php
 unset($_SESSION['error_msg']);

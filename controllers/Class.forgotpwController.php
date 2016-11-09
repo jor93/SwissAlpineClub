@@ -176,7 +176,6 @@ class forgotpwController extends Controller
 
         $results = Account::selectAccountByEmail($temp->getEmail());
         if(count($results) >= 1) {
-
             //$encrypt = md5(1290*3+$Results['idAccount']);
             include_once(ROOT_DIR . 'models/Class.Encryption.php');
             echo 'test1.1';
@@ -218,13 +217,10 @@ class forgotpwController extends Controller
                 }
             }
         }
-
-
         return $obj;
     }
 
     public static function sendMail($temp, $origin){
-
         $emailTo = null;
         $firstname = null;
         $lastname = null;
@@ -239,8 +235,6 @@ class forgotpwController extends Controller
 
 
         $mail = new PHPMailer;
-
-
 
         // 1 = forgotpw   3 = confirmation mail
         if($origin == 1 || $origin == 3){

@@ -448,7 +448,6 @@ class elementsController extends Controller
                         $finalClass = "'mix " . $favorite . ' ' . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                         echo "<li class=$finalClass>";
                         echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star.png' style='width: 15px; height: 15px;' /></button>";
-
                         echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                         echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                         echo "<div class='overlay'>";
@@ -466,7 +465,6 @@ class elementsController extends Controller
                     $finalClass = "'mix " . $date . ' ' . $duration . ' ' . $diff . ' ' . $region . ' ' . $tourType . "'";
                     echo "<li class=$finalClass>";
                     echo "<button id='stars' onclick='letsgo($idTours[$x])' style='border: 0; background: transparent'><img id='star' src='../images/star2.png' style='width: 15px; height: 15px;' /></button>";
-
                     echo "<div onclick='showHike($idTours[$x])' class='hovereffect'>";
                     echo "<img class='img-responsive' alt='Embedded Image' src=$temp>";
                     echo "<div class='overlay'>";
@@ -491,8 +489,6 @@ class elementsController extends Controller
                     echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
                 echo "</div>";
                 echo "</li>";
-
-
             }
         }
         echo "<input type='hidden' id='saver' name='showHike' value='0' />";
@@ -549,6 +545,7 @@ class elementsController extends Controller
             }
         } else {
             $idsTour = Transport::getTransportIdsFromTour($idTour);
+
             for ($i = 0; $i < $length; ++$i) {
                 if (self::checkTranportIds(($i + 1), $idsTour)) {
                     echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
@@ -564,7 +561,7 @@ class elementsController extends Controller
     private static function checkTranportIds($id, $idsTour)
     {
         for ($i = 0; $i < count($idsTour); ++$i) {
-            if ($id === $idsTour[$i][0]) return true;
+            if ($id == $idsTour[$i][0]) return true;
         }
         return false;
     }
@@ -605,6 +602,7 @@ class elementsController extends Controller
             }
         } else {
             $idsTour = TypeTour::getTypeIdsFromTour($idTour);
+
             for ($i = 0; $i < $length; ++$i) {
                 if (self::checkTypeTourIds(($i + 1), $idsTour)) {
                     echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
@@ -638,8 +636,9 @@ class elementsController extends Controller
 
     private static function checkTypeTourIds($id, $idsTour)
     {
+
         for ($i = 0; $i < count($idsTour); ++$i) {
-            if ($id === $idsTour[$i][0]) return true;
+            if ($id == $idsTour[$i][0]) return true;
         }
         return false;
     }
