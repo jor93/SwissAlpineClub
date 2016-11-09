@@ -316,11 +316,18 @@ class elementsController extends Controller
         $nrRatings = count($ratingsTour);
         $sumRatings = Rating::getSumRatings($idTour);
 
-        echo "<div class='col-md-12'><span>Total Bewertungen : ". $nrRatings . "</span></div></br>";
+        if(strcmp($_SESSION['lang'],'fr')==0)
+            echo "<div class='col-md-12'><span>Total des évaluations : ". $nrRatings . "</span></div></br>";
+        else
+            echo "<div class='col-md-12'><span>Total Bewertungen : ". $nrRatings . "</span></div></br>";
 
         if ($nrRatings != 0){
             $avgRatings = $sumRatings / $nrRatings;
-            echo "<label>" . $avgRatings . " von 5 Sternen</label>";
+
+            if(strcmp($_SESSION['lang'],'fr')==0)
+                echo "<div class='col-md-12'><span>" . $avgRatings . " de 5 étoiles</span></div>";
+            else
+                echo "<div class='col-md-12'><span>" . $avgRatings . " von 5 Sternen</span></div>";
         }
     }
 
@@ -334,7 +341,13 @@ class elementsController extends Controller
         foreach ($ratingsTour as $item){
             // get account infos to display
             $accountRated = Account::selectAccountById($item['Account_idAccount']);
-            echo "<label>" . "Von " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " am " . $item['Date_of_comment'] . "</label></br>";
+            if(strcmp($_SESSION['lang'],'fr')==0)
+                echo "<label>" . "Par " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " le " . $item['Date_of_comment'] . "</label></br>";
+
+            else
+                echo "<label>" . "Von " . $accountRated['Firstname'] . " " . $accountRated['Lastname'] . " am " . $item['Date_of_comment'] . "</label></br>";
+
+
 
             $prepStars = array();
             for ($j = 1; $j <= 5; $j++) {
@@ -351,7 +364,7 @@ class elementsController extends Controller
             else
                 $inputComment = $item['Comment'];
 
-            echo "<textarea class='' style='width: 500px; height: 100px;' type='text' disabled>" . $inputComment . "</textarea>";
+            echo "<textarea class='' style='width: 500px; height: 100px;' type='text' disabled>" . $inputComment . "</textarea><br /><br />";
         }
     }
 
@@ -453,9 +466,9 @@ class elementsController extends Controller
                         echo "<div class='overlay'>";
                         echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                         if(strcmp($_SESSION['lang'],'fr')==0)
-                            echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                            echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]h<br /></h6>";
                         else
-                            echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                            echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x] Std.<br /></h6>";
                         echo "</div>";
                         echo "</li>";
                          break;
@@ -470,9 +483,9 @@ class elementsController extends Controller
                     echo "<div class='overlay'>";
                     echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                     if(strcmp($_SESSION['lang'],'fr')==0)
-                        echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                        echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]h<br /></h6>";
                     else
-                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x] Std. <br /></h6>";
                     echo "</div>";
                     echo "</li>";
                                    }
@@ -484,9 +497,9 @@ class elementsController extends Controller
                 echo "<div class='overlay'>";
                 echo "<h5>$title[$x]<br />$location[$x], $newDate</h5>";
                 if(strcmp($_SESSION['lang'],'fr')==0)
-                    echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                    echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]h<br /></h6>";
                 else
-                    echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                    echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x] Std. <br /></h6>";
                 echo "</div>";
                 echo "</li>";
             }

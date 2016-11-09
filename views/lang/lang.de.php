@@ -199,7 +199,7 @@ $lang['HOME_ADVANTAGE'] = 'Ihre Vorteile';
 $lang['HOME_HIKE_DESC'] = 'Wir bieten Ihnen verschiedene Wanderungen an. Von Klettertouren bis Skitouren über mehrtägige geführte Wanderungen überall im Wallis.';
 $lang['HOME_ADVANTAGE_DESC'] = 'Wir bieten Ihnen verschiedene Wanderungen mit Familie und Freunden an. Sie können bei uns Ideen für Wanderungen finden oder eine von uns geführte Wanderung buchen.';
 $lang['HOME_RATING'] = 'Sehen Sie sich Bewertungen an';
-$lang['HOME_RATING_DESC'] ='Auf unserer Seite können Sie die Wanderungen genauenstens ansehen und sich die Bewertungen unserer Community ansehen.';
+$lang['HOME_RATING_DESC'] ='Auf unserer Seite können Sie die Wanderungen genauestens ansehen und sich die Bewertungen unserer Community ansehen.';
 $lang['HOME_BTN_MORE'] = 'Mehr';
 $lang['HOME_VIDEO_TITLE'] = 'Wanderungen';
 $lang['HOME_VIDEO_SUBTITLE'] = 'In der ganzen Schweiz';
@@ -234,6 +234,7 @@ $lang['HIKING_ALLDIFF'] = 'Alle Schwierigkeiten';
 $lang['HIKING_CLOSE'] = 'Schliessen';
 $lang['HIKING_FILTER'] = 'Filter';
 $lang['HIKING_DATE'] = 'Datum';
+$lang['HIKING_DELETE'] = 'Löschen';
 
 /* #################### HIKESHOW/SHOWOFF ######################*/
 $lang['HIKESHOW_TOUR'] = 'Wanderung';
@@ -253,6 +254,7 @@ $lang['HIKESHOW_FRIENDS'] = 'Meine Freunde:';
 $lang['HIKESHOW_MORE_FRIENDS'] = 'Freund hinzufügen';
 $lang['HIKESHOW_SAVE'] = 'Speichern';
 $lang['HIKESHOW_RATING'] = 'BEWERTUNGEN';
+$lang['HIKESHOW_RATING_ADD'] = 'BEWERTUNG ABGEBEN';
 $lang['HIKESHOW_RATING_PUBLIC'] = 'Bewertung veröffentlichen';
 
 /* #################### SHOWUSER ######################*/
