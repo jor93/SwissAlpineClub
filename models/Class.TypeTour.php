@@ -178,7 +178,7 @@ class TypeTour
 
     //get Tour ids used for a specific tour
     public static function getTypeIdsFromTour($tourId){
-        $query = "SELECT TypeTour_idTypeTour FROM typetour_tour WHERE Tour_idTour = '$tourId';";
+        $query = "SELECT TypeTour_idTypeTour FROM typetour_tour WHERE Tour_idTour = $tourId;";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 

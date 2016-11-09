@@ -129,7 +129,7 @@ class Transport
 
     //get Tour ids used for a specific tour
     public static function getTransportIdsFromTour($tourId){
-        $query = "SELECT Transport_idTransport FROM transport_tour WHERE Tour_idTour = '$tourId';";
+        $query = "SELECT Transport_idTransport FROM transport_tour WHERE tour_idTour = $tourId;";
         return SQL::getInstance()->select($query)->fetchAll();
     }
 

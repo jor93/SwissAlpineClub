@@ -11,11 +11,11 @@
  * @author Johner Robert
  */
 class SQL {
-    const HOST = "127.0.0.1";
-    const PORT = "3306";
-    const DATABASE = "grp1";
-    const USER = "root";
-    const PWD = "";
+	const HOST = "127.0.0.1";
+	const PORT = "3306";
+	const DATABASE = "grp1";
+	const USER = "grp1";
+	const PWD = "Finlande2018";
 
 	private static $instance;
 	private $_conn;
@@ -74,7 +74,7 @@ class SQL {
 
 	// function for select query
 	public function select($query){
-	    //echo 'query: ' .$query;
+	    echo 'query: ' .$query;
         // prepare query (sql injection)
         $stmt = $this->_conn->prepare($query);
         // execute query or show error
@@ -101,7 +101,7 @@ class SQL {
                 die(print_r($this->_conn->errorInfo(), true));
             } else{
                 // commit if no erros
-                //var_dump($this->_conn->lastInsertId());
+                var_dump($this->_conn->lastInsertId());
                 $this->setLastInsertedId($this->_conn->lastInsertId());
                 $this->_conn->commit();
                 $this->_conn->lastInsertId();

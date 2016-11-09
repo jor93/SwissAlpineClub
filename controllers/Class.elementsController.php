@@ -545,6 +545,7 @@ class elementsController extends Controller
             }
         } else {
             $idsTour = Transport::getTransportIdsFromTour($idTour);
+
             for ($i = 0; $i < $length; ++$i) {
                 if (self::checkTranportIds(($i + 1), $idsTour)) {
                     echo "<input type='checkbox' name='transport" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
@@ -560,7 +561,7 @@ class elementsController extends Controller
     private static function checkTranportIds($id, $idsTour)
     {
         for ($i = 0; $i < count($idsTour); ++$i) {
-            if ($id === $idsTour[$i][0]) return true;
+            if ($id == $idsTour[$i][0]) return true;
         }
         return false;
     }
@@ -601,6 +602,7 @@ class elementsController extends Controller
             }
         } else {
             $idsTour = TypeTour::getTypeIdsFromTour($idTour);
+
             for ($i = 0; $i < $length; ++$i) {
                 if (self::checkTypeTourIds(($i + 1), $idsTour)) {
                     echo "<input type='checkbox' id='typetour' name='typetour" . $i . "' value='" . $answer[$i][0] . "'" . " checked>" . $answer[$i][1];
@@ -634,8 +636,9 @@ class elementsController extends Controller
 
     private static function checkTypeTourIds($id, $idsTour)
     {
+
         for ($i = 0; $i < count($idsTour); ++$i) {
-            if ($id === $idsTour[$i][0]) return true;
+            if ($id == $idsTour[$i][0]) return true;
         }
         return false;
     }
