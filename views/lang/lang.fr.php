@@ -56,6 +56,11 @@ $lang['CONTACT_OPENING_HOURS'] = 'Heures d\'ouverture';
 $lang['CONTACT_OPENING_TIME'] = 'Lundi-Vendredi de 8h00 à 12h00 et de 14h00 à 17h00';
 $lang['CONTACT_ASSOCIATION_NAME'] = 'Association Valaisanne de la Randonnée';
 $lang['CONTACT_SUCCESSFUL'] = 'L\'enquête a été soumis avec succès.';
+$lang['CONTACT_TOUCH'] = 'Contact';
+$lang['CONTACT_LOCATION'] = 'Lieu';
+$lang['CONTACT_NAME'] = 'NOM';
+$lang['CONTACT_EMAIL'] = 'É-MAIL';
+$lang['CONTACT_FIND'] = 'Nous trouver ici';
 /* errors */
 $lang['CONTACT_ERROR_CAPTCHA_ERROR'] = 'Le Captcha n\'a pas été sélectionné.';
 $lang['CONTACT_ERROR_INPUTS'] = 'Il n\'y avait pas tous remplis obligatoirement!';
