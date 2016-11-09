@@ -181,7 +181,7 @@ class forgotpwController extends Controller
             include_once(ROOT_DIR . 'models/Class.Encryption.php');
             echo 'test1.1';
             //$encrypt = Encryption::encode($results['idAccount']);
-            $encrypt = $results['idAccount'];
+            $encrypt = (String)$results['idAccount'];
             echo 'test1.2';
 
             if ($origin == 1) {
