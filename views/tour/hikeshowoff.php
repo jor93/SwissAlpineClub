@@ -132,7 +132,7 @@ if (isset($_SESSION['tourId'])) {
         <div class="register-top-grid">
             <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
             <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                <div class="rating">
+                <div class="rating-show">
                     <?php echo elementsController::comments();?>
                 </div>
             </div>

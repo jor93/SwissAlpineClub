@@ -316,11 +316,18 @@ class elementsController extends Controller
         $nrRatings = count($ratingsTour);
         $sumRatings = Rating::getSumRatings($idTour);
 
-        echo "<div class='col-md-12'><span>Total Bewertungen : ". $nrRatings . "</span></div></br>";
+        if(strcmp($_SESSION['lang'],'fr')==0)
+            echo "<div class='col-md-12'><span>Total des évaluations : ". $nrRatings . "</span></div></br>";
+        else
+            echo "<div class='col-md-12'><span>Total Bewertungen : ". $nrRatings . "</span></div></br>";
 
         if ($nrRatings != 0){
             $avgRatings = $sumRatings / $nrRatings;
-            echo "<label>" . $avgRatings . " von 5 Sternen</label>";
+
+            if(strcmp($_SESSION['lang'],'fr')==0)
+                echo "<div class='col-md-12'><span>" . $avgRatings . " de 5 étoiles</span></div>";
+            else
+                echo "<div class='col-md-12'><span>" . $avgRatings . " von 5 Sternen</span></div>";
         }
     }
 

@@ -3460,15 +3460,28 @@ div.register-bottom-grid {
 	unicode-bidi: bidi-override;
 	direction: rtl;
 	text-align: left;
-	padding-left: 6%;
 }
-.rating span {
+
+.rating-show {
+	unicode-bidi: bidi-override;
+	text-align: left;
+}
+
+.rating-show span, .rating span {
 	display: inline-block;
 	position: relative;
 	width:1.1em;
 	font-size:1.8em;
 	cursor:pointer;
 }
+
+.rating-show .filled:before {
+	content: "\2605";
+	position: absolute;
+	color:gold;
+	text-shadow:0 0 1px #666;
+}
+
 .rating span:hover:before,
 .rating span:hover ~ span:before {
 	content: "\2605";
@@ -3476,7 +3489,7 @@ div.register-bottom-grid {
 	color:#ffff00;
 	text-shadow:0 0 1px #666;
 }
-.rating .filled:before {
+.rating .filled:before, .rating .filled:before {
 	content: "\2605";
 	position: absolute;
 	color:gold;

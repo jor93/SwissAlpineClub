@@ -161,6 +161,9 @@ if (isset($_SESSION['tourId'])) {
                     <img alt="Embedded Image"
                          src="data:<?php echo $image['mime'] ?>;base64,<?php echo base64_encode($image['data']); ?> "
                          style="display: block; width: 100%;"/>
+                    <div class="col-md-12">
+                        <?php echo elementsController::avgRatings();?>
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="col-md-6">
@@ -257,15 +260,13 @@ if (isset($_SESSION['tourId'])) {
                     <div class="col-md-6">
                         <label id="tourtypes"><?php echo elementsController::getTypeTourForHikeShow($_SESSION['tourId']); ?></label>
                     </div>
-
-                    <div class="register-but">
-                        <a href="<?php echo URL_DIR. "admin/manageHike"?>"><?php if(Controller::checkActiveUser() == 10) echo "<button type=\"submit\">" . $lang['SHOWADMIN_EDIT'] . "</button>" ?></a>
-                    </div>
+                </div>
+                <div class="register-but">
+                    <a href="<?php echo URL_DIR. "admin/manageHike"?>"><?php if(Controller::checkActiveUser() == 10) echo "<button type=\"submit\">" . $lang['SHOWADMIN_EDIT'] . "</button>" ?></a>
                 </div>
             </div>
         </div>
     </div>
-    </br>
 
     <div class="main-1">
         <div class="container">
@@ -318,45 +319,50 @@ if (isset($_SESSION['tourId'])) {
     </div>
     <form method="post" action="<?php echo URL_DIR.'inscription/validaterating';?>" class="container">
         <div class="register">
-            <div class="col-md-4">
-                <?php echo elementsController::avgRatings();?>
-                <div class="rating">
-                    <span id="5" name="5" title="ausgezeichnet" onclick="fill(this.id)" >☆</span>
-                    <span id="4" name="4" title="sehr gut" onclick="fill(this.id)">☆</span>
-                    <span id="3" name="3" title="gut" onclick="fill(this.id)">☆</span>
-                    <span id="2" name="2" title="genügend" onclick="fill(this.id)">☆</span>
-                    <span id="selected1" name="selected1" title="schlecht" onclick="fill(this.id)" class="filled">☆</span>
-                    <input type='hidden' id='star' name='star' value='0' />
+            <div class="register-top-grid">
+                <h3><?php echo $lang['HIKESHOW_RATING_ADD']; ?></h3>
+                <label class="error">
+                    <?php
+                    if (isset($_SESSION['error_account_rating'])) {
+                        echo $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'];
+                    }
+                    ?>
+                </label>
+
+                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="rating">
+                        <span id="5" name="5" title="ausgezeichnet" onclick="fill(this.id)" >☆</span>
+                        <span id="4" name="4" title="sehr gut" onclick="fill(this.id)">☆</span>
+                        <span id="3" name="3" title="gut" onclick="fill(this.id)">☆</span>
+                        <span id="2" name="2" title="genügend" onclick="fill(this.id)">☆</span>
+                        <span id="selected1" name="selected1" title="schlecht" onclick="fill(this.id)" class="filled">☆</span>
+                        <input type='hidden' id='star' name='star' value='0' />
+                    </div>
+                    <!-- gez rating comment -->
+                    <textarea id="input_comment" name="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."style="width: 400px;"></textarea>
+                    <!--<input type="button" onclick="validaterating()"><--?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></input>-->
+
+                    <div class="register-but">
+                        <input type="submit" value="<?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?>">
+                    </div>
+                    </br>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="register-top-grid">
-                    <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
-                    <label class="error">
-                        <?php
-                        if (isset($_SESSION['error_account_rating'])) {
-                            echo $lang['SHOWHIKE_ACCOUNT_ALREADY_RATED'];
-                        }
-                        ?>
-                    </label>
-                    <div class="wow fadeInLeft" data-wow-delay="0.4s">
-                        <!-- gez rating comment -->
-                        <textarea id="input_comment" name="input_comment" rows="3" placeholder="Hier könnte deine Meinung veröffentlicht werden..."style="width: 400px;"></textarea>
-                        <!--<input type="button" onclick="validaterating()"><--?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?></input>-->
-                        <div class="register-but">
-                            <input type="submit" value="<?php echo $lang['HIKESHOW_RATING_PUBLIC']; ?>">
-                        </div>
-                        </br>
-                        </br>
-                        <div class="rating">
-                            <?php echo elementsController::comments();?>
-                        </div>
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="register">
+            <div class="register-top-grid">
+                <h3><?php echo $lang['HIKESHOW_RATING']; ?></h3>
+                <div class="wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="rating-show">
+                        <?php echo elementsController::comments();?>
                     </div>
                 </div>
             </div>
-
         </div>
-    </form>
+    </div>
 
 <?php
 unset($_SESSION['error_msg']);

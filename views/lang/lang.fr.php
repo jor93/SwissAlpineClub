@@ -247,6 +247,7 @@ $lang['HIKESHOW_FRIENDS'] = 'Mes amis:';
 $lang['HIKESHOW_MORE_FRIENDS'] = 'Ajouter un ami';
 $lang['HIKESHOW_SAVE'] = 'Sauvegarder';
 $lang['HIKESHOW_RATING'] = 'Évaluation';
+$lang['HIKESHOW_RATING_ADD'] = 'Donner des évaluations';
 $lang['HIKESHOW_RATING_PUBLIC'] = "Publier l'Évaluation";
 $lang['HIKESHOW_TOURTYPES'] = "Type de randonnée";
 
