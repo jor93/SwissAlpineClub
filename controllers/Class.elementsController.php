@@ -466,9 +466,9 @@ class elementsController extends Controller
                         echo "<div class='overlay'>";
                         echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                         if(strcmp($_SESSION['lang'],'fr')==0)
-                            echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                            echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]h<br /></h6>";
                         else
-                            echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                            echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x] Std.<br /></h6>";
                         echo "</div>";
                         echo "</li>";
                          break;
@@ -483,9 +483,9 @@ class elementsController extends Controller
                     echo "<div class='overlay'>";
                     echo "<h5>$title[$x]<br />$location[$x], $datePick[$x]</h5>";
                     if(strcmp($_SESSION['lang'],'fr')==0)
-                        echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                        echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]h<br /></h6>";
                     else
-                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                        echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x] Std. <br /></h6>";
                     echo "</div>";
                     echo "</li>";
                                    }
@@ -497,9 +497,9 @@ class elementsController extends Controller
                 echo "<div class='overlay'>";
                 echo "<h5>$title[$x]<br />$location[$x], $newDate</h5>";
                 if(strcmp($_SESSION['lang'],'fr')==0)
-                    echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]<br /></h6>";
+                    echo "<h6>Difficulté: $diffString<br />Durée: $durations[$x]h<br /></h6>";
                 else
-                    echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x]<br /></h6>";
+                    echo "<h6>Schwierigkeit: $diffString<br />Dauer: $durations[$x] Std. <br /></h6>";
                 echo "</div>";
                 echo "</li>";
             }
